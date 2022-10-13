@@ -4,7 +4,7 @@ import { login } from '../repositories/auth_repository';
 
 import * as loginActionCreators from '../action_creators/auth/login_action_creators';
 import * as loginActionTypes from '../action_types/auth/login_action_types';
-import LoginResult from "../models/LoginResult";
+import LoginResult from "../models/login_result";
 
 const call: any = Effects.call;
 

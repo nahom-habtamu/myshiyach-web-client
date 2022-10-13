@@ -1,7 +1,7 @@
-import LoginRequest from "../../models/LoginRequest";
+import LoginRequest from "../../models/login_request";
 
 import * as actions from '../../action_types/auth/login_action_types';
-import LoginResult from "../../models/LoginResult";
+import LoginResult from "../../models/login_result";
 
 export const login = (loginRequest: LoginRequest): actions.LoginAction => {
     return {

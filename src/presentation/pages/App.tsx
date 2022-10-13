@@ -1,4 +1,4 @@
-import Routes from '../../core/constants/Routes';
+import Routes from '../components/common/Routes';
 
 const App = () => {
     return (

@@ -1,7 +1,7 @@
 import { 
   BrowserRouter as Router, Switch, Route 
 } from "react-router-dom";
-import LoginPage from "../../presentation/pages/LoginPage";
+import LoginPage from "../../pages/LoginPage";
 
 type UserLoginStatus = {
   isLoggedIn : boolean 
