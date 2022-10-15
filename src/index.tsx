@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 
 import App from './presentation/pages/App';
 import configureStore from "./store/configureStore";
+import '../src/presentation/general_style/index.css';
 
 const store = configureStore();
 
