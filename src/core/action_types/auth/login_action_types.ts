@@ -9,13 +9,12 @@ export interface LoginAction {
 
 export const LOGIN_INITIATE = "authActionTypes/LOGIN_INITIATE";
 export interface LoginInitateAction {
-  type: typeof LOGIN_INITIATE
+  type: typeof LOGIN_INITIATE;
 }
-
 
 export const LOGIN_LOADING = "authActionTypes/LOGIN_LOADING";
 export interface LoginLoadingAction {
-  type: typeof LOGIN_LOADING
+  type: typeof LOGIN_LOADING;
 }
 
 export const LOGIN_SUCCESS = "authActionTypes/LOGIN_SUCCESS";
@@ -27,10 +26,10 @@ export interface LoginSuccessAction {
 export const LOGIN_FAILURE = "authActionTypes/LOGIN_FAILURE";
 export interface LoginFailureAction {
   type: typeof LOGIN_FAILURE;
-  message : String;
+  message: String;
 }
 
-export type AuthLoginAction =
+export type LoginActionType =
   | LoginAction
   | LoginInitateAction
   | LoginLoadingAction

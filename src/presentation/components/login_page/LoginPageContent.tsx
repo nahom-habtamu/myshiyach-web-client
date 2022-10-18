@@ -1,4 +1,8 @@
+import { useHistory } from "react-router-dom";
+
 import { LoginState } from "../../../core/reducers/loginReducer";
+import { DummyPageRoute } from "../../pages/DummyPage";
+import { SignUpPageRoute } from "../../pages/SignUpPage";
 import {
   AuthInputWrapperStyled,
   SpaceStyled,
@@ -21,10 +25,13 @@ type LoginPageContentProps = {
 };
 
 const LoginPageContent = (props: LoginPageContentProps) => {
+  const history = useHistory();
+
   const renderLoginContentBasedOnState = () => {
     if (props.loginState.isLoading) {
       return <h1>Loading........</h1>;
     } else if (props.loginState.token.length > 0) {
+      history.push(DummyPageRoute);
     } else {
       return <ActionButton text="Login" onPressed={props.onFormSubmitted} />;
     }
@@ -72,7 +79,7 @@ const LoginPageContent = (props: LoginPageContentProps) => {
       <AuthToggleAction
         textOne="Don't have an account ?"
         textTwo="Sign Up"
-        onPressed={() => console.log("I AM HEADING TO SIGN UP PAGE")}
+        onPressed={() => history.push(SignUpPageRoute)}
       />
     </>
   );

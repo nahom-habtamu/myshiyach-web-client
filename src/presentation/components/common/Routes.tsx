@@ -1,27 +1,39 @@
-import { 
-  BrowserRouter as Router, Switch, Route 
-} from "react-router-dom";
-import LoginPage from "../../pages/LoginPage";
+import { Switch, Route, HashRouter } from "react-router-dom";
+import DummyPage, { DummyPageRoute } from "../../pages/DummyPage";
+import LoginPage, { LoginPageRoute } from "../../pages/LoginPage";
+import OtpVerificationPage, {
+  OtpVerificationPageRoute,
+} from "../../pages/OtpVerificationPage";
+import SignUpPage, { SignUpPageRoute } from "../../pages/SignUpPage";
 
 type UserLoginStatus = {
-  isLoggedIn : boolean 
+  isLoggedIn: boolean;
 };
 
 const Routes = ({ isLoggedIn }: UserLoginStatus) => {
   return (
-    <Router>
+    <HashRouter>
       <Switch>
-        <Route exact path="/">
-          <LoginPage/>
+        <Route exact path={LoginPageRoute}>
+          <LoginPage />
         </Route>
-        {
-          isLoggedIn && <Route path="/home">
+        <Route exact path={SignUpPageRoute}>
+          <SignUpPage />
+        </Route>
+        <Route exact path={OtpVerificationPageRoute}>
+          <OtpVerificationPage />
+        </Route>
+        <Route exact path={DummyPageRoute}>
+          <DummyPage />
+        </Route>
+        {isLoggedIn && (
+          <Route path="/home">
             <h1>Home Page</h1>
           </Route>
-        }
+        )}
       </Switch>
-    </Router>
+    </HashRouter>
   );
-}
+};
 
 export default Routes;

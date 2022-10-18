@@ -10,3 +10,17 @@ body {
     background-color: white;
     width: 100%; 
 }
+
+.otp-input {
+    width : 3em !important;
+    height: 65px;
+    border: 0.5px solid #beb9b9;
+    border-radius: 10px;
+}
+
+.otp-container {
+    width : 22em;
+    margin : 25px auto;
+    display: flex;
+    justify-content: space-between;
+}
