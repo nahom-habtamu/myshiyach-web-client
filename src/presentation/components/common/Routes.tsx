@@ -1,5 +1,6 @@
 import { Switch, Route, HashRouter } from "react-router-dom";
 import DummyPage, { DummyPageRoute } from "../../pages/DummyPage";
+import HomePage, { HomePageRoute } from "../../pages/HomePage";
 import LoginPage, { LoginPageRoute } from "../../pages/LoginPage";
 import OtpVerificationPage, {
   OtpVerificationPageRoute,
@@ -14,6 +15,9 @@ const Routes = ({ isLoggedIn }: UserLoginStatus) => {
   return (
     <HashRouter>
       <Switch>
+      <Route exact path={HomePageRoute}>
+          <HomePage />
+        </Route>
         <Route exact path={LoginPageRoute}>
           <LoginPage />
         </Route>
