@@ -1,11 +1,11 @@
 import {
   NavBarToContentButtonSeparator,
   NavBarTopContentButton,
-} from "../../styled_components/nav_bar/NavBarTopContentButton";
+} from "../../styled_components/nav_bar/NavBarTopContentButtonStyled";
 import {
   NavBarTopContentBlockItemWrapper,
   NavBarTopContentsWrapper,
-} from "../../styled_components/nav_bar/NavBarTopContentsWrapper";
+} from "../../styled_components/nav_bar/NavBarTopContentsWrapperStyled";
 
 const NavBarTopContent = () => {
   return (
