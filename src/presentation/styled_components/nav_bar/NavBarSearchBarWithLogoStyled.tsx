@@ -64,6 +64,8 @@ const NavSearchBarWithLogoWrappperStyled = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid black;
 `;
 
 export {
