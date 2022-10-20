@@ -1,5 +1,11 @@
+import NavBarTopContent from "../components/common/NavBarTopContent";
+
 const HomePage = () => {
-  return <>I AM HOME PAGE</>;
+  return (
+    <>
+      <NavBarTopContent />
+    </>
+  );
 };
 
 export default HomePage;
