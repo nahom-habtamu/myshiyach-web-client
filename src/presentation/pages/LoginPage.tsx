@@ -37,4 +37,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-export const LoginPageRoute = "/";
+export const LoginPageRoute = "/login";
