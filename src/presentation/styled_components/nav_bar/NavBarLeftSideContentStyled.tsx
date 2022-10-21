@@ -22,8 +22,13 @@ const NavBarLeftSideContentItemStyled = styled.div<NavBarLeftSideContentItemStyl
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => (props.isActive ? PINK_COLOR : "transparent")};
+  background-color: ${(props) => (props.isActive ? PINK_COLOR : "transparent")};
   color: ${(props) => (props.isActive ? "white" : "grey")};
+  transition: background-color 0.6s;
+  
+  :hover {
+    background-color: ${PINK_COLOR};
+  }
 `;
 
 export { NavBarLeftSideContentWrapperStyled, NavBarLeftSideContentItemStyled };

@@ -1,5 +1,6 @@
 import { BsFilter } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
+import { ICON_SIZE } from "../../constants/sizes";
 import {
   NavFilterButtonStyled,
   NavLogoStyled,
@@ -17,13 +18,13 @@ const NavBarLogoFilterAndSearchBarContent = () => {
       <NavSearchBarAndFilterButtonWrapperStyled>
         <NavSearchInputWrapperStyled>
           <NavSearchInputLeadingIconStyled>
-            <CiSearch size="2em" color="grey" />
+            <CiSearch size={ICON_SIZE} color="grey" />
           </NavSearchInputLeadingIconStyled>
           <NavSearchInputStyled placeholder="Search for an item"></NavSearchInputStyled>
           <NavSearchButtonStyled>Search</NavSearchButtonStyled>
         </NavSearchInputWrapperStyled>
         <NavFilterButtonStyled>
-          <BsFilter size="2em" />
+          <BsFilter size={ICON_SIZE} />
         </NavFilterButtonStyled>
       </NavSearchBarAndFilterButtonWrapperStyled>
     </NavSearchBarWithLogoWrappperStyled>
