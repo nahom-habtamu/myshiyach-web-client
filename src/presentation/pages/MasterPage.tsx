@@ -2,7 +2,7 @@ import { useState } from "react";
 import NavBarLogoFilterAndSearchBarContent from "../components/common/NavBarLogoFilterAndSearchBarContent";
 import NavBarSideContent from "../components/common/NavBarSideContent";
 import NavBarTopContent from "../components/common/NavBarTopContent";
-import { BodyContentWrapperStyled } from "../styled_components/body/BodyContentWrapperStyled";
+import { BodyContentWrapperStyled } from "../styled_components/master/BodyContentWrapperStyled";
 import AddPostPage from "./AddPostPage";
 import ChatListPage from "./ChatListPage";
 import HomePage from "./HomePage";

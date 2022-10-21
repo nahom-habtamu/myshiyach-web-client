@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PINK_COLOR } from "../../constants/colors";
+import { LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
 
 const NavLogoStyled = styled.div`
   font-size: 20px;
@@ -25,7 +25,7 @@ const NavSearchInputStyled = styled.input`
   width: 100%;
   height: 100%;
   border-radius: 100px;
-  background: #f2eded;
+  background: ${LIGHT_GRAY_COLOR};
   padding-left: 100px;
   color: black;
   outline: none;
@@ -64,8 +64,13 @@ const NavSearchBarWithLogoWrappperStyled = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid black;
+  margin-bottom: 12px;
+`;
+
+const NavSearchBarBottomBorderStyled = styled.div`
+  width: 100%;
+  height: 1.2px;
+  background: black;
 `;
 
 export {
@@ -75,6 +80,7 @@ export {
   NavSearchInputStyled,
   NavSearchButtonStyled,
   NavFilterButtonStyled,
+  NavSearchBarBottomBorderStyled,
   NavSearchBarAndFilterButtonWrapperStyled,
   NavSearchBarWithLogoWrappperStyled,
 };
