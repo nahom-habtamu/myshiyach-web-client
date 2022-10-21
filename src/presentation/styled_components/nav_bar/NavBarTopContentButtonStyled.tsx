@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NavBarTopContentButton = styled.div`
+const NavBarTopContentButtonStyled = styled.div`
   color: black;
   font-size: 15px;
   font-weight: 500;
@@ -14,21 +14,21 @@ const NavBarTopContentButton = styled.div`
   }
 `;
 
-const NavBarToContentButtonSeparator = styled.div`
+const NavBarToContentButtonSeparatorStyled = styled.div`
   width: 1.7px;
   background: grey;
   margin-left: 13px;
   margin-right: 13px;
 `;
 
-const NavBarToContentButtonImage = styled.img`
+const NavBarToContentButtonImageStyled = styled.img`
   width: 50px;
   height: 50px;
   margin-left: 2px;
 `;
 
 export {
-  NavBarTopContentButton,
-  NavBarToContentButtonImage,
-  NavBarToContentButtonSeparator,
+  NavBarTopContentButtonStyled,
+  NavBarToContentButtonImageStyled,
+  NavBarToContentButtonSeparatorStyled,
 };

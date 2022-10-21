@@ -1,26 +1,28 @@
 import {
-  NavBarToContentButtonSeparator,
-  NavBarTopContentButton,
+  NavBarToContentButtonSeparatorStyled,
+  NavBarTopContentButtonStyled,
 } from "../../styled_components/nav_bar/NavBarTopContentButtonStyled";
 import {
-  NavBarTopContentBlockItemWrapper,
-  NavBarTopContentsWrapper,
+  NavBarTopContentBlockItemWrapperStyled,
+  NavBarTopContentsWrapperStyled,
 } from "../../styled_components/nav_bar/NavBarTopContentsWrapperStyled";
 
 const NavBarTopContent = () => {
   return (
-    <NavBarTopContentsWrapper>
-      <NavBarTopContentBlockItemWrapper position="start">
-        <NavBarTopContentButton>Download</NavBarTopContentButton>
-        <NavBarToContentButtonSeparator />
-        <NavBarTopContentButton>Follow us on</NavBarTopContentButton>
-      </NavBarTopContentBlockItemWrapper>
-      <NavBarTopContentBlockItemWrapper position="end">
-        <NavBarTopContentButton>Sign Up</NavBarTopContentButton>
-        <NavBarToContentButtonSeparator />
-        <NavBarTopContentButton>Login</NavBarTopContentButton>
-      </NavBarTopContentBlockItemWrapper>
-    </NavBarTopContentsWrapper>
+    <NavBarTopContentsWrapperStyled>
+      <NavBarTopContentBlockItemWrapperStyled position="start">
+        <NavBarTopContentButtonStyled>Download</NavBarTopContentButtonStyled>
+        <NavBarToContentButtonSeparatorStyled />
+        <NavBarTopContentButtonStyled>
+          Follow us on
+        </NavBarTopContentButtonStyled>
+      </NavBarTopContentBlockItemWrapperStyled>
+      <NavBarTopContentBlockItemWrapperStyled position="end">
+        <NavBarTopContentButtonStyled>Sign Up</NavBarTopContentButtonStyled>
+        <NavBarToContentButtonSeparatorStyled />
+        <NavBarTopContentButtonStyled>Login</NavBarTopContentButtonStyled>
+      </NavBarTopContentBlockItemWrapperStyled>
+    </NavBarTopContentsWrapperStyled>
   );
 };
 

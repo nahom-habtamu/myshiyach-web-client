@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NavBarTopContentsWrapper = styled.div`
+const NavBarTopContentsWrapperStyled = styled.div`
   width: 90%;
   margin: 15px auto;
   display: flex;
@@ -11,10 +11,13 @@ interface NavBarTopContentBlockItemWrapperProps {
   position: string;
 }
 
-const NavBarTopContentBlockItemWrapper = styled.div<NavBarTopContentBlockItemWrapperProps>`
+const NavBarTopContentBlockItemWrapperStyled = styled.div<NavBarTopContentBlockItemWrapperProps>`
   width: 50%;
   display: flex;
   justify-content: ${(props) => props.position};
 `;
 
-export { NavBarTopContentsWrapper, NavBarTopContentBlockItemWrapper };
+export {
+  NavBarTopContentsWrapperStyled,
+  NavBarTopContentBlockItemWrapperStyled,
+};
