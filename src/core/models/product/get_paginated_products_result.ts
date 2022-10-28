@@ -4,7 +4,7 @@ import Product from "./product";
 type GetPaginatedProductsResult = {
   previous: PageAndLimit | null;
   next: PageAndLimit | null;
-  results: [Product];
+  results: Product[];
 };
 
 export default GetPaginatedProductsResult;
