@@ -6,13 +6,13 @@ import {
   UserCredential,
 } from "firebase/auth";
 
-import LoginResult from "../models/login_result";
+import LoginResult from "../models/auth/login_result";
 import axiosInstance from "../utils/api";
-import LoginRequest from "../models/login_request";
+import LoginRequest from "../models/auth/login_request";
 
 import firebaseConf from "../config/firebase_config";
-import AuthPhoneNumberRequest from "../models/auth_phone_number_request";
-import VerifyPinRequest from "../models/verify_pin_request";
+import AuthPhoneNumberRequest from "../models/auth/auth_phone_number_request";
+import VerifyPinRequest from "../models/auth/verify_pin_request";
 
 export async function login(loginRequest: LoginRequest): Promise<LoginResult> {
   let result = await axiosInstance.post("/auth", loginRequest);

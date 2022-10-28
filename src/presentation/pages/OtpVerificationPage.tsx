@@ -4,7 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import { verifyPin } from "../../core/action_creators/auth/verify_pin_action_creators";
 
-import SignUpRequest from "../../core/models/signup_request";
+import SignUpRequest from "../../core/models/user/signup_request";
 import ActionButton from "../components/common/ActionButton";
 import {
   OtpPageHeaderStyled,

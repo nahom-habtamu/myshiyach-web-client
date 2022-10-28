@@ -1,5 +1,5 @@
 import * as actions from "../../action_types/auth/verify_pin_action_types";
-import VerifyPinRequest from "../../models/verify_pin_request";
+import VerifyPinRequest from "../../models/auth/verify_pin_request";
 
 export const verifyPin = (
   verifyPinRequest: VerifyPinRequest

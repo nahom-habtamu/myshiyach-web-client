@@ -1,6 +1,6 @@
 import { ConfirmationResult } from "firebase/auth";
 import * as actions from "../../action_types/auth/authenticate_phone_number_types";
-import AuthPhoneNumberRequest from "../../models/auth_phone_number_request";
+import AuthPhoneNumberRequest from "../../models/auth/auth_phone_number_request";
 
 export const authenticatePhoneNumber = (
   authPhoneRequest: AuthPhoneNumberRequest

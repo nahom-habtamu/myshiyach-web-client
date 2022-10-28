@@ -1,4 +1,4 @@
-import VerifyPinRequest from "../../models/verify_pin_request";
+import VerifyPinRequest from "../../models/auth/verify_pin_request";
 
 export const VERIFY_PIN = "authActionTypes/VERIFY_PIN";
 export interface VerifyPinAction {

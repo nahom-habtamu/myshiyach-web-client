@@ -1,5 +1,5 @@
-import SignUpRequest from "../models/signup_request";
-import User from "../models/user";
+import SignUpRequest from "../models/user/signup_request";
+import User from "../models/user/user";
 import axiosInstance from "../utils/api";
 
 export async function registerUser(

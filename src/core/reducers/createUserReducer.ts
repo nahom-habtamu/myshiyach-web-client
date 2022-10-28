@@ -1,5 +1,5 @@
 import * as createUserActions from "../action_types/user/create_user_action_types";
-import User from "../models/user";
+import User from "../models/user/user";
 
 export interface CreateUserState {
   user: User | null;

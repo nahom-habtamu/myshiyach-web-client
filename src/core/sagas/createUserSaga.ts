@@ -4,7 +4,7 @@ import { registerUser } from "../repositories/user_repository";
 
 import * as createUserCreators from "../action_creators/user/create_user_action_creators";
 import * as createUserTypes from "../action_types/user/create_user_action_types";
-import User from "../models/user";
+import User from "../models/user/user";
 
 const call: any = Effects.call;
 

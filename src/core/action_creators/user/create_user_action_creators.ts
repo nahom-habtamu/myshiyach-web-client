@@ -1,6 +1,6 @@
 import * as actions from "../../action_types/user/create_user_action_types";
-import SignUpRequest from "../../models/signup_request";
-import User from "../../models/user";
+import SignUpRequest from "../../models/user/signup_request";
+import User from "../../models/user/user";
 
 export const createUser = (
   SignUpRequest: SignUpRequest

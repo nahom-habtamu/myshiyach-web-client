@@ -1,5 +1,5 @@
-import LoginRequest from "../../models/login_request";
-import LoginResult from "../../models/login_result";
+import LoginRequest from "../../models/auth/login_request";
+import LoginResult from "../../models/auth/login_result";
 
 export const LOGIN = "authActionTypes/LOGIN";
 export interface LoginAction {
