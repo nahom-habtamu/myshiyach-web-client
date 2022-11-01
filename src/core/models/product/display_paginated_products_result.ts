@@ -5,7 +5,7 @@ import Product from "./product";
 type DisplayPaginatedProductsResult = {
   categories: MainCategory[];
   favoriteProducts: Product[];
-  result: GetPaginatedProductsResult;
+  productsWithPageAndLimit: GetPaginatedProductsResult;
 };
 
 export default DisplayPaginatedProductsResult;

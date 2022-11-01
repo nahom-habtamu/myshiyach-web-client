@@ -28,7 +28,7 @@ export interface DisplayPaginatedProductsFailureAction {
   message: String;
 }
 
-export type DisplayPaginatedProductssActionType =
+export type DisplayPaginatedProductsActionType =
   | DisplayPaginatedProductsAction
   | DisplayPaginatedProductsLoadingAction
   | DisplayPaginatedProductsFailureAction
