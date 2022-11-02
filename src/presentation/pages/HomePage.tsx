@@ -7,20 +7,24 @@ import PaginatedProducts from "../components/home_page/PaginatedProducts";
 import FilterCategories from "../components/home_page/FilterCategories";
 import LoadMoreButton from "../components/home_page/LoadMoreButton";
 import { loadMoreProducts } from "../../core/action_creators/product/load_more_products_action_creators";
+import MainCategory from "../../core/models/category/main_category";
+import { modifyFilterCriteria } from "../../core/action_creators/product/filter_criteria_action_creators";
+import FilterCriteria from "../../core/models/filter/filter_criteria";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
+  const filterCriteria = useAppSelector((state) => state.filterCriteria);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const initialPageAndLimit = {
-      filterCriteria: null,
+      filterCriteria: filterCriteria,
       limit: 5,
       page: 1,
     };
     dispatch(displayPaginatedProducts(initialPageAndLimit));
-  }, [dispatch]);
+  }, [dispatch, filterCriteria]);
 
   const renderProducts = () => {
     return (
@@ -35,10 +39,16 @@ const HomePage = () => {
   const renderCategories = () => {
     return (
       <FilterCategories
-        categories={state.paginatedProductResult?.categories ?? []}
-        selectedMainCategory={
-          state.paginatedProductResult?.categories[0]._id ?? ""
+        onCategorySelected={(value: MainCategory) =>
+          dispatch(
+            modifyFilterCriteria({
+              ...filterCriteria,
+              mainCategory: value._id,
+            } as FilterCriteria)
+          )
         }
+        categories={state.paginatedProductResult?.categories ?? []}
+        selectedMainCategory={filterCriteria?.mainCategory ?? ""}
       />
     );
   };

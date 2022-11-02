@@ -7,6 +7,7 @@ import {
 type FilterCategoriesProps = {
   categories: MainCategory[];
   selectedMainCategory: string | null;
+  onCategorySelected: Function;
 };
 
 const FilterCategories = (props: FilterCategoriesProps) => {
@@ -16,6 +17,7 @@ const FilterCategories = (props: FilterCategoriesProps) => {
         <HomePageCategoryItemStyled
           key={c._id}
           isActive={c._id === props.selectedMainCategory}
+          onClick={() => props.onCategorySelected(c)}
         >
           {c.title}
         </HomePageCategoryItemStyled>
