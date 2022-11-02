@@ -24,7 +24,7 @@ const PaginatedProducts = (props: PaginatedProductsProps) => {
   return (
     <HomePageProductsWrapperStyled>
       {props.paginatedProductsResult?.results.map((p) => (
-        <HomePageProductWrapperStyled>
+        <HomePageProductWrapperStyled key={p._id}>
           <HomePageProductImageWrapperStyled>
             <HomePageProductImageStyled src={p.productImages[0]} />
           </HomePageProductImageWrapperStyled>

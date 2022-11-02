@@ -14,6 +14,7 @@ const FilterCategories = (props: FilterCategoriesProps) => {
     <HomePageCategoryListWrapperStyled>
       {props.categories.map((c) => (
         <HomePageCategoryItemStyled
+          key={c._id}
           isActive={c._id === props.selectedMainCategory}
         >
           {c.title}
