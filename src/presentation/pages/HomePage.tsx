@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/storeHooks";
 
 import { displayPaginatedProducts } from "../../core/action_creators/product/display_paginated_products_action_creators";
+import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapperStyled";
+import PaginatedProducts from "../components/home_page/PaginatedProducts";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
@@ -19,21 +21,18 @@ const HomePage = () => {
 
   const renderProducts = () => {
     return (
-      <div>
-        {state.paginatedProductResult?.productsWithPageAndLimit.results.map(
-          (p) => (
-            <li>{p.title}</li>
-          )
-        )}
-      </div>
+      <PaginatedProducts
+        paginatedProductsResult={
+          state.paginatedProductResult?.productsWithPageAndLimit ?? null
+        }
+      />
     );
   };
 
   return (
-    <>
-      <div>HOME PAGE GETTING DISPLAYED</div>
+    <HomePageWrapperStyled>
       <div>{state.isLoading ? "LOADING....." : renderProducts()}</div>
-    </>
+    </HomePageWrapperStyled>
   );
 };
 

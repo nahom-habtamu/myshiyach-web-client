@@ -3,6 +3,7 @@ import NavBarLogoFilterAndSearchBarContent from "../components/common/NavBarLogo
 import NavBarSideContent from "../components/common/NavBarSideContent";
 import NavBarTopContent from "../components/common/NavBarTopContent";
 import { BodyContentWrapperStyled } from "../styled_components/master/BodyContentWrapperStyled";
+import MasterPageContentWrapperStyled from "../styled_components/master/MasterPageContentWrapperStyled";
 import AddPostPage from "./AddPostPage";
 import ChatListPage from "./ChatListPage";
 import HomePage from "./HomePage";
@@ -28,7 +29,7 @@ const MasterPage = () => {
   };
 
   return (
-    <>
+    <MasterPageContentWrapperStyled>
       <NavBarTopContent />
       <NavBarLogoFilterAndSearchBarContent />
       <BodyContentWrapperStyled>
@@ -40,7 +41,7 @@ const MasterPage = () => {
           {buildContentToDisplay()}
         </>
       </BodyContentWrapperStyled>
-    </>
+    </MasterPageContentWrapperStyled>
   );
 };
 
