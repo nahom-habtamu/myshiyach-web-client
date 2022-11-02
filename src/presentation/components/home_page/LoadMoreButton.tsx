@@ -5,13 +5,14 @@ import {
 
 type LoadMoreButtonProps = {
   onPressed: Function;
+  text: string;
 };
 
-const LoadMoreButton = ({ onPressed }: LoadMoreButtonProps) => {
+const LoadMoreButton = ({ onPressed, text }: LoadMoreButtonProps) => {
   return (
     <HomePageLoadMoreButtonWrapperStyled>
       <HomePageLoadMoreButtonStyled onClick={() => onPressed()}>
-        Load More
+        {text}
       </HomePageLoadMoreButtonStyled>
     </HomePageLoadMoreButtonWrapperStyled>
   );

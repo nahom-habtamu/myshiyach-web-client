@@ -6,19 +6,20 @@ import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapper
 import PaginatedProducts from "../components/home_page/PaginatedProducts";
 import FilterCategories from "../components/home_page/FilterCategories";
 import LoadMoreButton from "../components/home_page/LoadMoreButton";
+import { loadMoreProducts } from "../../core/action_creators/product/load_more_products_action_creators";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(
-      displayPaginatedProducts({
-        filterCriteria: null,
-        limit: 5,
-        page: 1,
-      })
-    );
+    const initialPageAndLimit = {
+      filterCriteria: null,
+      limit: 5,
+      page: 1,
+    };
+    dispatch(displayPaginatedProducts(initialPageAndLimit));
   }, [dispatch]);
 
   const renderProducts = () => {
@@ -43,17 +44,36 @@ const HomePage = () => {
   };
 
   const renderLoadMoreButton = () => {
-    return (
+    var objectToRender = state.isLoadingMoreProducts ? (
+      <LoadMoreButton text="Loading More Products...." onPressed={() => {}} />
+    ) : state.paginatedProductResult?.productsWithPageAndLimit.next ? (
       <LoadMoreButton
-        onPressed={() => console.log("I AM LOADDINGGGG MORE PRODUCTS..")}
+        text="Load More"
+        onPressed={() =>
+          dispatch(
+            loadMoreProducts({
+              filterCriteria: null,
+              limit:
+                state.paginatedProductResult?.productsWithPageAndLimit.next
+                  ?.limit ?? 5,
+              page:
+                state.paginatedProductResult?.productsWithPageAndLimit.next
+                  ?.page ?? 1,
+            })
+          )
+        }
       />
+    ) : (
+      <LoadMoreButton text="No More Products" onPressed={() => {}} />
     );
+
+    return objectToRender;
   };
 
   return (
     <HomePageWrapperStyled>
       {renderCategories()}
-      <div>{state.isLoading ? "LOADING....." : renderProducts()}</div>
+      <div>{state.isDisplayLoading ? "LOADING....." : renderProducts()}</div>
       {renderLoadMoreButton()}
     </HomePageWrapperStyled>
   );
