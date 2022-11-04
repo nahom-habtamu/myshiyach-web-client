@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FilterProductsModel from "../components/common/FilterProductsModal";
 import NavBarLogoFilterAndSearchBarContent from "../components/common/NavBarLogoFilterAndSearchBarContent";
 import NavBarSideContent from "../components/common/NavBarSideContent";
 import NavBarTopContent from "../components/common/NavBarTopContent";
@@ -12,6 +13,7 @@ import SettingsPage from "./SettingsPage";
 
 const MasterPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const buildContentToDisplay = () => {
     switch (currentPage) {
@@ -31,7 +33,9 @@ const MasterPage = () => {
   return (
     <MasterPageContentWrapperStyled>
       <NavBarTopContent />
-      <NavBarLogoFilterAndSearchBarContent />
+      <NavBarLogoFilterAndSearchBarContent
+        onFilterButtonPressed={() => setIsOpen(!isOpen)}
+      />
       <BodyContentWrapperStyled>
         <>
           <NavBarSideContent
@@ -41,6 +45,11 @@ const MasterPage = () => {
           {buildContentToDisplay()}
         </>
       </BodyContentWrapperStyled>
+      {isOpen && (
+        <FilterProductsModel
+          onClose={() => setIsOpen(false)}
+        />
+      )}
     </MasterPageContentWrapperStyled>
   );
 };

@@ -5,7 +5,7 @@ type MainCategory = {
   _id: string;
   title: string;
   subCategories: [SubCategory];
-  requiredFeilds: [RequiredFeild];
+  requiredFields: [RequiredFeild];
 };
 
 export default MainCategory;

@@ -58,6 +58,7 @@ export default function displayPaginatedProductsReducer(
           categories: state.paginatedProductResult?.categories ?? [],
           favoriteProducts:
             state.paginatedProductResult?.favoriteProducts ?? [],
+          cities: state.paginatedProductResult?.cities ?? [],
           productsWithPageAndLimit: {
             next:
               state.paginatedProductResult?.productsWithPageAndLimit.next ??
@@ -90,6 +91,7 @@ export default function displayPaginatedProductsReducer(
           categories: state.paginatedProductResult?.categories ?? [],
           favoriteProducts:
             state.paginatedProductResult?.favoriteProducts ?? [],
+          cities: state.paginatedProductResult?.cities ?? [],
           productsWithPageAndLimit: {
             next: action.payload.next ?? null,
             results: [

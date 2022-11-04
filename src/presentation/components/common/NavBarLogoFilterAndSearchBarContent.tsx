@@ -12,7 +12,14 @@ import {
   NavSearchInputStyled,
   NavSearchInputWrapperStyled,
 } from "../../styled_components/nav_bar/NavBarSearchBarWithLogoStyled";
-const NavBarLogoFilterAndSearchBarContent = () => {
+
+type NavBarLogoFilterAndSearchBarContentProps = {
+  onFilterButtonPressed: Function;
+};
+
+const NavBarLogoFilterAndSearchBarContent = (
+  props: NavBarLogoFilterAndSearchBarContentProps
+) => {
   return (
     <>
       <NavSearchBarWithLogoWrappperStyled>
@@ -25,7 +32,7 @@ const NavBarLogoFilterAndSearchBarContent = () => {
             <NavSearchInputStyled placeholder="Search for an item"></NavSearchInputStyled>
             <NavSearchButtonStyled>Search</NavSearchButtonStyled>
           </NavSearchInputWrapperStyled>
-          <NavFilterButtonStyled>
+          <NavFilterButtonStyled onClick={() => props.onFilterButtonPressed()}>
             <BsFilter size={ICON_SIZE} />
           </NavFilterButtonStyled>
         </NavSearchBarAndFilterButtonWrapperStyled>
