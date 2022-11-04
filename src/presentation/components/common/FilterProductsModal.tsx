@@ -122,12 +122,13 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
           type="radio"
           name={name}
           value={0}
-          onChange={(e) =>
+          onChange={(e) => {
             setFilterModel({
               ...filterModel,
               [objectKey]: parseInt(e.target.value) === 0,
-            })
-          }
+            });
+          }}
+          checked={(filterModel as any)[objectKey] === true}
         />
         <HotelFilterRadioLabelStyled>Ascending</HotelFilterRadioLabelStyled>
         <br />
@@ -135,12 +136,13 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
           type="radio"
           name={name}
           value={1}
-          onChange={(e) =>
+          onChange={(e) => {
             setFilterModel({
               ...filterModel,
               [objectKey]: parseInt(e.target.value) === 0,
-            })
-          }
+            });
+          }}
+          checked={(filterModel as any)[objectKey] === false}
         />
         <HotelFilterRadioLabelStyled>Descending</HotelFilterRadioLabelStyled>
       </HotelFilterRadioSectionStyled>
@@ -155,6 +157,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
     return (
       <HotelFilterDropDownInputStyled
         placeholder={placeHolder}
+        value={(filterModel as any)[objectKey] ?? ""}
         onChange={(e) =>
           setFilterModel({
             ...filterModel,
@@ -194,6 +197,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
           <HotelFilterPriceInputStyled
             placeholder="Min Price"
             type="number"
+            value={filterModel.minPrice ?? ""}
             onChange={(e) =>
               setFilterModel({
                 ...filterModel,
@@ -204,6 +208,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
           <HotelFilterPriceInputStyled
             placeholder="Max Price"
             type="number"
+            value={filterModel.maxPrice ?? ""}
             onChange={(e) =>
               setFilterModel({
                 ...filterModel,
