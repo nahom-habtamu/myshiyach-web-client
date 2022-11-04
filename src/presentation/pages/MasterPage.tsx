@@ -37,19 +37,13 @@ const MasterPage = () => {
         onFilterButtonPressed={() => setIsOpen(!isOpen)}
       />
       <BodyContentWrapperStyled>
-        <>
-          <NavBarSideContent
-            activeBar={currentPage}
-            onItemTapped={(value: number) => setCurrentPage(value)}
-          />
-          {buildContentToDisplay()}
-        </>
-      </BodyContentWrapperStyled>
-      {isOpen && (
-        <FilterProductsModel
-          onClose={() => setIsOpen(false)}
+        <NavBarSideContent
+          activeBar={currentPage}
+          onItemTapped={(value: number) => setCurrentPage(value)}
         />
-      )}
+        {buildContentToDisplay()}
+      </BodyContentWrapperStyled>
+      {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
     </MasterPageContentWrapperStyled>
   );
 };

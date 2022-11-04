@@ -80,9 +80,16 @@ const HomePageFavoritesButtonWrapperStyled = styled.div`
 const HomePageProductRefreshedTimeStyled = styled.div`
   position: absolute;
   right: 5px;
-  bottom: 20px;
+  bottom: 10px;
   font-size: 13px;
   color: gray;
+`;
+
+const HomePageNoMoreProductsStyled = styled.div`
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 25px;
 `;
 
 export {
@@ -97,4 +104,5 @@ export {
   HomePageProductPriceStyled,
   HomePageFavoritesButtonWrapperStyled,
   HomePageProductRefreshedTimeStyled,
+  HomePageNoMoreProductsStyled,
 };

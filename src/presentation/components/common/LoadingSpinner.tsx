@@ -1,20 +1,23 @@
 import { CSSProperties } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import { BounceLoader } from "react-spinners";
 import { PRIMARY_COLOR } from "../../constants/colors";
+import { LoadingSpinnerWrapperStyled } from "../../styled_components/common/LoadingSpinnerWrapperStyled";
 
 const override: CSSProperties = {
   display: "block",
-  borderColor: PRIMARY_COLOR,
+  borderColor: 'grey',
 };
 
 const LoadingSpinner = () => {
   return (
-    <ClipLoader
-      color={"black"}
-      loading={true}
-      cssOverride={override}
-      size={150}
-    />
+    <LoadingSpinnerWrapperStyled>
+      <BounceLoader
+        color={PRIMARY_COLOR}
+        loading={true}
+        cssOverride={override}
+        size={80}
+      />
+    </LoadingSpinnerWrapperStyled>
   );
 };
 

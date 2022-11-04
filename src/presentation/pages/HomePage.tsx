@@ -10,6 +10,8 @@ import { loadMoreProducts } from "../../core/action_creators/product/load_more_p
 import MainCategory from "../../core/models/category/main_category";
 import { modifyFilterCriteria } from "../../core/action_creators/product/filter_criteria_action_creators";
 import FilterCriteria from "../../core/models/filter/filter_criteria";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import { HomePageNoMoreProductsStyled } from "../styled_components/home/HomePageProductStyled";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
@@ -55,7 +57,7 @@ const HomePage = () => {
 
   const renderLoadMoreButton = () => {
     var objectToRender = state.isLoadingMore ? (
-      <LoadMoreButton text="Loading More Products...." onPressed={() => {}} />
+      <LoadingSpinner />
     ) : state.paginated?.productsWithPageAndLimit.next ? (
       <LoadMoreButton
         text="Load More"
@@ -70,7 +72,9 @@ const HomePage = () => {
         }
       />
     ) : (
-      <LoadMoreButton text="No More Products" onPressed={() => {}} />
+      <HomePageNoMoreProductsStyled>
+        No More Products
+      </HomePageNoMoreProductsStyled>
     );
 
     return objectToRender;
@@ -79,8 +83,8 @@ const HomePage = () => {
   return (
     <HomePageWrapperStyled>
       {renderCategories()}
-      <div>{state.isDisplayLoading ? "LOADING....." : renderProducts()}</div>
-      {renderLoadMoreButton()}
+      {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()}
+      {!state.isDisplayLoading && renderLoadMoreButton()}
     </HomePageWrapperStyled>
   );
 };
