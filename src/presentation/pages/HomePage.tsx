@@ -30,7 +30,7 @@ const HomePage = () => {
     return (
       <PaginatedProducts
         paginatedProductsResult={
-          state.paginatedProductResult?.productsWithPageAndLimit ?? null
+          state.paginated?.productsWithPageAndLimit ?? null
         }
       />
     );
@@ -47,28 +47,24 @@ const HomePage = () => {
             } as FilterCriteria)
           )
         }
-        categories={state.paginatedProductResult?.categories ?? []}
+        categories={state.paginated?.categories ?? []}
         selectedMainCategory={filterCriteria?.mainCategory ?? ""}
       />
     );
   };
 
   const renderLoadMoreButton = () => {
-    var objectToRender = state.isLoadingMoreProducts ? (
+    var objectToRender = state.isLoadingMore ? (
       <LoadMoreButton text="Loading More Products...." onPressed={() => {}} />
-    ) : state.paginatedProductResult?.productsWithPageAndLimit.next ? (
+    ) : state.paginated?.productsWithPageAndLimit.next ? (
       <LoadMoreButton
         text="Load More"
         onPressed={() =>
           dispatch(
             loadMoreProducts({
               filterCriteria: null,
-              limit:
-                state.paginatedProductResult?.productsWithPageAndLimit.next
-                  ?.limit ?? 5,
-              page:
-                state.paginatedProductResult?.productsWithPageAndLimit.next
-                  ?.page ?? 1,
+              limit: state.paginated?.productsWithPageAndLimit.next?.limit ?? 5,
+              page: state.paginated?.productsWithPageAndLimit.next?.page ?? 1,
             })
           )
         }

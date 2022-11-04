@@ -54,8 +54,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
   }, [globalFilterState]);
 
   const parseMainCategoryToDropdown = () => {
-    var categories =
-      displayPaginatedProductsState.paginatedProductResult?.categories ?? [];
+    var categories = displayPaginatedProductsState.paginated?.categories ?? [];
     return categories.map((e) => {
       return {
         title: e.title,
@@ -65,10 +64,9 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
   };
 
   const parseSubCategoryToDropdown = () => {
-    var mainCategory =
-      displayPaginatedProductsState.paginatedProductResult?.categories.find(
-        (c) => c._id === filterModel.mainCategory
-      );
+    var mainCategory = displayPaginatedProductsState.paginated?.categories.find(
+      (c) => c._id === filterModel.mainCategory
+    );
     return mainCategory?.subCategories.map((e) => {
       return {
         title: e.title,
@@ -78,10 +76,9 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
   };
 
   const parseBrandToDropdown = () => {
-    let mainCategory =
-      displayPaginatedProductsState.paginatedProductResult?.categories.find(
-        (c) => c._id === filterModel.mainCategory
-      );
+    let mainCategory = displayPaginatedProductsState.paginated?.categories.find(
+      (c) => c._id === filterModel.mainCategory
+    );
 
     let requiredFieldWithBrand = mainCategory!.requiredFields.find(
       (r) => r.objectKey === "brand"
@@ -108,14 +105,12 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
   };
 
   const parseCitiesToDropDown = () => {
-    return displayPaginatedProductsState.paginatedProductResult?.cities.map(
-      (e) => {
-        return {
-          title: e,
-          value: e,
-        };
-      }
-    ) as DropDownItemData[];
+    return displayPaginatedProductsState.paginated?.cities.map((e) => {
+      return {
+        title: e,
+        value: e,
+      };
+    }) as DropDownItemData[];
   };
 
   const sortCriteria = (label: string, objectKey: string, name: string) => {
