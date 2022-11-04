@@ -3,6 +3,10 @@ import FilterProductsModel from "../components/common/FilterProductsModal";
 import NavBarLogoFilterAndSearchBarContent from "../components/common/NavBarLogoFilterAndSearchBarContent";
 import NavBarSideContent from "../components/common/NavBarSideContent";
 import NavBarTopContent from "../components/common/NavBarTopContent";
+import {
+  AdvertisementSideBarItemStyled,
+  AdvertisementSideBarWrapperStyled,
+} from "../styled_components/master/AdvertisementSideBarWrapperStyled";
 import { BodyContentWrapperStyled } from "../styled_components/master/BodyContentWrapperStyled";
 import MasterPageContentWrapperStyled from "../styled_components/master/MasterPageContentWrapperStyled";
 import AddPostPage from "./AddPostPage";
@@ -42,6 +46,10 @@ const MasterPage = () => {
           onItemTapped={(value: number) => setCurrentPage(value)}
         />
         {buildContentToDisplay()}
+        <AdvertisementSideBarWrapperStyled marginTop={73}>
+          <AdvertisementSideBarItemStyled />
+          <AdvertisementSideBarItemStyled />
+        </AdvertisementSideBarWrapperStyled>
       </BodyContentWrapperStyled>
       {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
     </MasterPageContentWrapperStyled>

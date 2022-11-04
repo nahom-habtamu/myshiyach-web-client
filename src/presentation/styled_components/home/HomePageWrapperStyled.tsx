@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const HomePageWrapperStyled = styled.div`
   display: flex;
-  width: 100%;
+  width: 65%;
   flex-direction: column;
 `;
 
