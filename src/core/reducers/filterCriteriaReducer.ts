@@ -1,10 +1,22 @@
 import * as filterCriteriaActions from "../action_types/product/filter_criteria_action_types";
 import FilterCriteria from "../models/filter/filter_criteria";
 
+const initialFilterCriteria: FilterCriteria = {
+  maxPrice: null,
+  minPrice: null,
+  mainCategory: null,
+  subCategory: null,
+  brand: null,
+  city: null,
+  sortByPriceAscending: null,
+  sortByCreatedByAscending: null,
+  keyword: null,
+};
+
 export default function filterCriteriaReducer(
-  state: FilterCriteria | null = null,
+  state: FilterCriteria = initialFilterCriteria,
   action: filterCriteriaActions.FilterCriteriaActionType
-): FilterCriteria | null {
+): FilterCriteria {
   switch (action.type) {
     case filterCriteriaActions.FILTER_CRITERIA_MODIFY:
       return {
@@ -26,7 +38,7 @@ export default function filterCriteriaReducer(
         keyword: action.payload.keyword ?? state?.keyword ?? null,
       };
     case filterCriteriaActions.FILTER_CRITERIA_CLEAR:
-      return null;
+      return initialFilterCriteria;
     default:
       return state;
   }

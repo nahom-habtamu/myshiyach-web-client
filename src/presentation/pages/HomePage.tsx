@@ -25,6 +25,7 @@ const HomePage = () => {
       limit: 5,
       page: 1,
     };
+
     dispatch(displayPaginatedProducts(initialPageAndLimit));
   }, [dispatch, filterCriteria]);
 
