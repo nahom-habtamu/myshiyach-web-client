@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { LoginState } from "../../../core/reducers/loginReducer";
@@ -15,6 +16,9 @@ import ActionButton from "../common/ActionButton";
 import AuthInput from "../common/AuthInput";
 import AuthToggleAction from "../common/AuthToggleAction";
 import RememberMeAndForgotPassword from "./RememberMeAndForgotPassword";
+import { useAppDispatch } from "../../../store/storeHooks";
+import { toggleLoginPromptModalClose } from "../../../core/action_creators/common/login_prompt_action_creators";
+import { MasterPageRoute } from "../../pages/MasterPage";
 
 type LoginPageContentProps = {
   loginState: LoginState;
@@ -26,16 +30,23 @@ type LoginPageContentProps = {
 
 const LoginPageContent = (props: LoginPageContentProps) => {
   const history = useHistory();
-
+  const dispatch = useAppDispatch();
   const renderLoginContentBasedOnState = () => {
     if (props.loginState.isLoading) {
       return <h1>Loading........</h1>;
-    } else if (props.loginState.token.length > 0) {
-      history.push(DummyPageRoute);
     } else {
       return <ActionButton text="Login" onPressed={props.onFormSubmitted} />;
     }
   };
+
+  useEffect(() => {
+    if (props.loginState.token.length > 0) {
+      history.push(MasterPageRoute);
+      dispatch(toggleLoginPromptModalClose());
+      return;
+    }
+  }, [props.loginState.token]);
+
   return (
     <>
       <LoginPageHeaderOneStyled>Let's Start shopping</LoginPageHeaderOneStyled>

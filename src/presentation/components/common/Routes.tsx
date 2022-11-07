@@ -5,6 +5,9 @@ import MasterPage, { MasterPageRoute } from "../../pages/MasterPage";
 import OtpVerificationPage, {
   OtpVerificationPageRoute,
 } from "../../pages/OtpVerificationPage";
+import ProductDetailPage, {
+  ProductDetailPageRoute,
+} from "../../pages/ProductDetailPage";
 import SignUpPage, { SignUpPageRoute } from "../../pages/SignUpPage";
 
 type UserLoginStatus = {
@@ -29,6 +32,9 @@ const Routes = ({ isLoggedIn }: UserLoginStatus) => {
         </Route>
         <Route exact path={DummyPageRoute}>
           <DummyPage />
+        </Route>
+        <Route exact path={ProductDetailPageRoute}>
+          <ProductDetailPage />
         </Route>
         {isLoggedIn && (
           <Route path="/home">
