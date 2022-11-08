@@ -25,14 +25,16 @@ body {
     justify-content: space-between;
 }
 
-.carousel-wrapper {
-    width: 50%;
-    height: 60%;
+.product-detail-carousel {
+    width: 100%;
+    height: 500px;
     margin: 25px auto;
     border: 1px solid black;
     padding: 2px;
 }
 
-.carousel-item {
-    outline: none;
+.product-detail-carousel-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover cover;
 }
