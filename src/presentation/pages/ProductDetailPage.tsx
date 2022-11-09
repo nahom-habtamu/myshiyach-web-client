@@ -8,19 +8,12 @@ import {
   SendMessageButtonStyled,
   ProductDetailButtonWrapperStyled,
   FavoritesButtonStyled,
-  RecommendedItemsSectionWrapperStyled,
-  RecommendedItemsTextStyled,
-  RecommendedItemsWrapperStyled,
-  RecommendedItemWrapperStyled,
-  RecommendedItemColumnStyled,
-  RecommendedItemImageStyled,
-  RecommendedItemTitleStyled,
-  RecommendedItemTimeLabelStyled,
 } from "../styled_components/product_detail/ProductDetailOtherComponentsStyled";
 
 import formatToPrice from "../../core/utils/comma_separator";
 import { PRIMARY_COLOR } from "../constants/colors";
 import { FiHeart, FiSend } from "react-icons/fi";
+import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
 
 const ProductDetailPage = () => {
   type RenderKeyValueArgs = {
@@ -138,23 +131,6 @@ const ProductDetailPage = () => {
     );
   };
 
-  const renderRecommendedItems = () => {
-    const recomendedItems = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((e) => (
-      <RecommendedItemWrapperStyled>
-        <RecommendedItemColumnStyled>
-          <RecommendedItemImageStyled src="https://images.unsplash.com/photo-1667857481501-b447de8ed0c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" />
-          <RecommendedItemTitleStyled>
-            2 x DELL 17" LCD TFT Monitor
-          </RecommendedItemTitleStyled>
-          <RecommendedItemTimeLabelStyled>
-            2 days ago
-          </RecommendedItemTimeLabelStyled>
-        </RecommendedItemColumnStyled>
-      </RecommendedItemWrapperStyled>
-    ));
-    return recomendedItems;
-  };
-
   return (
     <ProductDetailWrapperStyled>
       {renderTitle()}
@@ -168,14 +144,7 @@ const ProductDetailPage = () => {
       {renderSendMessageButton()}
       {renderFavoritesButton()}
 
-      <RecommendedItemsSectionWrapperStyled>
-        <RecommendedItemsTextStyled>
-          Recommended Items
-        </RecommendedItemsTextStyled>
-        <RecommendedItemsWrapperStyled>
-          {renderRecommendedItems()}
-        </RecommendedItemsWrapperStyled>
-      </RecommendedItemsSectionWrapperStyled>
+      <ProductDetailRecommendedItems />
     </ProductDetailWrapperStyled>
   );
 };
