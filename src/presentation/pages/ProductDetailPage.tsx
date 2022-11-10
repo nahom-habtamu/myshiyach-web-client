@@ -16,10 +16,14 @@ import ProductDetailCarousel from "../components/product_detail/ProductDetailCar
 import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
 import { useLocation } from "react-router-dom";
 import Product from "../../core/models/product/product";
+import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
+import chunkArrayToEqualParts from "../../core/utils/chunkArrayToEqualParts";
 
 const ProductDetailPage = () => {
   const location = useLocation();
   const product = location.state as Product;
+
+  console.log(product);
 
   type RenderKeyValueArgs = {
     key: string;
@@ -85,6 +89,26 @@ const ProductDetailPage = () => {
     );
   };
 
+  const renderProductDetailInfo = () => {
+    const keyValueList = parseObjectToListOfObject(product.productDetail);
+    let chunkedKeyValueList = chunkArrayToEqualParts(2, keyValueList);
+
+    let productDetailInfo = chunkedKeyValueList.map((chunk, index) => {
+      return (
+        <ProductDetailKeyValueRowStyled key={index}>
+          {chunk.map((chunkItem: any) =>
+            renderKeyValue({
+              key: chunkItem.key,
+              value: chunkItem.value as string,
+            })
+          )}
+        </ProductDetailKeyValueRowStyled>
+      );
+    });
+
+    return productDetailInfo;
+  };
+
   const renderPrice = () =>
     renderKeyValue({
       key: "price",
@@ -144,6 +168,7 @@ const ProductDetailPage = () => {
       {renderPrice()}
       {renderPersonalInfo()}
       {renderProductTimeInfo()}
+      {renderProductDetailInfo()}
       {renderDescription()}
 
       {renderSendMessageButton()}
