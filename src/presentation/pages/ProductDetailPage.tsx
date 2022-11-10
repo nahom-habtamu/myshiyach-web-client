@@ -1,4 +1,3 @@
-import ProductDetailCarousel from "../components/product_detail/ProductDetailCarousel";
 import {
   ProductDetailKeyStyled,
   ProductDetailKeyValueRowStyled,
@@ -13,9 +12,15 @@ import {
 import formatToPrice from "../../core/utils/comma_separator";
 import { PRIMARY_COLOR } from "../constants/colors";
 import { FiHeart, FiSend } from "react-icons/fi";
+import ProductDetailCarousel from "../components/product_detail/ProductDetailCarousel";
 import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
+import { useLocation } from "react-router-dom";
+import Product from "../../core/models/product/product";
 
 const ProductDetailPage = () => {
+  const location = useLocation();
+  const product = location.state as Product;
+
   type RenderKeyValueArgs = {
     key: string;
     value: string;
@@ -42,21 +47,22 @@ const ProductDetailPage = () => {
   };
 
   const renderPersonalInfo = () => {
+    let keyValueProps = {
+      color: PRIMARY_COLOR,
+      fontSize: 18,
+      fontWeight: 500,
+    };
     return (
       <ProductDetailKeyValueRowStyled>
         {renderKeyValue({
           key: "name",
           value: "Yonathan Zelalem",
-          color: PRIMARY_COLOR,
-          fontSize: 18,
-          fontWeight: 500,
+          ...keyValueProps,
         })}
         {renderKeyValue({
           key: "Phone No",
           value: "092684984855",
-          color: PRIMARY_COLOR,
-          fontSize: 18,
-          fontWeight: 500,
+          ...keyValueProps,
         })}
       </ProductDetailKeyValueRowStyled>
     );
@@ -67,12 +73,12 @@ const ProductDetailPage = () => {
       <ProductDetailKeyValueRowStyled>
         {renderKeyValue({
           key: "created",
-          value: "7 Days Ago",
+          value: product.createdAt,
           fontSize: 18,
         })}
         {renderKeyValue({
           key: "Last Updated",
-          value: "2 Minutes Ago",
+          value: product.refreshedAt,
           fontSize: 18,
         })}
       </ProductDetailKeyValueRowStyled>
@@ -82,7 +88,7 @@ const ProductDetailPage = () => {
   const renderPrice = () =>
     renderKeyValue({
       key: "price",
-      value: formatToPrice(50000).toString(),
+      value: formatToPrice(product.price).toString() + " ETB",
       color: "lightgreen",
       fontSize: 38,
       fontWeight: 500,
@@ -91,20 +97,19 @@ const ProductDetailPage = () => {
   const renderDescription = () =>
     renderKeyValue({
       key: "description",
-      value:
-        "CYCLE COUNT 11, MACBOOK PRO 2019 16” LAPTOP, 512GB SSD, 16GB RAM, I7, ONLY USED FEW DAYS,GOOD AS NEWNO OFFERS, CAN HAND DELIVER",
+      value: product.description,
     });
 
   const renderCity = () =>
     renderKeyValue({
       key: "city",
-      value: "Adama",
+      value: product.city,
     });
 
   const renderTitle = () =>
     renderKeyValue({
       key: "title",
-      value: "CYCLE COUNT 11, MACBOOK PRO 2019 16” LAPTOP, 512GB SSD,",
+      value: product.title,
       fontSize: 28,
       fontWeight: 500,
       textTransform: "uppercase",
@@ -134,7 +139,7 @@ const ProductDetailPage = () => {
   return (
     <ProductDetailWrapperStyled>
       {renderTitle()}
-      <ProductDetailCarousel />
+      <ProductDetailCarousel pictures={product.productImages} />
       {renderCity()}
       {renderPrice()}
       {renderPersonalInfo()}
