@@ -23,6 +23,7 @@ import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import { useEffect } from "react";
 import { getUserById } from "../../core/action_creators/user/get_user_by_id_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import { getRecommendedProducts } from "../../core/action_creators/product/get_recommended_products_action_creators";
 
 const ProductDetailPage = () => {
   const location = useLocation();
@@ -30,12 +31,28 @@ const ProductDetailPage = () => {
 
   const authState = useAppSelector((state) => state.login);
   const getUserByIdState = useAppSelector((state) => state.getUserById);
+  const getRecommendedProductsState = useAppSelector(
+    (state) => state.recommendedProducts
+  );
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getUserById(product.createdBy, authState.token as string));
   }, [product.createdBy, dispatch, authState.token]);
+
+  useEffect(() => {
+    dispatch(
+      getRecommendedProducts({
+        page: 1,
+        limit: 10000,
+        filterCriteria: {
+          mainCategory: product.mainCategory,
+          subCategory: product.subCategory,
+        },
+      })
+    );
+  }, [product.mainCategory, product.subCategory, dispatch]);
 
   type RenderKeyValueArgs = {
     key: string;
@@ -192,9 +209,24 @@ const ProductDetailPage = () => {
       {renderSendMessageButton()}
       {renderFavoritesButton()}
 
-      <ProductDetailRecommendedItems />
+      {getRecommendedProductsState.isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        renderRecommendedItems()
+      )}
     </ProductDetailWrapperStyled>
   );
+
+  function renderRecommendedItems() {
+    let recommmendedItems = getRecommendedProductsState.products.filter(
+      (p) => p._id !== product._id
+    );
+    return (
+      recommmendedItems.length > 0 && (
+        <ProductDetailRecommendedItems products={recommmendedItems} />
+      )
+    );
+  }
 };
 
 export default ProductDetailPage;

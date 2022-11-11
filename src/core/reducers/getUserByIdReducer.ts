@@ -13,7 +13,7 @@ const initialState: GetUserByIdState = {
   isLoading: false,
 };
 
-export default function createUserReducer(
+export default function getUserByIdReducer(
   state: GetUserByIdState = initialState,
   action: getUserByIdActions.GetUserByIdActionType
 ): GetUserByIdState {
