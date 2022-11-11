@@ -33,14 +33,14 @@ const PaginatedProducts = (props: PaginatedProductsProps) => {
   const dispatch = useAppDispatch();
 
   const handleGoingToProductDetail = (product: Product) => {
-    // if (loginState.token.length === 0) {
-    //   dispatch(toggleLoginPromptModalOpen());
-    // } else {
-    history.push({
-      pathname: ProductDetailPageRoute,
-      state: product,
-    });
-    // }
+    if (loginState.token.length === 0) {
+      dispatch(toggleLoginPromptModalOpen());
+    } else {
+      history.push({
+        pathname: ProductDetailPageRoute,
+        state: product,
+      });
+    }
   };
 
   return (

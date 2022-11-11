@@ -19,11 +19,23 @@ import Product from "../../core/models/product/product";
 import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
 import chunkArrayToEqualParts from "../../core/utils/chunkArrayToEqualParts";
 
+import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
+import { useEffect } from "react";
+import { getUserById } from "../../core/action_creators/user/get_user_by_id_action_creators";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+
 const ProductDetailPage = () => {
   const location = useLocation();
   const product = location.state as Product;
 
-  console.log(product);
+  const authState = useAppSelector((state) => state.login);
+  const getUserByIdState = useAppSelector((state) => state.getUserById);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserById(product.createdBy, authState.token as string));
+  }, [product.createdBy, dispatch, authState.token]);
 
   type RenderKeyValueArgs = {
     key: string;
@@ -58,16 +70,22 @@ const ProductDetailPage = () => {
     };
     return (
       <ProductDetailKeyValueRowStyled>
-        {renderKeyValue({
-          key: "name",
-          value: "Yonathan Zelalem",
-          ...keyValueProps,
-        })}
-        {renderKeyValue({
-          key: "Phone No",
-          value: "092684984855",
-          ...keyValueProps,
-        })}
+        {getUserByIdState.isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            {renderKeyValue({
+              key: "name",
+              value: getUserByIdState.user?.fullName ?? "",
+              ...keyValueProps,
+            })}
+            {renderKeyValue({
+              key: "Phone No",
+              value: getUserByIdState.user?.phoneNumber ?? "",
+              ...keyValueProps,
+            })}
+          </>
+        )}
       </ProductDetailKeyValueRowStyled>
     );
   };

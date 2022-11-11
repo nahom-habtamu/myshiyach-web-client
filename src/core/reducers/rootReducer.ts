@@ -6,6 +6,7 @@ import loginReducer from "./loginReducer";
 import displayPaginatedProductsReducer from "./displayPaginatedProductsReducer";
 import filterCriteriaReducer from "./filterCriteriaReducer";
 import loginPromptModalReducer from "./loginPromptModalReducer";
+import getUserByIdReducer from "./getUserByIdReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   displayPaginatedProducts: displayPaginatedProductsReducer,
   filterCriteria: filterCriteriaReducer,
   loginPromtModal: loginPromptModalReducer,
+  getUserById: getUserByIdReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

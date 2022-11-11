@@ -8,3 +8,20 @@ export async function registerUser(
   let result = await axiosInstance.post("/users", signUpRequest);
   return result.data as User;
 }
+
+export async function getUserById({
+  id,
+  token,
+}: {
+  id: string;
+  token: string;
+}): Promise<User> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.get(`/users/${id}`, config);
+  return result.data as User;
+}
