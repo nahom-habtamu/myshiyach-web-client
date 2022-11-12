@@ -2,6 +2,7 @@ import LoginRequest from "../../models/auth/login_request";
 
 import * as actions from "../../action_types/auth/login_action_types";
 import LoginResult from "../../models/auth/login_result";
+import User from "../../models/user/user";
 
 export const login = (loginRequest: LoginRequest): actions.LoginAction => {
   return {
@@ -15,11 +16,15 @@ export const loginLoading = (): actions.LoginLoadingAction => {
 };
 
 export const loginSuccess = (
-  loginResult: LoginResult
+  loginResult: LoginResult,
+  currentUser: User
 ): actions.LoginSuccessAction => {
   return {
     type: actions.LOGIN_SUCCESS,
-    payload: loginResult,
+    payload: {
+      loginResult,
+      currentUser,
+    },
   };
 };
 

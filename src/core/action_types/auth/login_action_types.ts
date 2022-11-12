@@ -1,5 +1,6 @@
 import LoginRequest from "../../models/auth/login_request";
 import LoginResult from "../../models/auth/login_result";
+import User from "../../models/user/user";
 
 export const LOGIN = "authActionTypes/LOGIN";
 export interface LoginAction {
@@ -20,7 +21,10 @@ export interface LoginLoadingAction {
 export const LOGIN_SUCCESS = "authActionTypes/LOGIN_SUCCESS";
 export interface LoginSuccessAction {
   type: typeof LOGIN_SUCCESS;
-  payload: LoginResult;
+  payload: {
+    loginResult: LoginResult;
+    currentUser: User;
+  };
 }
 
 export const LOGIN_FAILURE = "authActionTypes/LOGIN_FAILURE";

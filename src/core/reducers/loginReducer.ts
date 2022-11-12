@@ -1,13 +1,20 @@
 import * as loginActions from "../action_types/auth/login_action_types";
+import User from "../models/user/user";
 
 export interface LoginState {
-  token: String;
+  result: {
+    currentUser: User | null;
+    token: string;
+  };
   error: String;
   isLoading: boolean;
 }
 
 const initialState: LoginState = {
-  token: "",
+  result: {
+    currentUser: null,
+    token: "",
+  },
   error: "",
   isLoading: false,
 };
@@ -19,19 +26,28 @@ export default function loginReducer(
   switch (action.type) {
     case loginActions.LOGIN_LOADING:
       return {
-        token: "",
+        result: {
+          currentUser: null,
+          token: "",
+        },
         error: "",
         isLoading: true,
       };
     case loginActions.LOGIN_FAILURE:
       return {
-        token: "",
+        result: {
+          currentUser: null,
+          token: "",
+        },
         error: action.message,
         isLoading: false,
       };
     case loginActions.LOGIN_SUCCESS:
       return {
-        token: action.payload.token,
+        result: {
+          currentUser: action.payload.currentUser,
+          token: action.payload.loginResult.token as string,
+        },
         error: "",
         isLoading: false,
       };

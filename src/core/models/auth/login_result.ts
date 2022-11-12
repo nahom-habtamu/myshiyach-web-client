@@ -1,5 +1,7 @@
+import User from "../user/user";
+
 interface LoginResult {
-   token : String
-};
+  token: String;
+}
 
 export default LoginResult;

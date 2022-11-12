@@ -40,12 +40,12 @@ const LoginPageContent = (props: LoginPageContentProps) => {
   };
 
   useEffect(() => {
-    if (props.loginState.token.length > 0) {
+    if (props.loginState.result.token.length > 0) {
       history.push(MasterPageRoute);
       dispatch(toggleLoginPromptModalClose());
       return;
     }
-  }, [props.loginState.token]);
+  }, [props.loginState.result.token]);
 
   return (
     <>

@@ -45,12 +45,12 @@ const ProductDetailPage = () => {
   }, [refreshProductState.product?.refreshedAt]);
 
   useEffect(() => {
-    dispatch(getUserById(product.createdBy, authState.token as string));
-  }, [product.createdBy, dispatch, authState.token]);
+    dispatch(getUserById(product.createdBy, authState.result.token as string));
+  }, [product.createdBy, dispatch, authState.result.token]);
 
   useEffect(() => {
-    dispatch(refreshProduct(product._id, authState.token as string));
-  }, [product._id, dispatch, authState.token]);
+    dispatch(refreshProduct(product._id, authState.result.token as string));
+  }, [product._id, dispatch, authState.result.token]);
 
   useEffect(() => {
     dispatch(
