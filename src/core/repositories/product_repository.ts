@@ -10,6 +10,24 @@ export async function getPaginatedProducts(
   return result.data as GetPaginatedProductsResult;
 }
 
+export async function refreshProduct({
+  id,
+  token,
+}: {
+  id: string;
+  token: string;
+}): Promise<Product> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.patch(`/products/refresh/${id}`, config);
+  console.log(result);
+  return result.data as Product;
+}
+
 export function getFavoriteProducts(): Product[] {
   let products: Product[] = [];
   return products;

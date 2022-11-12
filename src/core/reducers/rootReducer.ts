@@ -8,6 +8,7 @@ import filterCriteriaReducer from "./filterCriteriaReducer";
 import loginPromptModalReducer from "./loginPromptModalReducer";
 import getUserByIdReducer from "./getUserByIdReducer";
 import getRecommendedProductsReducer from "./getRecommendedProductsReducer";
+import refreshProductReducer from "./refreshProductReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   loginPromtModal: loginPromptModalReducer,
   getUserById: getUserByIdReducer,
   recommendedProducts: getRecommendedProductsReducer,
+  refreshProduct: refreshProductReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -20,32 +20,43 @@ import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
 import chunkArrayToEqualParts from "../../core/utils/chunkArrayToEqualParts";
 
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserById } from "../../core/action_creators/user/get_user_by_id_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { getRecommendedProducts } from "../../core/action_creators/product/get_recommended_products_action_creators";
+import { refreshProduct } from "../../core/action_creators/product/refresh_product_action_creators";
 
 const ProductDetailPage = () => {
   const location = useLocation();
-  const product = location.state as Product;
+
+  const [product, setProduct] = useState<Product>(location.state as Product);
 
   const authState = useAppSelector((state) => state.login);
   const getUserByIdState = useAppSelector((state) => state.getUserById);
   const getRecommendedProductsState = useAppSelector(
     (state) => state.recommendedProducts
   );
+  const refreshProductState = useAppSelector((state) => state.refreshProduct);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setProduct(refreshProductState.product ?? product);
+  }, [refreshProductState.product?.refreshedAt]);
 
   useEffect(() => {
     dispatch(getUserById(product.createdBy, authState.token as string));
   }, [product.createdBy, dispatch, authState.token]);
 
   useEffect(() => {
+    dispatch(refreshProduct(product._id, authState.token as string));
+  }, [product._id, dispatch, authState.token]);
+
+  useEffect(() => {
     dispatch(
       getRecommendedProducts({
         page: 1,
-        limit: 10000,
+        limit: 1000000,
         filterCriteria: {
           mainCategory: product.mainCategory,
           subCategory: product.subCategory,
