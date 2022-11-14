@@ -18,17 +18,17 @@ import {
 } from "../../styled_components/home/HomePageProductStyled";
 
 import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
-import { useHistory } from "react-router-dom";
 import { ProductDetailPageRoute } from "../../pages/ProductDetailPage";
 import Product from "../../../core/models/product/product";
 import { toggleLoginPromptModalOpen } from "../../../core/action_creators/common/login_prompt_action_creators";
+import { selectProduct } from "../../../core/action_creators/product/select_product_action_creators";
+import { setActivePageOnMasterNav } from "../../../core/action_creators/common/set_active_page_on_master_nav_action_creators";
 
 type PaginatedProductsProps = {
   paginatedProductsResult: GetPaginatedProductsResult | null;
 };
 
 const PaginatedProducts = (props: PaginatedProductsProps) => {
-  const history = useHistory();
   const loginState = useAppSelector((state) => state.login);
   const dispatch = useAppDispatch();
 
@@ -36,10 +36,8 @@ const PaginatedProducts = (props: PaginatedProductsProps) => {
     if (loginState.result.token.length === 0) {
       dispatch(toggleLoginPromptModalOpen());
     } else {
-      history.push({
-        pathname: ProductDetailPageRoute,
-        state: product,
-      });
+      dispatch(selectProduct(product));
+      dispatch(setActivePageOnMasterNav(ProductDetailPageRoute));
     }
   };
 

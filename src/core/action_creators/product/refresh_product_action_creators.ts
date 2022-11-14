@@ -1,6 +1,12 @@
 import * as actions from "../../action_types/product/refresh_product_action_types";
 import Product from "../../models/product/product";
 
+export const clearRefreshProduct = (): actions.ClearRefreshProductAction => {
+  return {
+    type: actions.CLEAR_REFRESH_PRODUCT,
+  };
+};
+
 export const refreshProduct = (
   id: string,
   token: string

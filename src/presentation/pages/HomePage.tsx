@@ -12,12 +12,17 @@ import { modifyFilterCriteria } from "../../core/action_creators/product/filter_
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { HomePageNoMoreProductsStyled } from "../styled_components/home/HomePageProductStyled";
+import { removeSelectedProduct } from "../../core/action_creators/product/select_product_action_creators";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
   const filterCriteria = useAppSelector((state) => state.filterCriteria);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(removeSelectedProduct());
+  });
 
   useEffect(() => {
     const initialPageAndLimit = {

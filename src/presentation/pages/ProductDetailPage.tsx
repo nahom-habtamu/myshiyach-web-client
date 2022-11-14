@@ -14,22 +14,23 @@ import { PRIMARY_COLOR } from "../constants/colors";
 import { FiHeart, FiSend } from "react-icons/fi";
 import ProductDetailCarousel from "../components/product_detail/ProductDetailCarousel";
 import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
-import { useLocation } from "react-router-dom";
 import Product from "../../core/models/product/product";
 import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
 import chunkArrayToEqualParts from "../../core/utils/chunkArrayToEqualParts";
 
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getUserById } from "../../core/action_creators/user/get_user_by_id_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { getRecommendedProducts } from "../../core/action_creators/product/get_recommended_products_action_creators";
-import { refreshProduct } from "../../core/action_creators/product/refresh_product_action_creators";
+import {
+  clearRefreshProduct,
+  refreshProduct,
+} from "../../core/action_creators/product/refresh_product_action_creators";
+import { selectProduct } from "../../core/action_creators/product/select_product_action_creators";
 
 const ProductDetailPage = () => {
-  const location = useLocation();
-
-  const [product, setProduct] = useState<Product>(location.state as Product);
+  const product = useAppSelector((state) => state.selectedProduct) as Product;
 
   const authState = useAppSelector((state) => state.login);
   const getUserByIdState = useAppSelector((state) => state.getUserById);
@@ -41,8 +42,11 @@ const ProductDetailPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setProduct(refreshProductState.product ?? product);
-  }, [refreshProductState.product?.refreshedAt]);
+    if (refreshProductState.product != null) {
+      dispatch(selectProduct(refreshProductState.product));
+      dispatch(clearRefreshProduct());
+    }
+  }, [refreshProductState.product, dispatch]);
 
   useEffect(() => {
     dispatch(getUserById(product.createdBy, authState.result.token as string));

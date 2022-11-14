@@ -1,5 +1,10 @@
 import Product from "../../models/product/product";
 
+export const CLEAR_REFRESH_PRODUCT = "productActionTypes/CLEAR_REFRESH_PRODUCT";
+export interface ClearRefreshProductAction {
+  type: typeof CLEAR_REFRESH_PRODUCT;
+}
+
 export const REFRESH_PRODUCT = "productActionTypes/REFRESH_PRODUCT";
 export interface RefreshProductAction {
   type: typeof REFRESH_PRODUCT;
@@ -36,6 +41,7 @@ export interface RefreshProductFailureAction {
 }
 
 export type RefreshProductActionType =
+  | ClearRefreshProductAction
   | RefreshProductAction
   | RefreshProductInitateAction
   | RefreshProductLoadingAction

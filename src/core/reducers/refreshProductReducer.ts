@@ -18,6 +18,8 @@ export default function refreshProductReducer(
   action: refreshProductActions.RefreshProductActionType
 ): RefreshProductState {
   switch (action.type) {
+    case refreshProductActions.CLEAR_REFRESH_PRODUCT:
+      return initialState;
     case refreshProductActions.REFRESH_PRODUCT_LOADING:
       return {
         product: null,

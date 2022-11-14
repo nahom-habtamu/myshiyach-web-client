@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { setActivePageOnMasterNav } from "../../core/action_creators/common/set_active_page_on_master_nav_action_creators";
+import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import FilterProductsModel from "../components/common/FilterProductsModal";
 import NavBarLogoFilterAndSearchBarContent from "../components/common/NavBarLogoFilterAndSearchBarContent";
 import NavBarSideContent from "../components/common/NavBarSideContent";
@@ -12,15 +14,19 @@ import MasterPageContentWrapperStyled from "../styled_components/master/MasterPa
 import AddPostPage, { AddPostPageRoute } from "./AddPostPage";
 import ChatListPage, { ChatListPageRoute } from "./ChatListPage";
 import HomePage, { HomePageRoute } from "./HomePage";
+import ProductDetailPage, { ProductDetailPageRoute } from "./ProductDetailPage";
 import SavedPostsPage, { SavedPostsPageRoute } from "./SavedPosts.Page";
 import SettingsPage, { SettingsPageRoute } from "./SettingsPage";
 
 const MasterPage = () => {
-  const [currentPage, setCurrentPage] = useState(HomePageRoute);
+  const activePage = useAppSelector((state) => state.activePageOnMasterNav);
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useAppDispatch();
+
+  
   const buildContentToDisplay = () => {
-    switch (currentPage) {
+    switch (activePage) {
       case HomePageRoute:
         return <HomePage />;
       case ChatListPageRoute:
@@ -31,6 +37,8 @@ const MasterPage = () => {
         return <SavedPostsPage />;
       case SettingsPageRoute:
         return <SettingsPage />;
+      case ProductDetailPageRoute:
+        return <ProductDetailPage />;
     }
   };
 
@@ -42,8 +50,10 @@ const MasterPage = () => {
       />
       <BodyContentWrapperStyled>
         <NavBarSideContent
-          activePage={currentPage}
-          onItemTapped={(value: string) => setCurrentPage(value)}
+          activePage={activePage}
+          onItemTapped={(value: string) =>
+            dispatch(setActivePageOnMasterNav(value))
+          }
         />
         {buildContentToDisplay()}
         <AdvertisementSideBarWrapperStyled marginTop={73}>
