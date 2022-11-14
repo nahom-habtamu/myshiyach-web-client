@@ -9,27 +9,27 @@ import {
 } from "../styled_components/master/AdvertisementSideBarWrapperStyled";
 import { BodyContentWrapperStyled } from "../styled_components/master/BodyContentWrapperStyled";
 import MasterPageContentWrapperStyled from "../styled_components/master/MasterPageContentWrapperStyled";
-import AddPostPage from "./AddPostPage";
-import ChatListPage from "./ChatListPage";
-import HomePage from "./HomePage";
-import SavedPostsPage from "./SavedPosts.Page";
-import SettingsPage from "./SettingsPage";
+import AddPostPage, { AddPostPageRoute } from "./AddPostPage";
+import ChatListPage, { ChatListPageRoute } from "./ChatListPage";
+import HomePage, { HomePageRoute } from "./HomePage";
+import SavedPostsPage, { SavedPostsPageRoute } from "./SavedPosts.Page";
+import SettingsPage, { SettingsPageRoute } from "./SettingsPage";
 
 const MasterPage = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(HomePageRoute);
   const [isOpen, setIsOpen] = useState(false);
 
   const buildContentToDisplay = () => {
     switch (currentPage) {
-      case 0:
+      case HomePageRoute:
         return <HomePage />;
-      case 1:
+      case ChatListPageRoute:
         return <ChatListPage />;
-      case 2:
+      case AddPostPageRoute:
         return <AddPostPage />;
-      case 3:
+      case SavedPostsPageRoute:
         return <SavedPostsPage />;
-      case 4:
+      case SettingsPageRoute:
         return <SettingsPage />;
     }
   };
@@ -42,8 +42,8 @@ const MasterPage = () => {
       />
       <BodyContentWrapperStyled>
         <NavBarSideContent
-          activeBar={currentPage}
-          onItemTapped={(value: number) => setCurrentPage(value)}
+          activePage={currentPage}
+          onItemTapped={(value: string) => setCurrentPage(value)}
         />
         {buildContentToDisplay()}
         <AdvertisementSideBarWrapperStyled marginTop={73}>

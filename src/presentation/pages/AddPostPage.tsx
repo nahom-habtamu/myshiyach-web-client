@@ -3,3 +3,4 @@ const AddPostPage = () => {
 };
 
 export default AddPostPage;
+export const AddPostPageRoute = "/addPost";

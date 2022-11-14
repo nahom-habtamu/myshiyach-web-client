@@ -3,3 +3,4 @@ const SavedPostsPage = () => {
 };
 
 export default SavedPostsPage;
+export const SavedPostsPageRoute = "/savedPosts";

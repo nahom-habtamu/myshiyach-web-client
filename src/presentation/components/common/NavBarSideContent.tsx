@@ -4,13 +4,18 @@ import { GoDiffAdded } from "react-icons/go";
 import { HiOutlineChatBubbleBottomCenter } from "react-icons/hi2";
 import { RiHomeFill } from "react-icons/ri";
 import { ICON_SIZE } from "../../constants/sizes";
+import { AddPostPageRoute } from "../../pages/AddPostPage";
+import { ChatListPageRoute } from "../../pages/ChatListPage";
+import { HomePageRoute } from "../../pages/HomePage";
+import { SavedPostsPageRoute } from "../../pages/SavedPosts.Page";
+import { SettingsPageRoute } from "../../pages/SettingsPage";
 import {
   NavBarLeftSideContentItemStyled,
   NavBarLeftSideContentWrapperStyled,
 } from "../../styled_components/nav_bar/NavBarLeftSideContentStyled";
 
 type NavBarSideContentProps = {
-  activeBar: number;
+  activePage: string;
   onItemTapped: Function;
 };
 
@@ -18,32 +23,32 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
   return (
     <NavBarLeftSideContentWrapperStyled>
       <NavBarLeftSideContentItemStyled
-        isActive={props.activeBar === 0}
-        onClick={() => props.onItemTapped(0)}
+        isActive={props.activePage === HomePageRoute}
+        onClick={() => props.onItemTapped(HomePageRoute)}
       >
         <RiHomeFill size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
-        isActive={props.activeBar === 1}
-        onClick={() => props.onItemTapped(1)}
+        isActive={props.activePage === ChatListPageRoute}
+        onClick={() => props.onItemTapped(ChatListPageRoute)}
       >
         <HiOutlineChatBubbleBottomCenter size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
-        isActive={props.activeBar === 2}
-        onClick={() => props.onItemTapped(2)}
+        isActive={props.activePage === AddPostPageRoute}
+        onClick={() => props.onItemTapped(AddPostPageRoute)}
       >
         <GoDiffAdded size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
-        isActive={props.activeBar === 3}
-        onClick={() => props.onItemTapped(3)}
+        isActive={props.activePage === SavedPostsPageRoute}
+        onClick={() => props.onItemTapped(SavedPostsPageRoute)}
       >
         <FaSave size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
-        isActive={props.activeBar === 4}
-        onClick={() => props.onItemTapped(4)}
+        isActive={props.activePage === SettingsPageRoute}
+        onClick={() => props.onItemTapped(SettingsPageRoute)}
       >
         <FiSettings size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>

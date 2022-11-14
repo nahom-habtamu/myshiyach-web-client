@@ -3,3 +3,4 @@ const ChatListPage = () => {
 };
 
 export default ChatListPage;
+export const ChatListPageRoute = "/chatList";

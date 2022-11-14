@@ -36,11 +36,6 @@ const Routes = ({ isLoggedIn }: UserLoginStatus) => {
         <Route exact path={ProductDetailPageRoute}>
           <ProductDetailPage />
         </Route>
-        {isLoggedIn && (
-          <Route path="/home">
-            <h1>Home Page</h1>
-          </Route>
-        )}
       </Switch>
     </HashRouter>
   );

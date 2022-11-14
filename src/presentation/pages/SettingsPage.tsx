@@ -3,3 +3,4 @@ const SettingsPage = () => {
 };
 
 export default SettingsPage;
+export const SettingsPageRoute = "/settings";
