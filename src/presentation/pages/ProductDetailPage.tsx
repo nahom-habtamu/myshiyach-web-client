@@ -14,26 +14,25 @@ import { PRIMARY_COLOR } from "../constants/colors";
 import { FiHeart, FiSend } from "react-icons/fi";
 import ProductDetailCarousel from "../components/product_detail/ProductDetailCarousel";
 import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
-import Product from "../../core/models/product/product";
 import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
 import chunkArrayToEqualParts from "../../core/utils/chunkArrayToEqualParts";
 
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import { useEffect } from "react";
-import { getUserById } from "../../core/action_creators/user/get_user_by_id_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { getRecommendedProducts } from "../../core/action_creators/product/get_recommended_products_action_creators";
 import {
   clearRefreshProduct,
   refreshProduct,
 } from "../../core/action_creators/product/refresh_product_action_creators";
-import { selectProduct } from "../../core/action_creators/product/select_product_action_creators";
+import { useParams } from "react-router-dom";
+import { getProductDetail } from "../../core/action_creators/product/get_product_detail_action_creators";
 
 const ProductDetailPage = () => {
-  const product = useAppSelector((state) => state.selectedProduct) as Product;
+  let { id } = useParams<any>();
 
+  const productDetailState = useAppSelector((state) => state.getProductDetail);
   const authState = useAppSelector((state) => state.login);
-  const getUserByIdState = useAppSelector((state) => state.getUserById);
   const getRecommendedProductsState = useAppSelector(
     (state) => state.recommendedProducts
   );
@@ -41,33 +40,50 @@ const ProductDetailPage = () => {
 
   const dispatch = useAppDispatch();
 
+  console.log(productDetailState);
+
+  useEffect(() => {
+    dispatch(getProductDetail(id, authState.result.token));
+  }, [dispatch]);
+
   useEffect(() => {
     if (refreshProductState.product != null) {
-      dispatch(selectProduct(refreshProductState.product));
+      // TODO updating product after refreshing
       dispatch(clearRefreshProduct());
     }
   }, [refreshProductState.product, dispatch]);
 
-  useEffect(() => {
-    dispatch(getUserById(product.createdBy, authState.result.token as string));
-  }, [product.createdBy, dispatch, authState.result.token]);
+  // useEffect(() => {
+  //   dispatch(
+  //     refreshProduct(
+  //       productDetailState.result!.product._id,
+  //       authState.result.token as string
+  //     )
+  //   );
+  // }, [
+  //   productDetailState.result!.product._id,
+  //   dispatch,
+  //   authState.result.token,
+  // ]);
 
   useEffect(() => {
-    dispatch(refreshProduct(product._id, authState.result.token as string));
-  }, [product._id, dispatch, authState.result.token]);
-
-  useEffect(() => {
-    dispatch(
-      getRecommendedProducts({
-        page: 1,
-        limit: 1000000,
-        filterCriteria: {
-          mainCategory: product.mainCategory,
-          subCategory: product.subCategory,
-        },
-      })
-    );
-  }, [product.mainCategory, product.subCategory, dispatch]);
+    if (productDetailState.result?.product != null) {
+      dispatch(
+        getRecommendedProducts({
+          page: 1,
+          limit: 1000000,
+          filterCriteria: {
+            mainCategory: productDetailState.result!.product.mainCategory,
+            subCategory: productDetailState.result!.product.subCategory,
+          },
+        })
+      );
+    }
+  }, [
+    productDetailState.result?.product.mainCategory,
+    productDetailState.result?.product.subCategory,
+    dispatch,
+  ]);
 
   type RenderKeyValueArgs = {
     key: string;
@@ -102,22 +118,18 @@ const ProductDetailPage = () => {
     };
     return (
       <ProductDetailKeyValueRowStyled>
-        {getUserByIdState.isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <>
-            {renderKeyValue({
-              key: "name",
-              value: getUserByIdState.user?.fullName ?? "",
-              ...keyValueProps,
-            })}
-            {renderKeyValue({
-              key: "Phone No",
-              value: getUserByIdState.user?.phoneNumber ?? "",
-              ...keyValueProps,
-            })}
-          </>
-        )}
+        <>
+          {renderKeyValue({
+            key: "name",
+            value: productDetailState.result?.createdBy?.fullName ?? "",
+            ...keyValueProps,
+          })}
+          {renderKeyValue({
+            key: "Phone No",
+            value: productDetailState.result?.createdBy?.phoneNumber ?? "",
+            ...keyValueProps,
+          })}
+        </>
       </ProductDetailKeyValueRowStyled>
     );
   };
@@ -127,12 +139,12 @@ const ProductDetailPage = () => {
       <ProductDetailKeyValueRowStyled>
         {renderKeyValue({
           key: "created",
-          value: product.createdAt,
+          value: productDetailState.result?.product.createdAt ?? "",
           fontSize: 18,
         })}
         {renderKeyValue({
           key: "Last Updated",
-          value: product.refreshedAt,
+          value: productDetailState.result?.product.refreshedAt ?? "",
           fontSize: 18,
         })}
       </ProductDetailKeyValueRowStyled>
@@ -140,7 +152,9 @@ const ProductDetailPage = () => {
   };
 
   const renderProductDetailInfo = () => {
-    const keyValueList = parseObjectToListOfObject(product.productDetail);
+    const keyValueList = parseObjectToListOfObject(
+      productDetailState.result?.product.productDetail ?? []
+    );
     let chunkedKeyValueList = chunkArrayToEqualParts(2, keyValueList);
 
     let productDetailInfo = chunkedKeyValueList.map((chunk, index) => {
@@ -162,7 +176,10 @@ const ProductDetailPage = () => {
   const renderPrice = () =>
     renderKeyValue({
       key: "price",
-      value: formatToPrice(product.price).toString() + " ETB",
+      value:
+        formatToPrice(
+          productDetailState.result?.product.price ?? 0
+        ).toString() + " ETB",
       color: "lightgreen",
       fontSize: 38,
       fontWeight: 500,
@@ -171,19 +188,19 @@ const ProductDetailPage = () => {
   const renderDescription = () =>
     renderKeyValue({
       key: "description",
-      value: product.description,
+      value: productDetailState.result?.product.description ?? "",
     });
 
   const renderCity = () =>
     renderKeyValue({
       key: "city",
-      value: product.city,
+      value: productDetailState.result?.product.city ?? "",
     });
 
   const renderTitle = () =>
     renderKeyValue({
       key: "title",
-      value: product.title,
+      value: productDetailState.result?.product.title ?? "",
       fontSize: 28,
       fontWeight: 500,
       textTransform: "uppercase",
@@ -210,10 +227,14 @@ const ProductDetailPage = () => {
     );
   };
 
-  return (
+  return productDetailState.isLoading ? (
+    <LoadingSpinner />
+  ) : (
     <ProductDetailWrapperStyled>
       {renderTitle()}
-      <ProductDetailCarousel pictures={product.productImages} />
+      <ProductDetailCarousel
+        pictures={productDetailState.result?.product.productImages ?? []}
+      />
       {renderCity()}
       {renderPrice()}
       {renderPersonalInfo()}
@@ -234,7 +255,7 @@ const ProductDetailPage = () => {
 
   function renderRecommendedItems() {
     let recommmendedItems = getRecommendedProductsState.products.filter(
-      (p) => p._id !== product._id
+      (p) => p._id !== productDetailState.result?.product._id
     );
     return (
       recommmendedItems.length > 0 && (
@@ -245,4 +266,4 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-export const ProductDetailPageRoute = "/productDetail";
+export const ProductDetailPageRoute = "/productDetail/:id";

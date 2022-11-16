@@ -13,6 +13,7 @@ import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { HomePageNoMoreProductsStyled } from "../styled_components/home/HomePageProductStyled";
 import { removeSelectedProduct } from "../../core/action_creators/product/select_product_action_creators";
+import MasterComponent from "../components/common/master_component";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
@@ -87,11 +88,13 @@ const HomePage = () => {
   };
 
   return (
-    <HomePageWrapperStyled>
-      {renderCategories()}
-      {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()}
-      {!state.isDisplayLoading && renderLoadMoreButton()}
-    </HomePageWrapperStyled>
+    <MasterComponent activePage={HomePageRoute}>
+      <HomePageWrapperStyled>
+        {renderCategories()}
+        {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()}
+        {!state.isDisplayLoading && renderLoadMoreButton()}
+      </HomePageWrapperStyled>
+    </MasterComponent>
   );
 };
 

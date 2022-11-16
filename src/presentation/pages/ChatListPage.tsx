@@ -1,5 +1,11 @@
+import MasterComponent from "../components/common/master_component";
+
 const ChatListPage = () => {
-  return <>I AM CHAT LIST</>;
+  return (
+    <MasterComponent activePage={ChatListPageRoute}>
+      I AM CHAT LIST PAGE
+    </MasterComponent>
+  );
 };
 
 export default ChatListPage;

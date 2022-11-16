@@ -11,6 +11,7 @@ import getRecommendedProductsReducer from "./getRecommendedProductsReducer";
 import refreshProductReducer from "./refreshProductReducer";
 import activePageOnMasterNavReducer from "./activePageOnMasterNavReducer";
 import selectedProductReducer from "./selectProductReducer";
+import getProductDetailReducer from "./getProductDetailReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   refreshProduct: refreshProductReducer,
   activePageOnMasterNav: activePageOnMasterNavReducer,
   selectedProduct: selectedProductReducer,
+  getProductDetail: getProductDetailReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

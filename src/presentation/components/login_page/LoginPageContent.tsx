@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { LoginState } from "../../../core/reducers/loginReducer";
-import { DummyPageRoute } from "../../pages/DummyPage";
 import { SignUpPageRoute } from "../../pages/SignUpPage";
 import {
   AuthInputWrapperStyled,
@@ -18,7 +17,7 @@ import AuthToggleAction from "../common/AuthToggleAction";
 import RememberMeAndForgotPassword from "./RememberMeAndForgotPassword";
 import { useAppDispatch } from "../../../store/storeHooks";
 import { toggleLoginPromptModalClose } from "../../../core/action_creators/common/login_prompt_action_creators";
-import { MasterPageRoute } from "../../pages/MasterPage";
+import { HomePageRoute } from "../../pages/HomePage";
 
 type LoginPageContentProps = {
   loginState: LoginState;
@@ -41,7 +40,7 @@ const LoginPageContent = (props: LoginPageContentProps) => {
 
   useEffect(() => {
     if (props.loginState.result.token.length > 0) {
-      history.push(MasterPageRoute);
+      history.push(HomePageRoute);
       dispatch(toggleLoginPromptModalClose());
       return;
     }
