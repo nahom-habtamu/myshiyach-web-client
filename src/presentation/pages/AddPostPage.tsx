@@ -1,5 +1,11 @@
+import MasterComponent from "../components/common/master_component";
+
 const AddPostPage = () => {
-  return <>I AM ADD POST</>;
+  return (
+    <MasterComponent activePage={AddPostPageRoute}>
+      I AM ADD POST PAGE
+    </MasterComponent>
+  );
 };
 
 export default AddPostPage;

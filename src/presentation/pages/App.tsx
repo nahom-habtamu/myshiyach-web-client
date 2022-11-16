@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <>
-      <Routes isLoggedIn={true} />
+      <Routes />
       {isLoginPrompted && (
         <LoginPromptModal
           onClose={() => dispatch(toggleLoginPromptModalClose())}

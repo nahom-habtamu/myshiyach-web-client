@@ -24,7 +24,23 @@ export async function refreshProduct({
     },
   };
   let result = await axiosInstance.patch(`/products/refresh/${id}`, config);
-  console.log(result);
+  return result.data as Product;
+}
+
+export async function getProductById({
+  id,
+  token,
+}: {
+  id: string;
+  token: string;
+}): Promise<Product> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.get(`/products/${id}`, config);
   return result.data as Product;
 }
 
