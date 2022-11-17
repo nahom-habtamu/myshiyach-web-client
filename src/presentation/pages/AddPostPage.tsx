@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { getDataNeededToAddPost } from "../../core/action_creators/common/get_data_needed_to_add_post_action_creators";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
+import FirstPageAddPostForm, {
+  FirstInputFormState,
+} from "../components/add_post/FirstPageAddPostForm";
+import SecondPageAddPostForm, {
+  SecondInputFormState,
+} from "../components/add_post/SecondPageAddPostForm";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 import { AddPostWrapperStyled } from "../styled_components/add_post/AddPostPageComponentsStyled";
-import {
-  HotelFilterDropDownInputStyled,
-  HotelFilterDropDownOptionStyled,
-} from "../styled_components/home/HomeFilterModalStyled";
 
 type AddPostPageInputState = {
   mainCategory: string;
@@ -13,7 +16,7 @@ type AddPostPageInputState = {
   price: number;
   description: string;
   title: string;
-  contactPhone: string;
+  contactPerson: string;
   productImages: string[];
   city: string;
   productDetail: Object;
@@ -25,13 +28,14 @@ const initalState: AddPostPageInputState = {
   price: 0,
   description: "",
   title: "",
-  contactPhone: "",
+  contactPerson: "",
   productImages: [],
   city: "",
   productDetail: {},
 };
 
 const AddPostPage = () => {
+  const [currentInputPage, setCurrentInputPage] = useState(0);
   const [inputValue, setInputValue] =
     useState<AddPostPageInputState>(initalState);
 
@@ -41,64 +45,33 @@ const AddPostPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("CALLING THIS GUY");
-
     dispatch(getDataNeededToAddPost());
-  });
+  }, []);
 
-  const renderDropDownInput = (
-    placeHolder: string,
-    objectKey: string,
-    items: DropDownItemData[]
-  ) => {
-    return (
-      <HotelFilterDropDownInputStyled
-        placeholder={placeHolder}
-        value={(inputValue as any)[objectKey] ?? ""}
-        onChange={(e) =>
-          setInputValue({
-            ...inputValue,
-            [objectKey]: e.target.value,
-          })
-        }
-      >
-        {items.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
-            {i.title}
-          </HotelFilterDropDownOptionStyled>
-        ))}
-      </HotelFilterDropDownInputStyled>
-    );
-  };
-
-  const parseMainCategoryToDropdown = () => {
-    var categories = getDataNeededToAddPostState.result?.categories ?? [];
-    return categories.map((e) => {
-      return {
-        title: e.title,
-        value: e._id,
-      };
-    }) as DropDownItemData[];
-  };
-
-  const parseSubCategoryToDropdown = () => {
-    var mainCategory = getDataNeededToAddPostState.result?.categories.find(
-      (c) => c._id === inputValue!.mainCategory
-    );
-    return mainCategory?.subCategories.map((e) => {
-      return {
-        title: e.title,
-        value: e._id,
-      };
-    }) as DropDownItemData[];
-  };
-
-  return <AddPostWrapperStyled></AddPostWrapperStyled>;
-
-  type DropDownItemData = {
-    value: string;
-    title: string;
-  };
+  return getDataNeededToAddPostState.isLoading ? (
+    <LoadingSpinner />
+  ) : (
+    <AddPostWrapperStyled>
+      {currentInputPage === 0 && (
+        <FirstPageAddPostForm
+          onFormSubmitted={(e: FirstInputFormState) => {
+            setInputValue({ ...inputValue, ...e });
+            setCurrentInputPage(1);
+          }}
+        />
+      )}
+      {currentInputPage === 1 && inputValue.mainCategory != "" && (
+        <SecondPageAddPostForm
+          mainCategory={inputValue.mainCategory}
+          onCancel={() => setCurrentInputPage(0)}
+          onFormSubmitted={(e: SecondInputFormState) => {
+            setInputValue({ ...inputValue, ...e });
+            // TODO ADDING POST HERE
+          }}
+        />
+      )}
+    </AddPostWrapperStyled>
+  );
 };
 
 export default AddPostPage;
