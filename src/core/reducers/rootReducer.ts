@@ -9,9 +9,11 @@ import loginPromptModalReducer from "./loginPromptModalReducer";
 import getUserByIdReducer from "./getUserByIdReducer";
 import getRecommendedProductsReducer from "./getRecommendedProductsReducer";
 import refreshProductReducer from "./refreshProductReducer";
+import createProductReducer from "./createProductReducer";
 import activePageOnMasterNavReducer from "./activePageOnMasterNavReducer";
 import selectedProductReducer from "./selectProductReducer";
 import getProductDetailReducer from "./getProductDetailReducer";
+import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -24,9 +26,11 @@ const rootReducer = combineReducers({
   getUserById: getUserByIdReducer,
   recommendedProducts: getRecommendedProductsReducer,
   refreshProduct: refreshProductReducer,
+  createProduct: createProductReducer,
   activePageOnMasterNav: activePageOnMasterNavReducer,
   selectedProduct: selectedProductReducer,
   getProductDetail: getProductDetailReducer,
+  getDataNeededToAddPost: getDataNeededToAddPostReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

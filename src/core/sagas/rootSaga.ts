@@ -9,6 +9,8 @@ import GetUserByIdSaga from "./getUserByIdSaga";
 import GetRecommendedProductsSaga from "./getRecommendedProductsSaga";
 import RefreshProductSaga from "./refreshProductSaga";
 import GetProductDetailSaga from "./getProductDetailSaga";
+import CreateProductSaga from "./createProductSaga";
+import GetDataNeededToAddPostSaga from "./getDataNeededToAddPostSaga";
 
 export default function* rootSaga() {
   yield all([fork(LoginSaga)]);
@@ -21,4 +23,6 @@ export default function* rootSaga() {
   yield all([fork(GetRecommendedProductsSaga)]);
   yield all([fork(RefreshProductSaga)]);
   yield all([fork(GetProductDetailSaga)]);
+  yield all([fork(CreateProductSaga)]);
+  yield all([fork(GetDataNeededToAddPostSaga)]);
 }
