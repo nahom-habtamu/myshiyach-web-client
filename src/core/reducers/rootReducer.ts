@@ -9,6 +9,7 @@ import loginPromptModalReducer from "./loginPromptModalReducer";
 import getUserByIdReducer from "./getUserByIdReducer";
 import getRecommendedProductsReducer from "./getRecommendedProductsReducer";
 import refreshProductReducer from "./refreshProductReducer";
+import createProductReducer from "./createProductReducer";
 import activePageOnMasterNavReducer from "./activePageOnMasterNavReducer";
 import selectedProductReducer from "./selectProductReducer";
 import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   getUserById: getUserByIdReducer,
   recommendedProducts: getRecommendedProductsReducer,
   refreshProduct: refreshProductReducer,
+  createProduct: createProductReducer,
   activePageOnMasterNav: activePageOnMasterNavReducer,
   selectedProduct: selectedProductReducer,
   getDataNeededToAddPost: getDataNeededToAddPostReducer,

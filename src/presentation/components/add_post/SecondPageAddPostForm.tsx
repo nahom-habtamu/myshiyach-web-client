@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useAppSelector } from "../../../store/storeHooks";
+import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
   AddPostActionButtonStyled,
   AddPostActionButtonsWrapperStyled,
@@ -12,32 +12,19 @@ import {
 } from "../../styled_components/home/HomeFilterModalStyled";
 import ImagePicker from "../common/ImagePicker";
 
-export type SecondInputFormState = {
-  city: string;
-  productImages: string[];
-  contactPerson: string;
-  productDetail: Object;
-};
-
-const initalState: SecondInputFormState = {
-  city: "",
-  productImages: [],
-  contactPerson: "",
-  productDetail: {},
-};
-
 const SecondPageAddPostForm = ({
   onFormSubmitted,
   onCancel,
-  mainCategory,
+  onPictureChanged,
+  onFormValueChanged,
+  formState,
 }: {
   onFormSubmitted: Function;
   onCancel: Function;
-  mainCategory: string;
+  onPictureChanged: Function;
+  onFormValueChanged: Function;
+  formState: AddPostPageInputState;
 }) => {
-  const [secondInputValue, setSecondInputValue] =
-    useState<SecondInputFormState>(initalState);
-
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
   );
@@ -50,10 +37,10 @@ const SecondPageAddPostForm = ({
     return (
       <HotelFilterDropDownInputStyled
         placeholder={placeHolder}
-        value={(secondInputValue as any)[objectKey] ?? ""}
+        value={(formState as any)[objectKey] ?? ""}
         onChange={(e) =>
-          setSecondInputValue({
-            ...secondInputValue,
+          onFormValueChanged({
+            ...formState,
             [objectKey]: e.target.value,
           })
         }
@@ -75,12 +62,12 @@ const SecondPageAddPostForm = ({
     return (
       <HotelFilterDropDownInputStyled
         placeholder={placeHolder}
-        value={(secondInputValue.productDetail as any)[objectKey] ?? ""}
+        value={(formState.productDetail as any)[objectKey] ?? ""}
         onChange={(e) =>
-          setSecondInputValue({
-            ...secondInputValue,
+          onFormValueChanged({
+            ...formState,
             productDetail: {
-              ...secondInputValue.productDetail,
+              ...formState.productDetail,
               [objectKey]: e.target.value,
             },
           })
@@ -116,7 +103,7 @@ const SecondPageAddPostForm = ({
 
   const buildOtherRequiredFeildInputs = () => {
     let categorySelected = getDataNeededToAddPostState.result?.categories.find(
-      (c) => c._id === mainCategory
+      (c) => c._id === formState.mainCategory
     );
 
     return categorySelected!.requiredFields.map((requiredField) => {
@@ -132,10 +119,10 @@ const SecondPageAddPostForm = ({
             type="text"
             placeholder={requiredField.objectKey}
             onChange={(e) =>
-              setSecondInputValue({
-                ...secondInputValue,
+              onFormValueChanged({
+                ...formState,
                 productDetail: {
-                  ...secondInputValue.productDetail,
+                  ...formState.productDetail,
                   [requiredField.objectKey]: e.target.value,
                 },
               })
@@ -150,8 +137,7 @@ const SecondPageAddPostForm = ({
     <AddPostInputWrapperStyled>
       <ImagePicker
         onImagePicked={(urlImages: string[], pickedImages: File[]) => {
-          console.log(pickedImages.map((e) => e.name));
-          console.log(urlImages);
+          onPictureChanged(urlImages, pickedImages);
         }}
         initialImages={[]}
       />
@@ -161,9 +147,9 @@ const SecondPageAddPostForm = ({
         type="text"
         placeholder="Contact Person"
         onChange={(e) =>
-          setSecondInputValue({
-            ...secondInputValue,
-            contactPerson: e.target.value,
+          onFormValueChanged({
+            ...formState,
+            contactPhone: e.target.value,
           })
         }
       />
@@ -173,9 +159,7 @@ const SecondPageAddPostForm = ({
         <AddPostActionButtonStyled isOutlined onClick={() => onCancel()}>
           Cancel
         </AddPostActionButtonStyled>
-        <AddPostActionButtonStyled
-          onClick={() => onFormSubmitted(secondInputValue)}
-        >
+        <AddPostActionButtonStyled onClick={() => onFormSubmitted(formState)}>
           Post
         </AddPostActionButtonStyled>
       </AddPostActionButtonsWrapperStyled>

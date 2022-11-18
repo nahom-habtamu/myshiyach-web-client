@@ -1,3 +1,4 @@
+import CreateProductRequest from "../models/product/create_product_request";
 import GetPaginatedProductsResult from "../models/product/get_paginated_products_result";
 import GetPaginatedProductsRequest from "../models/product/get_paginated_product_request";
 import Product from "../models/product/product";
@@ -24,7 +25,23 @@ export async function refreshProduct({
     },
   };
   let result = await axiosInstance.patch(`/products/refresh/${id}`, config);
-  console.log(result);
+  return result.data as Product;
+}
+
+export async function createProduct({
+  product,
+  token,
+}: {
+  product: CreateProductRequest;
+  token: string;
+}): Promise<Product> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.post(`/products/`, product, config);
   return result.data as Product;
 }
 

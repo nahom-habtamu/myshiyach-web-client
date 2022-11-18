@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useAppSelector } from "../../../store/storeHooks";
+import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
   AddPostActionButtonStyled,
   AddPostActionButtonsWrapperStyled,
@@ -12,30 +12,15 @@ import {
   HotelFilterDropDownOptionStyled,
 } from "../../styled_components/home/HomeFilterModalStyled";
 
-export type FirstInputFormState = {
-  mainCategory: string;
-  subCategory: string;
-  price: number;
-  description: string;
-  title: string;
-};
-
-const initalState: FirstInputFormState = {
-  mainCategory: "",
-  subCategory: "",
-  price: 0,
-  description: "",
-  title: "",
-};
-
 const FirstPageAddPostForm = ({
   onFormSubmitted,
+  onFormValueChanged,
+  formState,
 }: {
   onFormSubmitted: Function;
+  onFormValueChanged: Function;
+  formState: AddPostPageInputState;
 }) => {
-  const [firstInputValue, setFirstInputValue] =
-    useState<FirstInputFormState>(initalState);
-
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
   );
@@ -47,10 +32,10 @@ const FirstPageAddPostForm = ({
     return (
       <HotelFilterDropDownInputStyled
         placeholder={placeHolder}
-        value={(firstInputValue as any)[objectKey] ?? ""}
+        value={(formState as any)[objectKey] ?? ""}
         onChange={(e) =>
-          setFirstInputValue({
-            ...firstInputValue,
+          onFormValueChanged({
+            ...formState,
             [objectKey]: e.target.value,
           })
         }
@@ -76,7 +61,7 @@ const FirstPageAddPostForm = ({
 
   const parseSubCategoryToDropdown = () => {
     var mainCategory = getDataNeededToAddPostState.result?.categories.find(
-      (c) => c._id === firstInputValue!.mainCategory
+      (c) => c._id === formState!.mainCategory
     );
     return mainCategory?.subCategories.map((e) => {
       return {
@@ -92,7 +77,7 @@ const FirstPageAddPostForm = ({
         "mainCategory",
         parseMainCategoryToDropdown()
       )}
-      {firstInputValue.mainCategory &&
+      {formState.mainCategory &&
         renderDropDownInput(
           "Sub Category",
           "subCategory",
@@ -102,8 +87,8 @@ const FirstPageAddPostForm = ({
         type="text"
         placeholder="Title"
         onChange={(e) =>
-          setFirstInputValue({
-            ...firstInputValue,
+          onFormValueChanged({
+            ...formState,
             title: e.target.value,
           })
         }
@@ -112,8 +97,8 @@ const FirstPageAddPostForm = ({
         placeholder="Description"
         cols={6}
         onChange={(e) =>
-          setFirstInputValue({
-            ...firstInputValue,
+          onFormValueChanged({
+            ...formState,
             description: e.target.value,
           })
         }
@@ -122,16 +107,14 @@ const FirstPageAddPostForm = ({
         type="number"
         placeholder="Price"
         onChange={(e) =>
-          setFirstInputValue({
-            ...firstInputValue,
+          onFormValueChanged({
+            ...formState,
             price: parseFloat(e.target.value),
           })
         }
       />
       <AddPostActionButtonsWrapperStyled>
-        <AddPostActionButtonStyled
-          onClick={() => onFormSubmitted(firstInputValue)}
-        >
+        <AddPostActionButtonStyled onClick={() => onFormSubmitted(formState)}>
           Next
         </AddPostActionButtonStyled>
       </AddPostActionButtonsWrapperStyled>
