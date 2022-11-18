@@ -11,6 +11,7 @@ import FirstPageAddPostForm from "../components/add_post/FirstPageAddPostForm";
 import SecondPageAddPostForm from "../components/add_post/SecondPageAddPostForm";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { AddPostWrapperStyled } from "../styled_components/add_post/AddPostPageComponentsStyled";
+import MasterComponent from "../components/common/master_component";
 
 export type AddPostPageInputState = {
   mainCategory: string;
@@ -100,12 +101,16 @@ const AddPostPage = () => {
       </AddPostWrapperStyled>
     );
   }
-  return getDataNeededToAddPostState.isLoading ? (
-    <LoadingSpinner />
-  ) : createProductState.isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    renderAddFormInputs()
+  return (
+    <MasterComponent activePage={AddPostPageRoute}>
+      {getDataNeededToAddPostState.isLoading ? (
+        <LoadingSpinner />
+      ) : createProductState.isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        renderAddFormInputs()
+      )}
+    </MasterComponent>
   );
 };
 

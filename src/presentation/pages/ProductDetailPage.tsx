@@ -27,6 +27,7 @@ import {
 } from "../../core/action_creators/product/refresh_product_action_creators";
 import { useParams } from "react-router-dom";
 import { getProductDetail } from "../../core/action_creators/product/get_product_detail_action_creators";
+import MasterComponent from "../components/common/master_component";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
@@ -227,30 +228,34 @@ const ProductDetailPage = () => {
     );
   };
 
-  return productDetailState.isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    <ProductDetailWrapperStyled>
-      {renderTitle()}
-      <ProductDetailCarousel
-        pictures={productDetailState.result?.product.productImages ?? []}
-      />
-      {renderCity()}
-      {renderPrice()}
-      {renderPersonalInfo()}
-      {renderProductTimeInfo()}
-      {renderProductDetailInfo()}
-      {renderDescription()}
-
-      {renderSendMessageButton()}
-      {renderFavoritesButton()}
-
-      {getRecommendedProductsState.isLoading ? (
+  return (
+    <MasterComponent activePage={ProductDetailPageRoute}>
+      {productDetailState.isLoading ? (
         <LoadingSpinner />
       ) : (
-        renderRecommendedItems()
+        <ProductDetailWrapperStyled>
+          {renderTitle()}
+          <ProductDetailCarousel
+            pictures={productDetailState.result?.product.productImages ?? []}
+          />
+          {renderCity()}
+          {renderPrice()}
+          {renderPersonalInfo()}
+          {renderProductTimeInfo()}
+          {renderProductDetailInfo()}
+          {renderDescription()}
+
+          {renderSendMessageButton()}
+          {renderFavoritesButton()}
+
+          {getRecommendedProductsState.isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            renderRecommendedItems()
+          )}
+        </ProductDetailWrapperStyled>
       )}
-    </ProductDetailWrapperStyled>
+    </MasterComponent>
   );
 
   function renderRecommendedItems() {
