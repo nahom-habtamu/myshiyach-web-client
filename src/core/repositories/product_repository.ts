@@ -28,11 +28,17 @@ export async function refreshProduct({
   return result.data as Product;
 }
 
+
 export async function createProduct({
   product,
   token,
 }: {
   product: CreateProductRequest;
+export async function getProductById({
+  id,
+  token,
+}: {
+  id: string;
   token: string;
 }): Promise<Product> {
   const config = {
@@ -42,6 +48,7 @@ export async function createProduct({
     },
   };
   let result = await axiosInstance.post(`/products/`, product, config);
+  let result = await axiosInstance.get(`/products/${id}`, config);
   return result.data as Product;
 }
 

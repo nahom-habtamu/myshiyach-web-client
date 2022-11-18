@@ -100,6 +100,7 @@ const AddPostPage = () => {
       </AddPostWrapperStyled>
     );
   }
+  
   return getDataNeededToAddPostState.isLoading ? (
     <LoadingSpinner />
   ) : createProductState.isLoading ? (
@@ -107,7 +108,8 @@ const AddPostPage = () => {
   ) : (
     renderAddFormInputs()
   );
-};
+}
+
 
 export default AddPostPage;
 export const AddPostPageRoute = "/addPost";

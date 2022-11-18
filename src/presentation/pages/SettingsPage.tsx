@@ -1,5 +1,11 @@
+import MasterComponent from "../components/common/master_component";
+
 const SettingsPage = () => {
-  return <>I AM SETTINGS</>;
+  return (
+    <MasterComponent activePage={SettingsPageRoute}>
+      I AM SETTINGS
+    </MasterComponent>
+  );
 };
 
 export default SettingsPage;

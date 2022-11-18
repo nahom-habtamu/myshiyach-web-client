@@ -13,6 +13,7 @@ import createProductReducer from "./createProductReducer";
 import activePageOnMasterNavReducer from "./activePageOnMasterNavReducer";
 import selectedProductReducer from "./selectProductReducer";
 import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
+import getProductDetailReducer from "./getProductDetailReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   activePageOnMasterNav: activePageOnMasterNavReducer,
   selectedProduct: selectedProductReducer,
   getDataNeededToAddPost: getDataNeededToAddPostReducer,
+  getProductDetail: getProductDetailReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
