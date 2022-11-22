@@ -10,6 +10,7 @@ import getUserByIdReducer from "./getUserByIdReducer";
 import getRecommendedProductsReducer from "./getRecommendedProductsReducer";
 import refreshProductReducer from "./refreshProductReducer";
 import createProductReducer from "./createProductReducer";
+import editProductReducer from "./editProductReducer";
 import activePageOnMasterNavReducer from "./activePageOnMasterNavReducer";
 import selectedProductReducer from "./selectProductReducer";
 import getProductDetailReducer from "./getProductDetailReducer";
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   recommendedProducts: getRecommendedProductsReducer,
   refreshProduct: refreshProductReducer,
   createProduct: createProductReducer,
+  editProduct: editProductReducer,
   activePageOnMasterNav: activePageOnMasterNavReducer,
   selectedProduct: selectedProductReducer,
   getProductDetail: getProductDetailReducer,

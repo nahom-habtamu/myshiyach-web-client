@@ -19,6 +19,7 @@ import {
 import { getDataNeededToEditPost } from "../../core/action_creators/common/get_data_needed_to_edit_post_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useParams } from "react-router-dom";
+import { editProduct } from "../../core/action_creators/product/edit_product_action_creators";
 
 export type EditPostPageInputState = {
   mainCategory: string;
@@ -48,6 +49,7 @@ const EditProductPage = () => {
   let { id } = useParams<any>();
 
   const loginState = useAppSelector((state) => state.login);
+  const editProductState = useAppSelector((state) => state.editProduct);
   const { isLoading, result } = useAppSelector(
     (state) => state.getDataNeededToEditPost
   );
@@ -64,6 +66,33 @@ const EditProductPage = () => {
   }, [dispatch, id, loginState.result.token]);
 
   useEffect(() => {
+    if (editProductState.product != null) {
+      setFormState({
+        city: editProductState.product.city,
+        title: editProductState.product.title,
+        contactPhone: editProductState.product.contactPhone,
+        price: editProductState.product.price,
+        subCategory: editProductState.product.subCategory,
+        mainCategory: editProductState.product.mainCategory,
+        productImages: editProductState.product.productImages,
+        description: editProductState.product.description,
+        productDetail: editProductState.product.productDetail,
+      });
+    }
+  }, [editProductState.product]);
+
+  const handleUpdatingProduct = () => {
+    dispatch(
+      editProduct({
+        product: formState,
+        token: loginState.result.token,
+        id: id,
+        imagesToUpload: pickedImages,
+      })
+    );
+  };
+
+  useEffect(() => {
     if (result != null) {
       setFormState({
         city: result!.product.city,
@@ -78,11 +107,6 @@ const EditProductPage = () => {
       });
     }
   }, [result?.product]);
-
-  const handleUpdatingProduct = () => {
-    console.log(formState);
-    console.log(pickedImages.map((e) => e.name));
-  };
 
   const renderDropDownInput = (
     placeHolder: string,
@@ -212,6 +236,18 @@ const EditProductPage = () => {
       }
     });
   };
+  const handleRenderingSaveButton = () => {
+    return editProductState.isLoading ? (
+      <LoadingSpinner />
+    ) : (
+      <AddPostActionButtonsWrapperStyled>
+        <AddPostActionButtonStyled onClick={handleUpdatingProduct}>
+          Save Changes
+        </AddPostActionButtonStyled>
+      </AddPostActionButtonsWrapperStyled>
+    );
+  };
+
   return (
     <MasterComponent activePage={EditProductPageRoute}>
       <EditProductPageWrapperStyled>
@@ -224,7 +260,7 @@ const EditProductPage = () => {
                 setFormState({ ...formState, productImages: urlImages });
                 setPickedImages(pickedImages);
               }}
-              initialImages={[...(result!.product.productImages ?? [])]}
+              initialImages={[...(formState.productImages ?? [])]}
             />
             {renderDropDownInput(
               "Main Category",
@@ -284,11 +320,8 @@ const EditProductPage = () => {
               value={formState.contactPhone ?? ""}
             />
             {buildOtherRequiredFeildInputs()}
-            <AddPostActionButtonsWrapperStyled>
-              <AddPostActionButtonStyled onClick={handleUpdatingProduct}>
-                Save Changes
-              </AddPostActionButtonStyled>
-            </AddPostActionButtonsWrapperStyled>
+
+            {handleRenderingSaveButton()}
           </EditPostInputWrapperStyled>
         )}
       </EditProductPageWrapperStyled>
