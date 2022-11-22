@@ -25,7 +25,7 @@ import {
   clearRefreshProduct,
   refreshProduct,
 } from "../../core/action_creators/product/refresh_product_action_creators";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getProductDetail } from "../../core/action_creators/product/get_product_detail_action_creators";
 import MasterComponent from "../components/common/master_component";
 
@@ -40,8 +40,7 @@ const ProductDetailPage = () => {
   const refreshProductState = useAppSelector((state) => state.refreshProduct);
 
   const dispatch = useAppDispatch();
-
-  console.log(productDetailState);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getProductDetail(id, authState.result.token));
@@ -220,7 +219,13 @@ const ProductDetailPage = () => {
   const renderFavoritesButton = () => {
     return (
       <ProductDetailButtonWrapperStyled>
-        <FavoritesButtonStyled>
+        <FavoritesButtonStyled
+          onClick={() => {
+            history.push(
+              `/editProduct/${productDetailState.result?.product._id}`
+            );
+          }}
+        >
           <FiHeart size={25} style={{ marginBottom: "-5px" }} /> Add to
           Favorites
         </FavoritesButtonStyled>
