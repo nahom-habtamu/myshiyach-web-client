@@ -29,7 +29,7 @@ const ChatListPage = () => {
           <LoadingSpinner />
         ) : (
           conversationsState.result?.map((e) => (
-            <ChatListItem conversation={e} />
+            <ChatListItem conversation={e} key={e.id} />
           ))
         )}
       </ChatListWrapperStyled>
