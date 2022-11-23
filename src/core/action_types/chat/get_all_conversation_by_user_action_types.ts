@@ -1,3 +1,5 @@
+import Conversation from "../../models/chat/conversation";
+
 export const GET_CONVERSATIONS_BY_USER =
   "chatActionTypes/GET_CONVERSATIONS_BY_USER";
 export interface GetConversationsByUserAction {

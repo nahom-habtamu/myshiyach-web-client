@@ -1,4 +1,5 @@
 import * as actions from "../../action_types/chat/get_all_conversation_by_user_action_types";
+import Conversation from "../../models/chat/conversation";
 
 export const getConversationsByUser = (
   id: string
