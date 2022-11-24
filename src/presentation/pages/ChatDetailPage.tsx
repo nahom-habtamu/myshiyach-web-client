@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { BiImages, BiSend } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { getChatDetail } from "../../core/action_creators/chat/get_chat_detail_action_creators";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
@@ -7,11 +8,10 @@ import ChatDetailMessagesContainer from "../components/chat/ChatDetailMessagesCo
 import ChatDetailStrangerUser from "../components/chat/ChatDetailStrangerUser";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/master_component";
+import { ICON_SIZE } from "../constants/sizes";
 import {
-  ChatDetailBubbleImageStyled,
-  ChatDetailBubbleItemStyled,
-  ChatDetailBubbleItemWrapperStyled,
-  ChatDetailBubblesWrapperStyled,
+  ChatDetailAddMessageInputStyled,
+  ChatDetailAddMessageWrapperStyled,
   ChatDetailWrapperStyled,
 } from "../styled_components/chat/ChatDetailComponentsStyled";
 import { ChatListPageRoute } from "./ChatListPage";
@@ -34,17 +34,17 @@ const ChatDetailPage = () => {
 
   const renderMainContent = () => (
     <>
-      <ChatDetailHeader />
+      {/* <ChatDetailHeader /> */}
       <ChatDetailStrangerUser />
       <ChatDetailMessagesContainer />
-      <div
-        style={{
-          width: "70%",
-          height: "70px",
-          border: "1px solid red",
-          margin: "0 auto",
-        }}
-      ></div>
+      <ChatDetailAddMessageWrapperStyled>
+        <ChatDetailAddMessageInputStyled
+          type="text"
+          placeholder="Send Message"
+        />
+        <BiImages size={ICON_SIZE} />
+        <BiSend size={ICON_SIZE} />
+      </ChatDetailAddMessageWrapperStyled>
     </>
   );
 

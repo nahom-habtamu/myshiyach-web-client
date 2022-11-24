@@ -7,7 +7,7 @@ import {
 
 const ChatDetailWrapperStyled = styled.div`
   width: 1000px;
-  height: 1000px;
+  height: 900px;
   margin: 25px auto;
   background: white;
 `;
@@ -34,30 +34,29 @@ const ChatDetailHeaderTwoStyled = styled.div`
 
 const ChatDetailStrangerUserWrapperStyled = styled.div`
   width: 95%;
-  height: 80px;
-  border-block: 0.5px solid gray;
-  margin: 20px auto;
+  height: 60px;
+  border-block: 0.5px solid lightgray;
+  margin: 5px auto;
   display: flex;
   gap: 15px;
   align-items: center;
 `;
 
 const ChatDetailStrangerUserAvatarStyled = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   text-align: center;
-  border-radius: 22px;
+  border-radius: 20px;
   background: ${DEEP_ORANGE_COLOR};
   color: white;
   text-transform: uppercase;
-  font-size: 23px;
-  line-height: 68px;
+  font-size: 20px;
+  line-height: 55px;
 `;
 
 const ChatDetailStrangerUserNameStyled = styled.div`
   color: grey;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
   text-transform: capitalize;
 `;
 
@@ -78,19 +77,39 @@ const ChatDetailBubbleItemWrapperStyled = styled.div<{
 `;
 
 const ChatDetailBubbleItemStyled = styled.div<{ leftBubble: boolean }>`
-  padding: 15px 25px;
+  padding: 15px 30px;
   background: ${(props) =>
     props.leftBubble ? PRIMARY_COLOR : LIGHT_GRAY_COLOR};
   color: ${(props) => (props.leftBubble ? "white" : "black")};
   border-radius: ${(props) =>
     props.leftBubble ? "25px 25px 0px 25px" : "25px 25px 25px 0px"};
-  font-size: 15px;
+  font-size: 18px;
 `;
 
 const ChatDetailBubbleImageStyled = styled.img`
   width: 250px;
   height: 200px;
   object-fit: center center;
+`;
+
+const ChatDetailAddMessageWrapperStyled = styled.div`
+  display: flex;
+  width: 70%;
+  height: 50px;
+  margin: 0 auto;
+  gap: 25px;
+  color: black;
+  align-items: center;
+`;
+
+const ChatDetailAddMessageInputStyled = styled.input`
+  padding-left: 25px;
+  font-size: 20px;
+  width: 80%;
+  height: 100%;
+  border: 1px solid gray;
+  border-radius: 15px;
+  outline: none;
 `;
 
 export {
@@ -105,4 +124,6 @@ export {
   ChatDetailBubbleItemWrapperStyled,
   ChatDetailBubbleItemStyled,
   ChatDetailBubbleImageStyled,
+  ChatDetailAddMessageWrapperStyled,
+  ChatDetailAddMessageInputStyled,
 };
