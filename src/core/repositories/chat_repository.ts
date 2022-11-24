@@ -1,16 +1,20 @@
 import {
   collection,
   DocumentData,
+  doc,
+  setDoc,
   getDocs,
   QueryDocumentSnapshot,
+  updateDoc,
 } from "firebase/firestore";
 import firebaseConfig from "../config/firebase_config";
+import Message from "../models/chat/message";
 
 export const getConversationsByUser = async (id: string) => {
-  var snapshots = await getDocs(
+  let snapshots = await getDocs(
     collection(firebaseConfig.firestore, "conversations")
   );
-  var conversations = snapshots.docs
+  let conversations = snapshots.docs
     .filter(
       (e) => checkIfCurrentUserIsMember(e, id) && checkIfMessagesAreNotEmpty(e)
     )
@@ -36,10 +40,10 @@ function checkIfCurrentUserIsMember(
 }
 
 export const getConversationById = async (id: string) => {
-  var snapshots = await getDocs(
+  let snapshots = await getDocs(
     collection(firebaseConfig.firestore, "conversations")
   );
-  var conversations = snapshots.docs
+  let conversations = snapshots.docs
     .filter((e) => e.id === id)
     .map((e) => parseQuerySnapshotToConversation(e));
 
@@ -64,4 +68,19 @@ const parseQuerySnapshotToConversation = (
       };
     }),
   };
+};
+
+export const addTextMessageToConversation = async (
+  conversationId: string,
+  message: Message
+) => {
+  const conversation = await getConversationById(conversationId);
+  const convRef = doc(
+    firebaseConfig.firestore,
+    "conversations",
+    conversationId
+  );
+  await updateDoc(convRef, {
+    messages: [...conversation.messages, message],
+  });
 };

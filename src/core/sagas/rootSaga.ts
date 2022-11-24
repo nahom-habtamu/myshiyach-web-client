@@ -13,6 +13,7 @@ import CreateProductSaga from "./createProductSaga";
 import GetDataNeededToAddPostSaga from "./getDataNeededToAddPostSaga";
 import GetConversationsByUserSaga from "./getConversationsByUserSaga";
 import GetChatDetailSaga from "./getChatDetailSaga";
+import AddTextMessageSaga from "./addTextMessageSaga";
 
 export default function* rootSaga() {
   yield all([fork(LoginSaga)]);
@@ -29,4 +30,5 @@ export default function* rootSaga() {
   yield all([fork(GetDataNeededToAddPostSaga)]);
   yield all([fork(GetConversationsByUserSaga)]);
   yield all([fork(GetChatDetailSaga)]);
+  yield all([fork(AddTextMessageSaga)]);
 }

@@ -17,7 +17,7 @@ const initialState: GetChatDetailState = {
   isLoading: false,
 };
 
-export default function getDataNeededToAddPostReducer(
+export default function getChatDetailReducer(
   state: GetChatDetailState = initialState,
   action: actions.GetChatDetailActionType
 ): GetChatDetailState {

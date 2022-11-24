@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BiImages, BiSend } from "react-icons/bi";
 import { useParams } from "react-router-dom";
+import { addTextMessage } from "../../core/action_creators/chat/add_text_message_action_creators";
 import { getChatDetail } from "../../core/action_creators/chat/get_chat_detail_action_creators";
+import Message from "../../core/models/chat/message";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatDetailHeader from "../components/chat/ChatDetailHeader";
 import ChatDetailMessagesContainer from "../components/chat/ChatDetailMessagesContainer";
@@ -18,6 +20,9 @@ import { ChatListPageRoute } from "./ChatListPage";
 
 const ChatDetailPage = () => {
   let { id } = useParams<any>();
+
+  const [messageContent, setMessageContent] = useState("");
+
   const loginState = useAppSelector((state) => state.login);
   const chatDetailState = useAppSelector((state) => state.getChatDetail);
   const dispatch = useAppDispatch();
@@ -32,6 +37,18 @@ const ChatDetailPage = () => {
     );
   }, [id, loginState.result.currentUser!._id, loginState.result.token]);
 
+  const handleSendingTextMessage = () => {
+    const message: Message = {
+      content: messageContent,
+      createdDateTime: new Date().toISOString(),
+      isSeen: false,
+      recieverId: chatDetailState.result!.strangerUser._id,
+      senderId: loginState.result.currentUser!._id,
+      type: "TEXT",
+    };
+    dispatch(addTextMessage({ conversationId: id, message }));
+  };
+
   const renderMainContent = () => (
     <>
       {/* <ChatDetailHeader /> */}
@@ -41,9 +58,11 @@ const ChatDetailPage = () => {
         <ChatDetailAddMessageInputStyled
           type="text"
           placeholder="Send Message"
+          onChange={(e) => setMessageContent(e.target.value)}
+          value={messageContent}
         />
         <BiImages size={ICON_SIZE} />
-        <BiSend size={ICON_SIZE} />
+        <BiSend size={ICON_SIZE} onClick={handleSendingTextMessage} />
       </ChatDetailAddMessageWrapperStyled>
     </>
   );
