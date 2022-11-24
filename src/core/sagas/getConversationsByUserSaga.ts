@@ -1,6 +1,6 @@
 import * as Effects from "redux-saga/effects";
 import * as actionCreators from "../action_creators/chat/get_conversations_by_user_action_creators";
-import * as actionTypes from "../action_types/chat/get_all_conversation_by_user_action_types";
+import * as actionTypes from "../action_types/chat/get_conversations_by_user_action_types";
 import Conversation from "../models/chat/conversation";
 
 import { getConversationsByUser } from "../repositories/chat_repository";

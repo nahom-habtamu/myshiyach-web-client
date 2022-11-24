@@ -1,5 +1,8 @@
 import { Switch, Route, HashRouter } from "react-router-dom";
 import AddPostPage, { AddPostPageRoute } from "../../pages/AddPostPage";
+import ChatDetailPage, {
+  ChatDetailPageRoute,
+} from "../../pages/ChatDetailPage";
 import ChatListPage, { ChatListPageRoute } from "../../pages/ChatListPage";
 import DummyPage, { DummyPageRoute } from "../../pages/DummyPage";
 import HomePage, { HomePageRoute } from "../../pages/HomePage";
@@ -10,7 +13,9 @@ import OtpVerificationPage, {
 import ProductDetailPage, {
   ProductDetailPageRoute,
 } from "../../pages/ProductDetailPage";
-import SavedPostsPage, { SavedPostsPageRoute } from "../../pages/SavedPosts.Page";
+import SavedPostsPage, {
+  SavedPostsPageRoute,
+} from "../../pages/SavedPosts.Page";
 import SettingsPage, { SettingsPageRoute } from "../../pages/SettingsPage";
 import SignUpPage, { SignUpPageRoute } from "../../pages/SignUpPage";
 
@@ -50,6 +55,9 @@ const Routes = () => {
         </Route>
         <Route exact path={ProductDetailPageRoute}>
           <ProductDetailPage />
+        </Route>
+        <Route exact path={ChatDetailPageRoute}>
+          <ChatDetailPage />
         </Route>
       </Switch>
     </HashRouter>

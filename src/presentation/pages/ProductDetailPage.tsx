@@ -41,8 +41,6 @@ const ProductDetailPage = () => {
 
   const dispatch = useAppDispatch();
 
-  console.log(productDetailState);
-
   useEffect(() => {
     dispatch(getProductDetail(id, authState.result.token));
   }, [dispatch]);

@@ -14,23 +14,7 @@ export const getConversationsByUser = async (id: string) => {
     .filter(
       (e) => checkIfCurrentUserIsMember(e, id) && checkIfMessagesAreNotEmpty(e)
     )
-    .map((e) => {
-      return {
-        id: e.id,
-        memberOne: e.data()["memberOne"],
-        memberTwo: e.data()["memberTwo"],
-        messages: e.data()["messages"].map((message: any) => {
-          return {
-            content: message["content"],
-            senderId: message["senderId"],
-            recieverId: message["recieverId"],
-            createdDateTime: message["createdDateTime"],
-            isSeen: message["isSeen"],
-            type: message["type"],
-          };
-        }),
-      };
-    });
+    .map((e) => parseQuerySnapshotToConversation(e));
 
   return conversations;
 };
@@ -50,3 +34,34 @@ function checkIfCurrentUserIsMember(
     conversation.data()["memberTwo"] === id
   );
 }
+
+export const getConversationById = async (id: string) => {
+  var snapshots = await getDocs(
+    collection(firebaseConfig.firestore, "conversations")
+  );
+  var conversations = snapshots.docs
+    .filter((e) => e.id === id)
+    .map((e) => parseQuerySnapshotToConversation(e));
+
+  return conversations[0];
+};
+
+const parseQuerySnapshotToConversation = (
+  value: QueryDocumentSnapshot<DocumentData>
+) => {
+  return {
+    id: value.id,
+    memberOne: value.data()["memberOne"],
+    memberTwo: value.data()["memberTwo"],
+    messages: value.data()["messages"].map((message: any) => {
+      return {
+        content: message["content"],
+        senderId: message["senderId"],
+        recieverId: message["recieverId"],
+        createdDateTime: message["createdDateTime"],
+        isSeen: message["isSeen"],
+        type: message["type"],
+      };
+    }),
+  };
+};

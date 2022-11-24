@@ -11,7 +11,13 @@ import {
   ChatListItemWrapperStyled,
 } from "../../styled_components/chat/ChatListComponentsStyled";
 
-const ChatListItem = ({ conversation }: { conversation: Conversation }) => {
+const ChatListItem = ({
+  conversation,
+  onClick,
+}: {
+  conversation: Conversation;
+  onClick: Function;
+}) => {
   const dispatch = useAppDispatch();
 
   const loginState = useAppSelector((state) => state.login);
@@ -45,7 +51,7 @@ const ChatListItem = ({ conversation }: { conversation: Conversation }) => {
   };
 
   return (
-    <ChatListItemWrapperStyled>
+    <ChatListItemWrapperStyled onClick={() => onClick()}>
       {getStrangerInfoState.isLoading ? (
         <h1>LOADING..........</h1>
       ) : (

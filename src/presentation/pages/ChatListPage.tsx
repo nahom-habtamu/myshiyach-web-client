@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { getConversationsByUser } from "../../core/action_creators/chat/get_conversations_by_user_action_creators";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatListItem from "../components/chat/ChatListItem";
@@ -8,6 +9,7 @@ import { ChatListWrapperStyled } from "../styled_components/chat/ChatListCompone
 
 const ChatListPage = () => {
   const dispatch = useAppDispatch();
+  const history = useHistory();
 
   const loginState = useAppSelector((state) => state.login);
   const conversationsState = useAppSelector(
@@ -29,7 +31,11 @@ const ChatListPage = () => {
           <LoadingSpinner />
         ) : (
           conversationsState.result?.map((e) => (
-            <ChatListItem conversation={e} key={e.id} />
+            <ChatListItem
+              conversation={e}
+              key={e.id}
+              onClick={() => history.push(`/chatDetail/${e.id}`)}
+            />
           ))
         )}
       </ChatListWrapperStyled>

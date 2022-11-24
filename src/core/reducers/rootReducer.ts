@@ -15,6 +15,7 @@ import selectedProductReducer from "./selectProductReducer";
 import getProductDetailReducer from "./getProductDetailReducer";
 import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
 import getConversationsByUserReducer from "./getConversationsByUserReducer";
+import getChatDetailReducer from "./getChatDetailReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   getProductDetail: getProductDetailReducer,
   getDataNeededToAddPost: getDataNeededToAddPostReducer,
   getConversationsByUser: getConversationsByUserReducer,
+  getChatDetail: getChatDetailReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
