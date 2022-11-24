@@ -80,10 +80,10 @@ const ChatDetailBubbleItemWrapperStyled = styled.div<{
 const ChatDetailBubbleItemStyled = styled.div<{ leftBubble: boolean }>`
   padding: 15px 25px;
   background: ${(props) =>
-    !props.leftBubble ? PRIMARY_COLOR : LIGHT_GRAY_COLOR};
-  color: ${(props) => (!props.leftBubble ? "white" : "black")};
+    props.leftBubble ? PRIMARY_COLOR : LIGHT_GRAY_COLOR};
+  color: ${(props) => (props.leftBubble ? "white" : "black")};
   border-radius: ${(props) =>
-    !props.leftBubble ? "25px 25px 0px 25px" : "25px 25px 25px 0px"};
+    props.leftBubble ? "25px 25px 0px 25px" : "25px 25px 25px 0px"};
   font-size: 15px;
 `;
 

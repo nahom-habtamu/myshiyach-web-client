@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getChatDetail } from "../../core/action_creators/chat/get_chat_detail_action_creators";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatDetailHeader from "../components/chat/ChatDetailHeader";
+import ChatDetailMessagesContainer from "../components/chat/ChatDetailMessagesContainer";
 import ChatDetailStrangerUser from "../components/chat/ChatDetailStrangerUser";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/master_component";
@@ -35,23 +36,7 @@ const ChatDetailPage = () => {
     <>
       <ChatDetailHeader />
       <ChatDetailStrangerUser />
-      <ChatDetailBubblesWrapperStyled>
-        {chatDetailState.result?.conversation.messages.map((message) => {
-          let leftBubble =
-            message.senderId !== loginState.result.currentUser?._id;
-          return (
-            <ChatDetailBubbleItemWrapperStyled leftBubble={leftBubble}>
-              {message.type === "IMAGE" ? (
-                <ChatDetailBubbleImageStyled src={message.content} />
-              ) : (
-                <ChatDetailBubbleItemStyled leftBubble={leftBubble}>
-                  {message.content}
-                </ChatDetailBubbleItemStyled>
-              )}
-            </ChatDetailBubbleItemWrapperStyled>
-          );
-        })}
-      </ChatDetailBubblesWrapperStyled>
+      <ChatDetailMessagesContainer />
       <div
         style={{
           width: "70%",
