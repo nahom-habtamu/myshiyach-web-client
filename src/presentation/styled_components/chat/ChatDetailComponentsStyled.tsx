@@ -61,7 +61,7 @@ const ChatDetailStrangerUserNameStyled = styled.div`
 `;
 
 const ChatDetailBubblesWrapperStyled = styled.div`
-  width: 70%;
+  width: 90%;
   height: 650px;
   overflow: auto;
   margin: 25px auto;
@@ -77,19 +77,37 @@ const ChatDetailBubbleItemWrapperStyled = styled.div<{
 `;
 
 const ChatDetailBubbleItemStyled = styled.div<{ leftBubble: boolean }>`
-  padding: 15px 30px;
+  padding: 25px 50px;
   background: ${(props) =>
     props.leftBubble ? PRIMARY_COLOR : LIGHT_GRAY_COLOR};
   color: ${(props) => (props.leftBubble ? "white" : "black")};
   border-radius: ${(props) =>
     props.leftBubble ? "25px 25px 0px 25px" : "25px 25px 25px 0px"};
   font-size: 18px;
+  position: relative;
+`;
+
+const ChatDetailBubbleImageWrapperStyled = styled.div`
+  width: 250px;
+  height: 200px;
+  position: relative;
 `;
 
 const ChatDetailBubbleImageStyled = styled.img`
-  width: 250px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: center center;
+`;
+
+const ChatDetailBubbleTimeIndicatorStyled = styled.div`
+  padding: 2px;
+  background: black;
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+  border-radius: 3px;
 `;
 
 const ChatDetailAddMessageWrapperStyled = styled.div`
@@ -123,7 +141,9 @@ export {
   ChatDetailBubblesWrapperStyled,
   ChatDetailBubbleItemWrapperStyled,
   ChatDetailBubbleItemStyled,
+  ChatDetailBubbleImageWrapperStyled,
   ChatDetailBubbleImageStyled,
+  ChatDetailBubbleTimeIndicatorStyled,
   ChatDetailAddMessageWrapperStyled,
   ChatDetailAddMessageInputStyled,
 };
