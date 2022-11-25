@@ -5,17 +5,17 @@ import { LoadingSpinnerWrapperStyled } from "../../styled_components/common/Load
 
 const override: CSSProperties = {
   display: "block",
-  borderColor: 'grey',
+  borderColor: "grey",
 };
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ size }: { size?: number }) => {
   return (
     <LoadingSpinnerWrapperStyled>
       <BounceLoader
         color={PRIMARY_COLOR}
         loading={true}
         cssOverride={override}
-        size={80}
+        size={size ?? 80}
       />
     </LoadingSpinnerWrapperStyled>
   );
