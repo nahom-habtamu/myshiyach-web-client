@@ -38,7 +38,7 @@ const ChatDetailPage = () => {
         token: loginState.result.token,
       })
     );
-  }, [id, loginState.result.currentUser!._id, loginState.result.token]);
+  }, [id, loginState.result.currentUser, loginState.result.token, dispatch]);
 
   const handleSendingTextMessage = () => {
     const message: Message = {
