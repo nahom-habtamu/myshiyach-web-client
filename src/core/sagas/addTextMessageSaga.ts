@@ -1,6 +1,6 @@
 import * as Effects from "redux-saga/effects";
 
-import { addTextMessageToConversation } from "../repositories/chat_repository";
+import { addMessageToConversation } from "../repositories/chat_repository";
 
 import * as actionCreators from "../action_creators/chat/add_text_message_action_creators";
 import * as actionTypes from "../action_types/chat/add_text_message_action_types";
@@ -14,7 +14,7 @@ function* onAddTextMessage(
     yield Effects.put(actionCreators.addTextMessageLoading());
 
     yield call(
-      addTextMessageToConversation,
+      addMessageToConversation,
       addTextMessageAction.payload.conversationId,
       addTextMessageAction.payload.message
     );

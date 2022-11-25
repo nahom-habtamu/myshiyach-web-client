@@ -17,6 +17,7 @@ import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
 import getConversationsByUserReducer from "./getConversationsByUserReducer";
 import getChatDetailReducer from "./getChatDetailReducer";
 import addTextMessageReducer from "./addTextMessageReducer";
+import addImageMessageReducer from "./addImageMessageReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   getConversationsByUser: getConversationsByUserReducer,
   getChatDetail: getChatDetailReducer,
   addTextMessage: addTextMessageReducer,
+  addImageMessage: addImageMessageReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

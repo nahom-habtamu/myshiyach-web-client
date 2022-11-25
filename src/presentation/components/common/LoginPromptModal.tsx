@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
 import { LoginPageRoute } from "../../pages/LoginPage";
 import { SignUpPageRoute } from "../../pages/SignUpPage";
+import { ModalWrapperShadowStyled } from "../../styled_components/common/CommonModalComponentsStyled";
 import {
   LoginPromptModalStyled,
   LoginPromptModalTextStyled,
-  LoginPromptModalWrapperShadowStyled,
 } from "../../styled_components/common/LoginPromptModalStyled";
 
 type LoginPromptModalProps = {
@@ -16,7 +16,7 @@ type LoginPromptModalProps = {
 const LoginPromptModal = ({ onClose }: LoginPromptModalProps) => {
   return ReactDOM.createPortal(
     <HashRouter>
-      <LoginPromptModalWrapperShadowStyled onClick={() => onClose()} />
+      <ModalWrapperShadowStyled onClick={() => onClose()} />
       <LoginPromptModalStyled>
         Please{" "}
         {

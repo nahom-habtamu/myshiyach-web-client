@@ -6,13 +6,13 @@ import {
 } from "../../../core/action_creators/product/filter_criteria_action_creators";
 import FilterCriteria from "../../../core/models/filter/filter_criteria";
 import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
+import { ModalWrapperShadowStyled } from "../../styled_components/common/CommonModalComponentsStyled";
 import {
   HotelFilterButton,
   HotelFilterButtonWrapper,
   HotelFilterDropDownInputStyled,
   HotelFilterDropDownOptionStyled,
   HotelFilterModalStyled,
-  HotelFilterModalWrapperShadowStyled,
   HotelFilterPriceInputStyled,
   HotelFilterPriceInputWrapperStyled,
   HotelFilterRadioButtonStyled,
@@ -191,7 +191,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
 
   return ReactDOM.createPortal(
     <>
-      <HotelFilterModalWrapperShadowStyled onClick={() => onClose()} />
+      <ModalWrapperShadowStyled onClick={() => onClose()} />
       <HotelFilterModalStyled>
         <HotelFilterPriceInputWrapperStyled>
           <HotelFilterPriceInputStyled

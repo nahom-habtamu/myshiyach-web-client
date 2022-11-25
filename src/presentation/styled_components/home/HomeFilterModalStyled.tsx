@@ -17,16 +17,6 @@ const HotelFilterModalStyled = styled.div`
   gap: 25px;
 `;
 
-const HotelFilterModalWrapperShadowStyled = styled.div`
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0px;
-  background-color: black;
-  opacity: 0.6;
-  z-index: 4;
-`;
-
 const HotelFilterInputStyled = styled.input`
   height: 60px;
   font-size: 20px;
@@ -110,7 +100,6 @@ const HotelFilterButtonWrapper = styled.div`
 
 export {
   HotelFilterModalStyled,
-  HotelFilterModalWrapperShadowStyled,
   HotelFilterPriceInputWrapperStyled,
   HotelFilterPriceInputStyled,
   HotelFilterLongInputStyled,

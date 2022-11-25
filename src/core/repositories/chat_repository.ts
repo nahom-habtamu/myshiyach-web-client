@@ -70,7 +70,7 @@ const parseQuerySnapshotToConversation = (
   };
 };
 
-export const addTextMessageToConversation = async (
+export const addMessageToConversation = async (
   conversationId: string,
   message: Message
 ) => {

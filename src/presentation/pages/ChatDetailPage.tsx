@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { BiImages, BiSend } from "react-icons/bi";
 import { useParams } from "react-router-dom";
+import { addImageMessage } from "../../core/action_creators/chat/add_image_message_action_creators";
 import { addTextMessage } from "../../core/action_creators/chat/add_text_message_action_creators";
 import { getChatDetail } from "../../core/action_creators/chat/get_chat_detail_action_creators";
 import Message from "../../core/models/chat/message";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
-import ChatDetailHeader from "../components/chat/ChatDetailHeader";
+import ChatDetailImageMessageSendingModal from "../components/chat/ChatDetailImageMessageSendingModal";
 import ChatDetailMessagesContainer from "../components/chat/ChatDetailMessagesContainer";
 import ChatDetailStrangerUser from "../components/chat/ChatDetailStrangerUser";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -22,6 +23,8 @@ const ChatDetailPage = () => {
   let { id } = useParams<any>();
 
   const [messageContent, setMessageContent] = useState("");
+  const [isSendMessageModalOpen, setIsSendMessageModalOpen] = useState(false);
+  const [pickedImages, setPickedImages] = useState<File[]>([]);
 
   const loginState = useAppSelector((state) => state.login);
   const chatDetailState = useAppSelector((state) => state.getChatDetail);
@@ -49,9 +52,23 @@ const ChatDetailPage = () => {
     dispatch(addTextMessage({ conversationId: id, message }));
   };
 
+  const handleSendingImageMessage = () => {
+    for (let i = 0; i < pickedImages.length; i++) {
+      const image = pickedImages[i];
+      const message: Message = {
+        content: "",
+        createdDateTime: new Date().toISOString(),
+        isSeen: false,
+        recieverId: chatDetailState.result!.strangerUser._id,
+        senderId: loginState.result.currentUser!._id,
+        type: "IMAGE",
+      };
+      dispatch(addImageMessage({ conversationId: id, message, image }));
+    }
+  };
+
   const renderMainContent = () => (
     <>
-      {/* <ChatDetailHeader /> */}
       <ChatDetailStrangerUser />
       <ChatDetailMessagesContainer />
       <ChatDetailAddMessageWrapperStyled>
@@ -61,8 +78,21 @@ const ChatDetailPage = () => {
           onChange={(e) => setMessageContent(e.target.value)}
           value={messageContent}
         />
-        <BiImages size={ICON_SIZE} />
+        <BiImages
+          size={ICON_SIZE}
+          onClick={() => setIsSendMessageModalOpen(true)}
+        />
         <BiSend size={ICON_SIZE} onClick={handleSendingTextMessage} />
+        {isSendMessageModalOpen && (
+          <ChatDetailImageMessageSendingModal
+            onClose={() => setIsSendMessageModalOpen(false)}
+            onImagePicked={(_: any, pickedImages: File[]) => {
+              setPickedImages(pickedImages);
+            }}
+            onSubmit={handleSendingImageMessage}
+            pickedImages={pickedImages}
+          />
+        )}
       </ChatDetailAddMessageWrapperStyled>
     </>
   );
