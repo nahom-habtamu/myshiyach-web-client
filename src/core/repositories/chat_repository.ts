@@ -5,21 +5,26 @@ import {
   getDocs,
   QueryDocumentSnapshot,
   updateDoc,
+  onSnapshot,
 } from "firebase/firestore";
 import firebaseConfig from "../config/firebase_config";
+import Conversation from "../models/chat/conversation";
 import Message from "../models/chat/message";
 
-export const getConversationsByUser = async (id: string) => {
-  let snapshots = await getDocs(
-    collection(firebaseConfig.firestore, "conversations")
-  );
-  let conversations = snapshots.docs
-    .filter(
-      (e) => checkIfCurrentUserIsMember(e, id) && checkIfMessagesAreNotEmpty(e)
-    )
-    .map((e) => parseQuerySnapshotToConversation(e));
-
-  return conversations;
+export const getConversationSnapshotData = async (
+  onSnapshotCallBack: (conversations: Conversation[]) => void,
+  id: string
+) => {
+  let collectionRef = collection(firebaseConfig.firestore, "conversations");
+  return onSnapshot(collectionRef, (snapshot) => {
+    let conversations = snapshot.docs
+      .filter(
+        (e) =>
+          checkIfCurrentUserIsMember(e, id) && checkIfMessagesAreNotEmpty(e)
+      )
+      .map((e) => parseQuerySnapshotToConversation(e));
+    onSnapshotCallBack(conversations);
+  });
 };
 
 function checkIfMessagesAreNotEmpty(

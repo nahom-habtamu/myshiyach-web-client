@@ -1,9 +1,9 @@
+import { Unsubscribe } from "firebase/firestore";
 import * as Effects from "redux-saga/effects";
 import * as actionCreators from "../action_creators/chat/get_conversations_by_user_action_creators";
 import * as actionTypes from "../action_types/chat/get_conversations_by_user_action_types";
-import Conversation from "../models/chat/conversation";
 
-import { getConversationsByUser } from "../repositories/chat_repository";
+import { getConversationSnapshotData } from "../repositories/chat_repository";
 
 const call: any = Effects.call;
 
@@ -12,14 +12,13 @@ function* onGetConversationsByUser(
 ) {
   try {
     yield Effects.put(actionCreators.getConversationsByUserLoading());
-    const conversations: Conversation[] = yield call(
-      getConversationsByUser,
-      getConversationsByUserAction.payload
+    let unsubscribe: Unsubscribe = yield call(
+      getConversationSnapshotData,
+      getConversationsByUserAction.payload.onSnapshotCallBack,
+      getConversationsByUserAction.payload.id
     );
     yield Effects.put(
-      actionCreators.getConversationsByUserSuccess({
-        conversations: conversations,
-      })
+      actionCreators.getConversationsByUserSuccess(unsubscribe)
     );
   } catch (error: any) {
     yield Effects.put(

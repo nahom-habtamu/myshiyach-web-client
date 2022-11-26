@@ -1,14 +1,13 @@
 import * as actions from "../action_types/chat/get_conversations_by_user_action_types";
-import Conversation from "../models/chat/conversation";
 
 export interface GetConversationsByUserState {
-  result: Conversation[] | null;
+  unsubscribe: Function | null;
   error: String;
   isLoading: boolean;
 }
 
 const initialState: GetConversationsByUserState = {
-  result: null,
+  unsubscribe: null,
   error: "",
   isLoading: false,
 };
@@ -20,19 +19,19 @@ export default function getConversationsByUserReducer(
   switch (action.type) {
     case actions.GET_CONVERSATIONS_BY_USER_LOADING:
       return {
-        result: null,
+        unsubscribe: null,
         error: "",
         isLoading: true,
       };
     case actions.GET_CONVERSATIONS_BY_USER_FAILURE:
       return {
-        result: null,
+        unsubscribe: null,
         error: action.message,
         isLoading: false,
       };
     case actions.GET_CONVERSATIONS_BY_USER_SUCCESS:
       return {
-        result: action.payload,
+        unsubscribe: action.payload,
         error: "",
         isLoading: false,
       };

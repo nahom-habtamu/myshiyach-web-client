@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getConversationsByUser } from "../../core/action_creators/chat/get_conversations_by_user_action_creators";
+import Conversation from "../../core/models/chat/conversation";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatListItem from "../components/chat/ChatListItem";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -11,26 +12,39 @@ const ChatListPage = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+
   const loginState = useAppSelector((state) => state.login);
-  const conversationsState = useAppSelector(
+  const conversationSnapshotState = useAppSelector(
     (state) => state.getConversationsByUser
   );
 
   useEffect(() => {
     if (loginState.result != null) {
       dispatch(
-        getConversationsByUser(loginState.result.currentUser?._id ?? "")
+        getConversationsByUser(onSnapshot, loginState.result.currentUser!._id)
       );
     }
-  }, [loginState.result]);
+  }, [loginState.result,dispatch]);
+
+  const onSnapshot = (conversationsOnRealTime: Conversation[]) => {
+    setConversations(conversationsOnRealTime);
+  };
+
+  useEffect(() => {
+    if (conversationSnapshotState.unsubscribe != null) {
+      let unsubscribe = conversationSnapshotState.unsubscribe;
+      return unsubscribe();
+    }
+  }, [conversationSnapshotState.unsubscribe]);
 
   return (
     <MasterComponent activePage={ChatListPageRoute}>
       <ChatListWrapperStyled>
-        {conversationsState.isLoading ? (
+        {conversationSnapshotState.isLoading ? (
           <LoadingSpinner />
         ) : (
-          conversationsState.result?.map((e) => (
+          conversations.map((e) => (
             <ChatListItem
               conversation={e}
               key={e.id}
