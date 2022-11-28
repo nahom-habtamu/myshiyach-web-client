@@ -110,6 +110,14 @@ const ChatDetailBubbleTimeIndicatorStyled = styled.div`
   border-radius: 3px;
 `;
 
+const ChatDetailDateIndicatorStyled = styled.div`
+  margin-block: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: black;
+  font-style: italic;
+`;
+
 const ChatDetailAddMessageWrapperStyled = styled.div`
   display: flex;
   width: 70%;
@@ -146,4 +154,5 @@ export {
   ChatDetailBubbleTimeIndicatorStyled,
   ChatDetailAddMessageWrapperStyled,
   ChatDetailAddMessageInputStyled,
+  ChatDetailDateIndicatorStyled,
 };
