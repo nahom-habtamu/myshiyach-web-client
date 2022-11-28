@@ -4,6 +4,8 @@ import {
   updateDoc,
   onSnapshot,
   getDoc,
+  getDocs,
+  addDoc,
 } from "firebase/firestore";
 import firebaseConfig from "../config/firebase_config";
 import Conversation from "../models/chat/conversation";
@@ -113,4 +115,50 @@ export const getConversationById = async (
     doc(firebaseConfig.firestore, "conversations", id)
   );
   return parseQuerySnapshotToConversation(snapshot);
+};
+
+export const createConversation = async (
+  memberOne: string,
+  memberTwo: string
+): Promise<string> => {
+  let conversation = {
+    memberOne: memberOne,
+    memberTwo: memberTwo,
+    messages: [],
+  };
+  let result = await addDoc(
+    collection(firebaseConfig.firestore, "conversations"),
+    conversation
+  );
+  return result.id;
+};
+
+export const getConversationByMembers = async (
+  memberOne: string,
+  memberTwo: string
+): Promise<string | null> => {
+  const allConvos = await getDocs(
+    collection(firebaseConfig.firestore, "conversations")
+  );
+  let filtered = allConvos.docs.filter((con) =>
+    compareConversationWithMembers(
+      parseQuerySnapshotToConversation(con),
+      memberOne,
+      memberTwo
+    )
+  );
+  return filtered.length > 0 ? filtered[0].id : null;
+};
+
+const compareConversationWithMembers = (
+  conversation: Conversation,
+  memberOneId: string,
+  memberTwoId: string
+) => {
+  return (
+    (conversation.memberOne == memberOneId &&
+      conversation.memberTwo == memberTwoId) ||
+    (conversation.memberOne == memberTwoId &&
+      conversation.memberTwo == memberOneId)
+  );
 };

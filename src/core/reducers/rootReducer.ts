@@ -19,7 +19,8 @@ import getChatDetailReducer from "./getChatDetailReducer";
 import getStrangerUserReducer from "./getStrangerUserReducer";
 import addTextMessageReducer from "./addTextMessageReducer";
 import addImageMessageReducer from "./addImageMessageReducer";
-import markMessagesInAConversationAsReadReducer from "./markMessagesInConversationAsReadReducer";
+import markMessagesInConversationAsReadReducer from "./markMessagesInConversationAsReadReducer";
+import goToChatReducer from "./goToChatReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -42,7 +43,8 @@ const rootReducer = combineReducers({
   getStrangerUser: getStrangerUserReducer,
   addTextMessage: addTextMessageReducer,
   addImageMessage: addImageMessageReducer,
-  markMessagesAsRead: markMessagesInAConversationAsReadReducer,
+  markMessagesAsRead: markMessagesInConversationAsReadReducer,
+  goToChat: goToChatReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
