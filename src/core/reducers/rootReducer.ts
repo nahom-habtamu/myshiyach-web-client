@@ -16,6 +16,7 @@ import getProductDetailReducer from "./getProductDetailReducer";
 import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
 import getConversationsByUserReducer from "./getConversationsByUserReducer";
 import getChatDetailReducer from "./getChatDetailReducer";
+import getStrangerUserReducer from "./getStrangerUserReducer";
 import addTextMessageReducer from "./addTextMessageReducer";
 import addImageMessageReducer from "./addImageMessageReducer";
 
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   getDataNeededToAddPost: getDataNeededToAddPostReducer,
   getConversationsByUser: getConversationsByUserReducer,
   getChatDetail: getChatDetailReducer,
+  getStrangerUser: getStrangerUserReducer,
   addTextMessage: addTextMessageReducer,
   addImageMessage: addImageMessageReducer,
 });

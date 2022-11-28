@@ -12,8 +12,6 @@ function* onGetUserById(getUserByIdAction: getUserByIdTypes.GetUserByIdAction) {
   try {
     yield Effects.put(getUserByIdCreators.getUserByIdLoading());
     const data: User = yield call(getUserById, getUserByIdAction.payload);
-    console.log(data);
-
     yield Effects.put(getUserByIdCreators.getUserByIdSuccess(data));
   } catch (error: any) {
     yield Effects.put(

@@ -6,10 +6,10 @@ import {
 } from "../../styled_components/chat/ChatDetailComponentsStyled";
 
 const ChatDetailStrangerUser = () => {
-  const chatDetailState = useAppSelector((state) => state.getChatDetail);
+  const strangerUserState = useAppSelector((state) => state.getStrangerUser);
 
   const buildAvatarContent = () => {
-    let fullName = chatDetailState.result?.strangerUser.fullName;
+    let fullName = strangerUserState.user?.fullName;
     if (fullName) {
       return fullName.split(" ")[0][0] + fullName.split(" ")[1][0];
     }
@@ -21,7 +21,7 @@ const ChatDetailStrangerUser = () => {
         {buildAvatarContent()}
       </ChatDetailStrangerUserAvatarStyled>
       <ChatDetailStrangerUserNameStyled>
-        {chatDetailState.result?.strangerUser.fullName ?? ""}
+        {strangerUserState.user?.fullName ?? ""}
       </ChatDetailStrangerUserNameStyled>
     </ChatDetailStrangerUserWrapperStyled>
   );

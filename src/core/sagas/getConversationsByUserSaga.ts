@@ -3,7 +3,7 @@ import * as Effects from "redux-saga/effects";
 import * as actionCreators from "../action_creators/chat/get_conversations_by_user_action_creators";
 import * as actionTypes from "../action_types/chat/get_conversations_by_user_action_types";
 
-import { getConversationSnapshotData } from "../repositories/chat_repository";
+import { getAllConversationsSnapshotData } from "../repositories/chat_repository";
 
 const call: any = Effects.call;
 
@@ -13,10 +13,11 @@ function* onGetConversationsByUser(
   try {
     yield Effects.put(actionCreators.getConversationsByUserLoading());
     let unsubscribe: Unsubscribe = yield call(
-      getConversationSnapshotData,
+      getAllConversationsSnapshotData,
       getConversationsByUserAction.payload.onSnapshotCallBack,
       getConversationsByUserAction.payload.id
     );
+    
     yield Effects.put(
       actionCreators.getConversationsByUserSuccess(unsubscribe)
     );

@@ -1,13 +1,9 @@
-import Conversation from "../../models/chat/conversation";
-import User from "../../models/user/user";
-
 export const GET_CHAT_DETAIL = "chatActionTypes/GET_CHAT_DETAIL";
 export interface GetChatDetailAction {
   type: typeof GET_CHAT_DETAIL;
   payload: {
+    onSnapshotCallBack: Function;
     conversationId: string;
-    currentUserId: string;
-    token: string;
   };
 }
 
@@ -21,10 +17,7 @@ export const GET_CHAT_DETAIL_SUCCESS =
   "chatActionTypes/GET_CHAT_DETAIL_SUCCESS";
 export interface GetChatDetailSuccessAction {
   type: typeof GET_CHAT_DETAIL_SUCCESS;
-  payload: {
-    conversation: Conversation;
-    strangerUser: User;
-  };
+  payload: Function;
 }
 
 export const GET_CHAT_DETAIL_FAILURE =

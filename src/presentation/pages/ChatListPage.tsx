@@ -25,7 +25,7 @@ const ChatListPage = () => {
         getConversationsByUser(onSnapshot, loginState.result.currentUser!._id)
       );
     }
-  }, [loginState.result,dispatch]);
+  }, [loginState.result, dispatch]);
 
   const onSnapshot = (conversationsOnRealTime: Conversation[]) => {
     setConversations(conversationsOnRealTime);
@@ -36,7 +36,7 @@ const ChatListPage = () => {
       let unsubscribe = conversationSnapshotState.unsubscribe;
       return unsubscribe();
     }
-  }, [conversationSnapshotState.unsubscribe]);
+  }, []);
 
   return (
     <MasterComponent activePage={ChatListPageRoute}>

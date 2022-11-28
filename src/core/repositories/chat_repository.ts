@@ -1,17 +1,15 @@
 import {
   collection,
-  DocumentData,
   doc,
-  getDocs,
-  QueryDocumentSnapshot,
   updateDoc,
   onSnapshot,
+  getDoc,
 } from "firebase/firestore";
 import firebaseConfig from "../config/firebase_config";
 import Conversation from "../models/chat/conversation";
 import Message from "../models/chat/message";
 
-export const getConversationSnapshotData = async (
+export const getAllConversationsSnapshotData = async (
   onSnapshotCallBack: (conversations: Conversation[]) => void,
   id: string
 ) => {
@@ -27,36 +25,29 @@ export const getConversationSnapshotData = async (
   });
 };
 
-function checkIfMessagesAreNotEmpty(
-  e: QueryDocumentSnapshot<DocumentData>
-): boolean {
+function checkIfMessagesAreNotEmpty(e: any): boolean {
   return e.data()["messages"].length > 0;
 }
 
-function checkIfCurrentUserIsMember(
-  conversation: QueryDocumentSnapshot<DocumentData>,
-  id: string
-): boolean {
+function checkIfCurrentUserIsMember(conversation: any, id: string): boolean {
   return (
     conversation.data()["memberOne"] === id ||
     conversation.data()["memberTwo"] === id
   );
 }
 
-export const getConversationById = async (id: string) => {
-  let snapshots = await getDocs(
-    collection(firebaseConfig.firestore, "conversations")
-  );
-  let conversations = snapshots.docs
-    .filter((e) => e.id === id)
-    .map((e) => parseQuerySnapshotToConversation(e));
-
-  return conversations[0];
+export const getConversationSnapshotById = async (
+  onSnapshotCallBack: (conversation: Conversation) => void,
+  id: string
+) => {
+  let collectionRef = doc(firebaseConfig.firestore, "conversations", id);
+  return onSnapshot(collectionRef, (snapshot) => {
+    let conversation = parseQuerySnapshotToConversation(snapshot);
+    onSnapshotCallBack(conversation);
+  });
 };
 
-const parseQuerySnapshotToConversation = (
-  value: QueryDocumentSnapshot<DocumentData>
-) => {
+const parseQuerySnapshotToConversation = (value: any) => {
   return {
     id: value.id,
     memberOne: value.data()["memberOne"],
@@ -87,4 +78,11 @@ export const addMessageToConversation = async (
   await updateDoc(convRef, {
     messages: [...conversation.messages, message],
   });
+};
+
+export const getConversationById = async (id: string) => {
+  let snapshot = await getDoc(
+    doc(firebaseConfig.firestore, "conversations", id)
+  );
+  return parseQuerySnapshotToConversation(snapshot);
 };

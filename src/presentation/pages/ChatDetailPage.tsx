@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { addImageMessage } from "../../core/action_creators/chat/add_image_message_action_creators";
 import { addTextMessage } from "../../core/action_creators/chat/add_text_message_action_creators";
 import { getChatDetail } from "../../core/action_creators/chat/get_chat_detail_action_creators";
+import { getStrangerUser } from "../../core/action_creators/chat/get_stranger_user_action_creators";
+import Conversation from "../../core/models/chat/conversation";
 import Message from "../../core/models/chat/message";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatDetailImageMessageSendingModal from "../components/chat/ChatDetailImageMessageSendingModal";
@@ -22,30 +24,55 @@ import { ChatListPageRoute } from "./ChatListPage";
 const ChatDetailPage = () => {
   let { id } = useParams<any>();
 
+  const [conversation, setConversation] = useState<Conversation | null>(null);
+
   const [messageContent, setMessageContent] = useState("");
   const [isSendMessageModalOpen, setIsSendMessageModalOpen] = useState(false);
   const [pickedImages, setPickedImages] = useState<File[]>([]);
 
   const loginState = useAppSelector((state) => state.login);
+  const strangerUserState = useAppSelector((state) => state.getStrangerUser);
   const chatDetailState = useAppSelector((state) => state.getChatDetail);
   const dispatch = useAppDispatch();
+
+  const onSnapshot = (conversationOnRealTime: Conversation) => {
+    setConversation(conversationOnRealTime);
+  };
+
+  useEffect(() => {
+    if (conversation?.id != null) {
+      dispatch(
+        getStrangerUser({
+          conversation: conversation,
+          token: loginState.result.token,
+          currentUserId: loginState.result.currentUser!._id,
+        })
+      );
+    }
+  }, [dispatch, conversation?.id]);
 
   useEffect(() => {
     dispatch(
       getChatDetail({
+        onSnapshotCallBack: onSnapshot,
         conversationId: id,
-        currentUserId: loginState.result.currentUser!._id,
-        token: loginState.result.token,
       })
     );
   }, [id, loginState.result.currentUser, loginState.result.token, dispatch]);
+
+  useEffect(() => {
+    if (chatDetailState.unsubscribe != null) {
+      let unsubscribe = chatDetailState.unsubscribe;
+      return unsubscribe();
+    }
+  }, []);
 
   const handleSendingTextMessage = () => {
     const message: Message = {
       content: messageContent,
       createdDateTime: new Date().toISOString(),
       isSeen: false,
-      recieverId: chatDetailState.result!.strangerUser._id,
+      recieverId: strangerUserState.user?._id ?? "",
       senderId: loginState.result.currentUser!._id,
       type: "TEXT",
     };
@@ -59,7 +86,7 @@ const ChatDetailPage = () => {
         content: "",
         createdDateTime: new Date().toISOString(),
         isSeen: false,
-        recieverId: chatDetailState.result!.strangerUser._id,
+        recieverId: strangerUserState.user?._id ?? "",
         senderId: loginState.result.currentUser!._id,
         type: "IMAGE",
       };
@@ -70,7 +97,7 @@ const ChatDetailPage = () => {
   const renderMainContent = () => (
     <>
       <ChatDetailStrangerUser />
-      <ChatDetailMessagesContainer />
+      <ChatDetailMessagesContainer conversation={conversation!} />
       <ChatDetailAddMessageWrapperStyled>
         <ChatDetailAddMessageInputStyled
           type="text"
@@ -100,7 +127,13 @@ const ChatDetailPage = () => {
   return (
     <MasterComponent activePage={ChatListPageRoute}>
       <ChatDetailWrapperStyled>
-        {chatDetailState.isLoading ? <LoadingSpinner /> : renderMainContent()}
+        {chatDetailState.isLoading ||
+        strangerUserState.isLoading ||
+        conversation == null ? (
+          <LoadingSpinner />
+        ) : (
+          renderMainContent()
+        )}
       </ChatDetailWrapperStyled>
     </MasterComponent>
   );

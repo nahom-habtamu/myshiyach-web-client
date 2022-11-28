@@ -1,3 +1,4 @@
+import Conversation from "../../../core/models/chat/conversation";
 import { useAppSelector } from "../../../store/storeHooks";
 import {
   ChatDetailBubbleImageStyled,
@@ -8,12 +9,15 @@ import {
   ChatDetailBubbleTimeIndicatorStyled,
 } from "../../styled_components/chat/ChatDetailComponentsStyled";
 
-const ChatDetailMessagesContainer = () => {
+const ChatDetailMessagesContainer = ({
+  conversation,
+}: {
+  conversation: Conversation;
+}) => {
   const loginState = useAppSelector((state) => state.login);
-  const chatDetailState = useAppSelector((state) => state.getChatDetail);
   return (
     <ChatDetailBubblesWrapperStyled>
-      {chatDetailState.result?.conversation.messages.map((message) => {
+      {conversation.messages.map((message) => {
         let leftBubble =
           message.senderId !== loginState.result.currentUser?._id;
         let parsedDate = new Date(message.createdDateTime);

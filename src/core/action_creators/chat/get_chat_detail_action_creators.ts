@@ -1,22 +1,17 @@
 import * as actions from "../../action_types/chat/get_chat_detail_action_types";
-import Conversation from "../../models/chat/conversation";
-import User from "../../models/user/user";
 
 export const getChatDetail = ({
   conversationId,
-  currentUserId,
-  token,
+  onSnapshotCallBack
 }: {
   conversationId: string;
-  currentUserId: string;
-  token: string;
+  onSnapshotCallBack: Function;
 }): actions.GetChatDetailAction => {
   return {
     type: actions.GET_CHAT_DETAIL,
     payload: {
       conversationId,
-      currentUserId,
-      token,
+      onSnapshotCallBack,
     },
   };
 };
@@ -26,12 +21,11 @@ export const getChatDetailLoading = (): actions.GetChatDetailLoadingAction => {
 };
 
 export const getChatDetailSuccess = (
-  conversation: Conversation,
-  strangerUser: User
+  unsubscribe: Function
 ): actions.GetChatDetailSuccessAction => {
   return {
     type: actions.GET_CHAT_DETAIL_SUCCESS,
-    payload: { conversation, strangerUser },
+    payload: unsubscribe,
   };
 };
 
