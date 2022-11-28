@@ -11,12 +11,14 @@ import { SavedPostsPageRoute } from "../../pages/SavedPosts.Page";
 import { SettingsPageRoute } from "../../pages/SettingsPage";
 import {
   NavBarLeftSideContentItemStyled,
+  NavBarLeftSideContentItemUnseenStyled,
   NavBarLeftSideContentWrapperStyled,
 } from "../../styled_components/nav_bar/NavBarLeftSideContentStyled";
 
 type NavBarSideContentProps = {
   activePage: string;
   onItemTapped: Function;
+  unreadMessagesCount: number;
 };
 
 const NavBarSideContent = (props: NavBarSideContentProps) => {
@@ -32,6 +34,11 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
         isActive={props.activePage === ChatListPageRoute}
         onClick={() => props.onItemTapped(ChatListPageRoute)}
       >
+        {props.unreadMessagesCount > 0 && (
+          <NavBarLeftSideContentItemUnseenStyled>
+            {props.unreadMessagesCount}
+          </NavBarLeftSideContentItemUnseenStyled>
+        )}
         <HiOutlineChatBubbleBottomCenter size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
