@@ -16,6 +16,7 @@ import GetChatDetailSaga from "./getChatDetailSaga";
 import AddTextMessageSaga from "./addTextMessageSaga";
 import AddImageMessageSaga from "./addImageMessageSaga";
 import GetStrangerUserSaga from "./getStrangerUserSaga";
+import MarkMessagesSaga from "./markMessagesInConversationAsReadSaga";
 
 export default function* rootSaga() {
   yield all([fork(LoginSaga)]);
@@ -35,4 +36,5 @@ export default function* rootSaga() {
   yield all([fork(GetStrangerUserSaga)]);
   yield all([fork(AddTextMessageSaga)]);
   yield all([fork(AddImageMessageSaga)]);
+  yield all([fork(MarkMessagesSaga)]);
 }

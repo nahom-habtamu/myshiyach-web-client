@@ -80,7 +80,35 @@ export const addMessageToConversation = async (
   });
 };
 
-export const getConversationById = async (id: string) => {
+export const markMessagesInConversationAsRead = async (
+  conversationId: string,
+  recieverId: string
+) => {
+  const conversation = await getConversationById(conversationId);
+  const convRef = doc(
+    firebaseConfig.firestore,
+    "conversations",
+    conversationId
+  );
+
+  let updatedMessages = conversation.messages.map((m) => {
+    if (m.recieverId != recieverId) {
+      return m;
+    }
+    return {
+      ...m,
+      isSeen: true,
+    };
+  });
+
+  await updateDoc(convRef, {
+    messages: [...updatedMessages],
+  });
+};
+
+export const getConversationById = async (
+  id: string
+): Promise<Conversation> => {
   let snapshot = await getDoc(
     doc(firebaseConfig.firestore, "conversations", id)
   );
