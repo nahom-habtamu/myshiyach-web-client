@@ -8,6 +8,7 @@ import {
   ChatListItemLastMessageTimeStyled,
   ChatListItemNameStyled,
   ChatListItemTextWrapperStyled,
+  ChatListItemUnseenStyled,
   ChatListItemWrapperStyled,
 } from "../../styled_components/chat/ChatListComponentsStyled";
 
@@ -50,6 +51,16 @@ const ChatListItem = ({
     return createdTime.getHours() + ":" + createdTime.getMinutes();
   };
 
+  const renderUnseenMessagesCount = () => {
+    let count = conversation.messages.filter(
+      (m) => !m.isSeen && m.recieverId === loginState.result.currentUser?._id
+    ).length;
+    if (count > 0) {
+      <ChatListItemUnseenStyled>count</ChatListItemUnseenStyled>;
+    }
+    return null;
+  };
+
   return (
     <ChatListItemWrapperStyled onClick={() => onClick()}>
       {getStrangerInfoState.isLoading ? (
@@ -70,6 +81,7 @@ const ChatListItem = ({
           <ChatListItemLastMessageTimeStyled>
             {buildTimeFormat()}
           </ChatListItemLastMessageTimeStyled>
+          {renderUnseenMessagesCount()}
         </>
       )}
     </ChatListItemWrapperStyled>

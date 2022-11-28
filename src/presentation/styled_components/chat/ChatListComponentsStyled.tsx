@@ -57,6 +57,21 @@ const ChatListItemLastMessageTimeStyled = styled.div`
   right: 25px;
 `;
 
+const ChatListItemUnseenStyled = styled.div`
+  font-size: 15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin-block: 10px;
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  background: red;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+`;
+
 export {
   ChatListWrapperStyled,
   ChatListItemWrapperStyled,
@@ -65,4 +80,5 @@ export {
   ChatListItemLastMessageStyled,
   ChatListItemLastMessageTimeStyled,
   ChatListItemTextWrapperStyled,
+  ChatListItemUnseenStyled,
 };
