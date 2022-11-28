@@ -10,6 +10,7 @@ const ChatDetailWrapperStyled = styled.div`
   height: 900px;
   margin: 25px auto;
   background: white;
+  position: relative;
 `;
 
 const ChatDetailHeaderWrapperStyled = styled.div`
@@ -65,6 +66,7 @@ const ChatDetailBubblesWrapperStyled = styled.div`
   height: 650px;
   overflow: auto;
   margin: 25px auto;
+  position: relative;
 `;
 
 const ChatDetailBubbleItemWrapperStyled = styled.div<{
@@ -90,7 +92,6 @@ const ChatDetailBubbleItemStyled = styled.div<{ leftBubble: boolean }>`
 const ChatDetailBubbleImageWrapperStyled = styled.div`
   width: 250px;
   height: 200px;
-  position: relative;
 `;
 
 const ChatDetailBubbleImageStyled = styled.img`
@@ -138,6 +139,21 @@ const ChatDetailAddMessageInputStyled = styled.input`
   outline: none;
 `;
 
+const ChatDetailGoToBottomButton = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: black;
+  color: white;
+  position: absolute;
+  bottom: 200px;
+  right: 100px;
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export {
   ChatDetailWrapperStyled,
   ChatDetailHeaderWrapperStyled,
@@ -155,4 +171,5 @@ export {
   ChatDetailAddMessageWrapperStyled,
   ChatDetailAddMessageInputStyled,
   ChatDetailDateIndicatorStyled,
+  ChatDetailGoToBottomButton,
 };

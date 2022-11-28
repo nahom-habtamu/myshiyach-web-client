@@ -1,6 +1,9 @@
+import { useEffect, useRef, useState } from "react";
+import { BsChevronDown } from "react-icons/bs";
 import Conversation from "../../../core/models/chat/conversation";
 import Message from "../../../core/models/chat/message";
 import { useAppSelector } from "../../../store/storeHooks";
+import { ICON_SIZE } from "../../constants/sizes";
 import {
   ChatDetailBubbleImageStyled,
   ChatDetailBubbleImageWrapperStyled,
@@ -9,6 +12,7 @@ import {
   ChatDetailBubblesWrapperStyled,
   ChatDetailBubbleTimeIndicatorStyled,
   ChatDetailDateIndicatorStyled,
+  ChatDetailGoToBottomButton,
 } from "../../styled_components/chat/ChatDetailComponentsStyled";
 
 import groupMessagesByDate from "../../utils/groupMessagesByDate";
@@ -18,6 +22,32 @@ const ChatDetailMessagesContainer = ({
 }: {
   conversation: Conversation;
 }) => {
+  const [isDownButtonVisible, setIsDownButtonVisible] = useState(false);
+  const [prev, setPrev] = useState(window.scrollY);
+  const bottomRef = useRef<any>(null);
+
+  const handleGoToBottomClicked = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const onScroll = (e: any) => {
+    const window = e.target;
+    if (prev > window.scrollTop) {
+      setIsDownButtonVisible(false);
+    } else if (prev < window.scrollTop) {
+      let isBottom =
+        window.scrollHeight - window.scrollTop === window.clientHeight;
+      setIsDownButtonVisible(!isBottom);
+    }
+    setPrev(window.scrollTop);
+  };
+
+  useEffect(() => {
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const loginState = useAppSelector((state) => state.login);
   let groupedMessages = groupMessagesByDate(conversation.messages);
 
@@ -50,18 +80,25 @@ const ChatDetailMessagesContainer = ({
   };
 
   return (
-    <ChatDetailBubblesWrapperStyled>
-      {groupedMessages.map((gm) => {
-        return (
-          <>
-            <ChatDetailDateIndicatorStyled>
-              {parseCreatedAtTime(gm[0].createdDateTime)}
-            </ChatDetailDateIndicatorStyled>
-            {parseMessagesToChatBubbles(gm)}
-          </>
-        );
-      })}
-    </ChatDetailBubblesWrapperStyled>
+    <>
+      <ChatDetailBubblesWrapperStyled onScroll={onScroll} ref={bottomRef}>
+        {groupedMessages.map((gm) => {
+          return (
+            <>
+              <ChatDetailDateIndicatorStyled>
+                {parseCreatedAtTime(gm[0].createdDateTime)}
+              </ChatDetailDateIndicatorStyled>
+              {parseMessagesToChatBubbles(gm)}
+            </>
+          );
+        })}
+      </ChatDetailBubblesWrapperStyled>
+      {isDownButtonVisible && (
+        <ChatDetailGoToBottomButton onClick={handleGoToBottomClicked}>
+          <BsChevronDown size={ICON_SIZE} />
+        </ChatDetailGoToBottomButton>
+      )}
+    </>
   );
 };
 

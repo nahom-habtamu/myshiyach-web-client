@@ -17,6 +17,7 @@ import { ICON_SIZE } from "../constants/sizes";
 import {
   ChatDetailAddMessageInputStyled,
   ChatDetailAddMessageWrapperStyled,
+  ChatDetailGoToBottomButton,
   ChatDetailWrapperStyled,
 } from "../styled_components/chat/ChatDetailComponentsStyled";
 import { ChatListPageRoute } from "./ChatListPage";
