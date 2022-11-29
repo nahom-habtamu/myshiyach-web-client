@@ -1,5 +1,8 @@
 import { Switch, Route, HashRouter } from "react-router-dom";
 import AddPostPage, { AddPostPageRoute } from "../../pages/AddPostPage";
+import ChatDetailPage, {
+  ChatDetailPageRoute,
+} from "../../pages/ChatDetailPage";
 import ChatListPage, { ChatListPageRoute } from "../../pages/ChatListPage";
 import DummyPage, { DummyPageRoute } from "../../pages/DummyPage";
 import HomePage, { HomePageRoute } from "../../pages/HomePage";
@@ -58,6 +61,9 @@ const Routes = () => {
         </Route>
         <Route exact path={EditProductPageRoute}>
           <EditProductPage />
+        </Route>
+        <Route exact path={ChatDetailPageRoute}>
+          <ChatDetailPage />
         </Route>
       </Switch>
     </HashRouter>

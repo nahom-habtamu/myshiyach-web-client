@@ -19,16 +19,6 @@ const LoginPromptModalStyled = styled.div`
   letter-spacing: 1px;
 `;
 
-const LoginPromptModalWrapperShadowStyled = styled.div`
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0px;
-  background-color: black;
-  opacity: 0.6;
-  z-index: 4;
-`;
-
 const LoginPromptModalTextStyled = styled.div`
   color: ${PRIMARY_COLOR};
   cursor: pointer;
@@ -38,8 +28,4 @@ const LoginPromptModalTextStyled = styled.div`
   letter-spacing: 0.5px;
 `;
 
-export {
-  LoginPromptModalStyled,
-  LoginPromptModalWrapperShadowStyled,
-  LoginPromptModalTextStyled,
-};
+export { LoginPromptModalStyled, LoginPromptModalTextStyled };

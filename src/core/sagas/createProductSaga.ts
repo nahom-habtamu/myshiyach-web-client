@@ -17,7 +17,8 @@ function* onCreateProduct(
 
     const uploadedFiles: string[] = yield call(
       uploadImages,
-      createProductAction.payload.imagesToUpload
+      createProductAction.payload.imagesToUpload,
+      "product_images"
     );
 
     const createdProduct: Product = yield call(createProduct, {

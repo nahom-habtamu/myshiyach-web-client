@@ -25,10 +25,29 @@ const NavBarLeftSideContentItemStyled = styled.div<NavBarLeftSideContentItemStyl
   background-color: ${(props) => (props.isActive ? PINK_COLOR : "transparent")};
   color: ${(props) => (props.isActive ? "white" : "grey")};
   transition: background-color 0.6s;
-  
+  position: relative;
   :hover {
     background-color: ${PINK_COLOR};
   }
 `;
 
-export { NavBarLeftSideContentWrapperStyled, NavBarLeftSideContentItemStyled };
+const NavBarLeftSideContentItemUnseenStyled = styled.div`
+  font-size: 15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin-block: 10px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: red;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+`;
+
+export {
+  NavBarLeftSideContentWrapperStyled,
+  NavBarLeftSideContentItemStyled,
+  NavBarLeftSideContentItemUnseenStyled,
+};

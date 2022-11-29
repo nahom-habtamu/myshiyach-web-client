@@ -16,6 +16,13 @@ import selectedProductReducer from "./selectProductReducer";
 import getProductDetailReducer from "./getProductDetailReducer";
 import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
 import getDataNeededToEditPostReducer from "./getDataNeededToEditPostReducer";
+import getConversationsByUserReducer from "./getConversationsByUserReducer";
+import getChatDetailReducer from "./getChatDetailReducer";
+import getStrangerUserReducer from "./getStrangerUserReducer";
+import addTextMessageReducer from "./addTextMessageReducer";
+import addImageMessageReducer from "./addImageMessageReducer";
+import markMessagesInConversationAsReadReducer from "./markMessagesInConversationAsReadReducer";
+import goToChatReducer from "./goToChatReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -35,6 +42,13 @@ const rootReducer = combineReducers({
   getProductDetail: getProductDetailReducer,
   getDataNeededToAddPost: getDataNeededToAddPostReducer,
   getDataNeededToEditPost: getDataNeededToEditPostReducer,
+  getConversationsByUser: getConversationsByUserReducer,
+  getChatDetail: getChatDetailReducer,
+  getStrangerUser: getStrangerUserReducer,
+  addTextMessage: addTextMessageReducer,
+  addImageMessage: addImageMessageReducer,
+  markMessagesAsRead: markMessagesInConversationAsReadReducer,
+  goToChat: goToChatReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

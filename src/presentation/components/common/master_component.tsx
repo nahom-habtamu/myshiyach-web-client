@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   AdvertisementSideBarItemStyled,
@@ -10,6 +10,9 @@ import NavBarLogoFilterAndSearchBarContent from "./NavBarLogoFilterAndSearchBarC
 import NavBarSideContent from "./NavBarSideContent";
 import NavBarTopContent from "./NavBarTopContent";
 import FilterProductsModel from "./FilterProductsModal";
+import Conversation from "../../../core/models/chat/conversation";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
+import { getConversationsByUser } from "../../../core/action_creators/chat/get_conversations_by_user_action_creators";
 
 type MasterComponentProps = {
   activePage: string;
@@ -19,6 +22,47 @@ type MasterComponentProps = {
 const MasterComponent = (props: MasterComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+
+  const loginState = useAppSelector((state) => state.login);
+  const conversationSnapshotState = useAppSelector(
+    (state) => state.getConversationsByUser
+  );
+
+  useEffect(() => {
+    if (loginState.result.currentUser?._id != null) {
+      dispatch(
+        getConversationsByUser(onSnapshot, loginState.result.currentUser?._id)
+      );
+    }
+  }, [loginState.result, dispatch]);
+
+  const onSnapshot = (conversationsOnRealTime: Conversation[]) => {
+    setConversations(conversationsOnRealTime);
+  };
+
+  useEffect(() => {
+    if (conversationSnapshotState.unsubscribe != null) {
+      let unsubscribe = conversationSnapshotState.unsubscribe;
+      return unsubscribe();
+    }
+  }, []);
+
+  const getUnseenMessagesCount = () => {
+    let totalMesagesCount = 0;
+    for (let i = 0; i < conversations.length; i++) {
+      const element = conversations[i];
+      let count = element.messages.filter(
+        (m) => !m.isSeen && m.recieverId === loginState.result.currentUser?._id
+      ).length;
+      totalMesagesCount += count;
+    }
+    return totalMesagesCount;
+  };
+
+  let unseenMessages = getUnseenMessagesCount();
 
   return (
     <MasterPageContentWrapperStyled>
@@ -28,6 +72,7 @@ const MasterComponent = (props: MasterComponentProps) => {
       />
       <BodyContentWrapperStyled>
         <NavBarSideContent
+          unreadMessagesCount={unseenMessages}
           activePage={props.activePage}
           onItemTapped={(value: string) => history.push(value)}
         />
