@@ -17,7 +17,6 @@ import { ICON_SIZE } from "../constants/sizes";
 import {
   ChatDetailAddMessageInputStyled,
   ChatDetailAddMessageWrapperStyled,
-  ChatDetailGoToBottomButton,
   ChatDetailWrapperStyled,
 } from "../styled_components/chat/ChatDetailComponentsStyled";
 import { ChatListPageRoute } from "./ChatListPage";
@@ -77,6 +76,7 @@ const ChatDetailPage = () => {
       senderId: loginState.result.currentUser!._id,
       type: "TEXT",
     };
+    setMessageContent("");
     dispatch(addTextMessage({ conversationId: id, message }));
   };
 

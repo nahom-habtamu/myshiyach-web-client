@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import Conversation from "../../../core/models/chat/conversation";
 import Message from "../../../core/models/chat/message";
-import { useAppSelector } from "../../../store/storeHooks";
+import { markMessagesInConversationAsRead } from "../../../core/action_creators/chat/mark_messages_in_conversation_as_read_action_creators";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { ICON_SIZE } from "../../constants/sizes";
 import {
   ChatDetailBubbleImageStyled,
@@ -22,12 +23,25 @@ const ChatDetailMessagesContainer = ({
 }: {
   conversation: Conversation;
 }) => {
+  const loginState = useAppSelector((state) => state.login);
+
   const [isDownButtonVisible, setIsDownButtonVisible] = useState(false);
   const [prev, setPrev] = useState(window.scrollY);
   const bottomRef = useRef<any>(null);
 
+  const dispatch = useAppDispatch();
+
   const handleGoToBottomClicked = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current.scroll({
+      top: bottomRef.current.clientHeight * 2,
+      behavior: "smooth",
+    });
+    dispatch(
+      markMessagesInConversationAsRead({
+        recieverId: loginState.result.currentUser!._id,
+        conversationId: conversation.id,
+      })
+    );
   };
 
   const onScroll = (e: any) => {
@@ -48,7 +62,6 @@ const ChatDetailMessagesContainer = ({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const loginState = useAppSelector((state) => state.login);
   let groupedMessages = groupMessagesByDate(conversation.messages);
 
   const parseMessagesToChatBubbles = (messages: Message[]) => {
@@ -82,7 +95,7 @@ const ChatDetailMessagesContainer = ({
   return (
     <>
       <ChatDetailBubblesWrapperStyled onScroll={onScroll} ref={bottomRef}>
-        {groupedMessages.length == 0 ? (
+        {groupedMessages.length === 0 ? (
           <h1>NO MESSAGES YET!!</h1>
         ) : (
           groupedMessages.map((gm) => {
