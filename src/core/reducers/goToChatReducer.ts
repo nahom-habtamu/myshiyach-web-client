@@ -1,13 +1,13 @@
 import * as actions from "../action_types/chat/go_to_chat_action_types";
 
 export interface GoToChatState {
-  sucessfull: string | null;
+  conversationId: string | null;
   error: String;
   isLoading: boolean;
 }
 
 const initialState: GoToChatState = {
-  sucessfull: null,
+  conversationId: null,
   error: "",
   isLoading: false,
 };
@@ -17,21 +17,23 @@ export default function goToChatReducer(
   action: actions.GoToChatActionType
 ): GoToChatState {
   switch (action.type) {
+    case actions.CLEAR_GO_TO_CHAT:
+      return initialState;
     case actions.GO_TO_CHAT_LOADING:
       return {
-        sucessfull: null,
+        conversationId: null,
         error: "",
         isLoading: true,
       };
     case actions.GO_TO_CHAT_FAILURE:
       return {
-        sucessfull: null,
+        conversationId: null,
         error: action.message,
         isLoading: false,
       };
     case actions.GO_TO_CHAT_SUCCESS:
       return {
-        sucessfull: action.payload,
+        conversationId: action.payload,
         error: "",
         isLoading: false,
       };

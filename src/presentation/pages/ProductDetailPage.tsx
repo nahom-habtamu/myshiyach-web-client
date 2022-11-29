@@ -25,15 +25,21 @@ import {
   clearRefreshProduct,
   refreshProduct,
 } from "../../core/action_creators/product/refresh_product_action_creators";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getProductDetail } from "../../core/action_creators/product/get_product_detail_action_creators";
 import MasterComponent from "../components/common/master_component";
+import {
+  clearGoToChat,
+  goToChat,
+} from "../../core/action_creators/chat/go_to_chat_action_creators";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
+  const history = useHistory();
 
   const productDetailState = useAppSelector((state) => state.getProductDetail);
-  const authState = useAppSelector((state) => state.login);
+  const loginState = useAppSelector((state) => state.login);
+  const goToChatState = useAppSelector((state) => state.goToChat);
   const getRecommendedProductsState = useAppSelector(
     (state) => state.recommendedProducts
   );
@@ -42,8 +48,15 @@ const ProductDetailPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getProductDetail(id, authState.result.token));
+    dispatch(clearGoToChat());
+    dispatch(getProductDetail(id, loginState.result.token));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (goToChatState.conversationId != null) {
+      history.push(`/chatDetail/${goToChatState.conversationId}`);
+    }
+  }, [goToChatState.conversationId]);
 
   useEffect(() => {
     if (refreshProductState.product != null) {
@@ -205,11 +218,21 @@ const ProductDetailPage = () => {
       textTransform: "uppercase",
     });
 
+  const handleGoToChat = () => {
+    dispatch(
+      goToChat({
+        memberOne: productDetailState.result!.createdBy._id,
+        memberTwo: loginState.result.currentUser!._id,
+      })
+    );
+  };
+
   const renderSendMessageButton = () => {
     return (
       <ProductDetailButtonWrapperStyled>
-        <SendMessageButtonStyled>
-          <FiSend size={25} style={{ marginBottom: "-5px" }} /> Send Message
+        <SendMessageButtonStyled onClick={handleGoToChat}>
+          <FiSend size={25} style={{ marginBottom: "-5px" }} />
+          {goToChatState.isLoading ? "Send Message ......." : "Send Message"}
         </SendMessageButtonStyled>
       </ProductDetailButtonWrapperStyled>
     );

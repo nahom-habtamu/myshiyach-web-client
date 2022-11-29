@@ -35,3 +35,9 @@ export const goToChatFailure = (
     message: message,
   };
 };
+
+export const clearGoToChat = (): actions.ClearGoToChatAction => {
+  return {
+    type: actions.CLEAR_GO_TO_CHAT,
+  };
+};

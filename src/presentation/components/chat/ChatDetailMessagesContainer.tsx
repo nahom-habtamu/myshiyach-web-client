@@ -82,16 +82,20 @@ const ChatDetailMessagesContainer = ({
   return (
     <>
       <ChatDetailBubblesWrapperStyled onScroll={onScroll} ref={bottomRef}>
-        {groupedMessages.map((gm) => {
-          return (
-            <>
-              <ChatDetailDateIndicatorStyled>
-                {parseCreatedAtTime(gm[0].createdDateTime)}
-              </ChatDetailDateIndicatorStyled>
-              {parseMessagesToChatBubbles(gm)}
-            </>
-          );
-        })}
+        {groupedMessages.length == 0 ? (
+          <h1>NO MESSAGES YET!!</h1>
+        ) : (
+          groupedMessages.map((gm) => {
+            return (
+              <>
+                <ChatDetailDateIndicatorStyled>
+                  {parseCreatedAtTime(gm[0].createdDateTime)}
+                </ChatDetailDateIndicatorStyled>
+                {parseMessagesToChatBubbles(gm)}
+              </>
+            );
+          })
+        )}
       </ChatDetailBubblesWrapperStyled>
       {isDownButtonVisible && (
         <ChatDetailGoToBottomButton onClick={handleGoToBottomClicked}>

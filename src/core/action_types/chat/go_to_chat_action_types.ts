@@ -7,6 +7,11 @@ export interface GoToChatAction {
   };
 }
 
+export const CLEAR_GO_TO_CHAT = "chatActionTypes/CLEAR_GO_TO_CHAT";
+export interface ClearGoToChatAction {
+  type: typeof CLEAR_GO_TO_CHAT;
+}
+
 export const GO_TO_CHAT_LOADING = "chatActionTypes/GO_TO_CHAT_LOADING";
 export interface GoToChatLoadingAction {
   type: typeof GO_TO_CHAT_LOADING;
@@ -28,4 +33,5 @@ export type GoToChatActionType =
   | GoToChatAction
   | GoToChatLoadingAction
   | GoToChatFailureAction
-  | GoToChatSuccessAction;
+  | GoToChatSuccessAction
+  | ClearGoToChatAction;

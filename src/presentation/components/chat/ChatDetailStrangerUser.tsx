@@ -11,7 +11,12 @@ const ChatDetailStrangerUser = () => {
   const buildAvatarContent = () => {
     let fullName = strangerUserState.user?.fullName;
     if (fullName) {
-      return fullName.split(" ")[0][0] + fullName.split(" ")[1][0];
+      let splittedFullName = fullName.split(" ");
+      if (splittedFullName && splittedFullName.length > 1) {
+        return splittedFullName[0][0] + splittedFullName[1][0];
+      } else {
+        return fullName;
+      }
     }
   };
 
