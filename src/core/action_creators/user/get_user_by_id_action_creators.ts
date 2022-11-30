@@ -29,3 +29,7 @@ export const getUserByIdFailure = (
 ): actions.GetUserByIdFailureAction => {
   return { type: actions.GET_USER_BY_ID_FAILURE, message: message };
 };
+
+export const clearGetUserById = (): actions.ClearGetUserByIdAction => {
+  return { type: actions.CLEAR_GET_USER_BY_ID };
+};

@@ -9,6 +9,11 @@ export interface GetUserByIdAction {
   };
 }
 
+export const CLEAR_GET_USER_BY_ID = "userActionTypes/CLEAR_GET_USER_BY_ID";
+export interface ClearGetUserByIdAction {
+  type: typeof CLEAR_GET_USER_BY_ID;
+}
+
 export const GET_USER_BY_ID_INITIATE =
   "userActionTypes/GET_USER_BY_ID_INITIATE";
 export interface GetUserByIdInitateAction {
@@ -34,6 +39,7 @@ export interface GetUserByIdFailureAction {
 
 export type GetUserByIdActionType =
   | GetUserByIdAction
+  | ClearGetUserByIdAction
   | GetUserByIdInitateAction
   | GetUserByIdLoadingAction
   | GetUserByIdFailureAction

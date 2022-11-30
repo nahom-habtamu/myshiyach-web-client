@@ -1,5 +1,8 @@
 import { useEffect } from "react";
-import { getUserById } from "../../../core/action_creators/user/get_user_by_id_action_creators";
+import {
+  clearGetUserById,
+  getUserById,
+} from "../../../core/action_creators/user/get_user_by_id_action_creators";
 import Conversation from "../../../core/models/chat/conversation";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import {
@@ -33,8 +36,13 @@ const ChatListItem = ({
   let strangerId = getStrangerId();
 
   useEffect(() => {
+    dispatch(clearGetUserById());
     dispatch(getUserById(strangerId, loginState.result.token));
-  }, [dispatch, strangerId, loginState.result.token]);
+  }, [
+    dispatch,
+    strangerId,
+    loginState.result.token
+  ]);
 
   const buildLastMessage = () => {
     var lastMessage = conversation.messages[conversation.messages.length - 1];

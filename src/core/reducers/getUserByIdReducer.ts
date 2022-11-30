@@ -18,6 +18,8 @@ export default function getUserByIdReducer(
   action: getUserByIdActions.GetUserByIdActionType
 ): GetUserByIdState {
   switch (action.type) {
+    case getUserByIdActions.CLEAR_GET_USER_BY_ID:
+      return initialState;
     case getUserByIdActions.GET_USER_BY_ID_LOADING:
       return {
         user: null,
