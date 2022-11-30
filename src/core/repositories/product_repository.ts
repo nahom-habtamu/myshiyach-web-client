@@ -46,6 +46,23 @@ export async function getProductById({
   return result.data as Product;
 }
 
+export async function getProductsByUser({
+  userId,
+  token,
+}: {
+  userId: string;
+  token: string;
+}): Promise<Product> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.get(`/products/createdBy/${userId}`, config);
+  return result.data as Product;
+}
+
 export async function createProduct({
   product,
   token,
