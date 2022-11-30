@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom";
 import { useAppSelector } from "../../../store/storeHooks";
 import {
   ChatDetailStrangerUserAvatarStyled,
@@ -6,6 +7,7 @@ import {
 } from "../../styled_components/chat/ChatDetailComponentsStyled";
 
 const ChatDetailStrangerUser = () => {
+  const history = useHistory();
   const strangerUserState = useAppSelector((state) => state.getStrangerUser);
 
   const buildAvatarContent = () => {
@@ -21,7 +23,11 @@ const ChatDetailStrangerUser = () => {
   };
 
   return (
-    <ChatDetailStrangerUserWrapperStyled>
+    <ChatDetailStrangerUserWrapperStyled
+      onClick={() =>
+        history.push(`/productsByUser/${strangerUserState.user?._id}`)
+      }
+    >
       <ChatDetailStrangerUserAvatarStyled>
         {buildAvatarContent()}
       </ChatDetailStrangerUserAvatarStyled>

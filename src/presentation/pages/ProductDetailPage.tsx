@@ -129,7 +129,13 @@ const ProductDetailPage = () => {
       fontWeight: 500,
     };
     return (
-      <ProductDetailKeyValueRowStyled>
+      <ProductDetailKeyValueRowStyled
+        onClick={() =>
+          history.push(
+            `/productsByUser/${productDetailState.result?.createdBy._id}`
+          )
+        }
+      >
         <>
           {renderKeyValue({
             key: "name",

@@ -21,6 +21,9 @@ import SavedPostsPage, {
 } from "../../pages/SavedPosts.Page";
 import SettingsPage, { SettingsPageRoute } from "../../pages/SettingsPage";
 import SignUpPage, { SignUpPageRoute } from "../../pages/SignUpPage";
+import ProductsByUserPage, {
+  ProductsByUserPageRoute,
+} from "../../pages/ProductsByUserPage";
 
 const Routes = () => {
   return (
@@ -64,6 +67,9 @@ const Routes = () => {
         </Route>
         <Route exact path={ChatDetailPageRoute}>
           <ChatDetailPage />
+        </Route>
+        <Route exact path={ProductsByUserPageRoute}>
+          <ProductsByUserPage />
         </Route>
       </Switch>
     </HashRouter>
