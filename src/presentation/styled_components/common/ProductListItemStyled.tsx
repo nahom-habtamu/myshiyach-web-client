@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const HomePageProductsWrapperStyled = styled.div`
+const ProductListItemsWrapperStyled = styled.div`
   margin: 25px 50px;
   background: white;
   padding: 15px;
 `;
 
-const HomePageProductWrapperStyled = styled.div`
+const ProductListItemWrapperStyled = styled.div`
   display: flex;
   height: 160px;
   width: 800px;
@@ -17,7 +17,7 @@ const HomePageProductWrapperStyled = styled.div`
   position: relative;
 `;
 
-const HomePageProductImageWrapperStyled = styled.div`
+const ProductListItemImageWrapperStyled = styled.div`
   width: 17%;
   height: 100%;
   display: flex;
@@ -25,27 +25,27 @@ const HomePageProductImageWrapperStyled = styled.div`
   justify-content: start;
 `;
 
-const HomePageProductImageStyled = styled.img`
+const ProductListItemImageStyled = styled.img`
   width: 100%;
   height: 70%;
   object-fit: fit;
 `;
 
-const HomePageOtherContentWrapper = styled.div`
+const ProductListItemOtherContentWrapper = styled.div`
   width: 83%;
   height: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-const HomePageProductTitleStyled = styled.div`
+const ProductListItemTitleStyled = styled.div`
   font-size: 23px;
   font-weight: 700;
   margin-block: 5px;
   letter-spacing: 1px;
 `;
 
-const HomePageProductCityStyled = styled.div`
+const ProductListItemCityStyled = styled.div`
   font-size: 18px;
   margin-bottom: 15px;
   color: #483549;
@@ -53,14 +53,14 @@ const HomePageProductCityStyled = styled.div`
   font-weight: 700;
 `;
 
-const HomePageProductDescriptionStyled = styled.div`
+const ProductListItemDescriptionStyled = styled.div`
   font-size: 13px;
   margin-bottom: 15px;
   color: gray;
   line-height: 22px;
 `;
 
-const HomePageProductPriceStyled = styled.div`
+const ProductListItemPriceStyled = styled.div`
   font-size: 20px;
   margin-bottom: 20px;
   color: #483549;
@@ -68,7 +68,7 @@ const HomePageProductPriceStyled = styled.div`
   font-weight: 700;
 `;
 
-const HomePageFavoritesButtonWrapperStyled = styled.div`
+const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   width: 50px;
   height: 50px;
   position: absolute;
@@ -77,7 +77,7 @@ const HomePageFavoritesButtonWrapperStyled = styled.div`
   color: red;
 `;
 
-const HomePageProductRefreshedTimeStyled = styled.div`
+const ProductListItemRefreshedTimeStyled = styled.div`
   position: absolute;
   right: 5px;
   bottom: 10px;
@@ -85,7 +85,7 @@ const HomePageProductRefreshedTimeStyled = styled.div`
   color: gray;
 `;
 
-const HomePageNoMoreProductsStyled = styled.div`
+const ProductListItemNoMoreProductsStyled = styled.div`
   text-align: center;
   font-size: 20px;
   font-style: italic;
@@ -93,16 +93,16 @@ const HomePageNoMoreProductsStyled = styled.div`
 `;
 
 export {
-  HomePageProductsWrapperStyled,
-  HomePageProductWrapperStyled,
-  HomePageProductImageWrapperStyled,
-  HomePageProductImageStyled,
-  HomePageOtherContentWrapper,
-  HomePageProductTitleStyled,
-  HomePageProductCityStyled,
-  HomePageProductDescriptionStyled,
-  HomePageProductPriceStyled,
-  HomePageFavoritesButtonWrapperStyled,
-  HomePageProductRefreshedTimeStyled,
-  HomePageNoMoreProductsStyled,
+  ProductListItemsWrapperStyled,
+  ProductListItemWrapperStyled,
+  ProductListItemImageWrapperStyled,
+  ProductListItemImageStyled,
+  ProductListItemOtherContentWrapper,
+  ProductListItemTitleStyled,
+  ProductListItemCityStyled,
+  ProductListItemDescriptionStyled,
+  ProductListItemPriceStyled,
+  ProductListItemFavoritesButtonWrapperStyled,
+  ProductListItemRefreshedTimeStyled,
+  ProductListItemNoMoreProductsStyled,
 };

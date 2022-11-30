@@ -11,8 +11,7 @@ import MainCategory from "../../core/models/category/main_category";
 import { modifyFilterCriteria } from "../../core/action_creators/product/filter_criteria_action_creators";
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import { HomePageNoMoreProductsStyled } from "../styled_components/home/HomePageProductStyled";
-import { removeSelectedProduct } from "../../core/action_creators/product/select_product_action_creators";
+import { ProductListItemNoMoreProductsStyled } from "../styled_components/common/ProductListItemStyled";
 import MasterComponent from "../components/common/master_component";
 
 const HomePage = () => {
@@ -20,10 +19,6 @@ const HomePage = () => {
   const filterCriteria = useAppSelector((state) => state.filterCriteria);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(removeSelectedProduct());
-  });
 
   useEffect(() => {
     const initialPageAndLimit = {
@@ -38,9 +33,7 @@ const HomePage = () => {
   const renderProducts = () => {
     return (
       <PaginatedProducts
-        paginatedProductsResult={
-          state.paginated?.productsWithPageAndLimit ?? null
-        }
+        products={state.paginated?.productsWithPageAndLimit.results ?? []}
       />
     );
   };
@@ -79,9 +72,9 @@ const HomePage = () => {
         }
       />
     ) : (
-      <HomePageNoMoreProductsStyled>
+      <ProductListItemNoMoreProductsStyled>
         No More Products
-      </HomePageNoMoreProductsStyled>
+      </ProductListItemNoMoreProductsStyled>
     );
 
     return objectToRender;
