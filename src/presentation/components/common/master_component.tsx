@@ -13,6 +13,7 @@ import FilterProductsModel from "./FilterProductsModal";
 import Conversation from "../../../core/models/chat/conversation";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { getConversationsByUser } from "../../../core/action_creators/chat/get_conversations_by_user_action_creators";
+import LoadingSpinner from "./LoadingSpinner";
 
 type MasterComponentProps = {
   activePage: string;
@@ -66,23 +67,29 @@ const MasterComponent = (props: MasterComponentProps) => {
 
   return (
     <MasterPageContentWrapperStyled>
-      <NavBarTopContent />
-      <NavBarLogoFilterAndSearchBarContent
-        onFilterButtonPressed={() => setIsOpen(!isOpen)}
-      />
-      <BodyContentWrapperStyled>
-        <NavBarSideContent
-          unreadMessagesCount={unseenMessages}
-          activePage={props.activePage}
-          onItemTapped={(value: string) => history.push(value)}
-        />
-        {props.children}
-        <AdvertisementSideBarWrapperStyled marginTop={73}>
-          <AdvertisementSideBarItemStyled />
-          <AdvertisementSideBarItemStyled />
-        </AdvertisementSideBarWrapperStyled>
-      </BodyContentWrapperStyled>
-      {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
+      {loginState.isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <NavBarTopContent />
+          <NavBarLogoFilterAndSearchBarContent
+            onFilterButtonPressed={() => setIsOpen(!isOpen)}
+          />
+          <BodyContentWrapperStyled>
+            <NavBarSideContent
+              unreadMessagesCount={unseenMessages}
+              activePage={props.activePage}
+              onItemTapped={(value: string) => history.push(value)}
+            />
+            {props.children}
+            <AdvertisementSideBarWrapperStyled marginTop={73}>
+              <AdvertisementSideBarItemStyled />
+              <AdvertisementSideBarItemStyled />
+            </AdvertisementSideBarWrapperStyled>
+          </BodyContentWrapperStyled>
+          {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
+        </>
+      )}
     </MasterPageContentWrapperStyled>
   );
 };

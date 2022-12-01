@@ -20,9 +20,9 @@ const ChatListPage = () => {
   );
 
   useEffect(() => {
-    if (loginState.result != null) {
+    if (loginState.result.currentUser != null) {
       dispatch(
-        getConversationsByUser(onSnapshot, loginState.result.currentUser!._id)
+        getConversationsByUser(onSnapshot, loginState.result.currentUser._id)
       );
     }
   }, [loginState.result, dispatch]);

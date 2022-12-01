@@ -11,6 +11,13 @@ export const login = (loginRequest: LoginRequest): actions.LoginAction => {
   };
 };
 
+export const loginUpdateFromPersistence =
+  (): actions.LoginUpdateFromPersistenceAction => {
+    return {
+      type: actions.LOGIN_UPDATE_FROM_PERSISTENCE,
+    };
+  };
+
 export const loginLoading = (): actions.LoginLoadingAction => {
   return { type: actions.LOGIN_LOADING };
 };

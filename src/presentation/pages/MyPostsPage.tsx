@@ -21,10 +21,12 @@ const MyPostsPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(
-      getMyPosts(loginState.result.currentUser!._id, loginState.result.token)
-    );
-  }, [dispatch, loginState.result.currentUser!._id]);
+    if (loginState.result.currentUser != null) {
+      dispatch(
+        getMyPosts(loginState.result.currentUser._id, loginState.result.token)
+      );
+    }
+  }, [dispatch, loginState.result]);
 
   const handleProductDelete = (id: string) => {
     dispatch(deleteProduct(id, loginState.result.token));

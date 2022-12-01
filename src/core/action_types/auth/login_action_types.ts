@@ -8,6 +8,12 @@ export interface LoginAction {
   payload: LoginRequest;
 }
 
+export const LOGIN_UPDATE_FROM_PERSISTENCE =
+  "authActionTypes/LOGIN_UPDATE_FROM_PERSISTENCE";
+export interface LoginUpdateFromPersistenceAction {
+  type: typeof LOGIN_UPDATE_FROM_PERSISTENCE;
+}
+
 export const LOGIN_INITIATE = "authActionTypes/LOGIN_INITIATE";
 export interface LoginInitateAction {
   type: typeof LOGIN_INITIATE;
@@ -38,4 +44,5 @@ export type LoginActionType =
   | LoginInitateAction
   | LoginLoadingAction
   | LoginFailureAction
-  | LoginSuccessAction;
+  | LoginSuccessAction
+  | LoginUpdateFromPersistenceAction;

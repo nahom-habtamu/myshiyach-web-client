@@ -23,6 +23,7 @@ import MarkMessagesSaga from "./markMessagesInConversationAsReadSaga";
 import GoToChatSaga from "./goToChatSaga";
 import GetUserAndProductsSaga from "./getUserAndProductsSaga";
 import GetMyPostsSaga from "./getMyPostsSaga";
+import UpdateLoginFromPersistenceSaga from "./updateLoginFromPersistanceSaga";
 
 export default function* rootSaga() {
   yield all([fork(LoginSaga)]);
@@ -49,4 +50,5 @@ export default function* rootSaga() {
   yield all([fork(GoToChatSaga)]);
   yield all([fork(GetUserAndProductsSaga)]);
   yield all([fork(GetMyPostsSaga)]);
+  yield all([fork(UpdateLoginFromPersistenceSaga)]);
 }

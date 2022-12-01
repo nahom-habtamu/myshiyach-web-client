@@ -1,6 +1,6 @@
 import * as Effects from "redux-saga/effects";
 
-import { login } from "../repositories/auth_repository";
+import { login, saveUserToSession } from "../repositories/auth_repository";
 import { getUserById } from "../repositories/user_repository";
 
 import * as loginActionCreators from "../action_creators/auth/login_action_creators";
@@ -20,6 +20,7 @@ function* onLogin(loginAction: loginActionTypes.LoginAction) {
       id: decodedTokenResult.sub,
       token: loginResult.token,
     });
+    yield call(saveUserToSession, loginResult, currentUser);
     yield Effects.put(
       loginActionCreators.loginSuccess(loginResult, currentUser)
     );
