@@ -8,7 +8,7 @@ import { AddPostPageRoute } from "../../pages/AddPostPage";
 import { ChatListPageRoute } from "../../pages/ChatListPage";
 import { HomePageRoute } from "../../pages/HomePage";
 import { SavedPostsPageRoute } from "../../pages/SavedPosts.Page";
-import { SettingsPageRoute } from "../../pages/SettingsPage";
+import { SettingPageRoute } from "../../pages/SettingPage";
 import {
   NavBarLeftSideContentItemStyled,
   NavBarLeftSideContentItemUnseenStyled,
@@ -54,8 +54,8 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
         <FaSave size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
-        isActive={props.activePage === SettingsPageRoute}
-        onClick={() => props.onItemTapped(SettingsPageRoute)}
+        isActive={props.activePage === SettingPageRoute}
+        onClick={() => props.onItemTapped(SettingPageRoute)}
       >
         <FiSettings size={ICON_SIZE} />
       </NavBarLeftSideContentItemStyled>

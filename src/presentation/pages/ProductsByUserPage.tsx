@@ -6,16 +6,11 @@ import MasterComponent from "../components/common/master_component";
 import {
   ProductsByUserLabelStyled,
   ProductsByUserWrapperStyled,
-  UserInformationActionsWrapperStyled,
-  UserInformationAvatarStyled,
-  UserInformationNameStyled,
-  UserInformationPhoneNumberStyled,
-  UserInformationSendMessageStyled,
-  UserInformationWrapperStyled,
 } from "../styled_components/products_by_user/ProductsByUserComponentsStyled";
 import { getUserAndProducts } from "../../core/action_creators/common/get_user_and_products_action_creators";
 import PaginatedProducts from "../components/home_page/PaginatedProducts";
 import { goToChat } from "../../core/action_creators/chat/go_to_chat_action_creators";
+import UserInformation from "../components/common/UserInformation";
 
 const ProductsByUserPage = () => {
   let { id } = useParams<any>();
@@ -39,42 +34,6 @@ const ProductsByUserPage = () => {
     );
   };
 
-  const renderUserInformation = () => {
-    let avatarContent = buildAvatarContent();
-    return (
-      <UserInformationWrapperStyled>
-        <UserInformationAvatarStyled>
-          {avatarContent}
-        </UserInformationAvatarStyled>
-        <UserInformationNameStyled>
-          {userAndProductsState.result?.user.fullName ?? ""}
-        </UserInformationNameStyled>
-        <UserInformationActionsWrapperStyled>
-          <UserInformationPhoneNumberStyled>
-            {userAndProductsState.result?.user.phoneNumber ?? ""}
-          </UserInformationPhoneNumberStyled>
-          <UserInformationSendMessageStyled onClick={handleGoingToChat}>
-            Send Message
-          </UserInformationSendMessageStyled>
-        </UserInformationActionsWrapperStyled>
-      </UserInformationWrapperStyled>
-    );
-
-    function buildAvatarContent() {
-      let avatarContent = userAndProductsState.result?.user?.fullName;
-      if (avatarContent) {
-        console.log(avatarContent);
-        if (avatarContent.split(" ").length > 0) {
-          avatarContent =
-            avatarContent.split(" ")[0][0] + avatarContent.split(" ")[1][0];
-        } else {
-          avatarContent = avatarContent.split(" ")[0][0];
-        }
-      }
-      return avatarContent ?? "";
-    }
-  };
-
   return (
     <MasterComponent activePage={ProductsByUserPageRoute}>
       <ProductsByUserWrapperStyled>
@@ -82,7 +41,11 @@ const ProductsByUserPage = () => {
           <LoadingSpinner />
         ) : (
           <>
-            {renderUserInformation()}
+            <UserInformation
+              fullName={userAndProductsState.result?.user.fullName}
+              phoneNumber={userAndProductsState.result?.user.phoneNumber}
+              onGoToChatClicked={() => handleGoingToChat()}
+            />
             <ProductsByUserLabelStyled>
               Products By User
             </ProductsByUserLabelStyled>

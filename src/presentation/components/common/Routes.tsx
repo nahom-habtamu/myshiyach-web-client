@@ -19,7 +19,7 @@ import ProductDetailPage, {
 import SavedPostsPage, {
   SavedPostsPageRoute,
 } from "../../pages/SavedPosts.Page";
-import SettingsPage, { SettingsPageRoute } from "../../pages/SettingsPage";
+import SettingsPage, { SettingPageRoute } from "../../pages/SettingPage";
 import SignUpPage, { SignUpPageRoute } from "../../pages/SignUpPage";
 import ProductsByUserPage, {
   ProductsByUserPageRoute,
@@ -35,7 +35,7 @@ const Routes = () => {
         <Route exact path={AddPostPageRoute}>
           <AddPostPage />
         </Route>
-        <Route exact path={SettingsPageRoute}>
+        <Route exact path={SettingPageRoute}>
           <SettingsPage />
         </Route>
         <Route exact path={SavedPostsPageRoute}>
