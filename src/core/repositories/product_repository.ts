@@ -1,4 +1,5 @@
 import CreateProductRequest from "../models/product/create_product_request";
+import DeleteProductResponse from "../models/product/delete_product_response";
 import EditProductRequest from "../models/product/edit_product_request";
 import GetPaginatedProductsResult from "../models/product/get_paginated_products_result";
 import GetPaginatedProductsRequest from "../models/product/get_paginated_product_request";
@@ -78,6 +79,23 @@ export async function createProduct({
   };
   let result = await axiosInstance.post(`/products/`, product, config);
   return result.data as Product;
+}
+
+export async function deleteProduct({
+  id,
+  token,
+}: {
+  id: string;
+  token: string;
+}): Promise<string> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.delete(`/products/${id}`, config);
+  return (result.data as DeleteProductResponse).id;
 }
 
 export async function editProduct({

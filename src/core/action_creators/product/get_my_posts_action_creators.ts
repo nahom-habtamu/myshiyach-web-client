@@ -35,3 +35,12 @@ export const getMyPostsFailure = (
     message: message,
   };
 };
+
+export const deleteMyPostsItem = (
+  id: string
+): actions.DeleteMyPostsItemAction => {
+  return {
+    type: actions.DELETE_MY_POSTS_ITEM,
+    payload: id,
+  };
+};

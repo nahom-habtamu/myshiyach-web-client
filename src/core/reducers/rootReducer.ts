@@ -25,6 +25,7 @@ import markMessagesInConversationAsReadReducer from "./markMessagesInConversatio
 import goToChatReducer from "./goToChatReducer";
 import getUserAndProductsReducer from "./getUserAndProductsReducer";
 import getMyPostsReducer from "./getMyPostsReducer";
+import deleteProductReducer from "./deleteProductReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   recommendedProducts: getRecommendedProductsReducer,
   refreshProduct: refreshProductReducer,
   createProduct: createProductReducer,
+  deleteProduct: deleteProductReducer,
   editProduct: editProductReducer,
   activePageOnMasterNav: activePageOnMasterNavReducer,
   selectedProduct: selectedProductReducer,

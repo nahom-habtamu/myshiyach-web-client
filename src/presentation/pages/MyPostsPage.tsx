@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { getMyPosts } from "../../core/action_creators/product/get_my_posts_action_creators";
+import { deleteProduct } from "../../core/action_creators/product/delete_product_action_creators";
+import {
+  deleteMyPostsItem,
+  getMyPosts,
+} from "../../core/action_creators/product/get_my_posts_action_creators";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import DeletablePostList from "../components/common/DeletablePostList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -22,6 +26,11 @@ const MyPostsPage = () => {
     );
   }, [dispatch, loginState.result.currentUser!._id]);
 
+  const handleProductDelete = (id: string) => {
+    dispatch(deleteProduct(id, loginState.result.token));
+    dispatch(deleteMyPostsItem(id));
+  };
+
   return (
     <MasterComponent activePage={SettingPageRoute}>
       <MyPostsPageWrapperStyled>
@@ -30,7 +39,7 @@ const MyPostsPage = () => {
           <LoadingSpinner />
         ) : (
           <DeletablePostList
-            onDeleteClicked={() => {}}
+            onDeleteClicked={(id: string) => handleProductDelete(id)}
             products={myPostsState.products ?? []}
           />
         )}

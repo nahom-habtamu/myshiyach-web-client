@@ -26,8 +26,15 @@ export interface GetMyPostsFailureAction {
   message: String;
 }
 
+export const DELETE_MY_POSTS_ITEM = "productActionTypes/DELETE_MY_POSTS_ITEM";
+export interface DeleteMyPostsItemAction {
+  type: typeof DELETE_MY_POSTS_ITEM;
+  payload: string;
+}
+
 export type GetMyPostsActionType =
   | GetMyPostsAction
   | GetMyPostsLoadingAction
   | GetMyPostsFailureAction
-  | GetMyPostsSuccessAction;
+  | GetMyPostsSuccessAction
+  | DeleteMyPostsItemAction;

@@ -27,8 +27,8 @@ const DeletablePostList = (props: DeletablePostListProps) => {
               {p.title}
             </DeletablePostListItemTitleStyled>
             <DeletablePostListItemDescriptionStyled>
-              {p.description.length > 50
-                ? p.description.slice(0, 50)
+              {p.description.length > 40
+                ? p.description.slice(0, 40)
                 : p.description}
             </DeletablePostListItemDescriptionStyled>
           </DeletablePostListItemTextWrapperStyled>

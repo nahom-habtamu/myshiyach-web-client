@@ -36,6 +36,14 @@ export default function getMyPostsReducer(
         error: "",
         isLoading: false,
       };
+    case actions.DELETE_MY_POSTS_ITEM:
+      return {
+        products: [...(state.products ?? [])].filter(
+          (p) => p._id !== action.payload
+        ),
+        error: "",
+        isLoading: false,
+      };
     default:
       return state;
   }

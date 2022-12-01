@@ -18,6 +18,7 @@ const DeletablePostListItemStyled = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  transition: all 0.5s ease;
 `;
 
 const DeletablePostListItemAvatarStyled = styled.img`

@@ -11,6 +11,7 @@ import RefreshProductSaga from "./refreshProductSaga";
 import EditProductSaga from "./editProductSaga";
 import GetProductDetailSaga from "./getProductDetailSaga";
 import CreateProductSaga from "./createProductSaga";
+import DeleteProductSaga from "./deleteProductSaga";
 import GetDataNeededToAddPostSaga from "./getDataNeededToAddPostSaga";
 import GetDataNeededToEditPostSaga from "./getDataNeededToEditPostSaga";
 import GetConversationsByUserSaga from "./getConversationsByUserSaga";
@@ -36,6 +37,7 @@ export default function* rootSaga() {
   yield all([fork(EditProductSaga)]);
   yield all([fork(GetProductDetailSaga)]);
   yield all([fork(CreateProductSaga)]);
+  yield all([fork(DeleteProductSaga)]);
   yield all([fork(GetDataNeededToAddPostSaga)]);
   yield all([fork(GetDataNeededToEditPostSaga)]);
   yield all([fork(GetConversationsByUserSaga)]);
