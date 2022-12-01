@@ -20,17 +20,14 @@ const DeletablePostListItemStyled = styled.div`
   align-items: center;
 `;
 
-const DeletablePostListItemAvatarStyled = styled.div`
+const DeletablePostListItemAvatarStyled = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 100%;
-  background: lightblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
   font-size: 30px;
   margin-left: 25px;
+  object-fit: center center;
 `;
 
 const DeletablePostListItemTextWrapperStyled = styled.div`

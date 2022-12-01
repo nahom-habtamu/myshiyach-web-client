@@ -12,7 +12,6 @@ import {
 } from "../../styled_components/common/DeletablePostListComponentsStyled";
 
 type DeletablePostListProps = {
-  avatarContent: string;
   products: Product[];
   onDeleteClicked: Function;
 };
@@ -22,15 +21,15 @@ const DeletablePostList = (props: DeletablePostListProps) => {
     <DeletablePostListWrapperStyled>
       {props.products.map((p) => (
         <DeletablePostListItemStyled>
-          <DeletablePostListItemAvatarStyled>
-            {props.avatarContent}
-          </DeletablePostListItemAvatarStyled>
+          <DeletablePostListItemAvatarStyled src={p.productImages[0]} />
           <DeletablePostListItemTextWrapperStyled>
             <DeletablePostListItemTitleStyled>
               {p.title}
             </DeletablePostListItemTitleStyled>
             <DeletablePostListItemDescriptionStyled>
-              {p.description}
+              {p.description.length > 50
+                ? p.description.slice(0, 50)
+                : p.description}
             </DeletablePostListItemDescriptionStyled>
           </DeletablePostListItemTextWrapperStyled>
           <DeletablePostListItemDeleteIconWrapperStyled>
