@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BiImages } from "react-icons/bi";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { ICON_SIZE } from "../../constants/sizes";
+import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
   ImagePickerButtonStyled,
   ImagePickerDisplayItemCloseButtonWrapperStyled,
@@ -43,7 +43,7 @@ const ImagePicker = (props: ImagePickerProps) => {
   return (
     <ImagePickerWrapperStyled>
       <ImagePickerButtonStyled htmlFor="fileInput">
-        <BiImages size={ICON_SIZE} />
+        <BiImages size={ICON_SIZE_MEDIUM} />
       </ImagePickerButtonStyled>
       <input
         type="file"
@@ -77,7 +77,7 @@ const ImagePicker = (props: ImagePickerProps) => {
             >
               <ImagePickerDisplayItemImageStyled src={e.url} />
               <ImagePickerDisplayItemCloseButtonWrapperStyled>
-                <RiCloseCircleFill size={ICON_SIZE} />
+                <RiCloseCircleFill size={ICON_SIZE_MEDIUM} />
               </ImagePickerDisplayItemCloseButtonWrapperStyled>
             </ImagePickerDisplayItemStyled>
           ))}

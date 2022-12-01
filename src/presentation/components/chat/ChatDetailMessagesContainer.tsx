@@ -4,7 +4,7 @@ import Conversation from "../../../core/models/chat/conversation";
 import Message from "../../../core/models/chat/message";
 import { markMessagesInConversationAsRead } from "../../../core/action_creators/chat/mark_messages_in_conversation_as_read_action_creators";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
-import { ICON_SIZE } from "../../constants/sizes";
+import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
   ChatDetailBubbleImageStyled,
   ChatDetailBubbleImageWrapperStyled,
@@ -112,7 +112,7 @@ const ChatDetailMessagesContainer = ({
       </ChatDetailBubblesWrapperStyled>
       {isDownButtonVisible && (
         <ChatDetailGoToBottomButton onClick={handleGoToBottomClicked}>
-          <BsChevronDown size={ICON_SIZE} />
+          <BsChevronDown size={ICON_SIZE_MEDIUM} />
         </ChatDetailGoToBottomButton>
       )}
     </>

@@ -13,7 +13,7 @@ import ChatDetailMessagesContainer from "../components/chat/ChatDetailMessagesCo
 import ChatDetailStrangerUser from "../components/chat/ChatDetailStrangerUser";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/master_component";
-import { ICON_SIZE } from "../constants/sizes";
+import { ICON_SIZE_MEDIUM } from "../constants/sizes";
 import {
   ChatDetailAddMessageInputStyled,
   ChatDetailAddMessageWrapperStyled,
@@ -107,10 +107,10 @@ const ChatDetailPage = () => {
           value={messageContent}
         />
         <BiImages
-          size={ICON_SIZE}
+          size={ICON_SIZE_MEDIUM}
           onClick={() => setIsSendMessageModalOpen(true)}
         />
-        <BiSend size={ICON_SIZE} onClick={handleSendingTextMessage} />
+        <BiSend size={ICON_SIZE_MEDIUM} onClick={handleSendingTextMessage} />
         {isSendMessageModalOpen && (
           <ChatDetailImageMessageSendingModal
             onClose={() => setIsSendMessageModalOpen(false)}

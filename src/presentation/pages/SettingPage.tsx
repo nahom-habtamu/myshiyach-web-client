@@ -4,7 +4,7 @@ import { IoMdLogOut } from "react-icons/io";
 import { useAppSelector } from "../../store/storeHooks";
 import MasterComponent from "../components/common/master_component";
 import UserInformation from "../components/common/UserInformation";
-import { ICON_SIZE } from "../constants/sizes";
+import { ICON_SIZE_MEDIUM } from "../constants/sizes";
 import {
   SettingTabHeaderStyled,
   SettingTabItemIconWrapperStyled,
@@ -16,9 +16,12 @@ import {
   SettingTabsWrapperStyled,
   SettingWrapperStyled,
 } from "../styled_components/setting/SettingPageComponentsStyled";
+import { useHistory } from "react-router-dom";
+import { MyPostsPageRoute } from "./MyPostsPage";
 
 const SettingPage = () => {
   const loginState = useAppSelector((state) => state.login);
+  const history = useHistory();
 
   return (
     <MasterComponent activePage={SettingPageRoute}>
@@ -31,9 +34,11 @@ const SettingPage = () => {
           <SettingTabStyled>
             <SettingTabHeaderStyled>General</SettingTabHeaderStyled>
             <>
-              <SettingTabItemWrapperStyled>
+              <SettingTabItemWrapperStyled
+                onClick={() => history.push(MyPostsPageRoute)}
+              >
                 <SettingTabItemIconWrapperStyled>
-                  <BsFileEarmarkPostFill size={ICON_SIZE} />
+                  <BsFileEarmarkPostFill size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
                 <SettingTabItemKeyValueWrapperStyled>
                   <SettingTabItemKeyStyled>My Posts</SettingTabItemKeyStyled>
@@ -49,7 +54,7 @@ const SettingPage = () => {
             <>
               <SettingTabItemWrapperStyled>
                 <SettingTabItemIconWrapperStyled>
-                  <BsTelephone size={ICON_SIZE} />
+                  <BsTelephone size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
                 <SettingTabItemKeyValueWrapperStyled>
                   <SettingTabItemKeyStyled>Contact Us</SettingTabItemKeyStyled>
@@ -61,7 +66,7 @@ const SettingPage = () => {
 
               <SettingTabItemWrapperStyled>
                 <SettingTabItemIconWrapperStyled>
-                  <MdOutlinePrivacyTip size={ICON_SIZE} />
+                  <MdOutlinePrivacyTip size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
                 <SettingTabItemKeyValueWrapperStyled>
                   <SettingTabItemKeyStyled>
@@ -75,7 +80,7 @@ const SettingPage = () => {
 
               <SettingTabItemWrapperStyled>
                 <SettingTabItemIconWrapperStyled>
-                  <MdOutlineCropRotate size={ICON_SIZE} />
+                  <MdOutlineCropRotate size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
                 <SettingTabItemKeyValueWrapperStyled>
                   <SettingTabItemKeyStyled>
@@ -89,7 +94,7 @@ const SettingPage = () => {
 
               <SettingTabItemWrapperStyled>
                 <SettingTabItemIconWrapperStyled>
-                  <IoMdLogOut size={ICON_SIZE} />
+                  <IoMdLogOut size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
                 <SettingTabItemKeyValueWrapperStyled>
                   <SettingTabItemKeyStyled>Log Out</SettingTabItemKeyStyled>

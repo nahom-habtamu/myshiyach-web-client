@@ -1,7 +1,7 @@
 import { GrFavorite } from "react-icons/gr";
 import formatToPrice from "../../../core/utils/comma_separator";
 import { PINK_COLOR } from "../../constants/colors";
-import { ICON_SIZE } from "../../constants/sizes";
+import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
   ProductListItemFavoritesButtonWrapperStyled,
   ProductListItemOtherContentWrapper,
@@ -56,7 +56,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
               {formatToPrice(p.price)} Birr
             </ProductListItemPriceStyled>
             <ProductListItemFavoritesButtonWrapperStyled>
-              <GrFavorite size={ICON_SIZE} color={PINK_COLOR} />
+              <GrFavorite size={ICON_SIZE_MEDIUM} color={PINK_COLOR} />
             </ProductListItemFavoritesButtonWrapperStyled>
             <ProductListItemRefreshedTimeStyled>
               {p.refreshedAt}

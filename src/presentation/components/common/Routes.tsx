@@ -24,6 +24,7 @@ import SignUpPage, { SignUpPageRoute } from "../../pages/SignUpPage";
 import ProductsByUserPage, {
   ProductsByUserPageRoute,
 } from "../../pages/ProductsByUserPage";
+import MyPostsPage, { MyPostsPageRoute } from "../../pages/MyPostsPage";
 
 const Routes = () => {
   return (
@@ -70,6 +71,9 @@ const Routes = () => {
         </Route>
         <Route exact path={ProductsByUserPageRoute}>
           <ProductsByUserPage />
+        </Route>
+        <Route exact path={MyPostsPageRoute}>
+          <MyPostsPage />
         </Route>
       </Switch>
     </HashRouter>

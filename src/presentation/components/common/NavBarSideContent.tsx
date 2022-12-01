@@ -3,7 +3,7 @@ import { FiSettings } from "react-icons/fi";
 import { GoDiffAdded } from "react-icons/go";
 import { HiOutlineChatBubbleBottomCenter } from "react-icons/hi2";
 import { RiHomeFill } from "react-icons/ri";
-import { ICON_SIZE } from "../../constants/sizes";
+import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import { AddPostPageRoute } from "../../pages/AddPostPage";
 import { ChatListPageRoute } from "../../pages/ChatListPage";
 import { HomePageRoute } from "../../pages/HomePage";
@@ -28,7 +28,7 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
         isActive={props.activePage === HomePageRoute}
         onClick={() => props.onItemTapped(HomePageRoute)}
       >
-        <RiHomeFill size={ICON_SIZE} />
+        <RiHomeFill size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === ChatListPageRoute}
@@ -39,25 +39,25 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
             {props.unreadMessagesCount}
           </NavBarLeftSideContentItemUnseenStyled>
         )}
-        <HiOutlineChatBubbleBottomCenter size={ICON_SIZE} />
+        <HiOutlineChatBubbleBottomCenter size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === AddPostPageRoute}
         onClick={() => props.onItemTapped(AddPostPageRoute)}
       >
-        <GoDiffAdded size={ICON_SIZE} />
+        <GoDiffAdded size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === SavedPostsPageRoute}
         onClick={() => props.onItemTapped(SavedPostsPageRoute)}
       >
-        <FaSave size={ICON_SIZE} />
+        <FaSave size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === SettingPageRoute}
         onClick={() => props.onItemTapped(SettingPageRoute)}
       >
-        <FiSettings size={ICON_SIZE} />
+        <FiSettings size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
     </NavBarLeftSideContentWrapperStyled>
   );
