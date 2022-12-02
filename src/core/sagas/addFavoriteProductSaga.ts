@@ -15,6 +15,6 @@ function* watchOnAddFavoriteProduct() {
   );
 }
 
-export default function* getSavedPostsSaga() {
+export default function* addFavoriteProductSaga() {
   yield Effects.all([Effects.fork(watchOnAddFavoriteProduct)]);
 }
