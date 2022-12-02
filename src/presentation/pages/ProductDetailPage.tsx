@@ -1,23 +1,7 @@
-import {
-  ProductDetailKeyStyled,
-  ProductDetailKeyValueRowStyled,
-  ProductDetailKeyValueWrapperStyled,
-  ProductDetailValueStyled,
-  ProductDetailWrapperStyled,
-  ActionButtonStyled,
-  ProductDetailButtonWrapperStyled,
-  OutlineActionButtonStyled,
-} from "../styled_components/product_detail/ProductDetailOtherComponentsStyled";
-
+import { ProductDetailWrapperStyled } from "../styled_components/product_detail/ProductDetailOtherComponentsStyled";
 import formatToPrice from "../../core/utils/comma_separator";
-import { PRIMARY_COLOR } from "../constants/colors";
-import { FiHeart, FiSend } from "react-icons/fi";
-import { GrEdit } from "react-icons/gr";
 import ProductDetailCarousel from "../components/product_detail/ProductDetailCarousel";
 import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
-import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
-import chunkArrayToEqualParts from "../../core/utils/chunkArrayToEqualParts";
-
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import { useEffect } from "react";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -33,12 +17,15 @@ import {
   clearGoToChat,
   goToChat,
 } from "../../core/action_creators/chat/go_to_chat_action_creators";
-import {
-  addSavedPostsItem,
-  deleteSavedPostsItem,
-} from "../../core/action_creators/product/saved_products_action_creators";
-import { ICON_SIZE_LARGE } from "../constants/sizes";
-import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+
+import ProductDetailPersonInfo from "../components/product_detail/ProductDetailPersonInfo";
+import ProductTimeInfo from "../components/product_detail/ProductTimeInfo";
+import ProductDetailKeyValue from "../components/product_detail/ProductDetailKeyValue";
+import ProductDetailRefreshProductButton from "../components/product_detail/ProductDetailRefreshProductButton";
+import ProductDetailSendMessageButton from "../components/product_detail/ProductDetailSendMessageButton";
+import ProductDetailEditButton from "../components/product_detail/ProductDetailEditButton";
+import ProductDetailFavoritesButton from "../components/product_detail/ProductDetailFavoritesButton";
+import ProductDetailOtherInfo from "../components/product_detail/ProductDetailOtherInfo";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
@@ -47,9 +34,6 @@ const ProductDetailPage = () => {
   const productDetailState = useAppSelector((state) => state.getProductDetail);
   const loginState = useAppSelector((state) => state.login);
   const goToChatState = useAppSelector((state) => state.goToChat);
-  const favoriteProductsState = useAppSelector(
-    (state) => state.savedPostsReducer
-  );
   const getRecommendedProductsState = useAppSelector(
     (state) => state.recommendedProducts
   );
@@ -103,132 +87,63 @@ const ProductDetailPage = () => {
     dispatch,
   ]);
 
-  type RenderKeyValueArgs = {
-    key: string;
-    value: string;
-    fontSize?: number;
-    fontWeight?: number;
-    color?: string;
-    textTransform?: string;
-  };
-
-  const renderKeyValue = (args: RenderKeyValueArgs) => {
-    return (
-      <ProductDetailKeyValueWrapperStyled>
-        <ProductDetailKeyStyled>{args.key}</ProductDetailKeyStyled>
-        <ProductDetailValueStyled
-          fontSize={args.fontSize}
-          fontWeight={args.fontWeight}
-          textTransform={args.textTransform}
-          color={args.color}
-        >
-          {args.value}
-        </ProductDetailValueStyled>
-      </ProductDetailKeyValueWrapperStyled>
-    );
-  };
-
   const renderPersonalInfo = () => {
-    let keyValueProps = {
-      color: PRIMARY_COLOR,
-      fontSize: 18,
-      fontWeight: 500,
-    };
     return (
-      <ProductDetailKeyValueRowStyled
-        onClick={() =>
-          history.push(
-            `/productsByUser/${productDetailState.result?.createdBy._id}`
-          )
-        }
-      >
-        <>
-          {renderKeyValue({
-            key: "name",
-            value: productDetailState.result?.createdBy?.fullName ?? "",
-            ...keyValueProps,
-          })}
-          {renderKeyValue({
-            key: "Phone No",
-            value: productDetailState.result?.createdBy?.phoneNumber ?? "",
-            ...keyValueProps,
-          })}
-        </>
-      </ProductDetailKeyValueRowStyled>
+      <ProductDetailPersonInfo user={productDetailState.result?.createdBy} />
     );
   };
 
-  const renderProductTimeInfo = () => {
-    return (
-      <ProductDetailKeyValueRowStyled>
-        {renderKeyValue({
-          key: "created",
-          value: productDetailState.result?.product.createdAt ?? "",
-          fontSize: 18,
-        })}
-        {renderKeyValue({
-          key: "Last Updated",
-          value: productDetailState.result?.product.refreshedAt ?? "",
-          fontSize: 18,
-        })}
-      </ProductDetailKeyValueRowStyled>
-    );
-  };
+  const renderProductTimeInfo = () => (
+    <ProductTimeInfo
+      createdAt={productDetailState.result?.product.createdAt ?? ""}
+      refreshedAt={productDetailState.result?.product.refreshedAt ?? ""}
+    />
+  );
 
-  const renderProductDetailInfo = () => {
-    const keyValueList = parseObjectToListOfObject(
-      productDetailState.result?.product.productDetail ?? []
-    );
-    let chunkedKeyValueList = chunkArrayToEqualParts(2, keyValueList);
+  const renderPrice = () => (
+    <ProductDetailKeyValue
+      args={{
+        key: "price",
+        value:
+          formatToPrice(
+            productDetailState.result?.product.price ?? 0
+          ).toString() + " ETB",
+        color: "lightgreen",
+        fontSize: 38,
+        fontWeight: 500,
+      }}
+    />
+  );
 
-    let productDetailInfo = chunkedKeyValueList.map((chunk, index) => {
-      return (
-        <ProductDetailKeyValueRowStyled key={index}>
-          {chunk.map((chunkItem: any) =>
-            renderKeyValue({
-              key: chunkItem.key,
-              value: chunkItem.value as string,
-            })
-          )}
-        </ProductDetailKeyValueRowStyled>
-      );
-    });
+  const renderDescription = () => (
+    <ProductDetailKeyValue
+      args={{
+        key: "description",
+        value: productDetailState.result?.product.description ?? "",
+      }}
+    />
+  );
 
-    return productDetailInfo;
-  };
+  const renderCity = () => (
+    <ProductDetailKeyValue
+      args={{
+        key: "city",
+        value: productDetailState.result?.product.city ?? "",
+      }}
+    />
+  );
 
-  const renderPrice = () =>
-    renderKeyValue({
-      key: "price",
-      value:
-        formatToPrice(
-          productDetailState.result?.product.price ?? 0
-        ).toString() + " ETB",
-      color: "lightgreen",
-      fontSize: 38,
-      fontWeight: 500,
-    });
-
-  const renderDescription = () =>
-    renderKeyValue({
-      key: "description",
-      value: productDetailState.result?.product.description ?? "",
-    });
-
-  const renderCity = () =>
-    renderKeyValue({
-      key: "city",
-      value: productDetailState.result?.product.city ?? "",
-    });
-
-  const renderTitle = () =>
-    renderKeyValue({
-      key: "title",
-      value: productDetailState.result?.product.title ?? "",
-      fontSize: 28,
-      fontWeight: 500,
-      textTransform: "uppercase",
-    });
+  const renderTitle = () => (
+    <ProductDetailKeyValue
+      args={{
+        key: "title",
+        value: productDetailState.result?.product.title ?? "",
+        fontSize: 28,
+        fontWeight: 500,
+        textTransform: "uppercase",
+      }}
+    />
+  );
 
   const handleGoToChat = () => {
     dispatch(
@@ -239,31 +154,18 @@ const ProductDetailPage = () => {
     );
   };
 
+  const renderProductDetailInfo = () => (
+    <ProductDetailOtherInfo product={productDetailState.result?.product} />
+  );
+
   const renderActionButton = () => {
     let isCreatedByCurrentUser =
       productDetailState.result?.product.createdBy ===
       loginState.result.currentUser?._id;
-
     if (isCreatedByCurrentUser) {
-      return (
-        <ProductDetailButtonWrapperStyled>
-          <ActionButtonStyled onClick={handleRefresh} color={"darkgrey"}>
-            <FiSend size={25} style={{ marginBottom: "-5px" }} />
-            {refreshProductState.isLoading
-              ? "Refresh Product ......."
-              : "Refresh Product"}
-          </ActionButtonStyled>
-        </ProductDetailButtonWrapperStyled>
-      );
+      return <ProductDetailRefreshProductButton onRefresh={handleRefresh} />;
     } else {
-      return (
-        <ProductDetailButtonWrapperStyled>
-          <ActionButtonStyled onClick={handleGoToChat}>
-            <FiSend size={25} style={{ marginBottom: "-5px" }} />
-            {goToChatState.isLoading ? "Send Message ......." : "Send Message"}
-          </ActionButtonStyled>
-        </ProductDetailButtonWrapperStyled>
-      );
+      return <ProductDetailSendMessageButton onGoToChat={handleGoToChat} />;
     }
   };
 
@@ -271,60 +173,17 @@ const ProductDetailPage = () => {
     let isCreatedByCurrentUser =
       productDetailState.result?.product.createdBy ===
       loginState.result.currentUser?._id;
-
     if (isCreatedByCurrentUser) {
       return (
-        <ProductDetailButtonWrapperStyled>
-          <OutlineActionButtonStyled
-            color="green"
-            onClick={() => {
-              history.push(
-                `/editProduct/${productDetailState.result?.product._id}`
-              );
-            }}
-          >
-            <GrEdit size={25} style={{ marginBottom: "-5px" }} />
-            Edit Product
-          </OutlineActionButtonStyled>
-        </ProductDetailButtonWrapperStyled>
+        <ProductDetailEditButton
+          productId={productDetailState.result?.product._id ?? ""}
+        />
       );
     } else {
-      let isNotFavorite =
-        favoriteProductsState.products.filter(
-          (sp) => sp._id === productDetailState.result?.product._id
-        ).length === 0;
       return (
-        <ProductDetailButtonWrapperStyled>
-          <OutlineActionButtonStyled
-            onClick={() => {
-              !isNotFavorite
-                ? dispatch(
-                    deleteSavedPostsItem(productDetailState.result!.product._id)
-                  )
-                : dispatch(
-                    addSavedPostsItem(productDetailState.result!.product)
-                  );
-            }}
-          >
-            {isNotFavorite ? (
-              <>
-                <MdFavoriteBorder
-                  size={ICON_SIZE_LARGE}
-                  style={{ marginBottom: "-5px" }}
-                />
-                Add to Favorites
-              </>
-            ) : (
-              <>
-                <MdFavorite
-                  size={ICON_SIZE_LARGE}
-                  style={{ marginBottom: "-5px" }}
-                />
-                Remove From Favorites
-              </>
-            )}
-          </OutlineActionButtonStyled>
-        </ProductDetailButtonWrapperStyled>
+        <ProductDetailFavoritesButton
+          product={productDetailState.result?.product}
+        />
       );
     }
   };
