@@ -4,14 +4,15 @@ import {
   ProductDetailKeyValueWrapperStyled,
   ProductDetailValueStyled,
   ProductDetailWrapperStyled,
-  SendMessageButtonStyled,
+  ActionButtonStyled,
   ProductDetailButtonWrapperStyled,
-  FavoritesButtonStyled,
+  OutlineActionButtonStyled,
 } from "../styled_components/product_detail/ProductDetailOtherComponentsStyled";
 
 import formatToPrice from "../../core/utils/comma_separator";
 import { PRIMARY_COLOR } from "../constants/colors";
 import { FiHeart, FiSend } from "react-icons/fi";
+import { GrEdit } from "react-icons/gr";
 import ProductDetailCarousel from "../components/product_detail/ProductDetailCarousel";
 import ProductDetailRecommendedItems from "../components/product_detail/ProductDetailRecommendedItems";
 import parseObjectToListOfObject from "../../core/utils/parseObjectToList";
@@ -32,6 +33,12 @@ import {
   clearGoToChat,
   goToChat,
 } from "../../core/action_creators/chat/go_to_chat_action_creators";
+import {
+  addSavedPostsItem,
+  deleteSavedPostsItem,
+} from "../../core/action_creators/product/saved_products_action_creators";
+import { ICON_SIZE_LARGE } from "../constants/sizes";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
@@ -40,6 +47,9 @@ const ProductDetailPage = () => {
   const productDetailState = useAppSelector((state) => state.getProductDetail);
   const loginState = useAppSelector((state) => state.login);
   const goToChatState = useAppSelector((state) => state.goToChat);
+  const favoriteProductsState = useAppSelector(
+    (state) => state.savedPostsReducer
+  );
   const getRecommendedProductsState = useAppSelector(
     (state) => state.recommendedProducts
   );
@@ -65,18 +75,14 @@ const ProductDetailPage = () => {
     }
   }, [refreshProductState.product, dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     refreshProduct(
-  //       productDetailState.result!.product._id,
-  //       authState.result.token as string
-  //     )
-  //   );
-  // }, [
-  //   productDetailState.result!.product._id,
-  //   dispatch,
-  //   authState.result.token,
-  // ]);
+  const handleRefresh = () => {
+    dispatch(
+      refreshProduct(
+        productDetailState.result!.product._id,
+        loginState.result.token as string
+      )
+    );
+  };
 
   useEffect(() => {
     if (productDetailState.result?.product != null) {
@@ -233,32 +239,94 @@ const ProductDetailPage = () => {
     );
   };
 
-  const renderSendMessageButton = () => {
-    return (
-      <ProductDetailButtonWrapperStyled>
-        <SendMessageButtonStyled onClick={handleGoToChat}>
-          <FiSend size={25} style={{ marginBottom: "-5px" }} />
-          {goToChatState.isLoading ? "Send Message ......." : "Send Message"}
-        </SendMessageButtonStyled>
-      </ProductDetailButtonWrapperStyled>
-    );
+  const renderActionButton = () => {
+    let isCreatedByCurrentUser =
+      productDetailState.result?.product.createdBy ===
+      loginState.result.currentUser?._id;
+
+    if (isCreatedByCurrentUser) {
+      return (
+        <ProductDetailButtonWrapperStyled>
+          <ActionButtonStyled onClick={handleRefresh} color={"darkgrey"}>
+            <FiSend size={25} style={{ marginBottom: "-5px" }} />
+            {refreshProductState.isLoading
+              ? "Refresh Product ......."
+              : "Refresh Product"}
+          </ActionButtonStyled>
+        </ProductDetailButtonWrapperStyled>
+      );
+    } else {
+      return (
+        <ProductDetailButtonWrapperStyled>
+          <ActionButtonStyled onClick={handleGoToChat}>
+            <FiSend size={25} style={{ marginBottom: "-5px" }} />
+            {goToChatState.isLoading ? "Send Message ......." : "Send Message"}
+          </ActionButtonStyled>
+        </ProductDetailButtonWrapperStyled>
+      );
+    }
   };
 
-  const renderFavoritesButton = () => {
-    return (
-      <ProductDetailButtonWrapperStyled>
-        <FavoritesButtonStyled
-          onClick={() => {
-            history.push(
-              `/editProduct/${productDetailState.result?.product._id}`
-            );
-          }}
-        >
-          <FiHeart size={25} style={{ marginBottom: "-5px" }} /> Add to
-          Favorites
-        </FavoritesButtonStyled>
-      </ProductDetailButtonWrapperStyled>
-    );
+  const renderOutlineActionButton = () => {
+    let isCreatedByCurrentUser =
+      productDetailState.result?.product.createdBy ===
+      loginState.result.currentUser?._id;
+
+    if (isCreatedByCurrentUser) {
+      return (
+        <ProductDetailButtonWrapperStyled>
+          <OutlineActionButtonStyled
+            color="green"
+            onClick={() => {
+              history.push(
+                `/editProduct/${productDetailState.result?.product._id}`
+              );
+            }}
+          >
+            <GrEdit size={25} style={{ marginBottom: "-5px" }} />
+            Edit Product
+          </OutlineActionButtonStyled>
+        </ProductDetailButtonWrapperStyled>
+      );
+    } else {
+      let isNotFavorite =
+        favoriteProductsState.products.filter(
+          (sp) => sp._id === productDetailState.result?.product._id
+        ).length === 0;
+      return (
+        <ProductDetailButtonWrapperStyled>
+          <OutlineActionButtonStyled
+            onClick={() => {
+              !isNotFavorite
+                ? dispatch(
+                    deleteSavedPostsItem(productDetailState.result!.product._id)
+                  )
+                : dispatch(
+                    addSavedPostsItem(productDetailState.result!.product)
+                  );
+            }}
+          >
+            {isNotFavorite ? (
+              <>
+                <MdFavoriteBorder
+                  size={ICON_SIZE_LARGE}
+                  style={{ marginBottom: "-5px" }}
+                />
+                Add to Favorites
+              </>
+            ) : (
+              <>
+                <MdFavorite
+                  size={ICON_SIZE_LARGE}
+                  style={{ marginBottom: "-5px" }}
+                />
+                Remove From Favorites
+              </>
+            )}
+          </OutlineActionButtonStyled>
+        </ProductDetailButtonWrapperStyled>
+      );
+    }
   };
 
   return (
@@ -278,8 +346,8 @@ const ProductDetailPage = () => {
           {renderProductDetailInfo()}
           {renderDescription()}
 
-          {renderSendMessageButton()}
-          {renderFavoritesButton()}
+          {renderActionButton()}
+          {renderOutlineActionButton()}
 
           {getRecommendedProductsState.isLoading ? (
             <LoadingSpinner />

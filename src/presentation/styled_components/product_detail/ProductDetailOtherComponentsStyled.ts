@@ -50,36 +50,36 @@ const ProductDetailButtonWrapperStyled = styled.div`
   margin: 25px auto;
 `;
 
-const SendMessageButtonStyled = styled.button`
+const ActionButtonStyled = styled.button<{ color?: string }>`
   width: 350px;
   height: 70px;
   font-size: 20px;
   border-radius: 20px;
-  background: ${PRIMARY_COLOR};
+  background: ${(props) => props.color ?? PRIMARY_COLOR};
   color: white;
   border: 2px solid transparent;
   transition: all 0.5s ease;
 
   :hover {
-    color: ${PRIMARY_COLOR};
+    color: ${(props) => props.color ?? PRIMARY_COLOR};
     background: white;
-    border: 2px solid ${PRIMARY_COLOR};
+    border: 2px solid ${(props) => props.color ?? PRIMARY_COLOR};
   }
 `;
 
-const FavoritesButtonStyled = styled.button`
+const OutlineActionButtonStyled = styled.button<{ color?: string }>`
   width: 350px;
   height: 70px;
   font-size: 20px;
   border-radius: 20px;
   background: white;
   color: black;
-  border: 2px solid ${PINK_COLOR};
+  border: 2px solid ${(props) => props.color ?? PINK_COLOR};
   transition: all 0.5s ease;
 
   :hover {
     color: white;
-    background: ${PINK_COLOR};
+    background: ${(props) => props.color ?? PINK_COLOR};
     border: 2px solid transparent;
   }
 `;
@@ -91,6 +91,6 @@ export {
   ProductDetailKeyStyled,
   ProductDetailValueStyled,
   ProductDetailButtonWrapperStyled,
-  SendMessageButtonStyled,
-  FavoritesButtonStyled,
+  ActionButtonStyled,
+  OutlineActionButtonStyled,
 };
