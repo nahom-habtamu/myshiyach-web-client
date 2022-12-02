@@ -1,0 +1,56 @@
+import * as actions from "../action_types/product/saved_products_action_types";
+import Product from "../models/product/product";
+
+export interface GetSavedPostsState {
+  products: Product[];
+  error: String;
+  isLoading: boolean;
+}
+
+const initialState: GetSavedPostsState = {
+  products: [],
+  error: "",
+  isLoading: false,
+};
+
+export default function getSavedPostsReducer(
+  state: GetSavedPostsState = initialState,
+  action: actions.GetSavedPostsActionType
+): GetSavedPostsState {
+  switch (action.type) {
+    case actions.GET_SAVED_POSTS_LOADING:
+      return {
+        products: [],
+        error: "",
+        isLoading: true,
+      };
+    case actions.GET_SAVED_POSTS_FAILURE:
+      return {
+        products: [],
+        error: action.message,
+        isLoading: false,
+      };
+    case actions.GET_SAVED_POSTS_SUCCESS:
+      return {
+        products: action.payload,
+        error: "",
+        isLoading: false,
+      };
+    case actions.DELETE_SAVED_POSTS_ITEM:
+      return {
+        products: [...(state.products ?? [])].filter(
+          (p) => p._id !== action.payload
+        ),
+        error: "",
+        isLoading: false,
+      };
+    case actions.ADD_SAVED_POSTS_ITEM:
+      return {
+        products: [...state.products, action.payload],
+        error: "",
+        isLoading: false,
+      };
+    default:
+      return state;
+  }
+}

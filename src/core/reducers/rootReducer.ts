@@ -26,6 +26,7 @@ import goToChatReducer from "./goToChatReducer";
 import getUserAndProductsReducer from "./getUserAndProductsReducer";
 import getMyPostsReducer from "./getMyPostsReducer";
 import deleteProductReducer from "./deleteProductReducer";
+import savedPostsReducer from "./savedPostsReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -55,6 +56,7 @@ const rootReducer = combineReducers({
   goToChat: goToChatReducer,
   getUserAndProducts: getUserAndProductsReducer,
   getMyPosts: getMyPostsReducer,
+  savedPostsReducer: savedPostsReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

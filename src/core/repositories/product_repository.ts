@@ -118,6 +118,23 @@ export async function editProduct({
 }
 
 export function getFavoriteProducts(): Product[] {
-  let products: Product[] = [];
-  return products;
+  let products = localStorage.getItem("favoriteProducts");
+
+  if (products) {
+    return JSON.parse(products) as Product[];
+  }
+  return [];
+}
+
+export function addFavoriteProduct(product: Product) {
+  let products = localStorage.getItem("favoriteProducts");
+  if (products) {
+    let parsed = JSON.parse(products) as Product[];
+    localStorage.setItem(
+      "favoriteProducts",
+      JSON.stringify([...parsed, product])
+    );
+  } else {
+    localStorage.setItem("favoriteProducts", JSON.stringify([product]));
+  }
 }

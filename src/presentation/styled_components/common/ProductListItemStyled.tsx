@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PINK_COLOR } from "../../constants/colors";
 
 const ProductListItemsWrapperStyled = styled.div`
   margin: 25px 50px;
@@ -74,7 +75,7 @@ const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   position: absolute;
   right: 5px;
   top: 20px;
-  color: red;
+  color: ${PINK_COLOR};
 `;
 
 const ProductListItemRefreshedTimeStyled = styled.div`

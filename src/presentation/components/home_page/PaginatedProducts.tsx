@@ -1,6 +1,4 @@
-import { GrFavorite } from "react-icons/gr";
 import formatToPrice from "../../../core/utils/comma_separator";
-import { PINK_COLOR } from "../../constants/colors";
 import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
   ProductListItemFavoritesButtonWrapperStyled,
@@ -20,9 +18,17 @@ import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
 import Product from "../../../core/models/product/product";
 import { toggleLoginPromptModalOpen } from "../../../core/action_creators/common/login_prompt_action_creators";
 import { useHistory } from "react-router-dom";
+import {
+  addSavedPostsItem,
+  deleteSavedPostsItem,
+} from "../../../core/action_creators/product/saved_products_action_creators";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 const PaginatedProducts = ({ products }: { products: Product[] }) => {
   const loginState = useAppSelector((state) => state.login);
+  const favoriteProductsState = useAppSelector(
+    (state) => state.savedPostsReducer
+  );
   const dispatch = useAppDispatch();
   const history = useHistory();
 
@@ -33,6 +39,24 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
       history.push({
         pathname: `/productDetail/${product._id}`,
       });
+    }
+  };
+
+  const handleSavingProduct = (e: any, product: Product) => {
+    e.stopPropagation();
+    if (loginState.result.token.length === 0) {
+      dispatch(toggleLoginPromptModalOpen());
+    } else {
+      dispatch(addSavedPostsItem(product));
+    }
+  };
+
+  const handleDeletingSavedProduct = (e: any, product: Product) => {
+    e.stopPropagation();
+    if (loginState.result.token.length === 0) {
+      dispatch(toggleLoginPromptModalOpen());
+    } else {
+      dispatch(deleteSavedPostsItem(product._id));
     }
   };
 
@@ -55,9 +79,24 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
             <ProductListItemPriceStyled>
               {formatToPrice(p.price)} Birr
             </ProductListItemPriceStyled>
-            <ProductListItemFavoritesButtonWrapperStyled>
-              <GrFavorite size={ICON_SIZE_MEDIUM} color={PINK_COLOR} />
-            </ProductListItemFavoritesButtonWrapperStyled>
+
+            {p.createdBy !== loginState.result.currentUser?._id && (
+              <ProductListItemFavoritesButtonWrapperStyled>
+                {favoriteProductsState.products.filter((sp) => sp._id === p._id)
+                  .length === 0 ? (
+                  <MdFavoriteBorder
+                    size={ICON_SIZE_MEDIUM}
+                    onClick={(e) => handleSavingProduct(e, p)}
+                  />
+                ) : (
+                  <MdFavorite
+                    size={ICON_SIZE_MEDIUM}
+                    onClick={(e) => handleDeletingSavedProduct(e, p)}
+                  />
+                )}
+              </ProductListItemFavoritesButtonWrapperStyled>
+            )}
+
             <ProductListItemRefreshedTimeStyled>
               {p.refreshedAt}
             </ProductListItemRefreshedTimeStyled>

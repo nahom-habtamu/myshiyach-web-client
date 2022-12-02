@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { loginUpdateFromPersistence } from "../../core/action_creators/auth/login_action_creators";
 import { toggleLoginPromptModalClose } from "../../core/action_creators/common/login_prompt_action_creators";
+import { getSavedPosts } from "../../core/action_creators/product/saved_products_action_creators";
 import { useAppSelector, useAppDispatch } from "../../store/storeHooks";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import LoginPromptModal from "../components/common/LoginPromptModal";
@@ -12,7 +13,7 @@ const App = () => {
   const loginState = useAppSelector((state) => state.login);
 
   useEffect(() => {
-    console.log(" I AM CALLED");
+    dispatch(getSavedPosts());
     dispatch(loginUpdateFromPersistence());
   }, [dispatch]);
 

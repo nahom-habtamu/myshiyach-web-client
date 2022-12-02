@@ -24,6 +24,8 @@ import GoToChatSaga from "./goToChatSaga";
 import GetUserAndProductsSaga from "./getUserAndProductsSaga";
 import GetMyPostsSaga from "./getMyPostsSaga";
 import UpdateLoginFromPersistenceSaga from "./updateLoginFromPersistanceSaga";
+import GetFavoriteProductsSaga from "./getFavoriteProductsSaga";
+import AddFavoriteProductSaga from "./addFavoriteProductSaga";
 
 export default function* rootSaga() {
   yield all([fork(LoginSaga)]);
@@ -51,4 +53,6 @@ export default function* rootSaga() {
   yield all([fork(GetUserAndProductsSaga)]);
   yield all([fork(GetMyPostsSaga)]);
   yield all([fork(UpdateLoginFromPersistenceSaga)]);
+  yield all([fork(GetFavoriteProductsSaga)]);
+  yield all([fork(AddFavoriteProductSaga)]);
 }
