@@ -25,3 +25,14 @@ export async function getUserById({
   let result = await axiosInstance.get(`/users/${id}`, config);
   return result.data as User;
 }
+
+export async function changePassword(
+  phoneNumber: string,
+  password: string
+): Promise<boolean> {
+  await axiosInstance.post("/users/changePassword", {
+    phoneNumber,
+    password,
+  });
+  return true;
+}

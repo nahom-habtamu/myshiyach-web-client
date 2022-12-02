@@ -68,7 +68,7 @@ const SignUpPage = () => {
     };
 
     const otpPageArgs = {
-      signUpRequest,
+      phoneNumber: signUpRequest.phoneNumber,
       afterOtpVerificationCompletedCallback,
       verificationId,
     };

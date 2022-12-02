@@ -17,9 +17,7 @@ const ProductDetailFavoritesButton = ({
   product: Product | undefined;
 }) => {
   const dispatch = useAppDispatch();
-  const favoriteProductsState = useAppSelector(
-    (state) => state.savedPostsReducer
-  );
+  const favoriteProductsState = useAppSelector((state) => state.savedPosts);
 
   let isNotFavorite =
     favoriteProductsState.products.filter((sp) => sp._id === product?._id)

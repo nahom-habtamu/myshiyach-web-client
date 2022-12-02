@@ -9,7 +9,7 @@ import {
 } from "../styled_components/saved_posts/SavedPostsPageComponentsStyled";
 
 const SavedPostsPage = () => {
-  const savedPostsState = useAppSelector((state) => state.savedPostsReducer);
+  const savedPostsState = useAppSelector((state) => state.savedPosts);
 
   const dispatch = useAppDispatch();
 

@@ -4,7 +4,6 @@ import ChatDetailPage, {
   ChatDetailPageRoute,
 } from "../../pages/ChatDetailPage";
 import ChatListPage, { ChatListPageRoute } from "../../pages/ChatListPage";
-import DummyPage, { DummyPageRoute } from "../../pages/DummyPage";
 import HomePage, { HomePageRoute } from "../../pages/HomePage";
 import LoginPage, { LoginPageRoute } from "../../pages/LoginPage";
 import EditProductPage, {
@@ -25,6 +24,12 @@ import ProductsByUserPage, {
   ProductsByUserPageRoute,
 } from "../../pages/ProductsByUserPage";
 import MyPostsPage, { MyPostsPageRoute } from "../../pages/MyPostsPage";
+import ForgotPasswordPage, {
+  ForgotPasswordPageRoute,
+} from "../../pages/ForgotPasswordPage";
+import ChangePasswordPage, {
+  ChangePasswordPageRoute,
+} from "../../pages/ChangePasswordPage";
 
 const Routes = () => {
   return (
@@ -57,8 +62,11 @@ const Routes = () => {
         <Route exact path={OtpVerificationPageRoute}>
           <OtpVerificationPage />
         </Route>
-        <Route exact path={DummyPageRoute}>
-          <DummyPage />
+        <Route exact path={ForgotPasswordPageRoute}>
+          <ForgotPasswordPage />
+        </Route>
+        <Route exact path={ChangePasswordPageRoute}>
+          <ChangePasswordPage />
         </Route>
         <Route exact path={ProductDetailPageRoute}>
           <ProductDetailPage />

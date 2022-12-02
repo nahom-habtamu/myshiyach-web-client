@@ -27,6 +27,7 @@ import UpdateLoginFromPersistenceSaga from "./updateLoginFromPersistanceSaga";
 import GetFavoriteProductsSaga from "./getFavoriteProductsSaga";
 import AddFavoriteProductSaga from "./addFavoriteProductSaga";
 import RemoveFavoriteProductSaga from "./removeFavoriteProductSaga";
+import ChangePasswordSaga from "./changePasswordSaga";
 
 export default function* rootSaga() {
   yield all([fork(LoginSaga)]);
@@ -57,4 +58,5 @@ export default function* rootSaga() {
   yield all([fork(GetFavoriteProductsSaga)]);
   yield all([fork(AddFavoriteProductSaga)]);
   yield all([fork(RemoveFavoriteProductSaga)]);
+  yield all([fork(ChangePasswordSaga)]);
 }

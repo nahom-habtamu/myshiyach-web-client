@@ -26,9 +26,7 @@ import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 const PaginatedProducts = ({ products }: { products: Product[] }) => {
   const loginState = useAppSelector((state) => state.login);
-  const favoriteProductsState = useAppSelector(
-    (state) => state.savedPostsReducer
-  );
+  const favoriteProductsState = useAppSelector((state) => state.savedPosts);
   const dispatch = useAppDispatch();
   const history = useHistory();
 
