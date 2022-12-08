@@ -39,12 +39,11 @@ const UserInformation = (props: UserInformationProps) => {
   function buildAvatarContent() {
     let avatarContent = props.fullName;
     if (avatarContent) {
-      console.log(avatarContent);
-      if (avatarContent.split(" ").length > 0) {
+      if (avatarContent.split(" ").length > 1) {
         avatarContent =
           avatarContent.split(" ")[0][0] + avatarContent.split(" ")[1][0];
       } else {
-        avatarContent = avatarContent.split(" ")[0][0];
+        avatarContent = avatarContent[0];
       }
     }
     return avatarContent ?? "";

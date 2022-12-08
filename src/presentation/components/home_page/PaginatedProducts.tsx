@@ -70,7 +70,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
           </ProductListItemImageWrapperStyled>
           <ProductListItemOtherContentWrapper>
             <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
-            <ProductListItemCityStyled>{p.city}</ProductListItemCityStyled>
+            <ProductListItemCityStyled>{p.city.split(';')[0]}</ProductListItemCityStyled>
             <ProductListItemDescriptionStyled>
               {p.description.slice(0, 150)}
             </ProductListItemDescriptionStyled>

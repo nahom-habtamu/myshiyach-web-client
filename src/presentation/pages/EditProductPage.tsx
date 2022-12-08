@@ -126,7 +126,7 @@ const EditProductPage = () => {
       >
         {items?.map((i) => (
           <HotelFilterDropDownOptionStyled value={i.value}>
-            {i.title}
+            {i.title.split(";")[0]}
           </HotelFilterDropDownOptionStyled>
         ))}
       </HotelFilterDropDownInputStyled>
@@ -156,27 +156,31 @@ const EditProductPage = () => {
   };
 
   const renderOtherDropDownInput = (
-    placeHolder: string,
+    title: string,
     objectKey: string,
     items: DropDownItemData[]
   ) => {
+    let productDetailValue = (formState.productDetail as any)[objectKey];
     return (
       <HotelFilterDropDownInputStyled
-        placeholder={placeHolder}
-        value={(formState.productDetail as any)[objectKey] ?? ""}
+        placeholder={title}
+        value={productDetailValue ? productDetailValue["value"] : ""}
         onChange={(e) =>
           setFormState({
             ...formState,
             productDetail: {
               ...formState.productDetail,
-              [objectKey]: e.target.value,
+              [objectKey]: {
+                title: title,
+                value: e.target.value,
+              },
             },
           })
         }
       >
         {items.map((i) => (
           <HotelFilterDropDownOptionStyled value={i.value}>
-            {i.title}
+            {i.title.split(";")[0]}
           </HotelFilterDropDownOptionStyled>
         ))}
       </HotelFilterDropDownInputStyled>
@@ -210,24 +214,28 @@ const EditProductPage = () => {
     return categorySelected?.requiredFields.map((requiredField) => {
       if (requiredField.isDropDown) {
         return renderOtherDropDownInput(
-          requiredField.objectKey,
+          requiredField.title,
           requiredField.objectKey,
           parseOtherInputDropdown(requiredField.dropDownValues)
         );
       } else {
+        let productDetailValue = (formState.productDetail as any)[
+          requiredField.objectKey
+        ];
         return (
           <AddPostInputStyled
             type="text"
             placeholder={requiredField.objectKey}
-            value={
-              (formState.productDetail as any)[requiredField.objectKey] ?? ""
-            }
+            value={productDetailValue ? productDetailValue["value"] : ""}
             onChange={(e) =>
               setFormState({
                 ...formState,
                 productDetail: {
                   ...formState.productDetail,
-                  [requiredField.objectKey]: e.target.value,
+                  [requiredField.objectKey]: {
+                    title: requiredField.title,
+                    value: e.target.value,
+                  },
                 },
               })
             }

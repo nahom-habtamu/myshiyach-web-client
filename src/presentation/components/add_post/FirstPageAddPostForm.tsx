@@ -42,7 +42,7 @@ const FirstPageAddPostForm = ({
       >
         {items.map((i) => (
           <HotelFilterDropDownOptionStyled value={i.value}>
-            {i.title}
+            {i.title.split(";")[0]}
           </HotelFilterDropDownOptionStyled>
         ))}
       </HotelFilterDropDownInputStyled>

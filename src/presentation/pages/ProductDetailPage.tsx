@@ -128,7 +128,7 @@ const ProductDetailPage = () => {
     <ProductDetailKeyValue
       args={{
         key: "city",
-        value: productDetailState.result?.product.city ?? "",
+        value: productDetailState.result?.product.city.split(";")[0] ?? "",
       }}
     />
   );

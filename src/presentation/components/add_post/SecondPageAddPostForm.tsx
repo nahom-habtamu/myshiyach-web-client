@@ -47,7 +47,7 @@ const SecondPageAddPostForm = ({
       >
         {items.map((i) => (
           <HotelFilterDropDownOptionStyled value={i.value}>
-            {i.title}
+            {i.title.split(";")[0]}
           </HotelFilterDropDownOptionStyled>
         ))}
       </HotelFilterDropDownInputStyled>
@@ -55,27 +55,30 @@ const SecondPageAddPostForm = ({
   };
 
   const renderOtherDropDownInput = (
-    placeHolder: string,
     objectKey: string,
+    title: string,
     items: DropDownItemData[]
   ) => {
     return (
       <HotelFilterDropDownInputStyled
-        placeholder={placeHolder}
-        value={(formState.productDetail as any)[objectKey] ?? ""}
+        placeholder={title.split(";")[0]}
+        value={(formState.productDetail as any)[objectKey]["value"] ?? ""}
         onChange={(e) =>
           onFormValueChanged({
             ...formState,
             productDetail: {
               ...formState.productDetail,
-              [objectKey]: e.target.value,
+              [objectKey]: {
+                title: title,
+                value: e.target.value,
+              },
             },
           })
         }
       >
         {items.map((i) => (
           <HotelFilterDropDownOptionStyled value={i.value}>
-            {i.title}
+            {i.title.split(";")[0]}
           </HotelFilterDropDownOptionStyled>
         ))}
       </HotelFilterDropDownInputStyled>
@@ -110,7 +113,7 @@ const SecondPageAddPostForm = ({
       if (requiredField.isDropDown) {
         return renderOtherDropDownInput(
           requiredField.objectKey,
-          requiredField.objectKey,
+          requiredField.title,
           parseOtherInputDropdown(requiredField.dropDownValues)
         );
       } else {
@@ -123,7 +126,10 @@ const SecondPageAddPostForm = ({
                 ...formState,
                 productDetail: {
                   ...formState.productDetail,
-                  [requiredField.objectKey]: e.target.value,
+                  [requiredField.objectKey]: {
+                    title: requiredField.title,
+                    value: e.target.value,
+                  },
                 },
               })
             }

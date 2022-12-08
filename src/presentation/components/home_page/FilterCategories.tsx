@@ -19,7 +19,7 @@ const FilterCategories = (props: FilterCategoriesProps) => {
           isActive={c._id === props.selectedMainCategory}
           onClick={() => props.onCategorySelected(c)}
         >
-          {c.title}
+          {c.title.split(";")[0]}
         </HomePageCategoryItemStyled>
       ))}
     </HomePageCategoryListWrapperStyled>

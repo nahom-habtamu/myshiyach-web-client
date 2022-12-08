@@ -12,15 +12,14 @@ const ProductDetailOtherInfo = ({
 }) => {
   const keyValueList = parseObjectToListOfObject(product?.productDetail ?? []);
   let chunkedKeyValueList = chunkArrayToEqualParts(2, keyValueList);
-
   let productDetailInfo = chunkedKeyValueList.map((chunk, index) => {
     return (
       <ProductDetailKeyValueRowStyled key={index}>
         {chunk.map((chunkItem: any) => (
           <ProductDetailKeyValue
             args={{
-              key: chunkItem.key,
-              value: chunkItem.value as string,
+              key: chunkItem.value["title"].split(";")[0] as string,
+              value: chunkItem.value["value"].split(";")[0] as string,
             }}
           />
         ))}
