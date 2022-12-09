@@ -12,7 +12,7 @@ import {
 } from "../../core/action_creators/product/refresh_product_action_creators";
 import { useHistory, useParams } from "react-router-dom";
 import { getProductDetail } from "../../core/action_creators/product/get_product_detail_action_creators";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 import {
   clearGoToChat,
   goToChat,

@@ -2,7 +2,7 @@ import { deleteSavedPostsItem } from "../../core/action_creators/product/saved_p
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import DeletablePostList from "../components/common/DeletablePostList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 import {
   SavedPostsLabelStyled,
   SavedPostsPageWrapperStyled,

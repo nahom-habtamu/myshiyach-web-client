@@ -2,7 +2,7 @@ import { BsFileEarmarkPostFill, BsTelephone } from "react-icons/bs";
 import { MdOutlineCropRotate, MdOutlinePrivacyTip } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { useAppSelector } from "../../store/storeHooks";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 import UserInformation from "../components/common/UserInformation";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
 import {

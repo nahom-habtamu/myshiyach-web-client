@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ImagePicker from "../components/common/ImagePicker";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 import {
   AddPostActionButtonStyled,
   AddPostActionButtonsWrapperStyled,

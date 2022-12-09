@@ -11,7 +11,7 @@ import FirstPageAddPostForm from "../components/add_post/FirstPageAddPostForm";
 import SecondPageAddPostForm from "../components/add_post/SecondPageAddPostForm";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { AddPostWrapperStyled } from "../styled_components/add_post/AddPostPageComponentsStyled";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 
 export type AddPostPageInputState = {
   mainCategory: string;

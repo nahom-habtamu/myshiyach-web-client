@@ -12,7 +12,7 @@ import ChatDetailImageMessageSendingModal from "../components/chat/ChatDetailIma
 import ChatDetailMessagesContainer from "../components/chat/ChatDetailMessagesContainer";
 import ChatDetailStrangerUser from "../components/chat/ChatDetailStrangerUser";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
 import {
   ChatDetailAddMessageInputStyled,

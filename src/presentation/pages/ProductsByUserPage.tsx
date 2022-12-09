@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 import {
   ProductsByUserLabelStyled,
   ProductsByUserWrapperStyled,

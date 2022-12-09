@@ -12,7 +12,7 @@ import { modifyFilterCriteria } from "../../core/action_creators/product/filter_
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { ProductListItemNoMoreProductsStyled } from "../styled_components/common/ProductListItemStyled";
-import MasterComponent from "../components/common/master_component";
+import MasterComponent from "../components/common/MasterComponent";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
