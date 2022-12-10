@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const NavBarTopContentButtonStyled = styled.div`
   color: black;
-  font-size: 15px;
+  font-size: 90%;
   font-weight: 500;
   border-bottom: 2px solid transparent;
   padding-bottom: 5px;
@@ -11,6 +11,16 @@ const NavBarTopContentButtonStyled = styled.div`
   :hover {
     cursor: pointer;
     border-color: darkgrey;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 80%;
+    font-weight: 400;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 90%;
+    font-weight: 400;
   }
 `;
 
@@ -21,14 +31,4 @@ const NavBarToContentButtonSeparatorStyled = styled.div`
   margin-right: 13px;
 `;
 
-const NavBarToContentButtonImageStyled = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-left: 2px;
-`;
-
-export {
-  NavBarTopContentButtonStyled,
-  NavBarToContentButtonImageStyled,
-  NavBarToContentButtonSeparatorStyled,
-};
+export { NavBarTopContentButtonStyled, NavBarToContentButtonSeparatorStyled };

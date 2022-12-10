@@ -25,6 +25,7 @@ const MasterComponent = (props: MasterComponentProps) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
+  const [collapsed, setCollapsed] = useState(false);
   const [conversations, setConversations] = useState<Conversation[]>([]);
 
   const loginState = useAppSelector((state) => state.login);
@@ -73,10 +74,14 @@ const MasterComponent = (props: MasterComponentProps) => {
         <>
           <NavBarTopContent />
           <NavBarLogoFilterAndSearchBarContent
+            collapsed={collapsed}
+            onNavBarTogglePressed={(value: boolean) => setCollapsed(value)}
             onFilterButtonPressed={() => setIsOpen(!isOpen)}
           />
+
           <BodyContentWrapperStyled>
             <NavBarSideContent
+              collapsed={collapsed}
               unreadMessagesCount={unseenMessages}
               activePage={props.activePage}
               onItemTapped={(value: string) => history.push(value)}

@@ -19,10 +19,11 @@ type NavBarSideContentProps = {
   activePage: string;
   onItemTapped: Function;
   unreadMessagesCount: number;
+  collapsed: boolean;
 };
 
 const NavBarSideContent = (props: NavBarSideContentProps) => {
-  return (
+  return !props.collapsed ? (
     <NavBarLeftSideContentWrapperStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === HomePageRoute}
@@ -60,6 +61,8 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
         <FiSettings size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
     </NavBarLeftSideContentWrapperStyled>
+  ) : (
+    <></>
   );
 };
 

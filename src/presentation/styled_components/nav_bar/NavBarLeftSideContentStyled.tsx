@@ -9,6 +9,16 @@ const NavBarLeftSideContentWrapperStyled = styled.div`
   align-items: center;
   gap: 25px;
   padding-top: 25px;
+
+  @media (max-width: 500px) {
+    width: 300px;
+  }
+
+  @media (max-width: 800px) {
+    width: 200px;
+    position: absolute;
+    z-index: 100;
+  }
 `;
 
 interface NavBarLeftSideContentItemStyledProps {

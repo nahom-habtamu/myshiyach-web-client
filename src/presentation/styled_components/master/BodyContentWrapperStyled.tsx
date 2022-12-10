@@ -5,6 +5,7 @@ const BodyContentWrapperStyled = styled.div`
   width: 100%;
   background: ${LIGHT_GRAY_COLOR};
   display: flex;
+  position: relative;
 `;
 
 export { BodyContentWrapperStyled };
