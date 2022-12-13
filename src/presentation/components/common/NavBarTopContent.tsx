@@ -14,7 +14,7 @@ const NavBarTopContent = () => {
         <NavBarTopContentButtonStyled>Download</NavBarTopContentButtonStyled>
         <NavBarToContentButtonSeparatorStyled />
         <NavBarTopContentButtonStyled>
-          Follow us on
+          Follow Us
         </NavBarTopContentButtonStyled>
       </NavBarTopContentBlockItemWrapperStyled>
       <NavBarTopContentBlockItemWrapperStyled position="end">

@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { PRIMARY_COLOR } from "../../constants/colors";
 
 const AddPostWrapperStyled = styled.div`
-  width: 1000px;
-  height: 1000px;
-  margin: 25px auto;
+  width: 100%;
+  margin: 0 auto;
   background: white;
 `;
 
@@ -14,6 +13,16 @@ const AddPostInputWrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  @media (max-width: 500px) {
+    width: 92%;
+    backgeound: red;
+  }
+
+  @media (max-width: 800px) {
+    width: 70%;
+    margin: 10px auto;
+  }
 `;
 
 const AddPostInputStyled = styled.input`

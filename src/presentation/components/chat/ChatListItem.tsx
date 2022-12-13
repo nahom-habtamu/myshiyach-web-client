@@ -49,7 +49,7 @@ const ChatListItem = ({
     if (lastMessage.type === "IMAGE") {
       return "image";
     }
-    return lastMessage.content;
+    return lastMessage.content.length > 30 ? lastMessage.content.slice(0, 30) : lastMessage.content;
   };
 
   const buildTimeFormat = () => {

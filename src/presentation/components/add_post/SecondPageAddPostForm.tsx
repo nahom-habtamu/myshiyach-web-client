@@ -62,7 +62,6 @@ const SecondPageAddPostForm = ({
     return (
       <HotelFilterDropDownInputStyled
         placeholder={title.split(";")[0]}
-        value={(formState.productDetail as any)[objectKey]["value"] ?? ""}
         onChange={(e) =>
           onFormValueChanged({
             ...formState,

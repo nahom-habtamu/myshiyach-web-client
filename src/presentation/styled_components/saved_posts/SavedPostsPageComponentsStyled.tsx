@@ -6,6 +6,15 @@ const SavedPostsPageWrapperStyled = styled.div`
   flex-direction: column;
   background: white;
   margin: 0 auto;
+
+  @media (max-width: 500px) {
+    width: 100%;
+
+  }
+
+  @media (max-width: 800px) {
+    width: 85%;
+  }
 `;
 
 const SavedPostsLabelStyled = styled.div`

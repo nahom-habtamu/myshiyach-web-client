@@ -16,6 +16,17 @@ const ChatDetailImageSendingModalStyled = styled.div`
   border-radius: 15px;
   align-items: center;
   gap: 25px;
+
+
+  @media (max-width: 500px) {
+    width: 200px;
+    height: 200px;
+  }
+
+  @media (max-width: 800px) {
+    width: 350px;
+    height: 350px;
+  }
 `;
 
 const ChatDetailImageSendingModalActionButtonsWrapperStyled = styled.div`
@@ -39,6 +50,16 @@ const ChatDetailImageSendingModalActionButtonStyled = styled.button`
 
   :hover {
     border: 1px solid gray;
+  }
+
+  @media (max-width: 500px) {
+    padding: 5px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 800px) {
+    padding: 8px;
+    font-size: 18px;
   }
 `;
 

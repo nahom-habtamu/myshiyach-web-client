@@ -6,9 +6,9 @@ import {
 } from "../../constants/colors";
 
 const ChatDetailWrapperStyled = styled.div`
-  width: 1000px;
+  width: 100%;
   height: 900px;
-  margin: 25px auto;
+  margin: 0px auto;
   background: white;
   position: relative;
 `;
@@ -127,6 +127,15 @@ const ChatDetailAddMessageWrapperStyled = styled.div`
   gap: 25px;
   color: black;
   align-items: center;
+
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+
+  @media (max-width: 800px) {
+    width: 80%;
+  }
+
 `;
 
 const ChatDetailAddMessageInputStyled = styled.input`

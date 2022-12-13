@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PINK_COLOR } from "../../constants/colors";
 
-const NavBarLeftSideContentWrapperStyled = styled.div`
+const NavBarLeftSideContentWrapperStyled = styled.div<{ collapsed : boolean}>`
   width: 150px;
   background: white;
   display: flex;
@@ -9,15 +9,17 @@ const NavBarLeftSideContentWrapperStyled = styled.div`
   align-items: center;
   gap: 25px;
   padding-top: 25px;
-
-  @media (max-width: 500px) {
-    width: 300px;
-  }
+  transition: all 1s ease;
 
   @media (max-width: 800px) {
-    width: 200px;
+    width: 100px;
     position: absolute;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: ${props => props.collapsed ? '0' : '0.9'}
   }
 `;
 
