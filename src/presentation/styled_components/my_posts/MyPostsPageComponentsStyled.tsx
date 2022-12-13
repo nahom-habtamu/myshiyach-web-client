@@ -6,6 +6,14 @@ const MyPostsPageWrapperStyled = styled.div`
   flex-direction: column;
   background: white;
   margin: 0 auto;
+  
+  @media (max-width: 800px) {
+    width: 85%;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+  }
 `;
 
 const MyPostsLabelStyled = styled.div`

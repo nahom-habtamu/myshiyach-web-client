@@ -5,6 +5,14 @@ const ProductsByUserWrapperStyled = styled.div`
   height: 100%;
   margin: 25px auto;
   background: white;
+
+  @media (max-width: 800px) {
+    width: 80%;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+  }
 `;
 
 const ProductsByUserLabelStyled = styled.div`

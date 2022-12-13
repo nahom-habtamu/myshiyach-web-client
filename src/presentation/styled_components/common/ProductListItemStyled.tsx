@@ -5,7 +5,6 @@ const ProductListItemsWrapperStyled = styled.div`
   margin: 25px 50px;
   background: white;
   padding: 15px;
-  width: 100%;
 
   @media (max-width: 500px) {
     margin-inline: 15px;
@@ -136,15 +135,15 @@ const ProductListItemPriceStyled = styled.div`
   color: #483549;
   line-height: 20.83px;
   font-weight: 700;
+  
+  @media (max-width: 800px) {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
 
   @media (max-width: 500px) {
     font-size: 13px;
     margin-bottom: 3px;
-  }
-
-  @media (max-width: 800px) {
-    font-size: 15px;
-    margin-bottom: 10px;
   }
 `;
 
@@ -155,16 +154,16 @@ const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   width: fit-content;
   top: 20px;
   color: ${PINK_COLOR};
-
-  @media (max-width: 500px) {
-    height: 100%;
+  
+  @media (max-width: 800px) {
+    height: 90%;
     display: flex;
     justify-content: flex-end;
     align-items: end;
   }
-
-  @media (max-width: 800px) {
-    height: 90%;
+  
+  @media (max-width: 500px) {
+    height: 92%;
     display: flex;
     justify-content: flex-end;
     align-items: end;
@@ -178,17 +177,18 @@ const ProductListItemRefreshedTimeStyled = styled.div`
   font-size: 15px;
   color: gray;
 
-  @media (max-width: 500px) {
-    left: 5px;
-    bottom: -5px;
-    font-size: 11px;
-    padding-top: 10px;
-  }
 
   @media (max-width: 800px) {
     left: 5px;
     bottom: -5px;
     font-size: 12px;
+    padding-top: 10px;
+  }
+
+  @media (max-width: 500px) {
+    left: 5px;
+    bottom: -5px;
+    font-size: 11px;
     padding-top: 10px;
   }
 `;

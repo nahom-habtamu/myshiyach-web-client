@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const EditProductPageWrapperStyled = styled.div`
-  width: 1000px;
+  width: 100%;
   height: 1500px;
   margin: 25px auto;
   background: white;
@@ -13,6 +13,14 @@ const EditPostInputWrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  @media (max-width: 800px) {
+    width: 85%;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+  }
 `;
 
 export { EditProductPageWrapperStyled, EditPostInputWrapperStyled };

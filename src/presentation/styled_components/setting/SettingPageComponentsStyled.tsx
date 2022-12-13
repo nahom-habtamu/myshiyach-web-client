@@ -5,6 +5,14 @@ const SettingWrapperStyled = styled.div`
   height: 100%;
   margin: 25px auto;
   background: white;
+
+  @media (max-width: 800px) {
+    width: 80%;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+  }
 `;
 
 const SettingTabsWrapperStyled = styled.div`
@@ -12,17 +20,43 @@ const SettingTabsWrapperStyled = styled.div`
   margin: 50px auto;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 800px) {
+    width: 85%;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+    flex-direction: column;
+    margin: 20px auto;
+  }
 `;
 
 const SettingTabStyled = styled.div`
   width: 45%;
   border-top: 1px solid grey;
   padding-top: 15px;
+
+  @media (max-width: 800px) {
+    width: 65%;
+  }
+
+  @media (max-width: 500px) {
+    width: 85%;
+  }
 `;
 
 const SettingTabHeaderStyled = styled.div`
   font-size: 22px;
   color: grey;
+
+  @media (max-width: 800px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 24px;
+  }
 `;
 
 const SettingTabItemWrapperStyled = styled.div`
@@ -47,6 +81,14 @@ const SettingTabItemKeyStyled = styled.div`
   color: black;
   font-weight: 700;
   line-height: 24px;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 const SettingTabItemValueStyled = styled.div`
@@ -54,6 +96,14 @@ const SettingTabItemValueStyled = styled.div`
   color: grey;
   font-weight: 500;
   line-height: 18.23px;
+
+  @media (max-width: 800px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 16px;
+  }
 `;
 
 export {

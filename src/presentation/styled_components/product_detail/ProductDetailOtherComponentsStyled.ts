@@ -4,7 +4,15 @@ import { PINK_COLOR, PRIMARY_COLOR } from "../../constants/colors";
 const ProductDetailWrapperStyled = styled.div`
   width: 60%;
   height: 100%;
-  margin: 25px auto;
+  margin: 25px auto;  
+  
+  @media (max-width: 800px) {
+    width: 85%;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+  }
 `;
 
 const ProductDetailKeyValueRowStyled = styled.div`
@@ -27,6 +35,14 @@ const ProductDetailKeyStyled = styled.div`
   font-size: 16px;
   color: gray;
   text-transform: capitalize;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 const ProductDetailValueStyled = styled.div<{
@@ -39,6 +55,15 @@ const ProductDetailValueStyled = styled.div<{
   font-weight: ${(props) => props.fontWeight || 400};
   color: ${(props) => props.color || "black"};
   text-transform: ${(props) => props.textTransform || "none"};
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+  }
+
 `;
 
 const ProductDetailButtonWrapperStyled = styled.div`
@@ -65,6 +90,20 @@ const ActionButtonStyled = styled.button<{ color?: string }>`
     background: white;
     border: 2px solid ${(props) => props.color ?? PRIMARY_COLOR};
   }
+
+  @media (max-width: 800px) {
+    width: 300px;
+    height: 60px;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 500px) {
+    width: 250px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 20px;
+  }
 `;
 
 const OutlineActionButtonStyled = styled.button<{ color?: string }>`
@@ -81,6 +120,20 @@ const OutlineActionButtonStyled = styled.button<{ color?: string }>`
     color: white;
     background: ${(props) => props.color ?? PINK_COLOR};
     border: 2px solid transparent;
+  }
+
+  @media (max-width: 800px) {
+    width: 300px;
+    height: 60px;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 500px) {
+    width: 250px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 20px;
   }
 `;
 

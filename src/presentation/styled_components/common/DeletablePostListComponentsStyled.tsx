@@ -6,7 +6,7 @@ const DeletablePostListWrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
-  margin: 50px auto;
+  margin: 15px auto;
   
   @media (max-width: 800px) {
     width: 85%;
