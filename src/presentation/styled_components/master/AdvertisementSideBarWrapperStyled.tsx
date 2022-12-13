@@ -5,6 +5,11 @@ const AdvertisementSideBarWrapperStyled = styled.div<{ marginTop: number }>`
   width: 25%;
   background: white;
   margin-top: ${(props) => props.marginTop};
+
+  @media (max-width: 800px) {
+    width: 80%;
+    margin: 0 auto;
+  }
 `;
 
 const AdvertisementSideBarItemStyled = styled.div`

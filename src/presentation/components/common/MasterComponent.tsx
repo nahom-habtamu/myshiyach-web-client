@@ -25,7 +25,7 @@ const MasterComponent = (props: MasterComponentProps) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [conversations, setConversations] = useState<Conversation[]>([]);
 
   const loginState = useAppSelector((state) => state.login);

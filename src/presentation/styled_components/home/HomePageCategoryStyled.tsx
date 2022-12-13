@@ -18,6 +18,12 @@ const HomePageCategoryItemStyled = styled.div<HomePageCategoryItemStyledProps>`
     font-weight: bold;
     color: black;
   }
+
+  @media (max-width: 800px) {
+    width: fit-content;
+    padding-inline: 3px;
+    font-size: 22px;
+  }
 `;
 
 const HomePageCategoryListWrapperStyled = styled.div`
@@ -25,6 +31,17 @@ const HomePageCategoryListWrapperStyled = styled.div`
   margin-top: 25px;
   display: flex;
   gap: 25px;
+
+  @media (max-width: 500px) {
+    width: 95%;
+  }
+
+  @media (max-width: 800px) {
+    width: 80%;
+    flex-direction: column;
+    gap: 5px;
+
+  }
 `;
 
 export { HomePageCategoryItemStyled, HomePageCategoryListWrapperStyled };

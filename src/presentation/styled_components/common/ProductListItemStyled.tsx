@@ -5,17 +5,39 @@ const ProductListItemsWrapperStyled = styled.div`
   margin: 25px 50px;
   background: white;
   padding: 15px;
+  width: 100%;
+
+  @media (max-width: 500px) {
+    margin-inline: 15px;
+  }
+
+  @media (max-width: 800px) {
+    margin-inline: 20px;
+  }
+
 `;
 
 const ProductListItemWrapperStyled = styled.div`
   display: flex;
   height: 160px;
-  width: 800px;
+  width: 80%;
   gap: 25px;
   margin: 15px 25px;
   border-top: 1px solid black;
   padding-top: 15px;
   position: relative;
+
+  @media (max-width: 500px) {
+    height: 140px;
+    width: 100%;
+    margin: 10px 15px;
+    gap: 5px;
+  }
+
+  @media (max-width: 800px) {
+    height: 135px;
+    width: 90%;
+  }
 `;
 
 const ProductListItemImageWrapperStyled = styled.div`
@@ -24,12 +46,28 @@ const ProductListItemImageWrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
+
+  @media (max-width: 500px) {
+    width: 50%;
+    height: 100%;
+  }
+
+  @media (max-width: 800px) {
+    width: 40%;
+    height: 100%;
+  }
 `;
 
 const ProductListItemImageStyled = styled.img`
   width: 100%;
   height: 70%;
   object-fit: fit;
+  
+  @media (max-width: 500px) {
+    width: 100%;
+    height: 80%;
+    line-height: 80%;
+  }
 `;
 
 const ProductListItemOtherContentWrapper = styled.div`
@@ -44,6 +82,16 @@ const ProductListItemTitleStyled = styled.div`
   font-weight: 700;
   margin-block: 5px;
   letter-spacing: 1px;
+
+  @media (max-width: 500px) {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 18px;
+    font-weight: 600;
+  }
 `;
 
 const ProductListItemCityStyled = styled.div`
@@ -52,6 +100,16 @@ const ProductListItemCityStyled = styled.div`
   color: #483549;
   line-height: 20.83px;
   font-weight: 700;
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+    margin-bottom: 0px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
 `;
 
 const ProductListItemDescriptionStyled = styled.div`
@@ -59,6 +117,17 @@ const ProductListItemDescriptionStyled = styled.div`
   margin-bottom: 15px;
   color: gray;
   line-height: 22px;
+
+  @media (max-width: 500px) {
+    margin-bottom: 0px;
+    line-height: 12px;
+    font-size: 11px;
+  }
+
+  @media (max-width: 800px) {
+    margin-bottom: 5px;
+    line-height: 18px;
+  }
 `;
 
 const ProductListItemPriceStyled = styled.div`
@@ -67,23 +136,61 @@ const ProductListItemPriceStyled = styled.div`
   color: #483549;
   line-height: 20.83px;
   font-weight: 700;
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
 `;
 
 const ProductListItemFavoritesButtonWrapperStyled = styled.div`
-  width: 50px;
-  height: 50px;
   position: absolute;
   right: 5px;
+  height: fit-content;
+  width: fit-content;
   top: 20px;
   color: ${PINK_COLOR};
+
+  @media (max-width: 500px) {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+  }
+
+  @media (max-width: 800px) {
+    height: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+  }
 `;
 
 const ProductListItemRefreshedTimeStyled = styled.div`
   position: absolute;
   right: 5px;
   bottom: 10px;
-  font-size: 13px;
+  font-size: 15px;
   color: gray;
+
+  @media (max-width: 500px) {
+    left: 5px;
+    bottom: -5px;
+    font-size: 11px;
+    padding-top: 10px;
+  }
+
+  @media (max-width: 800px) {
+    left: 5px;
+    bottom: -5px;
+    font-size: 12px;
+    padding-top: 10px;
+  }
 `;
 
 const ProductListItemNoMoreProductsStyled = styled.div`

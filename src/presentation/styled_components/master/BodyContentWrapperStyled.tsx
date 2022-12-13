@@ -6,6 +6,11 @@ const BodyContentWrapperStyled = styled.div`
   background: ${LIGHT_GRAY_COLOR};
   display: flex;
   position: relative;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+
 `;
 
 export { BodyContentWrapperStyled };
