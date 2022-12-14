@@ -10,6 +10,10 @@ const AdvertisementSideBarWrapperStyled = styled.div<{ marginTop: number }>`
     width: 80%;
     margin: 0 auto;
   }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const AdvertisementSideBarItemStyled = styled.div`

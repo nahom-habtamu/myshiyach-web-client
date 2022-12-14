@@ -9,11 +9,29 @@ const ActionButtonStyled = styled.button`
   padding: 1.2em 1em;
   font-size: 18px;
   width: 100%;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+    border-radius: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+    border-radius: 10px;
+  }
 `;
 
 const ActionButtonWrapper = styled.div`
   margin: 0 auto;
   width: 400px;
+
+  @media (max-width: 800px) {
+    width: 300px;
+  }
+
+  @media (max-width: 500px) {
+    width: 250px;
+  }
 `;
 
 export {

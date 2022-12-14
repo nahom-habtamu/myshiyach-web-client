@@ -17,6 +17,18 @@ const LoginPromptModalStyled = styled.div`
   font-size: 25px;
   text-align: center;
   letter-spacing: 1px;
+
+  @media (max-width: 800px) {
+    width: 80%;
+    height: 200px;
+    font-size: 20px;
+  }
+  
+  @media (max-width: 500px) {
+    width: 95%;
+    height: 150px; 
+    font-size: 15px;
+  }
 `;
 
 const LoginPromptModalTextStyled = styled.div`
@@ -26,6 +38,16 @@ const LoginPromptModalTextStyled = styled.div`
   font-weight: bold;
   padding-inline: 8px;
   letter-spacing: 0.5px;
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+    padding-inline: 6px;
+  }
+  
+  @media (max-width: 500px) {
+    font-size: 15px;
+    padding-inline: 4px; 
+  }
 `;
 
 export { LoginPromptModalStyled, LoginPromptModalTextStyled };

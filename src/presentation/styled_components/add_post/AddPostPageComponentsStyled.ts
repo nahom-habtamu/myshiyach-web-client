@@ -40,6 +40,19 @@ const AddPostInputStyled = styled.input`
   ::placeholder {
     color: grey;
   }
+
+  @media (max-width: 800px) {
+    height: 45px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    height: 30px;
+    font-size: 14px; 
+    border-radius: 5px;
+  }
+
 `;
 
 const AddPostDesciptionInputStyled = styled.textarea`
@@ -55,6 +68,16 @@ const AddPostDesciptionInputStyled = styled.textarea`
 
   ::placeholder {
     color: grey;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 16px;
+    border-radius: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    font-size: 14px; 
+    border-radius: 5px;
   }
 `;
 
@@ -75,6 +98,18 @@ const AddPostActionButtonStyled = styled.button<{ isOutlined?: boolean }>`
   background: ${(props) => (props.isOutlined ? "white" : PRIMARY_COLOR)};
   border: 1px solid ${(props) => (props.isOutlined ? PRIMARY_COLOR : "white")};
   color: ${(props) => (props.isOutlined ? PRIMARY_COLOR : "white")};
+  
+  @media (max-width: 800px) {
+    height: 50px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    height: 40px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
 `;
 
 export {

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const EditProductPageWrapperStyled = styled.div`
   width: 100%;
-  height: 1500px;
   margin: 25px auto;
   background: white;
 `;

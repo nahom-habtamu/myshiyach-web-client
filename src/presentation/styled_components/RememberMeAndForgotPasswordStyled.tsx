@@ -7,6 +7,14 @@ const RememberMeLabelStyled = styled.label`
   font-weight: 500;
   display: flex;
   gap: 10px;
+  
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 const RememberMeCheckBoxStyled = styled.input`
@@ -39,6 +47,14 @@ const ForgotPasswordStyled = styled.div`
   color: ${PRIMARY_COLOR};
   font-size: 17px;
   font-weight: 500;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 const RememberMeAndForgotPassWrapperStyled = styled.div`
@@ -46,6 +62,14 @@ const RememberMeAndForgotPassWrapperStyled = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 15px auto;
+
+  @media (max-width: 800px) {
+    width: 300px;
+  }
+
+  @media (max-width: 500px) {
+    width: 250px;
+  }
 `;
 
 export {
