@@ -32,16 +32,12 @@ const HomePageCategoryListWrapperStyled = styled.div`
   display: flex;
   gap: 25px;
 
-  @media (max-width: 500px) {
-    width: 95%;
-  }
-
   @media (max-width: 800px) {
     width: 80%;
     flex-direction: column;
-    gap: 5px;
-
+    gap: 5px;    
   }
+
 `;
 
 export { HomePageCategoryItemStyled, HomePageCategoryListWrapperStyled };
