@@ -7,8 +7,8 @@ import {
   AddPostInputWrapperStyled,
 } from "../../styled_components/add_post/AddPostPageComponentsStyled";
 import {
-  HotelFilterDropDownInputStyled,
-  HotelFilterDropDownOptionStyled,
+  FilterDropDownInputStyled,
+  FilterDropDownOptionStyled,
 } from "../../styled_components/home/HomeFilterModalStyled";
 import ImagePicker from "../common/ImagePicker";
 
@@ -35,7 +35,7 @@ const SecondPageAddPostForm = ({
     items: DropDownItemData[]
   ) => {
     return (
-      <HotelFilterDropDownInputStyled
+      <FilterDropDownInputStyled
         placeholder={placeHolder}
         value={(formState as any)[objectKey] ?? ""}
         onChange={(e) =>
@@ -46,11 +46,11 @@ const SecondPageAddPostForm = ({
         }
       >
         {items.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
+          <FilterDropDownOptionStyled value={i.value}>
             {i.title.split(";")[0]}
-          </HotelFilterDropDownOptionStyled>
+          </FilterDropDownOptionStyled>
         ))}
-      </HotelFilterDropDownInputStyled>
+      </FilterDropDownInputStyled>
     );
   };
 
@@ -60,7 +60,7 @@ const SecondPageAddPostForm = ({
     items: DropDownItemData[]
   ) => {
     return (
-      <HotelFilterDropDownInputStyled
+      <FilterDropDownInputStyled
         placeholder={title.split(";")[0]}
         onChange={(e) =>
           onFormValueChanged({
@@ -76,11 +76,11 @@ const SecondPageAddPostForm = ({
         }
       >
         {items.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
+          <FilterDropDownOptionStyled value={i.value}>
             {i.title.split(";")[0]}
-          </HotelFilterDropDownOptionStyled>
+          </FilterDropDownOptionStyled>
         ))}
-      </HotelFilterDropDownInputStyled>
+      </FilterDropDownInputStyled>
     );
   };
 

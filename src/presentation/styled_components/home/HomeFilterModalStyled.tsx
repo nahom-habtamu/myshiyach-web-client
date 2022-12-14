@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { PRIMARY_COLOR } from "../../constants/colors";
 
-const HotelFilterModalStyled = styled.div`
+const FilterModalStyled = styled.div`
   width: 700px;
-  height: 750px;
+  height: 600px;
   background-color: white;
   position: fixed;
   top: 120;
@@ -17,7 +17,7 @@ const HotelFilterModalStyled = styled.div`
   gap: 25px;
 `;
 
-const HotelFilterInputStyled = styled.input`
+const FilterInputStyled = styled.input`
   height: 60px;
   font-size: 20px;
   border-radius: 15px;
@@ -31,18 +31,18 @@ const HotelFilterInputStyled = styled.input`
   }
 `;
 
-const HotelFilterPriceInputStyled = styled(HotelFilterInputStyled)`
+const FilterPriceInputStyled = styled(FilterInputStyled)`
   width: 48%;
 `;
 
-const HotelFilterPriceInputWrapperStyled = styled.div`
+const FilterPriceInputWrapperStyled = styled.div`
   width: 92%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 `;
 
-const HotelFilterDropDownInputStyled = styled.select`
+const FilterDropDownInputStyled = styled.select`
   height: 60px;
   width: 92%;
   border-radius: 15px;
@@ -54,35 +54,35 @@ const HotelFilterDropDownInputStyled = styled.select`
   line-height: 1;
 `;
 
-const HotelFilterDropDownOptionStyled = styled.option`
+const FilterDropDownOptionStyled = styled.option`
   color: grey;
   font-size: 18px;
 `;
 
-const HotelFilterLongInputStyled = styled(HotelFilterInputStyled)`
+const FilterLongInputStyled = styled(FilterInputStyled)`
   width: 80%;
 `;
 
-const HotelFilterRadioButtonStyled = styled.input``;
+const FilterRadioButtonStyled = styled.input``;
 
-const HotelFilterRadioLabelStyled = styled.label`
+const FilterRadioLabelStyled = styled.label`
   font-size: 20px;
   padding-left: 15px;
   color: grey;
 `;
 
-const HotelFilterRadioSectionStyled = styled.div`
+const FilterRadioSectionStyled = styled.div`
   width: 92%;
   height: 100px;
   border: 1px solid lightgray;
   padding: 15px;
 `;
 
-type HotelFilterButtonProps = {
+type FilterButtonProps = {
   isOutline: boolean;
 };
 
-const HotelFilterButton = styled.button<HotelFilterButtonProps>`
+const FilterButton = styled.button<FilterButtonProps>`
   width: 48%;
   height: 60px;
   border: 1px solid ${(props) => (props.isOutline ? "darkgray" : PRIMARY_COLOR)};
@@ -92,22 +92,22 @@ const HotelFilterButton = styled.button<HotelFilterButtonProps>`
   border-radius: 15px;
 `;
 
-const HotelFilterButtonWrapper = styled.div`
+const FilterButtonWrapper = styled.div`
   width: 92%;
   display: flex;
   justify-content: space-between;
 `;
 
 export {
-  HotelFilterModalStyled,
-  HotelFilterPriceInputWrapperStyled,
-  HotelFilterPriceInputStyled,
-  HotelFilterLongInputStyled,
-  HotelFilterDropDownInputStyled,
-  HotelFilterDropDownOptionStyled,
-  HotelFilterRadioLabelStyled,
-  HotelFilterRadioSectionStyled,
-  HotelFilterRadioButtonStyled,
-  HotelFilterButtonWrapper,
-  HotelFilterButton,
+  FilterModalStyled,
+  FilterPriceInputWrapperStyled,
+  FilterPriceInputStyled,
+  FilterLongInputStyled,
+  FilterDropDownInputStyled,
+  FilterDropDownOptionStyled,
+  FilterRadioLabelStyled,
+  FilterRadioSectionStyled,
+  FilterRadioButtonStyled,
+  FilterButtonWrapper,
+  FilterButton,
 };

@@ -8,16 +8,16 @@ import FilterCriteria from "../../../core/models/filter/filter_criteria";
 import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
 import { ModalWrapperShadowStyled } from "../../styled_components/common/CommonModalComponentsStyled";
 import {
-  HotelFilterButton,
-  HotelFilterButtonWrapper,
-  HotelFilterDropDownInputStyled,
-  HotelFilterDropDownOptionStyled,
-  HotelFilterModalStyled,
-  HotelFilterPriceInputStyled,
-  HotelFilterPriceInputWrapperStyled,
-  HotelFilterRadioButtonStyled,
-  HotelFilterRadioLabelStyled,
-  HotelFilterRadioSectionStyled,
+  FilterButton,
+  FilterButtonWrapper,
+  FilterDropDownInputStyled,
+  FilterDropDownOptionStyled,
+  FilterModalStyled,
+  FilterPriceInputStyled,
+  FilterPriceInputWrapperStyled,
+  FilterRadioButtonStyled,
+  FilterRadioLabelStyled,
+  FilterRadioSectionStyled,
 } from "../../styled_components/home/HomeFilterModalStyled";
 
 type FilterProductsModelProps = {
@@ -115,10 +115,10 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
 
   const sortCriteria = (label: string, objectKey: string, name: string) => {
     return (
-      <HotelFilterRadioSectionStyled>
+      <FilterRadioSectionStyled>
         {label}
         <br />
-        <HotelFilterRadioButtonStyled
+        <FilterRadioButtonStyled
           type="radio"
           name={name}
           value={0}
@@ -130,9 +130,9 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
           }}
           checked={(filterModel as any)[objectKey] === true}
         />
-        <HotelFilterRadioLabelStyled>Ascending</HotelFilterRadioLabelStyled>
+        <FilterRadioLabelStyled>Ascending</FilterRadioLabelStyled>
         <br />
-        <HotelFilterRadioButtonStyled
+        <FilterRadioButtonStyled
           type="radio"
           name={name}
           value={1}
@@ -144,8 +144,8 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
           }}
           checked={(filterModel as any)[objectKey] === false}
         />
-        <HotelFilterRadioLabelStyled>Descending</HotelFilterRadioLabelStyled>
-      </HotelFilterRadioSectionStyled>
+        <FilterRadioLabelStyled>Descending</FilterRadioLabelStyled>
+      </FilterRadioSectionStyled>
     );
   };
 
@@ -155,7 +155,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
     items: DropDownItemData[]
   ) => {
     return (
-      <HotelFilterDropDownInputStyled
+      <FilterDropDownInputStyled
         placeholder={placeHolder}
         value={(filterModel as any)[objectKey] ?? ""}
         onChange={(e) =>
@@ -166,11 +166,11 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
         }
       >
         {items.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
+          <FilterDropDownOptionStyled value={i.value}>
             {i.title.split(";")[0]}
-          </HotelFilterDropDownOptionStyled>
+          </FilterDropDownOptionStyled>
         ))}
-      </HotelFilterDropDownInputStyled>
+      </FilterDropDownInputStyled>
     );
   };
 
@@ -192,9 +192,9 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
   return ReactDOM.createPortal(
     <>
       <ModalWrapperShadowStyled onClick={() => onClose()} />
-      <HotelFilterModalStyled>
-        <HotelFilterPriceInputWrapperStyled>
-          <HotelFilterPriceInputStyled
+      <FilterModalStyled>
+        <FilterPriceInputWrapperStyled>
+          <FilterPriceInputStyled
             placeholder="Min Price"
             type="number"
             value={filterModel.minPrice ?? ""}
@@ -205,7 +205,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
               })
             }
           />
-          <HotelFilterPriceInputStyled
+          <FilterPriceInputStyled
             placeholder="Max Price"
             type="number"
             value={filterModel.maxPrice ?? ""}
@@ -216,7 +216,7 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
               })
             }
           />
-        </HotelFilterPriceInputWrapperStyled>
+        </FilterPriceInputWrapperStyled>
         {renderDropDownInput(
           "MainCategory",
           "mainCategory",
@@ -234,15 +234,15 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
         {sortCriteria("Sort By Price", "sortByPriceAscending", "price")}
         {sortCriteria("Sort By Time", "sortByCreatedByAscending", "time")}
 
-        <HotelFilterButtonWrapper>
-          <HotelFilterButton isOutline={true} onClick={handleRemoveFilters}>
+        <FilterButtonWrapper>
+          <FilterButton isOutline={true} onClick={handleRemoveFilters}>
             Remove Filters
-          </HotelFilterButton>
-          <HotelFilterButton isOutline={false} onClick={handleApplyFilters}>
+          </FilterButton>
+          <FilterButton isOutline={false} onClick={handleApplyFilters}>
             Apply Filters
-          </HotelFilterButton>
-        </HotelFilterButtonWrapper>
-      </HotelFilterModalStyled>
+          </FilterButton>
+        </FilterButtonWrapper>
+      </FilterModalStyled>
     </>,
     document.getElementById("modal-root") as HTMLElement
   );

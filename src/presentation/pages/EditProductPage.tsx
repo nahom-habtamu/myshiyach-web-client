@@ -13,8 +13,8 @@ import {
   EditProductPageWrapperStyled,
 } from "../styled_components/edit_product/EditProductPageComponentsStyled";
 import {
-  HotelFilterDropDownInputStyled,
-  HotelFilterDropDownOptionStyled,
+  FilterDropDownInputStyled,
+  FilterDropDownOptionStyled,
 } from "../styled_components/home/HomeFilterModalStyled";
 import { getDataNeededToEditPost } from "../../core/action_creators/common/get_data_needed_to_edit_post_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -114,7 +114,7 @@ const EditProductPage = () => {
     items: DropDownItemData[]
   ) => {
     return (
-      <HotelFilterDropDownInputStyled
+      <FilterDropDownInputStyled
         placeholder={placeHolder}
         value={(formState as any)[objectKey] ?? ""}
         onChange={(e) =>
@@ -125,11 +125,11 @@ const EditProductPage = () => {
         }
       >
         {items?.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
+          <FilterDropDownOptionStyled value={i.value}>
             {i.title.split(";")[0]}
-          </HotelFilterDropDownOptionStyled>
+          </FilterDropDownOptionStyled>
         ))}
-      </HotelFilterDropDownInputStyled>
+      </FilterDropDownInputStyled>
     );
   };
 
@@ -162,7 +162,7 @@ const EditProductPage = () => {
   ) => {
     let productDetailValue = (formState.productDetail as any)[objectKey];
     return (
-      <HotelFilterDropDownInputStyled
+      <FilterDropDownInputStyled
         placeholder={title}
         value={productDetailValue ? productDetailValue["value"] : ""}
         onChange={(e) =>
@@ -179,11 +179,11 @@ const EditProductPage = () => {
         }
       >
         {items.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
+          <FilterDropDownOptionStyled value={i.value}>
             {i.title.split(";")[0]}
-          </HotelFilterDropDownOptionStyled>
+          </FilterDropDownOptionStyled>
         ))}
-      </HotelFilterDropDownInputStyled>
+      </FilterDropDownInputStyled>
     );
   };
 

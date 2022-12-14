@@ -8,8 +8,8 @@ import {
   AddPostInputWrapperStyled,
 } from "../../styled_components/add_post/AddPostPageComponentsStyled";
 import {
-  HotelFilterDropDownInputStyled,
-  HotelFilterDropDownOptionStyled,
+  FilterDropDownInputStyled,
+  FilterDropDownOptionStyled,
 } from "../../styled_components/home/HomeFilterModalStyled";
 
 const FirstPageAddPostForm = ({
@@ -30,7 +30,7 @@ const FirstPageAddPostForm = ({
     items: DropDownItemData[]
   ) => {
     return (
-      <HotelFilterDropDownInputStyled
+      <FilterDropDownInputStyled
         placeholder={placeHolder}
         value={(formState as any)[objectKey] ?? ""}
         onChange={(e) =>
@@ -41,11 +41,11 @@ const FirstPageAddPostForm = ({
         }
       >
         {items.map((i) => (
-          <HotelFilterDropDownOptionStyled value={i.value}>
+          <FilterDropDownOptionStyled value={i.value}>
             {i.title.split(";")[0]}
-          </HotelFilterDropDownOptionStyled>
+          </FilterDropDownOptionStyled>
         ))}
-      </HotelFilterDropDownInputStyled>
+      </FilterDropDownInputStyled>
     );
   };
 
