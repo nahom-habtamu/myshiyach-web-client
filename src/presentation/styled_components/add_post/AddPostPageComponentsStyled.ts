@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { PRIMARY_COLOR } from "../../constants/colors";
 
 const AddPostWrapperStyled = styled.div`
-  width: 100%;
-  margin: 0 auto;
+  width: 95%;
+  margin: 15px auto;
   background: white;
 `;
 

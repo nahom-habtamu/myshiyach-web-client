@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const ChatListWrapperStyled = styled.div`
-  width: 100%;
+  width: 95%;
   height: fit-content;
-  margin: 0px auto;
+  margin: 12px auto;
   background: white;
 `;
 

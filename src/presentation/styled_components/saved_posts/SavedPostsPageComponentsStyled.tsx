@@ -7,11 +7,11 @@ const SavedPostsPageWrapperStyled = styled.div`
   background: white;
   margin: 0 auto;
   
-  @media (max-width: 800px) {
-    width: 75%;
+  @media (max-width: 1200px) {
+    width: 90%;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 900px) {
     width: 100%;
   }
 `;

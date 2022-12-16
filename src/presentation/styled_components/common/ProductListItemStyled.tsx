@@ -1,19 +1,11 @@
 import styled from "styled-components";
 import { PINK_COLOR } from "../../constants/colors";
 
-const ProductListItemsWrapperStyled = styled.div`
-  margin: 25px 50px;
+const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
+  margin: ${props => props.hasMargin ? '25px 50px' : '0px 0px'};
   background: white;
   padding: 15px;
-
-  @media (max-width: 500px) {
-    margin-inline: 15px;
-  }
-
-  @media (max-width: 800px) {
-    margin-inline: 20px;
-  }
-
+  width: 100%;
 `;
 
 const ProductListItemWrapperStyled = styled.div`
@@ -26,17 +18,18 @@ const ProductListItemWrapperStyled = styled.div`
   padding-top: 15px;
   position: relative;
 
+  @media (max-width: 1200px) {
+    height: 135px;
+    width: 90%;
+  }
+
   @media (max-width: 500px) {
     height: 140px;
-    width: 100%;
+    width: 95%;
     margin: 10px 15px;
     gap: 5px;
   }
 
-  @media (max-width: 800px) {
-    height: 135px;
-    width: 90%;
-  }
 `;
 
 const ProductListItemImageWrapperStyled = styled.div`
@@ -46,15 +39,16 @@ const ProductListItemImageWrapperStyled = styled.div`
   flex-direction: column;
   justify-content: start;
 
+  @media (max-width: 900px) {
+    width: 40%;
+    height: 100%;
+  }
+
   @media (max-width: 500px) {
     width: 50%;
     height: 100%;
   }
 
-  @media (max-width: 800px) {
-    width: 40%;
-    height: 100%;
-  }
 `;
 
 const ProductListItemImageStyled = styled.img`
@@ -81,16 +75,21 @@ const ProductListItemTitleStyled = styled.div`
   font-weight: 700;
   margin-block: 5px;
   letter-spacing: 1px;
+  
+  @media (max-width: 1200px) {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 18px;
+  }
 
   @media (max-width: 500px) {
     font-size: 16px;
     font-weight: 400;
   }
 
-  @media (max-width: 800px) {
-    font-size: 18px;
-    font-weight: 600;
-  }
 `;
 
 const ProductListItemCityStyled = styled.div`
@@ -100,15 +99,21 @@ const ProductListItemCityStyled = styled.div`
   line-height: 20.83px;
   font-weight: 700;
 
+  @media (max-width: 1200px) {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
   @media (max-width: 500px) {
     font-size: 13px;
     margin-bottom: 0px;
   }
 
-  @media (max-width: 800px) {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
 `;
 
 const ProductListItemDescriptionStyled = styled.div`
@@ -117,16 +122,22 @@ const ProductListItemDescriptionStyled = styled.div`
   color: gray;
   line-height: 22px;
 
+  @media (max-width: 1200px) {
+    margin-bottom: 10px;
+    line-height: 20px;
+  }
+
+  @media (max-width: 900px) {
+    margin-bottom: 5px;
+    line-height: 18px;
+  }
+
   @media (max-width: 500px) {
     margin-bottom: 0px;
     line-height: 12px;
     font-size: 11px;
   }
 
-  @media (max-width: 800px) {
-    margin-bottom: 5px;
-    line-height: 18px;
-  }
 `;
 
 const ProductListItemPriceStyled = styled.div`
@@ -135,8 +146,13 @@ const ProductListItemPriceStyled = styled.div`
   color: #483549;
   line-height: 20.83px;
   font-weight: 700;
-  
-  @media (max-width: 800px) {
+
+  @media (max-width: 1200px) {
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 900px) {
     font-size: 15px;
     margin-bottom: 10px;
   }
@@ -155,7 +171,7 @@ const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   top: 20px;
   color: ${PINK_COLOR};
   
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     height: 90%;
     display: flex;
     justify-content: flex-end;
@@ -177,8 +193,11 @@ const ProductListItemRefreshedTimeStyled = styled.div`
   font-size: 15px;
   color: gray;
 
+  @media (max-width: 900px) {
+    font-size: 13px;
+  }
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     left: 5px;
     bottom: -5px;
     font-size: 12px;

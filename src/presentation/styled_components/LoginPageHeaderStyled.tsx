@@ -7,7 +7,7 @@ const LoginPageHeaderOneStyled = styled.div`
   margin-top: 100px;
   margin-bottom: 15px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     font-size: 40px;
     margin-top: 70px;
     margin-bottom: 10px;
@@ -26,7 +26,7 @@ const LoginPageHeaderTwoStyled = styled.div`
   color: grey;
   margin-bottom: 55px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     font-size: 20px;
     margin-bottom: 45px;
   }

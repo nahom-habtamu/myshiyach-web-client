@@ -4,7 +4,7 @@ import {
   AdvertisementSideBarItemStyled,
   AdvertisementSideBarWrapperStyled,
 } from "../../styled_components/master/AdvertisementSideBarWrapperStyled";
-import { BodyContentWrapperStyled } from "../../styled_components/master/BodyContentWrapperStyled";
+import { AdvertisementAndChildrenWrapperStyled, BodyContentWrapperStyled } from "../../styled_components/master/BodyContentWrapperStyled";
 import MasterPageContentWrapperStyled from "../../styled_components/master/MasterPageContentWrapperStyled";
 import NavBarLogoFilterAndSearchBarContent from "./NavBarLogoFilterAndSearchBarContent";
 import NavBarSideContent from "./NavBarSideContent";
@@ -86,11 +86,13 @@ const MasterComponent = (props: MasterComponentProps) => {
               activePage={props.activePage}
               onItemTapped={(value: string) => history.push(value)}
             />
-            {props.children}
-            <AdvertisementSideBarWrapperStyled marginTop={73}>
-              <AdvertisementSideBarItemStyled />
-              <AdvertisementSideBarItemStyled />
-            </AdvertisementSideBarWrapperStyled>
+            <AdvertisementAndChildrenWrapperStyled>
+              {props.children}
+              <AdvertisementSideBarWrapperStyled marginTop={73}>
+                <AdvertisementSideBarItemStyled />
+                <AdvertisementSideBarItemStyled />
+              </AdvertisementSideBarWrapperStyled>
+            </AdvertisementAndChildrenWrapperStyled>
           </BodyContentWrapperStyled>
           {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
         </>

@@ -16,11 +16,19 @@ const FilterModalStyled = styled.div`
   align-items: center;
   gap: 25px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
+    width: 520px;
+    height: 540px;
+    gap: 18px;  
+    top: 80;
+    right: 50;
+  }
+
+  @media (max-width: 900px) {
     width: 400px;
-    height: 500px;
+    height: 520px;
     gap: 15px;  
-    top: 140;
+    top: 100;
     right: 40;
   }
   
@@ -47,7 +55,13 @@ const FilterInputStyled = styled.input`
     color: grey;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
+    height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 900px) {
     height: 45px;
     font-size: 16px;
     border-radius: 10px;
@@ -82,7 +96,14 @@ const FilterDropDownInputStyled = styled.select`
   font-size: 20px;
   line-height: 1;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
+    height: 50px;
+    font-size: 18px;
+    padding-inline: 12px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 900px) {
     height: 45px;
     font-size: 16px;
     padding-inline: 10px;
@@ -113,7 +134,12 @@ const FilterRadioLabelStyled = styled.label`
   padding-left: 15px;
   color: grey;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
+    height: 50px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 900px) {
     height: 45px;
     font-size: 16px;
   }
@@ -130,8 +156,12 @@ const FilterRadioSectionStyled = styled.div`
   border: 1px solid lightgray;
   padding: 15px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     height: 90px;
+  }
+
+  @media (max-width: 800px) {
+    height: 85px;
   }
   
   @media (max-width: 500px) {
@@ -151,6 +181,12 @@ const FilterButton = styled.button<FilterButtonProps>`
   color: ${(props) => (props.isOutline ? "darkgray" : "white")};
   font-size: 20px;
   border-radius: 15px;
+
+  @media (max-width: 1200px) {
+    height: 50px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
 
   @media (max-width: 800px) {
     height: 50px;

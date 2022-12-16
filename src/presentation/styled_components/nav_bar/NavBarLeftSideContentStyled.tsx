@@ -11,7 +11,7 @@ const NavBarLeftSideContentWrapperStyled = styled.div<{ collapsed : boolean}>`
   padding-top: 25px;
   transition: all 1s ease;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     width: 100px;
     position: absolute;
     z-index: 100;

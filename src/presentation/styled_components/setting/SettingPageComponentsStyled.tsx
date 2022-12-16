@@ -3,23 +3,23 @@ import styled from "styled-components";
 const SettingWrapperStyled = styled.div`
   width: 60%;
   height: 100%;
-  margin: 25px auto;
+  padding: 25px;
   background: white;
 
-  @media (max-width: 800px) {
-    width: 80%;
-  }
-
-  @media (max-width: 500px) {
-    width: 95%;
+  @media (max-width: 1200px) {
+    width: 100%;
   }
 `;
 
 const SettingTabsWrapperStyled = styled.div`
-  width: 80%;
+  width: 75%;
   margin: 50px auto;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    width: 80%;
+  }
 
   @media (max-width: 800px) {
     width: 85%;
@@ -37,6 +37,10 @@ const SettingTabStyled = styled.div`
   border-top: 1px solid grey;
   padding-top: 15px;
 
+  @media (max-width: 1200px) {
+    width: 55%;
+  }
+
   @media (max-width: 800px) {
     width: 65%;
   }
@@ -49,6 +53,10 @@ const SettingTabStyled = styled.div`
 const SettingTabHeaderStyled = styled.div`
   font-size: 22px;
   color: grey;
+
+  @media (max-width: 1200px) {
+    font-size: 20px;
+  }
 
   @media (max-width: 800px) {
     font-size: 18px;
@@ -82,6 +90,10 @@ const SettingTabItemKeyStyled = styled.div`
   font-weight: 700;
   line-height: 24px;
 
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
+
   @media (max-width: 800px) {
     font-size: 15px;
   }
@@ -97,7 +109,7 @@ const SettingTabItemValueStyled = styled.div`
   font-weight: 500;
   line-height: 18.23px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     font-size: 12px;
   }
 

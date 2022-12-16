@@ -2,11 +2,15 @@ import styled from "styled-components";
 
 const HomePageWrapperStyled = styled.div`
   display: flex;
-  width: 65%;
+  width: 75%;
   flex-direction: column;
   
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     width: 85%;
+  }
+
+  @media (max-width: 900px) {
+    width: 90%;
   }
 
   @media (max-width: 500px) {

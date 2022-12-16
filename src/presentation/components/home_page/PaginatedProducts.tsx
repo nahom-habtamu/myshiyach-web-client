@@ -24,7 +24,7 @@ import {
 } from "../../../core/action_creators/product/saved_products_action_creators";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
-const PaginatedProducts = ({ products }: { products: Product[] }) => {
+const PaginatedProducts = ({ products, hasMargin }: { products: Product[], hasMargin: boolean }) => {
   const loginState = useAppSelector((state) => state.login);
   const favoriteProductsState = useAppSelector((state) => state.savedPosts);
   const dispatch = useAppDispatch();
@@ -59,7 +59,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
   };
 
   return (
-    <ProductListItemsWrapperStyled>
+    <ProductListItemsWrapperStyled hasMargin={hasMargin}>
       {products.map((p) => (
         <ProductListItemWrapperStyled
           key={p._id}

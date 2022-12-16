@@ -7,10 +7,18 @@ const BodyContentWrapperStyled = styled.div`
   display: flex;
   position: relative;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     flex-direction: column;
   }
-
+  
 `;
 
-export { BodyContentWrapperStyled };
+const AdvertisementAndChildrenWrapperStyled = styled.div`
+  width: 100%;
+  display: flex;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+`
+
+export { BodyContentWrapperStyled, AdvertisementAndChildrenWrapperStyled };

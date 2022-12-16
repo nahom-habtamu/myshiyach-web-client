@@ -5,16 +5,17 @@ const NavLogoStyled = styled.div`
   font-size: 120%;
   color: black;
   font-weight: 600;
+  
+  @media (max-width: 900px) {
+    font-size: 200%;
+    font-weight: 700;
+  }
 
   @media (max-width: 500px) {
     font-size: 140%;
     font-weight: 400;
   }
 
-  @media (max-width: 800px) {
-    font-size: 200%;
-    font-weight: 700;
-  }
 `;
 
 const NavBarActiveTogglerButtonStyled = styled.div`
@@ -22,7 +23,7 @@ const NavBarActiveTogglerButtonStyled = styled.div`
   right: 25px;
   display: none;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     display: flex;
   }
 `;
@@ -36,14 +37,14 @@ const NavSearchInputWrapperStyled = styled.div`
   width: 75%;
   height: 55px;
   position: relative;
+  
+  @media (max-width: 900px) {
+    width: 90%;
+    height: 45px;
+  }
 
   @media (max-width: 500px) {
     width: 100%;
-  }
-
-  @media (max-width: 800px) {
-    width: 90%;
-    height: 45px;
   }
 `;
 
@@ -54,7 +55,7 @@ const NavSearchInputLeadingIconStyled = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -70,7 +71,7 @@ const NavSearchInputStyled = styled.input`
   border: none;
   font-size: 110%;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     padding-inline: 25px;
     font-size: 100%;
   }
@@ -91,7 +92,7 @@ const NavSearchButtonStyled = styled.button`
   position: absolute;
   right: 0;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -107,7 +108,7 @@ const NavSearchButtonIconStyled = styled.button`
   right: 0;
   display: none;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     width: 60px;
     font-size: 90%;
     height: 45px;
@@ -123,7 +124,7 @@ const NavFilterButtonStyled = styled.button`
   color: white;
   background: ${PINK_COLOR};
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     height: 45px;
   }
 `;
@@ -133,11 +134,11 @@ const NavSearchBarAndFilterButtonWrapperStyled = styled.div`
   display: flex;
   gap: 25px;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     width: 60%;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     width: 66%;
   }
 
@@ -153,7 +154,7 @@ const NavSearchBarWithLogoWrappperStyled = styled.div`
   justify-content: space-between;
   margin-bottom: 12px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;

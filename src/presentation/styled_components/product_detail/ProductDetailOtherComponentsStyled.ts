@@ -6,8 +6,12 @@ const ProductDetailWrapperStyled = styled.div`
   height: 100%;
   margin: 25px auto;  
   
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     width: 85%;
+  }
+
+  @media (max-width: 900px) {
+    width: 90%;
   }
 
   @media (max-width: 500px) {
@@ -36,7 +40,7 @@ const ProductDetailKeyStyled = styled.div`
   color: gray;
   text-transform: capitalize;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     font-size: 15px;
   }
 
@@ -56,7 +60,7 @@ const ProductDetailValueStyled = styled.div<{
   color: ${(props) => props.color || "black"};
   text-transform: ${(props) => props.textTransform || "none"};
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     font-size: 15px;
   }
 
@@ -91,7 +95,7 @@ const ActionButtonStyled = styled.button<{ color?: string }>`
     border: 2px solid ${(props) => props.color ?? PRIMARY_COLOR};
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     width: 300px;
     height: 60px;
     font-size: 18px;
@@ -122,7 +126,7 @@ const OutlineActionButtonStyled = styled.button<{ color?: string }>`
     border: 2px solid transparent;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     width: 300px;
     height: 60px;
     font-size: 18px;

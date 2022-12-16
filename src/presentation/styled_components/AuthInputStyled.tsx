@@ -22,7 +22,7 @@ const AuthInputStyled = styled.input`
     border-color: gray;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     padding: 1em;
     font-size: 16px;
   }
@@ -41,7 +41,7 @@ const AuthInputWrapperStyled = styled.div`
   align-items: center;
   margin: 0 auto;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     width: 300px;
   }
 

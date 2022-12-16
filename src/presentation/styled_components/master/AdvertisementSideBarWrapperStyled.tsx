@@ -2,9 +2,14 @@ import styled from "styled-components";
 import { PRIMARY_COLOR } from "../../constants/colors";
 
 const AdvertisementSideBarWrapperStyled = styled.div<{ marginTop: number }>`
-  width: 25%;
+  width: 30%;
   background: white;
   margin-top: ${(props) => props.marginTop};
+
+  @media (max-width: 1200px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 
   @media (max-width: 800px) {
     width: 80%;
