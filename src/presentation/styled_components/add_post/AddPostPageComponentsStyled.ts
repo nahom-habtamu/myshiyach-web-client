@@ -25,6 +25,20 @@ const AddPostInputWrapperStyled = styled.div`
   }
 `;
 
+
+const AddPostSingleInputWrapperStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`
+
+const AddPostErrorStyled = styled.label`
+  font-size: 16px;
+  margin-left: 15px;
+  color: red;
+`
+
+
 const AddPostInputStyled = styled.input`
   width: 92%;
   height: 60px;
@@ -116,6 +130,8 @@ export {
   AddPostWrapperStyled,
   AddPostInputWrapperStyled,
   AddPostInputStyled,
+  AddPostErrorStyled,
+  AddPostSingleInputWrapperStyled,
   AddPostDesciptionInputStyled,
   AddPostActionButtonsWrapperStyled,
   AddPostActionButtonStyled,

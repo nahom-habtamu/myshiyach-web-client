@@ -86,6 +86,7 @@ const AddPostPage = () => {
         )}
         {currentInputPage === 1 && inputValue.mainCategory !== "" && (
           <SecondPageAddPostForm
+            pickedImages={pickedImages}
             onPictureChanged={(urlImages: string[], pickedImages: File[]) => {
               setInputValue({ ...inputValue, productImages: urlImages });
               setPickedImages(pickedImages);

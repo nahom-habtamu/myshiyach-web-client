@@ -3,14 +3,10 @@ import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
   AddPostActionButtonStyled,
   AddPostActionButtonsWrapperStyled,
-  AddPostDesciptionInputStyled,
-  AddPostInputStyled,
   AddPostInputWrapperStyled,
 } from "../../styled_components/add_post/AddPostPageComponentsStyled";
-import {
-  FilterDropDownInputStyled,
-  FilterDropDownOptionStyled,
-} from "../../styled_components/home/HomeFilterModalStyled";
+import ProductDropDownInput, { DropDownItemData } from "../common/ProductDropDownInput";
+import ProductInput from "../common/ProductInput";
 
 const FirstPageAddPostForm = ({
   onFormSubmitted,
@@ -21,31 +17,28 @@ const FirstPageAddPostForm = ({
   onFormValueChanged: Function;
   formState: AddPostPageInputState;
 }) => {
+
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
   );
+
   const renderDropDownInput = (
-    placeHolder: string,
+    label: string,
     objectKey: string,
-    items: DropDownItemData[]
+    items: DropDownItemData[],
   ) => {
     return (
-      <FilterDropDownInputStyled
-        placeholder={placeHolder}
+      <ProductDropDownInput
         value={(formState as any)[objectKey] ?? ""}
-        onChange={(e) =>
+        onChange={(e: any) =>
           onFormValueChanged({
             ...formState,
             [objectKey]: e.target.value,
           })
         }
-      >
-        {items.map((i) => (
-          <FilterDropDownOptionStyled value={i.value}>
-            {i.title.split(";")[0]}
-          </FilterDropDownOptionStyled>
-        ))}
-      </FilterDropDownInputStyled>
+        dropDownItems={items}
+        label={label}
+      />
     );
   };
 
@@ -70,6 +63,13 @@ const FirstPageAddPostForm = ({
       };
     }) as DropDownItemData[];
   };
+
+  const handleNextPressed = () => {
+    if (formState.mainCategory && formState.subCategory && formState.title && formState.description && formState.price) {
+      onFormSubmitted(formState);
+    }
+  }
+
   return (
     <AddPostInputWrapperStyled style={{ paddingTop: "35px" }}>
       {renderDropDownInput(
@@ -83,48 +83,46 @@ const FirstPageAddPostForm = ({
           "subCategory",
           parseSubCategoryToDropdown()
         )}
-      <AddPostInputStyled
-        type="text"
-        placeholder="Title"
-        onChange={(e) =>
+
+      <ProductInput
+        placeHolder="Title"
+        onChanged={(e: any) =>
           onFormValueChanged({
             ...formState,
             title: e.target.value,
           })
         }
       />
-      <AddPostDesciptionInputStyled
-        placeholder="Description"
-        cols={6}
-        onChange={(e) =>
+
+      <ProductInput
+        placeHolder="Description"
+        isBigInput
+        onChanged={(e: any) =>
           onFormValueChanged({
             ...formState,
             description: e.target.value,
           })
         }
       />
-      <AddPostInputStyled
+
+      <ProductInput
+        placeHolder="Price"
         type="number"
-        placeholder="Price"
-        onChange={(e) =>
+        onChanged={(e: any) =>
           onFormValueChanged({
             ...formState,
             price: parseFloat(e.target.value),
           })
         }
       />
+
       <AddPostActionButtonsWrapperStyled>
-        <AddPostActionButtonStyled onClick={() => onFormSubmitted(formState)}>
+        <AddPostActionButtonStyled onClick={handleNextPressed}>
           Next
         </AddPostActionButtonStyled>
       </AddPostActionButtonsWrapperStyled>
     </AddPostInputWrapperStyled>
   );
-
-  type DropDownItemData = {
-    value: string;
-    title: string;
-  };
 };
 
 export default FirstPageAddPostForm;

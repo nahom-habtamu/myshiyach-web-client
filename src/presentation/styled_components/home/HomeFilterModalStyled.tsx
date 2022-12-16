@@ -75,6 +75,25 @@ const FilterPriceInputWrapperStyled = styled.div`
   justify-content: space-between;
 `;
 
+const FilterDropDownInputAndLabelAndErrorWrapperStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`
+
+const FilterDropDownLabelStyled = styled.label`
+  font-size: 18px;
+  margin-left: 15px;
+  font-weight: bold;
+  font-style: italic;
+`
+
+const FilterDropDownErrorStyled = styled.label`
+  font-size: 16px;
+  margin-left: 15px;
+  color: red;
+`
+
 const FilterDropDownInputStyled = styled.select`
   height: 60px;
   width: 92%;
@@ -202,6 +221,9 @@ export {
   FilterPriceInputWrapperStyled,
   FilterPriceInputStyled,
   FilterLongInputStyled,
+  FilterDropDownInputAndLabelAndErrorWrapperStyled,
+  FilterDropDownLabelStyled,
+  FilterDropDownErrorStyled,
   FilterDropDownInputStyled,
   FilterDropDownOptionStyled,
   FilterRadioLabelStyled,

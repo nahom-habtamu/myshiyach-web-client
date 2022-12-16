@@ -3,14 +3,11 @@ import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
   AddPostActionButtonStyled,
   AddPostActionButtonsWrapperStyled,
-  AddPostInputStyled,
   AddPostInputWrapperStyled,
 } from "../../styled_components/add_post/AddPostPageComponentsStyled";
-import {
-  FilterDropDownInputStyled,
-  FilterDropDownOptionStyled,
-} from "../../styled_components/home/HomeFilterModalStyled";
 import ImagePicker from "../common/ImagePicker";
+import ProductDropDownInput, { DropDownItemData } from "../common/ProductDropDownInput";
+import ProductInput from "../common/ProductInput";
 
 const SecondPageAddPostForm = ({
   onFormSubmitted,
@@ -18,11 +15,13 @@ const SecondPageAddPostForm = ({
   onPictureChanged,
   onFormValueChanged,
   formState,
+  pickedImages
 }: {
   onFormSubmitted: Function;
   onCancel: Function;
   onPictureChanged: Function;
   onFormValueChanged: Function;
+  pickedImages: File[];
   formState: AddPostPageInputState;
 }) => {
   const getDataNeededToAddPostState = useAppSelector(
@@ -30,27 +29,22 @@ const SecondPageAddPostForm = ({
   );
 
   const renderDropDownInput = (
-    placeHolder: string,
+    label: string,
     objectKey: string,
     items: DropDownItemData[]
   ) => {
     return (
-      <FilterDropDownInputStyled
-        placeholder={placeHolder}
+      <ProductDropDownInput
+        dropDownItems={items}
+        label={label}
         value={(formState as any)[objectKey] ?? ""}
-        onChange={(e) =>
+        onChange={(e: any) =>
           onFormValueChanged({
             ...formState,
             [objectKey]: e.target.value,
           })
         }
-      >
-        {items.map((i) => (
-          <FilterDropDownOptionStyled value={i.value}>
-            {i.title.split(";")[0]}
-          </FilterDropDownOptionStyled>
-        ))}
-      </FilterDropDownInputStyled>
+      />
     );
   };
 
@@ -59,10 +53,14 @@ const SecondPageAddPostForm = ({
     title: string,
     items: DropDownItemData[]
   ) => {
+
+    let value = (formState as any)["productDetail"][objectKey] ? 
+      (formState as any)["productDetail"][objectKey]["value"] :
+      "";
     return (
-      <FilterDropDownInputStyled
-        placeholder={title.split(";")[0]}
-        onChange={(e) =>
+      <ProductDropDownInput
+        label={title.split(";")[0]}
+        onChange={(e: any) =>
           onFormValueChanged({
             ...formState,
             productDetail: {
@@ -74,13 +72,8 @@ const SecondPageAddPostForm = ({
             },
           })
         }
-      >
-        {items.map((i) => (
-          <FilterDropDownOptionStyled value={i.value}>
-            {i.title.split(";")[0]}
-          </FilterDropDownOptionStyled>
-        ))}
-      </FilterDropDownInputStyled>
+        dropDownItems={items}
+        value={value} />
     );
   };
 
@@ -117,10 +110,9 @@ const SecondPageAddPostForm = ({
         );
       } else {
         return (
-          <AddPostInputStyled
-            type="text"
-            placeholder={requiredField.objectKey}
-            onChange={(e) =>
+          <ProductInput
+            placeHolder={requiredField.objectKey}
+            onChanged={(e: any) =>
               onFormValueChanged({
                 ...formState,
                 productDetail: {
@@ -138,6 +130,26 @@ const SecondPageAddPostForm = ({
     });
   };
 
+  const handlePostPressed = () => {
+    if ((formState.productImages.length > 0 || pickedImages.length > 0) &&
+      formState.city && formState.contactPhone && formState.productDetail
+    ) {
+      let categorySelected = getDataNeededToAddPostState.result?.categories.find(
+        (c) => c._id === formState.mainCategory
+      );
+      let validInputsCount = 0;
+      for (let i = 0; i < categorySelected!.requiredFields.length; i++) {
+        const requiredField = categorySelected!.requiredFields[i];
+        if ((formState.productDetail as any)[requiredField!.objectKey]) {
+          validInputsCount++;
+        }
+      }
+      if (validInputsCount === categorySelected!.requiredFields.length) {
+        onFormSubmitted(formState);
+      }
+    }
+  }
+
   return (
     <AddPostInputWrapperStyled>
       <ImagePicker
@@ -148,33 +160,28 @@ const SecondPageAddPostForm = ({
       />
       {renderDropDownInput("City", "city", parseCityToDropdown())}
 
-      <AddPostInputStyled
-        type="text"
-        placeholder="Contact Person"
-        onChange={(e) =>
+      <ProductInput
+        placeHolder="Contact Person"
+        onChanged={(e: any) =>
           onFormValueChanged({
             ...formState,
             contactPhone: e.target.value,
           })
         }
       />
+
       {buildOtherRequiredFeildInputs()}
 
       <AddPostActionButtonsWrapperStyled>
         <AddPostActionButtonStyled isOutlined onClick={() => onCancel()}>
           Cancel
         </AddPostActionButtonStyled>
-        <AddPostActionButtonStyled onClick={() => onFormSubmitted(formState)}>
+        <AddPostActionButtonStyled onClick={handlePostPressed}>
           Post
         </AddPostActionButtonStyled>
       </AddPostActionButtonsWrapperStyled>
     </AddPostInputWrapperStyled>
   );
-
-  type DropDownItemData = {
-    value: string;
-    title: string;
-  };
 };
 
 export default SecondPageAddPostForm;
