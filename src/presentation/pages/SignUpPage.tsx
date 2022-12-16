@@ -13,11 +13,10 @@ const SignUpPage = () => {
   const dispatch = useAppDispatch();
   const authPhoneNumberState = useAppSelector((state) => state.authPhoneNumber);
 
-  const [name, setName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
+  const [name, setName] = useState<string | null>("");
+  const [userName, setUserName] = useState<string | null>("");
+  const [password, setPassword] = useState<string | null>("");
+  const [passwordRepeat, setPasswordRepeat] = useState<string | null>("");
 
   const handleNameInputChanged = (e: any) => {
     setName(e.target.value);
@@ -25,10 +24,6 @@ const SignUpPage = () => {
 
   const handleUserNameInputChanged = (e: any) => {
     setUserName(e.target.value);
-  };
-
-  const handleEmailInputChanged = (e: any) => {
-    setEmail(e.target.value);
   };
 
   const handlePasswordInputChanged = (e: any) => {
@@ -40,29 +35,33 @@ const SignUpPage = () => {
   };
 
   const handleSignUpSubmission = () => {
-    window.recaptchaVerifier = new firebaseConfig.RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "normal",
-      },
-      firebaseConfig.auth
-    );
-    dispatch(
-      authenticatePhoneNumber({
-        phoneNumber: userName,
-        verifier: window.recaptchaVerifier,
-      })
-    );
+    if (userName && password && passwordRepeat && name) {
+      window.recaptchaVerifier = new firebaseConfig.RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "normal",
+        },
+        firebaseConfig.auth
+      );
+      dispatch(
+        authenticatePhoneNumber({
+          phoneNumber: userName!,
+          verifier: window.recaptchaVerifier,
+        })
+      );
+    }
   };
 
   const handleAfterPhoneNumberVerified = (verificationId: string) => {
     const signUpRequest = {
-      fullName: name,
-      password: password,
-      phoneNumber: userName,
+      fullName: name!,
+      password: password!,
+      phoneNumber: userName!,
     };
 
-    // WILL CALL THE SIGN UP API AFTER OTP VERIFICATION IS COMPLETED
+    console.log(signUpRequest);
+    
+
     const afterOtpVerificationCompletedCallback = () => {
       dispatch(createUser(signUpRequest));
     };
@@ -81,11 +80,11 @@ const SignUpPage = () => {
 
   return (
     <SignUpPageContent
+      password={password}
       authPhoneNumberState={authPhoneNumberState}
       afterVerificationCallback={handleAfterPhoneNumberVerified}
       onPasswordChanged={handlePasswordInputChanged}
       onUsernameChanged={handleUserNameInputChanged}
-      onEmailChanged={handleEmailInputChanged}
       onNameChanged={handleNameInputChanged}
       onPasswordRepeatChanged={handlePasswordRepeatInputChanged}
       onFormSubmitted={handleSignUpSubmission}

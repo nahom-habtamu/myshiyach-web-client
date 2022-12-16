@@ -68,9 +68,6 @@ const MasterComponent = (props: MasterComponentProps) => {
 
   return (
     <MasterPageContentWrapperStyled>
-      {loginState.isLoading ? (
-        <LoadingSpinner />
-      ) : (
         <>
           <NavBarTopContent />
           <NavBarLogoFilterAndSearchBarContent
@@ -96,7 +93,7 @@ const MasterComponent = (props: MasterComponentProps) => {
           </BodyContentWrapperStyled>
           {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
         </>
-      )}
+      
     </MasterPageContentWrapperStyled>
   );
 };

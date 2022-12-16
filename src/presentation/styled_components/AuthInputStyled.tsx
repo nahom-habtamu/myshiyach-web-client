@@ -1,9 +1,21 @@
 import styled from "styled-components";
 import { PRIMARY_COLOR } from "../constants/colors";
 
-const AuthInputStyled = styled.input`
+const AuthInputWithErrorWrapperStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+`
+
+const AuthInputError = styled.div`
+  font-size: 15px;
+  color: red;
+`
+
+const AuthInputStyled = styled.input<{ hasError?: boolean }>`
   background: white;
-  border: 1px solid #cec8c8;
+  border: 1px solid ${props => props.hasError ? 'red' : '#cec8c8'};
   border-radius: 20px;
   color: ${PRIMARY_COLOR};
   padding: 1em 0.3em 1em 1em;
@@ -16,10 +28,10 @@ const AuthInputStyled = styled.input`
     color: lightgray;
   }
   :focus {
-    border-color: gray;
+    border-color: ${props => props.hasError ? 'red' : 'gray'};
   }
   ::hover {
-    border-color: gray;
+    border-color: ${props => props.hasError ? 'red' : 'gray'};
   }
 
   @media (max-width: 900px) {
@@ -42,7 +54,7 @@ const AuthInputWrapperStyled = styled.div`
   margin: 0 auto;
 
   @media (max-width: 900px) {
-    width: 300px;
+    width: 350px;
   }
 
   @media (max-width: 500px) {
@@ -54,4 +66,5 @@ const SpaceStyled = styled.div`
   height: 25px;
 `;
 
-export { AuthInputStyled, AuthInputWrapperStyled, SpaceStyled };
+
+export { AuthInputStyled, AuthInputWrapperStyled, SpaceStyled, AuthInputError, AuthInputWithErrorWrapperStyled };

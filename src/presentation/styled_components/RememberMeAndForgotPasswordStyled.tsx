@@ -60,7 +60,7 @@ const ForgotPasswordStyled = styled.div`
 const RememberMeAndForgotPassWrapperStyled = styled.div`
   width: 400px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 15px auto;
 
   @media (max-width: 800px) {

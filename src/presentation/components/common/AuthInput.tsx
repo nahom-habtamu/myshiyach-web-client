@@ -1,19 +1,40 @@
-import { AuthInputStyled } from "../../styled_components/AuthInputStyled";
+import { useState } from "react";
+import { AuthInputError, AuthInputStyled, AuthInputWithErrorWrapperStyled } from "../../styled_components/AuthInputStyled";
 
 type AuthInputProps = {
   type: string;
   placeHolder: string;
   obsecureText: boolean;
   onChanged: Function;
+  validator: Function;
 };
 
 const AuthInput = (props: AuthInputProps) => {
+
+  const [error, setError] = useState("");
+
+
+  const onInputChanged = (e: any) => {
+    const value = e.target.value;
+    const validationResult = props.validator(value);
+    setError(validationResult);
+    props.onChanged(validationResult === null ? e : { target: { value: null } });
+  }
+
+  const hasError = error !== null && error.length > 0;
+
   return (
-    <AuthInputStyled
-      type={props.type}
-      placeholder={props.placeHolder}
-      onChange={(e) => props.onChanged(e)}
-    />
+    <AuthInputWithErrorWrapperStyled>
+      {
+        hasError && <AuthInputError>{error}</AuthInputError>
+      }
+      <AuthInputStyled
+        hasError={hasError}
+        type={props.type}
+        placeholder={props.placeHolder}
+        onChange={(e) => onInputChanged(e)}
+      />
+    </AuthInputWithErrorWrapperStyled>
   );
 };
 

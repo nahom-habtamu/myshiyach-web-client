@@ -18,25 +18,18 @@ import RememberMeAndForgotPassword from "./RememberMeAndForgotPassword";
 import { useAppDispatch } from "../../../store/storeHooks";
 import { toggleLoginPromptModalClose } from "../../../core/action_creators/common/login_prompt_action_creators";
 import { HomePageRoute } from "../../pages/HomePage";
+import { ForgotPasswordPageRoute } from "../../pages/ForgotPasswordPage";
 
 type LoginPageContentProps = {
   loginState: LoginState;
   onUsernameChanged: Function;
   onPasswordChanged: Function;
   onFormSubmitted: Function;
-  onRememberMeChanged: Function;
 };
 
 const LoginPageContent = (props: LoginPageContentProps) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const renderLoginContentBasedOnState = () => {
-    if (props.loginState.isLoading) {
-      return <h1>Loading........</h1>;
-    } else {
-      return <ActionButton text="Login" onPressed={props.onFormSubmitted} />;
-    }
-  };
 
   useEffect(() => {
     if (props.loginState.result.token.length > 0) {
@@ -45,6 +38,23 @@ const LoginPageContent = (props: LoginPageContentProps) => {
       return;
     }
   }, [props.loginState.result.token]);
+
+
+  const userNameValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter PhoneNumber";
+    else if (value.length < 10)
+      return "Enter Proper PhoneNumber";
+    return null;
+  }
+
+  const passwordValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Password";
+    else if (value.length < 6)
+      return "Enter Password Greator than 6 characters";
+    return null;
+  }
 
   return (
     <>
@@ -61,6 +71,7 @@ const LoginPageContent = (props: LoginPageContentProps) => {
           }
           obsecureText={false}
           placeHolder="Phone Number"
+          validator={userNameValidator}
         />
         <SpaceStyled />
         <AuthInput
@@ -70,21 +81,20 @@ const LoginPageContent = (props: LoginPageContentProps) => {
           }
           obsecureText={false}
           placeHolder="Password"
+          validator={passwordValidator}
         />
         <SpaceStyled />
         {props.loginState.error.length > 0 && (
           <>
-            <h1 color="red">{props.loginState.error}</h1>
+            <div style={{ color: 'red', fontSize: '15px' }}>{props.loginState.error}</div>
             <SpaceStyled />
           </>
         )}
       </AuthInputWrapperStyled>
 
-      <RememberMeAndForgotPassword
-        onRememberMeChanged={() => props.onRememberMeChanged()}
-      />
+      <RememberMeAndForgotPassword onForgotPassword={() => history.push(ForgotPasswordPageRoute)} />
 
-      {renderLoginContentBasedOnState()}
+      <ActionButton text='Login' onPressed={props.onFormSubmitted} />
 
       <AuthToggleAction
         textOne="Don't have an account ?"

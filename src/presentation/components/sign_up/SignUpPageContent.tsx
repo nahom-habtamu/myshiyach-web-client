@@ -18,10 +18,10 @@ type SignUpPageContentProps = {
   afterVerificationCallback: Function;
   onUsernameChanged: Function;
   onNameChanged: Function;
-  onEmailChanged: Function;
   onPasswordChanged: Function;
   onPasswordRepeatChanged: Function;
   onFormSubmitted: Function;
+  password: string | null;
 };
 
 const SignUpPageContent = (props: SignUpPageContentProps) => {
@@ -38,7 +38,41 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
       return <ActionButton text="Continue" onPressed={props.onFormSubmitted} />;
     }
   };
-  
+
+  const userNameValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Username";
+    else if (value.length < 10)
+      return "Enter Proper Username";
+    return null;
+  }
+
+  const nameValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Name";
+    else if (value.length < 5)
+      return "Enter Proper Name";
+    return null;
+  }
+
+  const passwordValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Password";
+    else if (value.length < 6)
+      return "Enter Password Greator than 6 characters";
+    return null;
+  }
+
+  const passwordRepeatValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Password";
+    else if (value.length < 6)
+      return "Enter Password Greator than 6 characters";
+    else if (value !== props.password)
+      return "Passwords Don't Match";
+    return null;
+  }
+
   return (
     <>
       <LoginPageHeaderOneStyled>Getting Started</LoginPageHeaderOneStyled>
@@ -53,6 +87,7 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
           }
           obsecureText={false}
           placeHolder="Name"
+          validator={nameValidator}
         />
         <SpaceStyled />
         <AuthInput
@@ -62,15 +97,7 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
           }
           obsecureText={false}
           placeHolder="Username"
-        />
-        <SpaceStyled />
-        <AuthInput
-          type="email"
-          onChanged={(e: React.ChangeEvent<HTMLInputElement>) =>
-            props.onEmailChanged(e)
-          }
-          obsecureText={false}
-          placeHolder="Email"
+          validator={userNameValidator}
         />
         <SpaceStyled />
         <AuthInput
@@ -80,6 +107,8 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
           }
           obsecureText={false}
           placeHolder="Password"
+          validator={passwordValidator}
+
         />
         <SpaceStyled />
         <AuthInput
@@ -89,11 +118,12 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
           }
           obsecureText={false}
           placeHolder="Confirm Password"
+          validator={passwordRepeatValidator}
         />
         <SpaceStyled />
         {
           <>
-            <h6 color="red">{"Error"}</h6>
+            <div style={{ color: 'red', fontSize: '15px' }}>{props.authPhoneNumberState.error}</div>
             <SpaceStyled />
           </>
         }

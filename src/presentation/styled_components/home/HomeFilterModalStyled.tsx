@@ -3,11 +3,11 @@ import { PRIMARY_COLOR } from "../../constants/colors";
 
 const FilterModalStyled = styled.div`
   width: 700px;
-  height: 600px;
   background-color: white;
   position: fixed;
-  top: 120;
-  right: 240;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -18,27 +18,17 @@ const FilterModalStyled = styled.div`
 
   @media (max-width: 1200px) {
     width: 520px;
-    height: 540px;
     gap: 18px;  
-    top: 80;
-    right: 50;
   }
 
   @media (max-width: 900px) {
     width: 400px;
-    height: 520px;
     gap: 15px;  
-    top: 100;
-    right: 40;
   }
   
   @media (max-width: 500px) {
     width: 350px;
-    height: 450px;
     gap: 15px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);  
   }
 `;
 

@@ -32,7 +32,7 @@ const ChangePasswordPage = () => {
   const [passwordRepeat, setPasswordRepeat] = useState("");
 
   const handleChangePassword = () => {
-    if (password === passwordRepeat) {
+    if (password && passwordRepeat) {
       dispatch(changePassword(args.phoneNumber, password));
     }
   };
@@ -51,6 +51,24 @@ const ChangePasswordPage = () => {
     }
   };
 
+  const passwordValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Password";
+    else if (value.length < 6)
+      return "Enter Password Greator than 6 characters";
+    return null;
+  }
+
+  const passwordRepeatValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Password";
+    else if (value.length < 6)
+      return "Enter Password Greator than 6 characters";
+    else if (value !== password)
+      return "Passwords Don't Match";
+    return null;
+  }
+
   return (
     <>
       <LoginPageHeaderOneStyled>Change Your Password</LoginPageHeaderOneStyled>
@@ -65,6 +83,7 @@ const ChangePasswordPage = () => {
           }
           obsecureText={true}
           placeHolder="Password"
+          validator={passwordValidator}
         />
         <SpaceStyled />
         <AuthInput
@@ -74,6 +93,7 @@ const ChangePasswordPage = () => {
           }
           obsecureText={true}
           placeHolder="Confirm Password"
+          validator={passwordRepeatValidator}
         />
         <SpaceStyled />
         {

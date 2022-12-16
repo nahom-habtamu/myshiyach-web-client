@@ -5,9 +5,8 @@ import { login } from "../../core/action_creators/auth/login_action_creators";
 import LoginPageContent from "../components/login_page/LoginPageContent";
 
 const LoginPage = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [userName, setUserName] = useState<string | null>("");
+  const [password, setPassword] = useState<string | null>("");
 
   const dispatch = useAppDispatch();
   const loginState = useAppSelector((state) => state.login);
@@ -21,8 +20,10 @@ const LoginPage = () => {
   };
 
   const handleLoginSubmission = () => {
-    const loginRequest = { userName, password };
-    dispatch(login(loginRequest));
+    if (userName && password) {
+      const loginRequest = { userName: userName!, password: password! };
+      dispatch(login(loginRequest));
+    }
   };
 
   return (
@@ -31,7 +32,6 @@ const LoginPage = () => {
       onPasswordChanged={handlePasswordInputChanged}
       onUsernameChanged={handleUserNameInputChanged}
       onFormSubmitted={handleLoginSubmission}
-      onRememberMeChanged={() => setRememberMe(!rememberMe)}
     />
   );
 };

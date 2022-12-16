@@ -1,29 +1,12 @@
 import {
   ForgotPasswordStyled,
   RememberMeAndForgotPassWrapperStyled,
-  RememberMeCheckBoxStyled,
-  RememberMeLabelStyled,
 } from "../../styled_components/RememberMeAndForgotPasswordStyled";
 
-type RememberMeAndForgotPasswordProps = {
-  onRememberMeChanged: Function;
-};
-
-const RememberMeAndForgotPassword = (
-  props: RememberMeAndForgotPasswordProps
-) => {
+const RememberMeAndForgotPassword = ({ onForgotPassword }: { onForgotPassword: Function }) => {
   return (
     <RememberMeAndForgotPassWrapperStyled>
-      <RememberMeLabelStyled>
-        <RememberMeCheckBoxStyled
-          type="checkbox"
-          onChange={() => props.onRememberMeChanged()}
-        />
-        Remember Me
-      </RememberMeLabelStyled>
-      <ForgotPasswordStyled
-        onClick={() => console.log("Heading to Forgot Password")}
-      >
+      <ForgotPasswordStyled onClick={() => onForgotPassword()}>
         Forgot Password ?
       </ForgotPasswordStyled>
     </RememberMeAndForgotPassWrapperStyled>

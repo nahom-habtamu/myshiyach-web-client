@@ -22,7 +22,7 @@ const ForgotPasswordPage = () => {
   const history = useHistory();
 
   const dispatch = useAppDispatch();
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState<string | null>("");
 
   const authPhoneNumberState = useAppSelector((state) => state.authPhoneNumber);
 
@@ -31,19 +31,21 @@ const ForgotPasswordPage = () => {
   }, [dispatch]);
 
   const handleForgotPassSubmission = () => {
-    window.recaptchaVerifier = new firebaseConfig.RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "normal",
-      },
-      firebaseConfig.auth
-    );
-    dispatch(
-      authenticatePhoneNumber({
-        phoneNumber: userName,
-        verifier: window.recaptchaVerifier,
-      })
-    );
+    if (userName) {
+      window.recaptchaVerifier = new firebaseConfig.RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "normal",
+        },
+        firebaseConfig.auth
+      );
+      dispatch(
+        authenticatePhoneNumber({
+          phoneNumber: userName,
+          verifier: window.recaptchaVerifier,
+        })
+      );
+    }
   };
 
   const afterVerificationCallback = (verificationId: string) => {
@@ -79,6 +81,15 @@ const ForgotPasswordPage = () => {
       );
     }
   };
+
+  const userNameValidator = (value: string) => {
+    if (value.length === 0)
+      return "Enter Username";
+    else if (value.length < 10)
+      return "Enter Proper Username";
+    return null;
+  }
+
   return (
     <>
       <LoginPageHeaderOneStyled>Lost Your Password</LoginPageHeaderOneStyled>
@@ -91,6 +102,7 @@ const ForgotPasswordPage = () => {
           }
           obsecureText={false}
           placeHolder="Username"
+          validator={userNameValidator}
         />
         <SpaceStyled />
         {
