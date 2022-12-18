@@ -8,7 +8,7 @@ const port = process.env.PORT || 6300;
 
 app.use(express.static(publicPath));
 
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
 
