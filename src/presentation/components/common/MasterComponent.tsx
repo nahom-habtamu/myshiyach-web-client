@@ -68,32 +68,33 @@ const MasterComponent = (props: MasterComponentProps) => {
 
   return (
     <MasterPageContentWrapperStyled>
-        <>
-          <NavBarTopContent />
-          <NavBarLogoFilterAndSearchBarContent
-            collapsed={collapsed}
-            onNavBarTogglePressed={(value: boolean) => setCollapsed(value)}
-            onFilterButtonPressed={() => setIsOpen(!isOpen)}
-          />
+      <>
+        <NavBarTopContent />
+        <NavBarLogoFilterAndSearchBarContent
+          activePage={props.activePage}
+          collapsed={collapsed}
+          onNavBarTogglePressed={(value: boolean) => setCollapsed(value)}
+          onFilterButtonPressed={() => setIsOpen(!isOpen)}
+        />
 
-          <BodyContentWrapperStyled>
-            <NavBarSideContent
-              collapsed={collapsed}
-              unreadMessagesCount={unseenMessages}
-              activePage={props.activePage}
-              onItemTapped={(value: string) => history.push(value)}
-            />
-            <AdvertisementAndChildrenWrapperStyled>
-              {props.children}
-              <AdvertisementSideBarWrapperStyled marginTop={73}>
-                <AdvertisementSideBarItemStyled />
-                <AdvertisementSideBarItemStyled />
-              </AdvertisementSideBarWrapperStyled>
-            </AdvertisementAndChildrenWrapperStyled>
-          </BodyContentWrapperStyled>
-          {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
-        </>
-      
+        <BodyContentWrapperStyled>
+          <NavBarSideContent
+            collapsed={collapsed}
+            unreadMessagesCount={unseenMessages}
+            activePage={props.activePage}
+            onItemTapped={(value: string) => history.push(value)}
+          />
+          <AdvertisementAndChildrenWrapperStyled>
+            {props.children}
+            <AdvertisementSideBarWrapperStyled marginTop={73}>
+              <AdvertisementSideBarItemStyled />
+              <AdvertisementSideBarItemStyled />
+            </AdvertisementSideBarWrapperStyled>
+          </AdvertisementAndChildrenWrapperStyled>
+        </BodyContentWrapperStyled>
+        {isOpen && <FilterProductsModel onClose={() => setIsOpen(false)} />}
+      </>
+
     </MasterPageContentWrapperStyled>
   );
 };

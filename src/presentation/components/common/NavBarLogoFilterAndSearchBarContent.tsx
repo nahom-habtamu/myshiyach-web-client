@@ -22,14 +22,20 @@ import FilterCriteria from "../../../core/models/filter/filter_criteria";
 import { PINK_COLOR } from "../../constants/colors";
 import { FaRegWindowClose } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { HomePageRoute } from "../../pages/HomePage";
+import { useHistory } from "react-router-dom";
 
 type Props = {
   onFilterButtonPressed: Function;
   onNavBarTogglePressed: Function;
   collapsed: boolean;
+  activePage: string;
 };
 
 const NavBarLogoFilterAndSearchBarContent = (props: Props) => {
+
+  const history = useHistory();
+
   const filterCriteria = useAppSelector((state) => state.filterCriteria);
   const [keyword, setKeyword] = useState(filterCriteria.keyword ?? "");
 
@@ -42,6 +48,9 @@ const NavBarLogoFilterAndSearchBarContent = (props: Props) => {
         keyword,
       } as FilterCriteria)
     );
+    if (props.activePage != HomePageRoute) {
+      history.push(HomePageRoute);
+    }
   };
 
   return (
@@ -81,9 +90,12 @@ const NavBarLogoFilterAndSearchBarContent = (props: Props) => {
               <CiSearch size={ICON_SIZE_MEDIUM} color={PINK_COLOR} />
             </NavSearchButtonIconStyled>
           </NavSearchInputWrapperStyled>
-          <NavFilterButtonStyled onClick={() => props.onFilterButtonPressed()}>
-            <BsFilter size={ICON_SIZE_MEDIUM} />
-          </NavFilterButtonStyled>
+          {
+            props.activePage === HomePageRoute &&
+            <NavFilterButtonStyled onClick={() => props.onFilterButtonPressed()}>
+              <BsFilter size={ICON_SIZE_MEDIUM} />
+            </NavFilterButtonStyled>
+          }
         </NavSearchBarAndFilterButtonWrapperStyled>
       </NavSearchBarWithLogoWrappperStyled>
       <NavSearchBarBottomBorderStyled />
