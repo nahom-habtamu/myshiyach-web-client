@@ -5,20 +5,16 @@ import MasterComponent from "../components/common/MasterComponent";
 import {
   AddPostActionButtonStyled,
   AddPostActionButtonsWrapperStyled,
-  AddPostDesciptionInputStyled,
-  AddPostInputStyled,
 } from "../styled_components/add_post/AddPostPageComponentsStyled";
 import {
   EditPostInputWrapperStyled,
   EditProductPageWrapperStyled,
 } from "../styled_components/edit_product/EditProductPageComponentsStyled";
-import {
-  FilterDropDownInputStyled,
-  FilterDropDownOptionStyled,
-} from "../styled_components/home/HomeFilterModalStyled";
 import { getDataNeededToEditPost } from "../../core/action_creators/common/get_data_needed_to_edit_post_action_creators";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useParams } from "react-router-dom";
+import ProductDropDownInput, { DropDownItemData } from "../components/common/ProductDropDownInput";
+import ProductInput from "../components/common/ProductInput";
 import { editProduct } from "../../core/action_creators/product/edit_product_action_creators";
 
 export type EditPostPageInputState = {
@@ -82,14 +78,32 @@ const EditProductPage = () => {
   }, [editProductState.product]);
 
   const handleUpdatingProduct = () => {
-    dispatch(
-      editProduct({
-        product: formState,
-        token: loginState.result.token,
-        id: id,
-        imagesToUpload: pickedImages,
-      })
-    );
+    if ((
+      formState.price && formState.description && formState.title && formState.mainCategory &&
+      formState.subCategory && formState.productImages.length > 0 || pickedImages.length > 0) &&
+      formState.city && formState.contactPhone && formState.productDetail
+    ) {
+      let categorySelected = result?.categories.find(
+        (c) => c._id === formState.mainCategory
+      );
+      let validInputsCount = 0;
+      for (let i = 0; i < categorySelected!.requiredFields.length; i++) {
+        const requiredField = categorySelected!.requiredFields[i];
+        if ((formState.productDetail as any)[requiredField!.objectKey]["value"] !== null) {
+          validInputsCount++;
+        }
+      }
+      if (validInputsCount === categorySelected!.requiredFields.length) {
+        dispatch(
+          editProduct({
+            product: formState,
+            token: loginState.result.token,
+            id: id,
+            imagesToUpload: pickedImages,
+          })
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -109,27 +123,22 @@ const EditProductPage = () => {
   }, [result?.product]);
 
   const renderDropDownInput = (
-    placeHolder: string,
+    label: string,
     objectKey: string,
     items: DropDownItemData[]
   ) => {
     return (
-      <FilterDropDownInputStyled
-        placeholder={placeHolder}
+      <ProductDropDownInput
         value={(formState as any)[objectKey] ?? ""}
-        onChange={(e) =>
+        onChange={(e: any) =>
           setFormState({
             ...formState,
             [objectKey]: e.target.value,
           })
         }
-      >
-        {items?.map((i) => (
-          <FilterDropDownOptionStyled value={i.value}>
-            {i.title.split(";")[0]}
-          </FilterDropDownOptionStyled>
-        ))}
-      </FilterDropDownInputStyled>
+        dropDownItems={items}
+        label={label}
+      />
     );
   };
 
@@ -156,16 +165,17 @@ const EditProductPage = () => {
   };
 
   const renderOtherDropDownInput = (
-    title: string,
     objectKey: string,
+    title: string,
     items: DropDownItemData[]
   ) => {
-    let productDetailValue = (formState.productDetail as any)[objectKey];
+    let value = (formState as any)["productDetail"][objectKey] ?
+      (formState as any)["productDetail"][objectKey]["value"] :
+      "";
     return (
-      <FilterDropDownInputStyled
-        placeholder={title}
-        value={productDetailValue ? productDetailValue["value"] : ""}
-        onChange={(e) =>
+      <ProductDropDownInput
+        label={title.split(";")[0]}
+        onChange={(e: any) =>
           setFormState({
             ...formState,
             productDetail: {
@@ -177,13 +187,8 @@ const EditProductPage = () => {
             },
           })
         }
-      >
-        {items.map((i) => (
-          <FilterDropDownOptionStyled value={i.value}>
-            {i.title.split(";")[0]}
-          </FilterDropDownOptionStyled>
-        ))}
-      </FilterDropDownInputStyled>
+        dropDownItems={items}
+        value={value} />
     );
   };
 
@@ -214,8 +219,8 @@ const EditProductPage = () => {
     return categorySelected?.requiredFields.map((requiredField) => {
       if (requiredField.isDropDown) {
         return renderOtherDropDownInput(
-          requiredField.title,
           requiredField.objectKey,
+          requiredField.title,
           parseOtherInputDropdown(requiredField.dropDownValues)
         );
       } else {
@@ -223,11 +228,11 @@ const EditProductPage = () => {
           requiredField.objectKey
         ];
         return (
-          <AddPostInputStyled
+          <ProductInput
             type="text"
-            placeholder={requiredField.objectKey}
-            value={productDetailValue ? productDetailValue["value"] : ""}
-            onChange={(e) =>
+            placeHolder={requiredField.objectKey}
+            value={productDetailValue}
+            onChanged={(e: any) =>
               setFormState({
                 ...formState,
                 productDetail: {
@@ -281,10 +286,11 @@ const EditProductPage = () => {
                 "subCategory",
                 parseSubCategoryToDropdown()
               )}
-            <AddPostInputStyled
+
+            <ProductInput
               type="text"
-              placeholder="Title"
-              onChange={(e) =>
+              placeHolder="Title"
+              onChanged={(e: any) =>
                 setFormState({
                   ...formState,
                   title: e.target.value,
@@ -292,10 +298,12 @@ const EditProductPage = () => {
               }
               value={formState.title ?? ""}
             />
-            <AddPostDesciptionInputStyled
-              placeholder="Description"
-              cols={6}
-              onChange={(e) =>
+
+            <ProductInput
+              isBigInput
+              type="text"
+              placeHolder="Description"
+              onChanged={(e: any) =>
                 setFormState({
                   ...formState,
                   description: e.target.value,
@@ -303,10 +311,12 @@ const EditProductPage = () => {
               }
               value={formState.description ?? ""}
             />
-            <AddPostInputStyled
+
+
+            <ProductInput
               type="number"
-              placeholder="Price"
-              onChange={(e) =>
+              placeHolder="Price"
+              onChanged={(e: any) =>
                 setFormState({
                   ...formState,
                   price: parseFloat(e.target.value),
@@ -314,12 +324,13 @@ const EditProductPage = () => {
               }
               value={formState.price ?? ""}
             />
+
             {renderDropDownInput("City", "city", parseCityToDropdown())}
 
-            <AddPostInputStyled
+            <ProductInput
               type="text"
-              placeholder="Contact Person"
-              onChange={(e) =>
+              placeHolder="Contact Person"
+              onChanged={(e: any) =>
                 setFormState({
                   ...formState,
                   contactPhone: e.target.value,
@@ -327,6 +338,7 @@ const EditProductPage = () => {
               }
               value={formState.contactPhone ?? ""}
             />
+
             {buildOtherRequiredFeildInputs()}
 
             {handleRenderingSaveButton()}
@@ -335,11 +347,6 @@ const EditProductPage = () => {
       </EditProductPageWrapperStyled>
     </MasterComponent>
   );
-
-  type DropDownItemData = {
-    value: string;
-    title: string;
-  };
 };
 
 export default EditProductPage;

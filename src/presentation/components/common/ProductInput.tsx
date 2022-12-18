@@ -11,6 +11,7 @@ type ProductInputProps = {
     isBigInput?: boolean,
     placeHolder: string;
     type?: string;
+    value?: string | number;
 }
 
 const ProductInput = (props: ProductInputProps) => {
@@ -39,11 +40,13 @@ const ProductInput = (props: ProductInputProps) => {
                         type={props.type ?? 'text'}
                         placeholder={props.placeHolder}
                         onChange={(e) => onChanged(e)}
+                        value={props.value}
                     /> :
                     <AddPostDesciptionInputStyled
                         cols={6}
                         placeholder={props.placeHolder}
                         onChange={(e) => onChanged(e)}
+                        value={props.value}
                     />
             }
             {

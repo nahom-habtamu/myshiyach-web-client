@@ -23,13 +23,13 @@ const ProductDropDownInput = (props: ProductDropDownInputProps) => {
     return null;
   }
 
-  let items = [
+  let items = props.dropDownItems ? [
     {
       value: null,
       title: 'Please Select'
     },
     ...props.dropDownItems
-  ];
+  ] : [];
 
   const [error, setError] = useState<string | null>("");
 
@@ -41,22 +41,27 @@ const ProductDropDownInput = (props: ProductDropDownInputProps) => {
   }
 
   return (
-    <FilterDropDownInputAndLabelAndErrorWrapperStyled>
-      <FilterDropDownLabelStyled>{`* ${props.label}`}</FilterDropDownLabelStyled>
-      <FilterDropDownInputStyled
-        value={props.value}
-        onChange={(e) => onDropDownChanged(e)}
-      >
-        {items.map((i) => (
-          <FilterDropDownOptionStyled value={i.value ?? ""}>
-            {i.title.split(";")[0]}
-          </FilterDropDownOptionStyled>
-        ))}
-      </FilterDropDownInputStyled>
+    <>
       {
-        error !== null && error.length > 0 && <FilterDropDownErrorStyled>{error}</FilterDropDownErrorStyled>
+        items.length > 0 &&
+        <FilterDropDownInputAndLabelAndErrorWrapperStyled>
+          <FilterDropDownLabelStyled>{`* ${props.label}`}</FilterDropDownLabelStyled>
+          <FilterDropDownInputStyled
+            value={props.value}
+            onChange={(e) => onDropDownChanged(e)}
+          >
+            {items.map((i) => (
+              <FilterDropDownOptionStyled value={i.value ?? ""}>
+                {i.title.split(";")[0]}
+              </FilterDropDownOptionStyled>
+            ))}
+          </FilterDropDownInputStyled>
+          {
+            error !== null && error.length > 0 && <FilterDropDownErrorStyled>{error}</FilterDropDownErrorStyled>
+          }
+        </FilterDropDownInputAndLabelAndErrorWrapperStyled>
       }
-    </FilterDropDownInputAndLabelAndErrorWrapperStyled>
+    </>
   )
 }
 
