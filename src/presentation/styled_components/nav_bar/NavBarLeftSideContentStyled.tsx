@@ -14,7 +14,7 @@ const NavBarLeftSideContentWrapperStyled = styled.div<{ collapsed : boolean}>`
   @media (max-width: 900px) {
     width: 100px;
     position: absolute;
-    z-index: 100;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;

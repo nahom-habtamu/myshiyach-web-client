@@ -3,6 +3,8 @@ import { FiSettings } from "react-icons/fi";
 import { GoDiffAdded } from "react-icons/go";
 import { HiOutlineChatBubbleBottomCenter } from "react-icons/hi2";
 import { RiHomeFill } from "react-icons/ri";
+import { toggleLoginPromptModalOpen } from "../../../core/action_creators/common/login_prompt_action_creators";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import { AddPostPageRoute } from "../../pages/AddPostPage";
 import { ChatListPageRoute } from "../../pages/ChatListPage";
@@ -23,6 +25,19 @@ type NavBarSideContentProps = {
 };
 
 const NavBarSideContent = (props: NavBarSideContentProps) => {
+
+  const loginState = useAppSelector((state) => state.login);
+  const dispatch = useAppDispatch();
+
+
+  const handleNavigation = (route : string) => {
+    if (loginState.result.token.length === 0) {
+      dispatch(toggleLoginPromptModalOpen());
+    } else {
+      props.onItemTapped(route);
+    }
+  };
+
   return (
     <NavBarLeftSideContentWrapperStyled collapsed={props.collapsed}>
       <NavBarLeftSideContentItemStyled
@@ -33,7 +48,7 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === ChatListPageRoute}
-        onClick={() => props.onItemTapped(ChatListPageRoute)}
+        onClick={() => handleNavigation(ChatListPageRoute)}
       >
         {props.unreadMessagesCount > 0 && (
           <NavBarLeftSideContentItemUnseenStyled>
@@ -44,19 +59,19 @@ const NavBarSideContent = (props: NavBarSideContentProps) => {
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === AddPostPageRoute}
-        onClick={() => props.onItemTapped(AddPostPageRoute)}
+        onClick={() => handleNavigation(AddPostPageRoute)}
       >
         <GoDiffAdded size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === SavedPostsPageRoute}
-        onClick={() => props.onItemTapped(SavedPostsPageRoute)}
+        onClick={() => handleNavigation(SavedPostsPageRoute)}
       >
         <FaSave size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>
       <NavBarLeftSideContentItemStyled
         isActive={props.activePage === SettingPageRoute}
-        onClick={() => props.onItemTapped(SettingPageRoute)}
+        onClick={() => handleNavigation(SettingPageRoute)}
       >
         <FiSettings size={ICON_SIZE_MEDIUM} />
       </NavBarLeftSideContentItemStyled>

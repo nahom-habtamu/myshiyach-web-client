@@ -12,6 +12,7 @@ import {
   ProductListItemsWrapperStyled,
   ProductListItemTitleStyled,
   ProductListItemWrapperStyled,
+  ProductListItemNoMoreProductsStyled,
 } from "../../styled_components/common/ProductListItemStyled";
 
 import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
@@ -60,47 +61,53 @@ const PaginatedProducts = ({ products, hasMargin }: { products: Product[], hasMa
 
   return (
     <ProductListItemsWrapperStyled hasMargin={hasMargin}>
-      {products.map((p) => (
-        <ProductListItemWrapperStyled
-          key={p._id}
-          onClick={() => handleGoingToProductDetail(p)}
-        >
-          <ProductListItemImageWrapperStyled>
-            <ProductListItemImageStyled src={p.productImages[0]} />
-          </ProductListItemImageWrapperStyled>
-          <ProductListItemOtherContentWrapper>
-            <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
-            <ProductListItemCityStyled>{p.city.split(';')[0]}</ProductListItemCityStyled>
-            <ProductListItemDescriptionStyled>
-              {p.description.slice(0, 150)}
-            </ProductListItemDescriptionStyled>
-            <ProductListItemPriceStyled>
-              {formatToPrice(p.price)} Birr
-            </ProductListItemPriceStyled>
+      {
+        products.length === 0 ?
+          <ProductListItemNoMoreProductsStyled>
+            No Products
+          </ProductListItemNoMoreProductsStyled>
+          :
+          products.map((p) => (
+            <ProductListItemWrapperStyled
+              key={p._id}
+              onClick={() => handleGoingToProductDetail(p)}
+            >
+              <ProductListItemImageWrapperStyled>
+                <ProductListItemImageStyled src={p.productImages[0]} />
+              </ProductListItemImageWrapperStyled>
+              <ProductListItemOtherContentWrapper>
+                <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
+                <ProductListItemCityStyled>{p.city.split(';')[0]}</ProductListItemCityStyled>
+                <ProductListItemDescriptionStyled>
+                  {p.description.slice(0, 150)}
+                </ProductListItemDescriptionStyled>
+                <ProductListItemPriceStyled>
+                  {formatToPrice(p.price)} Birr
+                </ProductListItemPriceStyled>
 
-            {p.createdBy !== loginState.result.currentUser?._id && (
-              <ProductListItemFavoritesButtonWrapperStyled>
-                {favoriteProductsState.products.filter((sp) => sp._id === p._id)
-                  .length === 0 ? (
-                  <MdFavoriteBorder
-                    size={ICON_SIZE_MEDIUM}
-                    onClick={(e) => handleSavingProduct(e, p)}
-                  />
-                ) : (
-                  <MdFavorite
-                    size={ICON_SIZE_MEDIUM}
-                    onClick={(e) => handleDeletingSavedProduct(e, p)}
-                  />
+                {p.createdBy !== loginState.result.currentUser?._id && (
+                  <ProductListItemFavoritesButtonWrapperStyled>
+                    {favoriteProductsState.products.filter((sp) => sp._id === p._id)
+                      .length === 0 ? (
+                      <MdFavoriteBorder
+                        size={ICON_SIZE_MEDIUM}
+                        onClick={(e) => handleSavingProduct(e, p)}
+                      />
+                    ) : (
+                      <MdFavorite
+                        size={ICON_SIZE_MEDIUM}
+                        onClick={(e) => handleDeletingSavedProduct(e, p)}
+                      />
+                    )}
+                  </ProductListItemFavoritesButtonWrapperStyled>
                 )}
-              </ProductListItemFavoritesButtonWrapperStyled>
-            )}
 
-            <ProductListItemRefreshedTimeStyled>
-              {p.refreshedAt}
-            </ProductListItemRefreshedTimeStyled>
-          </ProductListItemOtherContentWrapper>
-        </ProductListItemWrapperStyled>
-      ))}
+                <ProductListItemRefreshedTimeStyled>
+                  {p.refreshedAt}
+                </ProductListItemRefreshedTimeStyled>
+              </ProductListItemOtherContentWrapper>
+            </ProductListItemWrapperStyled>
+          ))}
     </ProductListItemsWrapperStyled>
   );
 };

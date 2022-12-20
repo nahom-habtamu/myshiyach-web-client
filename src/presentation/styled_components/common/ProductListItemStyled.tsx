@@ -6,6 +6,11 @@ const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
   background: white;
   padding: 15px;
   width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 500px) {
     margin: 15px 0px;

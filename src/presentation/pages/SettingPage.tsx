@@ -18,9 +18,9 @@ import {
 } from "../styled_components/setting/SettingPageComponentsStyled";
 import { useHistory } from "react-router-dom";
 import { MyPostsPageRoute } from "./MyPostsPage";
-import { LoginPageRoute } from "./LoginPage";
 import { logOut } from "../../core/action_creators/common/log_out_action_creators";
 import { loginClear } from "../../core/action_creators/auth/login_action_creators";
+import { HomePageRoute } from "./HomePage";
 
 const SettingPage = () => {
   const loginState = useAppSelector((state) => state.login);
@@ -31,7 +31,7 @@ const SettingPage = () => {
   const handleLogOut = () => {
     dispatch(loginClear());
     logOut();
-    history.push(LoginPageRoute);
+    history.push(HomePageRoute);
   }
 
   return (

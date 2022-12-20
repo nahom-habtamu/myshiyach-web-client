@@ -59,7 +59,7 @@ const HomePage = () => {
   const renderLoadMoreButton = () => {
     var objectToRender = state.isLoadingMore ? (
       <LoadingSpinner />
-    ) : state.paginated?.productsWithPageAndLimit.next ? (
+    ) : state.paginated?.productsWithPageAndLimit.next && (
       <LoadMoreButton
         text="Load More"
         onPressed={() =>
@@ -72,12 +72,7 @@ const HomePage = () => {
           )
         }
       />
-    ) : (
-      <ProductListItemNoMoreProductsStyled>
-        No More Products
-      </ProductListItemNoMoreProductsStyled>
     );
-
     return objectToRender;
   };
 
