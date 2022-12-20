@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getConversationsByUser } from "../../core/action_creators/chat/get_conversations_by_user_action_creators";
-import Conversation from "../../core/models/chat/conversation";
+import { getConversationsWithStrangerInfoByUser } from "../../core/action_creators/chat/get_conversations_with_stranger_info_by_user_action_creators";
+import { ConversationWithUserInformation } from "../../core/repositories/chat_repository";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatListItem from "../components/chat/ChatListItem";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -12,7 +12,7 @@ const ChatListPage = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [conversationsWithStrangerInfo, setConversationsWithSrrangerInfo] = useState<ConversationWithUserInformation[]>([]);
 
   const loginState = useAppSelector((state) => state.login);
   const conversationSnapshotState = useAppSelector(
@@ -22,13 +22,17 @@ const ChatListPage = () => {
   useEffect(() => {
     if (loginState.result.currentUser != null) {
       dispatch(
-        getConversationsByUser(onSnapshot, loginState.result.currentUser._id)
+        getConversationsWithStrangerInfoByUser(
+          onSnapshot,
+          loginState.result.currentUser._id,
+          loginState.result.token
+        )
       );
     }
   }, [loginState.result, dispatch]);
 
-  const onSnapshot = (conversationsOnRealTime: Conversation[]) => {
-    setConversations(conversationsOnRealTime);
+  const onSnapshot = (conversationsWithStrangerInfoOnRealTime: ConversationWithUserInformation[]) => {
+    setConversationsWithSrrangerInfo(conversationsWithStrangerInfoOnRealTime);
   };
 
   useEffect(() => {
@@ -44,11 +48,11 @@ const ChatListPage = () => {
         {conversationSnapshotState.isLoading ? (
           <LoadingSpinner />
         ) : (
-          conversations.map((e) => (
+          conversationsWithStrangerInfo.map((e) => (
             <ChatListItem
-              conversation={e}
-              key={e.id}
-              onClick={() => history.push(`/chatDetail/${e.id}`)}
+              conversationWithStrangerInfo={e}
+              key={e.conversation.id}
+              onClick={() => history.push(`/chatDetail/${e.conversation.id}`)}
             />
           ))
         )}

@@ -10,22 +10,53 @@ import {
 import firebaseConfig from "../config/firebase_config";
 import Conversation from "../models/chat/conversation";
 import Message from "../models/chat/message";
+import User from "../models/user/user";
+import { getUserById } from "./user_repository";
+
+export type ConversationWithUserInformation = {
+  conversation: Conversation,
+  strangerUser: User
+};
 
 export const getAllConversationsSnapshotData = async (
-  onSnapshotCallBack: (conversations: Conversation[]) => void,
-  id: string
+  onSnapshotCallBack: (conversationsWithUserInformation: ConversationWithUserInformation[]) => void,
+  id: string,
+  token: string
 ) => {
   let collectionRef = collection(firebaseConfig.firestore, "conversations");
-  return onSnapshot(collectionRef, (snapshot) => {
+  return onSnapshot(collectionRef, async (snapshot) => {
     let conversations = snapshot.docs
       .filter(
         (e) =>
           checkIfCurrentUserIsMember(e, id) && checkIfMessagesAreNotEmpty(e)
       )
       .map((e) => parseQuerySnapshotToConversation(e));
-    onSnapshotCallBack(conversations);
+
+    let conversationsWithUserInformation: ConversationWithUserInformation[] = [];
+
+    for (let i = 0; i < conversations.length; i++) {
+      const conversation = conversations[i];
+      const strangerId = getStrangerId(conversation, id);
+      const strangerUser = await getUserById({
+        id: strangerId,
+        token: token
+      });
+      conversationsWithUserInformation.push({
+        strangerUser,
+        conversation
+      })
+    }
+
+    onSnapshotCallBack(conversationsWithUserInformation);
   });
 };
+
+const getStrangerId = (conversation: Conversation, id: string) => {
+  return conversation.memberOne !== id
+    ? conversation.memberOne
+    : conversation.memberTwo;
+};
+
 
 function checkIfMessagesAreNotEmpty(e: any): boolean {
   return e.data()["messages"].length > 0;

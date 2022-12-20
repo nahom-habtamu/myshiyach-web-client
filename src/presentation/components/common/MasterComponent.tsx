@@ -10,10 +10,9 @@ import NavBarLogoFilterAndSearchBarContent from "./NavBarLogoFilterAndSearchBarC
 import NavBarSideContent from "./NavBarSideContent";
 import NavBarTopContent from "./NavBarTopContent";
 import FilterProductsModel from "./FilterProductsModal";
-import Conversation from "../../../core/models/chat/conversation";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
-import { getConversationsByUser } from "../../../core/action_creators/chat/get_conversations_by_user_action_creators";
-import LoadingSpinner from "./LoadingSpinner";
+import { getConversationsWithStrangerInfoByUser } from "../../../core/action_creators/chat/get_conversations_with_stranger_info_by_user_action_creators";
+import { ConversationWithUserInformation } from "../../../core/repositories/chat_repository";
 
 type MasterComponentProps = {
   activePage: string;
@@ -26,7 +25,7 @@ const MasterComponent = (props: MasterComponentProps) => {
   const dispatch = useAppDispatch();
 
   const [collapsed, setCollapsed] = useState(true);
-  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [conversationsWithStrangerInfo, setConversationsWithStrangerInfo] = useState<ConversationWithUserInformation[]>([]);
 
   const loginState = useAppSelector((state) => state.login);
   const conversationSnapshotState = useAppSelector(
@@ -36,13 +35,13 @@ const MasterComponent = (props: MasterComponentProps) => {
   useEffect(() => {
     if (loginState.result.currentUser?._id != null) {
       dispatch(
-        getConversationsByUser(onSnapshot, loginState.result.currentUser?._id)
+        getConversationsWithStrangerInfoByUser(onSnapshot, loginState.result.currentUser?._id, loginState.result.token)
       );
     }
   }, [loginState.result, dispatch]);
 
-  const onSnapshot = (conversationsOnRealTime: Conversation[]) => {
-    setConversations(conversationsOnRealTime);
+  const onSnapshot = (conversationsWithStrangerInfoOnRealTime: ConversationWithUserInformation[]) => {
+    setConversationsWithStrangerInfo(conversationsWithStrangerInfoOnRealTime);
   };
 
   useEffect(() => {
@@ -54,9 +53,9 @@ const MasterComponent = (props: MasterComponentProps) => {
 
   const getUnseenMessagesCount = () => {
     let totalMesagesCount = 0;
-    for (let i = 0; i < conversations.length; i++) {
-      const element = conversations[i];
-      let count = element.messages.filter(
+    for (let i = 0; i < conversationsWithStrangerInfo.length; i++) {
+      const element = conversationsWithStrangerInfo[i];
+      let count = element.conversation.messages.filter(
         (m) => !m.isSeen && m.recieverId === loginState.result.currentUser?._id
       ).length;
       totalMesagesCount += count;

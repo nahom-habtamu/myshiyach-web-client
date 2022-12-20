@@ -1,10 +1,5 @@
-import { useEffect } from "react";
-import {
-  clearGetUserById,
-  getUserById,
-} from "../../../core/action_creators/user/get_user_by_id_action_creators";
-import Conversation from "../../../core/models/chat/conversation";
-import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
+import { ConversationWithUserInformation } from "../../../core/repositories/chat_repository";
+import { useAppSelector } from "../../../store/storeHooks";
 import {
   ChatListItemImageStyled,
   ChatListItemLastMessageStyled,
@@ -16,36 +11,17 @@ import {
 } from "../../styled_components/chat/ChatListComponentsStyled";
 
 const ChatListItem = ({
-  conversation,
+  conversationWithStrangerInfo,
   onClick,
 }: {
-  conversation: Conversation;
+  conversationWithStrangerInfo: ConversationWithUserInformation;
   onClick: Function;
 }) => {
-  const dispatch = useAppDispatch();
 
   const loginState = useAppSelector((state) => state.login);
-  const getStrangerInfoState = useAppSelector((state) => state.getUserById);
-
-  const getStrangerId = () => {
-    return conversation.memberOne !== loginState.result.currentUser?._id
-      ? conversation.memberOne
-      : conversation.memberTwo;
-  };
-
-  let strangerId = getStrangerId();
-
-  useEffect(() => {
-    dispatch(clearGetUserById());
-    dispatch(getUserById(strangerId, loginState.result.token));
-  }, [
-    dispatch,
-    strangerId,
-    loginState.result.token
-  ]);
 
   const buildLastMessage = () => {
-    var lastMessage = conversation.messages[conversation.messages.length - 1];
+    var lastMessage = conversationWithStrangerInfo.conversation.messages[conversationWithStrangerInfo.conversation.messages.length - 1];
     if (lastMessage.type === "IMAGE") {
       return "image";
     }
@@ -54,13 +30,13 @@ const ChatListItem = ({
 
   const buildTimeFormat = () => {
     let createdTime = new Date(
-      conversation.messages[conversation.messages.length - 1].createdDateTime
+      conversationWithStrangerInfo.conversation.messages[conversationWithStrangerInfo.conversation.messages.length - 1].createdDateTime
     );
     return createdTime.getHours() + ":" + createdTime.getMinutes();
   };
 
   const renderUnseenMessagesCount = () => {
-    let count = conversation.messages.filter(
+    let count = conversationWithStrangerInfo.conversation.messages.filter(
       (m) => !m.isSeen && m.recieverId === loginState.result.currentUser?._id
     ).length;
     if (count > 0) {
@@ -71,27 +47,23 @@ const ChatListItem = ({
 
   return (
     <ChatListItemWrapperStyled onClick={() => onClick()}>
-      {getStrangerInfoState.isLoading ? (
-        <h1>LOADING..........</h1>
-      ) : (
-        <>
-          <ChatListItemImageStyled>
-            {getStrangerInfoState.user?.fullName[0].toUpperCase()}
-          </ChatListItemImageStyled>
-          <ChatListItemTextWrapperStyled>
-            <ChatListItemNameStyled>
-              {getStrangerInfoState.user?.fullName}
-            </ChatListItemNameStyled>
-            <ChatListItemLastMessageStyled>
-              {buildLastMessage()}
-            </ChatListItemLastMessageStyled>
-          </ChatListItemTextWrapperStyled>
-          <ChatListItemLastMessageTimeStyled>
-            {buildTimeFormat()}
-          </ChatListItemLastMessageTimeStyled>
-          {renderUnseenMessagesCount()}
-        </>
-      )}
+      <ChatListItemImageStyled>
+        {conversationWithStrangerInfo.strangerUser?.fullName[0].toUpperCase()}
+      </ChatListItemImageStyled>
+      <ChatListItemTextWrapperStyled>
+        <ChatListItemNameStyled>
+          {conversationWithStrangerInfo.strangerUser?.fullName}
+        </ChatListItemNameStyled>
+        <ChatListItemLastMessageStyled>
+          {buildLastMessage()}
+        </ChatListItemLastMessageStyled>
+      </ChatListItemTextWrapperStyled>
+      <ChatListItemLastMessageTimeStyled>
+        {buildTimeFormat()}
+      </ChatListItemLastMessageTimeStyled>
+      {renderUnseenMessagesCount()}
+
+
     </ChatListItemWrapperStyled>
   );
 };

@@ -16,7 +16,7 @@ import selectedProductReducer from "./selectProductReducer";
 import getProductDetailReducer from "./getProductDetailReducer";
 import getDataNeededToAddPostReducer from "./getDataNeededToAddPostReducer";
 import getDataNeededToEditPostReducer from "./getDataNeededToEditPostReducer";
-import getConversationsByUserReducer from "./getConversationsByUserReducer";
+import getConversationsByUserReducer from "./getConversationsWithStrangerInfoByUserReducer";
 import getChatDetailReducer from "./getChatDetailReducer";
 import getStrangerUserReducer from "./getStrangerUserReducer";
 import addTextMessageReducer from "./addTextMessageReducer";

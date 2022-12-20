@@ -14,7 +14,7 @@ import CreateProductSaga from "./createProductSaga";
 import DeleteProductSaga from "./deleteProductSaga";
 import GetDataNeededToAddPostSaga from "./getDataNeededToAddPostSaga";
 import GetDataNeededToEditPostSaga from "./getDataNeededToEditPostSaga";
-import GetConversationsByUserSaga from "./getConversationsByUserSaga";
+import GetConversationsByUserSaga from "./getConversationsWithStrangerInfoByUserSaga";
 import GetChatDetailSaga from "./getChatDetailSaga";
 import AddTextMessageSaga from "./addTextMessageSaga";
 import AddImageMessageSaga from "./addImageMessageSaga";
