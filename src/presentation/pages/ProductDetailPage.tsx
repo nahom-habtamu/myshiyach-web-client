@@ -26,7 +26,6 @@ import ProductDetailSendMessageButton from "../components/product_detail/Product
 import ProductDetailEditButton from "../components/product_detail/ProductDetailEditButton";
 import ProductDetailFavoritesButton from "../components/product_detail/ProductDetailFavoritesButton";
 import ProductDetailOtherInfo from "../components/product_detail/ProductDetailOtherInfo";
-import { HomePageRoute } from "./HomePage";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
@@ -55,7 +54,6 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (refreshProductState.product != null) {
-      // TODO updating product after refreshing
       dispatch(clearRefreshProduct());
     }
   }, [refreshProductState.product, dispatch]);
@@ -190,7 +188,7 @@ const ProductDetailPage = () => {
   };
 
   return (
-    <MasterComponent activePage={HomePageRoute}>
+    <MasterComponent activePage={ProductDetailPageRoute}>
       {productDetailState.isLoading ? (
         <LoadingSpinner />
       ) : (

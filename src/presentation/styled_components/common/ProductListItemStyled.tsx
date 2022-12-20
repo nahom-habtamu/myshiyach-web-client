@@ -5,7 +5,7 @@ const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
   margin: ${props => props.hasMargin ? '25px 50px' : '0px 0px'};
   background: white;
   padding: 15px;
-  width: 100%;
+  width: ${props => props.hasMargin ? '95%' : '100%'};
   min-height: 200px;
   display: flex;
   flex-direction: column;
