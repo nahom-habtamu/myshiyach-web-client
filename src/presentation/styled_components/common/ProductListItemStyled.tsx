@@ -6,6 +6,10 @@ const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
   background: white;
   padding: 15px;
   width: 100%;
+
+  @media (max-width: 500px) {
+    margin: 15px 0px;
+  }
 `;
 
 const ProductListItemWrapperStyled = styled.div`
