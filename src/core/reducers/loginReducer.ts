@@ -24,6 +24,8 @@ export default function loginReducer(
   action: loginActions.LoginActionType
 ): LoginState {
   switch (action.type) {
+    case loginActions.LOGIN_CLEAR: 
+      return initialState;
     case loginActions.LOGIN_LOADING:
       return {
         result: {

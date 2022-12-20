@@ -35,6 +35,12 @@ export async function saveUserToSession(
   }
 }
 
+export function removeUserFromSession() {
+  localStorage.removeItem(
+    "loggedInUser"
+  );
+}
+
 export async function getUserFromSession() {
   let data = localStorage.getItem("loggedInUser");
   if (data != null) {

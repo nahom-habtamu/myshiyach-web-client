@@ -8,6 +8,11 @@ export interface LoginAction {
   payload: LoginRequest;
 }
 
+export const LOGIN_CLEAR = "authActionTypes/LOGIN_CLEAR";
+export interface LoginClearAction {
+  type: typeof LOGIN_CLEAR;
+}
+
 export const LOGIN_UPDATE_FROM_PERSISTENCE =
   "authActionTypes/LOGIN_UPDATE_FROM_PERSISTENCE";
 export interface LoginUpdateFromPersistenceAction {
@@ -45,4 +50,5 @@ export type LoginActionType =
   | LoginLoadingAction
   | LoginFailureAction
   | LoginSuccessAction
+  | LoginClearAction
   | LoginUpdateFromPersistenceAction;

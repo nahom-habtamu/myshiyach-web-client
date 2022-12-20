@@ -4,6 +4,12 @@ import * as actions from "../../action_types/auth/login_action_types";
 import LoginResult from "../../models/auth/login_result";
 import User from "../../models/user/user";
 
+export const loginClear = (): actions.LoginClearAction => {
+  return {
+    type: actions.LOGIN_CLEAR,
+  };
+};
+
 export const login = (loginRequest: LoginRequest): actions.LoginAction => {
   return {
     type: actions.LOGIN,

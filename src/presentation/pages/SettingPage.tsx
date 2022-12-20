@@ -1,7 +1,7 @@
 import { BsFileEarmarkPostFill, BsTelephone } from "react-icons/bs";
 import { MdOutlineCropRotate, MdOutlinePrivacyTip } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
-import { useAppSelector } from "../../store/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import MasterComponent from "../components/common/MasterComponent";
 import UserInformation from "../components/common/UserInformation";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
@@ -18,10 +18,21 @@ import {
 } from "../styled_components/setting/SettingPageComponentsStyled";
 import { useHistory } from "react-router-dom";
 import { MyPostsPageRoute } from "./MyPostsPage";
+import { LoginPageRoute } from "./LoginPage";
+import { logOut } from "../../core/action_creators/common/log_out_action_creators";
+import { loginClear } from "../../core/action_creators/auth/login_action_creators";
 
 const SettingPage = () => {
   const loginState = useAppSelector((state) => state.login);
   const history = useHistory();
+
+  const dispatch = useAppDispatch();
+
+  const handleLogOut = () => {
+    dispatch(loginClear());
+    logOut();
+    history.push(LoginPageRoute);
+  }
 
   return (
     <MasterComponent activePage={SettingPageRoute}>
@@ -92,7 +103,7 @@ const SettingPage = () => {
                 </SettingTabItemKeyValueWrapperStyled>
               </SettingTabItemWrapperStyled>
 
-              <SettingTabItemWrapperStyled>
+              <SettingTabItemWrapperStyled onClick={handleLogOut}>
                 <SettingTabItemIconWrapperStyled>
                   <IoMdLogOut size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
