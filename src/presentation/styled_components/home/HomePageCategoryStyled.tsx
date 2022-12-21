@@ -5,7 +5,7 @@ type HomePageCategoryItemStyledProps = {
 };
 
 const HomePageCategoryItemStyled = styled.div<HomePageCategoryItemStyledProps>`
-  font-size: 17px;
+  font-size: 20px;
   color: ${(props) => (props.isActive ? "black" : "grey")};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
   border-bottom: 1px solid
