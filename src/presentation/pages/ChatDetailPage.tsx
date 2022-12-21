@@ -109,15 +109,12 @@ const ChatDetailPage = () => {
           onChange={(e) => setMessageContent(e.target.value)}
           value={messageContent}
         />
-        <ChatDetailAddMessageActionButtonWrapper>
-          <BiImages
-            size={ICON_SIZE_MEDIUM}
-            onClick={() => setIsSendMessageModalOpen(true)}
-          />
+        <ChatDetailAddMessageActionButtonWrapper onClick={() => setIsSendMessageModalOpen(true)}>
+          <BiImages size={ICON_SIZE_MEDIUM}/>
         </ChatDetailAddMessageActionButtonWrapper>
 
-        <ChatDetailAddMessageActionButtonWrapper>
-          <BiSend size={ICON_SIZE_MEDIUM} onClick={handleSendingTextMessage} />
+        <ChatDetailAddMessageActionButtonWrapper onClick={handleSendingTextMessage} >
+          <BiSend size={ICON_SIZE_MEDIUM} />
         </ChatDetailAddMessageActionButtonWrapper>
         {isSendMessageModalOpen && (
           <ChatDetailImageMessageSendingModal
@@ -125,7 +122,10 @@ const ChatDetailPage = () => {
             onImagePicked={(_: any, pickedImages: File[]) => {
               setPickedImages(pickedImages);
             }}
-            onSubmit={handleSendingImageMessage}
+            onSubmit={() => {
+              handleSendingImageMessage();
+              setIsSendMessageModalOpen(false);
+            }}
             pickedImages={pickedImages}
           />
         )}
