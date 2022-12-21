@@ -75,7 +75,6 @@ const MasterComponent = (props: MasterComponentProps) => {
           onNavBarTogglePressed={(value: boolean) => setCollapsed(value)}
           onFilterButtonPressed={() => setIsOpen(!isOpen)}
         />
-
         <BodyContentWrapperStyled>
           <NavBarSideContent
             collapsed={collapsed}

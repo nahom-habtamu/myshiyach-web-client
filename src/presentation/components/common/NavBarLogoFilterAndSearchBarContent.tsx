@@ -6,7 +6,9 @@ import {
   NavBarActiveTogglerButtonStyled,
   NavFilterButtonStyled,
   NavLogoAndActiveTogglerWrapper,
+  NavLogoImageStyled,
   NavLogoStyled,
+  NavLogoWrapperStyled,
   NavSearchBarAndFilterButtonWrapperStyled,
   NavSearchBarBottomBorderStyled,
   NavSearchBarWithLogoWrappperStyled,
@@ -70,7 +72,10 @@ const NavBarLogoFilterAndSearchBarContent = (props: Props) => {
               />
             )}
           </NavBarActiveTogglerButtonStyled>
-          <NavLogoStyled>MyShiyach</NavLogoStyled>
+          <NavLogoWrapperStyled onClick={() => history.push(HomePageRoute)}>
+            <NavLogoImageStyled src="/icon.jpg"/>
+            <NavLogoStyled>MyShiyach</NavLogoStyled>
+          </NavLogoWrapperStyled>
         </NavLogoAndActiveTogglerWrapper>
 
         <NavSearchBarAndFilterButtonWrapperStyled>

@@ -15,8 +15,23 @@ const NavLogoStyled = styled.div`
     font-size: 140%;
     font-weight: 400;
   }
-
 `;
+
+const NavLogoWrapperStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+`;
+
+const NavLogoImageStyled = styled.img`
+  width: 70px;
+  height: 70px;
+  object-fit: center center;
+`;
+
 
 const NavBarActiveTogglerButtonStyled = styled.div`
   top: 25px;
@@ -181,4 +196,6 @@ export {
   NavSearchBarWithLogoWrappperStyled,
   NavBarActiveTogglerButtonStyled,
   NavLogoAndActiveTogglerWrapper,
+  NavLogoWrapperStyled,
+  NavLogoImageStyled
 };
