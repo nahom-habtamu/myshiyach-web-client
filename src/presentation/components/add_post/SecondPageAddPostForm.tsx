@@ -24,6 +24,9 @@ const SecondPageAddPostForm = ({
   pickedImages: File[];
   formState: AddPostPageInputState;
 }) => {
+
+  const loginState = useAppSelector(state => state.login);
+
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
   );
@@ -54,7 +57,7 @@ const SecondPageAddPostForm = ({
     items: DropDownItemData[]
   ) => {
 
-    let value = (formState as any)["productDetail"][objectKey] ? 
+    let value = (formState as any)["productDetail"][objectKey] ?
       (formState as any)["productDetail"][objectKey]["value"] :
       "";
     return (
@@ -161,6 +164,7 @@ const SecondPageAddPostForm = ({
       {renderDropDownInput("City", "city", parseCityToDropdown())}
 
       <ProductInput
+        value={formState.contactPhone != null && formState.contactPhone.length === 0 ? loginState.result.currentUser?.phoneNumber : formState.contactPhone}
         placeHolder="Contact Person"
         onChanged={(e: any) =>
           onFormValueChanged({
