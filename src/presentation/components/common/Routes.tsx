@@ -30,6 +30,7 @@ import ForgotPasswordPage, {
 import ChangePasswordPage, {
   ChangePasswordPageRoute,
 } from "../../pages/ChangePasswordPage";
+import PostConfirmationPage, { PostConfirmationPageRoute } from "../../pages/PostConfirmationPage";
 
 const Routes = () => {
   return (
@@ -82,6 +83,9 @@ const Routes = () => {
         </Route>
         <Route exact path={MyPostsPageRoute}>
           <MyPostsPage />
+        </Route>        
+        <Route exact path={PostConfirmationPageRoute}>
+          <PostConfirmationPage />
         </Route>
       </Switch>
     </HashRouter>

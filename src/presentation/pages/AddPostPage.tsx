@@ -12,6 +12,7 @@ import SecondPageAddPostForm from "../components/add_post/SecondPageAddPostForm"
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { AddPostWrapperStyled } from "../styled_components/add_post/AddPostPageComponentsStyled";
 import MasterComponent from "../components/common/MasterComponent";
+import { PostConfirmationPageRoute } from "./PostConfirmationPage";
 
 export type AddPostPageInputState = {
   mainCategory: string;
@@ -58,7 +59,7 @@ const AddPostPage = () => {
 
   useEffect(() => {
     if (createProductState.product != null) {
-      history.push("/postConfirm");
+      history.push(PostConfirmationPageRoute);
     }
   }, [createProductState, history, dispatch]);
 
