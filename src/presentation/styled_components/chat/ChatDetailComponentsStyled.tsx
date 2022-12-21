@@ -41,6 +41,12 @@ const ChatDetailStrangerUserWrapperStyled = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  
+  :hover {
+    border-size: 1.5px;
+    cursor: pointer;
+    background: ${LIGHT_GRAY_COLOR}
+  }
 `;
 
 const ChatDetailStrangerUserAvatarStyled = styled.div`
@@ -143,9 +149,29 @@ const ChatDetailAddMessageInputStyled = styled.input`
   font-size: 20px;
   width: 80%;
   height: 100%;
-  border: 1px solid gray;
+  border: 2px solid gray;
   border-radius: 15px;
   outline: none;
+
+  :focus, :hover {
+    border-color: darkgray;
+    border-radius: 10px;
+  }
+`;
+
+const ChatDetailAddMessageActionButtonWrapper = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  transition: all 0.4s ease;
+
+  :hover {
+    background: darkgray;
+  }
 `;
 
 const ChatDetailGoToBottomButton = styled.div`
@@ -179,6 +205,7 @@ export {
   ChatDetailBubbleTimeIndicatorStyled,
   ChatDetailAddMessageWrapperStyled,
   ChatDetailAddMessageInputStyled,
+  ChatDetailAddMessageActionButtonWrapper,
   ChatDetailDateIndicatorStyled,
   ChatDetailGoToBottomButton,
 };

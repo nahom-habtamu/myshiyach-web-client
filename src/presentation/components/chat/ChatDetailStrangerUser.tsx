@@ -17,7 +17,7 @@ const ChatDetailStrangerUser = () => {
       if (splittedFullName && splittedFullName.length > 1) {
         return splittedFullName[0][0] + splittedFullName[1][0];
       } else {
-        return fullName;
+        return fullName[0];
       }
     }
   };

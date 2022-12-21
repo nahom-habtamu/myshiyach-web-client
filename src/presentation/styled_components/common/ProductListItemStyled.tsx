@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PINK_COLOR } from "../../constants/colors";
+import { LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
 
 const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
   margin: ${props => props.hasMargin ? '25px 50px' : '0px 0px'};
@@ -26,6 +26,13 @@ const ProductListItemWrapperStyled = styled.div`
   border-top: 1px solid black;
   padding-top: 15px;
   position: relative;
+  transition: all 0.5s ease;
+
+  :hover {
+    border-color: ${PINK_COLOR};
+    border-width: 3px;
+    cursor: pointer;
+  }
 
   @media (max-width: 1200px) {
     height: 135px;

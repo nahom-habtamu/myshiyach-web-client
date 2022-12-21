@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "../../store/storeHooks";
 
 import { displayPaginatedProducts } from "../../core/action_creators/product/display_paginated_products_action_creators";
 import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapperStyled";
-import PaginatedProducts from "../components/home_page/PaginatedProducts";
+import PaginatedProducts from "../components/common/PaginatedProducts";
 import FilterCategories from "../components/home_page/FilterCategories";
 import LoadMoreButton from "../components/home_page/LoadMoreButton";
 import { loadMoreProducts } from "../../core/action_creators/product/load_more_products_action_creators";
@@ -11,7 +11,6 @@ import MainCategory from "../../core/models/category/main_category";
 import { modifyFilterCriteria } from "../../core/action_creators/product/filter_criteria_action_creators";
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import { ProductListItemNoMoreProductsStyled } from "../styled_components/common/ProductListItemStyled";
 import MasterComponent from "../components/common/MasterComponent";
 
 const HomePage = () => {

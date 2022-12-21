@@ -15,6 +15,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
 import {
+  ChatDetailAddMessageActionButtonWrapper,
   ChatDetailAddMessageInputStyled,
   ChatDetailAddMessageWrapperStyled,
   ChatDetailWrapperStyled,
@@ -68,16 +69,18 @@ const ChatDetailPage = () => {
   }, []);
 
   const handleSendingTextMessage = () => {
-    const message: Message = {
-      content: messageContent,
-      createdDateTime: new Date().toISOString(),
-      isSeen: false,
-      recieverId: strangerUserState.user?._id ?? "",
-      senderId: loginState.result.currentUser!._id,
-      type: "TEXT",
-    };
-    setMessageContent("");
-    dispatch(addTextMessage({ conversationId: id, message }));
+    if (messageContent.length > 0) {
+      const message: Message = {
+        content: messageContent,
+        createdDateTime: new Date().toISOString(),
+        isSeen: false,
+        recieverId: strangerUserState.user?._id ?? "",
+        senderId: loginState.result.currentUser!._id,
+        type: "TEXT",
+      };
+      setMessageContent("");
+      dispatch(addTextMessage({ conversationId: id, message }));
+    }
   };
 
   const handleSendingImageMessage = () => {
@@ -106,11 +109,16 @@ const ChatDetailPage = () => {
           onChange={(e) => setMessageContent(e.target.value)}
           value={messageContent}
         />
-        <BiImages
-          size={ICON_SIZE_MEDIUM}
-          onClick={() => setIsSendMessageModalOpen(true)}
-        />
-        <BiSend size={ICON_SIZE_MEDIUM} onClick={handleSendingTextMessage} />
+        <ChatDetailAddMessageActionButtonWrapper>
+          <BiImages
+            size={ICON_SIZE_MEDIUM}
+            onClick={() => setIsSendMessageModalOpen(true)}
+          />
+        </ChatDetailAddMessageActionButtonWrapper>
+
+        <ChatDetailAddMessageActionButtonWrapper>
+          <BiSend size={ICON_SIZE_MEDIUM} onClick={handleSendingTextMessage} />
+        </ChatDetailAddMessageActionButtonWrapper>
         {isSendMessageModalOpen && (
           <ChatDetailImageMessageSendingModal
             onClose={() => setIsSendMessageModalOpen(false)}
@@ -129,8 +137,8 @@ const ChatDetailPage = () => {
     <MasterComponent activePage={ChatListPageRoute}>
       <ChatDetailWrapperStyled>
         {chatDetailState.isLoading ||
-        strangerUserState.isLoading ||
-        conversation == null ? (
+          strangerUserState.isLoading ||
+          conversation == null ? (
           <LoadingSpinner />
         ) : (
           renderMainContent()

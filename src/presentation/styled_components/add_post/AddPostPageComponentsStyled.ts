@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PRIMARY_COLOR } from "../../constants/colors";
+import { LIGHT_GRAY_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from "../../constants/colors";
 
 const AddPostWrapperStyled = styled.div`
   width: 95%;
@@ -55,6 +55,10 @@ const AddPostInputStyled = styled.input`
     color: grey;
   }
 
+  :hover {
+    border-color: black;
+  }
+
   @media (max-width: 800px) {
     height: 45px;
     font-size: 16px;
@@ -66,7 +70,6 @@ const AddPostInputStyled = styled.input`
     font-size: 14px; 
     border-radius: 5px;
   }
-
 `;
 
 const AddPostDesciptionInputStyled = styled.textarea`
@@ -82,6 +85,10 @@ const AddPostDesciptionInputStyled = styled.textarea`
 
   ::placeholder {
     color: grey;
+  }
+
+  :hover {
+    border-color: black;
   }
 
   @media (max-width: 800px) {
@@ -113,6 +120,10 @@ const AddPostActionButtonStyled = styled.button<{ isOutlined?: boolean }>`
   border: 1px solid ${(props) => (props.isOutlined ? PRIMARY_COLOR : "white")};
   color: ${(props) => (props.isOutlined ? PRIMARY_COLOR : "white")};
   
+  :hover {
+    background: ${(props) => (!props.isOutlined ? "#1D1F33" : LIGHT_GRAY_COLOR)};
+  }
+
   @media (max-width: 800px) {
     height: 50px;
     font-size: 16px;

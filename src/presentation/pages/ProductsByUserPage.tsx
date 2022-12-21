@@ -8,7 +8,7 @@ import {
   ProductsByUserWrapperStyled,
 } from "../styled_components/products_by_user/ProductsByUserComponentsStyled";
 import { getUserAndProducts } from "../../core/action_creators/common/get_user_and_products_action_creators";
-import PaginatedProducts from "../components/home_page/PaginatedProducts";
+import PaginatedProducts from "../components/common/PaginatedProducts";
 import { goToChat } from "../../core/action_creators/chat/go_to_chat_action_creators";
 import UserInformation from "../components/common/UserInformation";
 

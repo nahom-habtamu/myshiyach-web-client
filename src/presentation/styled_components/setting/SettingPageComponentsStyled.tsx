@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LIGHT_GRAY_COLOR } from "../../constants/colors";
 
 const SettingWrapperStyled = styled.div`
   width: 85%;
@@ -71,6 +72,10 @@ const SettingTabItemWrapperStyled = styled.div`
   display: flex;
   gap: 15px;
   margin: 25px 10px;
+
+  :hover {
+    background: ${LIGHT_GRAY_COLOR};
+  }
 `;
 
 const SettingTabItemIconWrapperStyled = styled.div`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
+import { DARK_PINK_COLOR, LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
 
 const NavLogoStyled = styled.div`
   font-size: 120%;
@@ -24,12 +24,24 @@ const NavLogoWrapperStyled = styled.div`
   align-items: center;
   justify-content: center;
   width: fit-content;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+
+  :hover {
+    padding-bottom: 3px;
+    border-bottom: 2px solid grey;
+    cursor: pointer;
+  }
 `;
 
 const NavLogoImageStyled = styled.img`
   width: 70px;
   height: 70px;
   object-fit: center center;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 
@@ -107,6 +119,11 @@ const NavSearchButtonStyled = styled.button`
   position: absolute;
   right: 0;
 
+  :hover {
+    background: ${DARK_PINK_COLOR};
+    cursor: pointer;
+  }
+
   @media (max-width: 900px) {
     display: none;
   }
@@ -123,6 +140,11 @@ const NavSearchButtonIconStyled = styled.button`
   right: 0;
   display: none;
 
+  :hover {
+    background: ${LIGHT_GRAY_COLOR};
+    cursor: pointer;
+  }
+
   @media (max-width: 900px) {
     width: 60px;
     font-size: 90%;
@@ -138,6 +160,11 @@ const NavFilterButtonStyled = styled.button`
   border-radius: 100%;
   color: white;
   background: ${PINK_COLOR};
+
+  :hover {
+    background: ${DARK_PINK_COLOR};
+    cursor: pointer;
+  }
 
   @media (max-width: 900px) {
     height: 45px;

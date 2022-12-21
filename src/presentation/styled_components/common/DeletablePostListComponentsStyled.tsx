@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PINK_COLOR } from "../../constants/colors";
+import { DARK_PINK_COLOR, LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
 
 const DeletablePostListWrapperStyled = styled.div`
   width: 80%;
@@ -97,8 +97,16 @@ const DeletablePostListItemDescriptionStyled = styled.div`
 const DeletablePostListItemDeleteIconWrapperStyled = styled.div`
   position: absolute;
   color: ${PINK_COLOR};
+  padding: 10px;
   top: 50px;
   right: 50px;
+
+  :hover {
+    background: lightgray;
+    color: ${DARK_PINK_COLOR};
+    cursor: pointer;
+    border-radius: 100%;
+  }
 
   @media (max-width: 800px) {
     top: 40px;

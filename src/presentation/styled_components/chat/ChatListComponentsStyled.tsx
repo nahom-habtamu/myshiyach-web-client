@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
 
 const ChatListWrapperStyled = styled.div`
   width: 95%;
@@ -16,6 +17,11 @@ const ChatListItemWrapperStyled = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+
+  :hover {
+    box-shadow: 1px 1px 2px 1px ${PINK_COLOR};
+    cursor: pointer;
+  }
 
   @media (max-width: 500px) {
     width: 950%;

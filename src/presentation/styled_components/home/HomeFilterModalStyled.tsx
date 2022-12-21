@@ -103,7 +103,11 @@ const FilterDropDownInputStyled = styled.select`
   outline: none;
   padding-inline: 20px;
   font-size: 20px;
-  line-height: 1;
+  transition: all 0.5s ease;
+
+  :hover {
+    border-color: black;
+  }
 
   @media (max-width: 1200px) {
     height: 50px;
