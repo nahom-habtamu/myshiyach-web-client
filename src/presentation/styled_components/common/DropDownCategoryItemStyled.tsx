@@ -5,10 +5,13 @@ const CategoryItemsWrapperStyled = styled.div`
     margin-left: 55px;
     margin-top: 25px;
     display: flex;
+    flex-wrap: wrap;
     gap: 25px;
-  
-    @media (max-width: 900px) {
-      display: none;   
+
+    @media (max-width: 500px) {
+        margin-left: 15px;
+        margin-top: 20px;
+        gap: 30px;
     }
 `;
 
