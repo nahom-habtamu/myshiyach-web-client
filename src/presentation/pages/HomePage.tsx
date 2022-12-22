@@ -12,6 +12,8 @@ import { modifyFilterCriteria } from "../../core/action_creators/product/filter_
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
+import DropDownCategoryItem from "../components/common/DropDownCategoryItem";
+import SubCategory from "../../core/models/category/sub_category";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
@@ -41,15 +43,17 @@ const HomePage = () => {
   const renderCategories = () => {
     return (
       <FilterCategories
-        onCategorySelected={(value: MainCategory) =>
+        onCategorySelected={(mainCat: MainCategory, subCat: SubCategory) =>
           dispatch(
             modifyFilterCriteria({
               ...filterCriteria,
-              mainCategory: value._id,
+              mainCategory: mainCat._id,
+              subCategory: subCat._id
             } as FilterCriteria)
           )
         }
         categories={state.paginated?.categories ?? []}
+        selectedSubCategory={filterCriteria?.subCategory ?? ""}
         selectedMainCategory={filterCriteria?.mainCategory ?? ""}
       />
     );

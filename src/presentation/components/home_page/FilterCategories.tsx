@@ -1,28 +1,29 @@
+import DropDownCategoryItem from "../common/DropDownCategoryItem";
 import MainCategory from "../../../core/models/category/main_category";
-import {
-  HomePageCategoryItemStyled,
-  HomePageCategoryListWrapperStyled,
-} from "../../styled_components/home/HomePageCategoryStyled";
+import { CategoryItemsWrapperStyled } from "../../styled_components/common/DropDownCategoryItemStyled";
+import SubCategory from "../../../core/models/category/sub_category";
 
 type FilterCategoriesProps = {
   categories: MainCategory[];
   selectedMainCategory: string | null;
+  selectedSubCategory: string | null;
   onCategorySelected: Function;
 };
 
 const FilterCategories = (props: FilterCategoriesProps) => {
   return (
-    <HomePageCategoryListWrapperStyled>
-      {props.categories.map((c) => (
-        <HomePageCategoryItemStyled
-          key={c._id}
-          isActive={c._id === props.selectedMainCategory}
-          onClick={() => props.onCategorySelected(c)}
-        >
-          {c.title.split(";")[0]}
-        </HomePageCategoryItemStyled>
-      ))}
-    </HomePageCategoryListWrapperStyled>
+    <CategoryItemsWrapperStyled>
+      {
+        props.categories.map(e =>
+          <DropDownCategoryItem
+            onClicked={(mainCat: MainCategory, subCat: SubCategory) => props.onCategorySelected(mainCat, subCat)}
+            mainCategory={e}
+            subCategory={props.selectedSubCategory}
+            isActive={e._id === props.selectedMainCategory}
+          />
+        )
+      }
+    </CategoryItemsWrapperStyled>
   );
 };
 

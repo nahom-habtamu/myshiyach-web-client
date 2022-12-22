@@ -37,7 +37,6 @@ const HomePageCategoryListWrapperStyled = styled.div`
     flex-direction: column;
     gap: 5px;    
   }
-
 `;
 
 export { HomePageCategoryItemStyled, HomePageCategoryListWrapperStyled };
