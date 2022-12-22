@@ -19,7 +19,7 @@ const NavBarLeftSideContentWrapperStyled = styled.div<{ collapsed : boolean}>`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    opacity: ${props => props.collapsed ? '0' : '0.9'}
+    display: ${props => props.collapsed ? 'none' : 'flex'}
   }
 `;
 

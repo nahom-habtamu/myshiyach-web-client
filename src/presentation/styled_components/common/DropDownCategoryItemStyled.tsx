@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const CategoryItemsWrapperStyled = styled.div`
-    overflow: hidden;
     margin-left: 55px;
     margin-top: 25px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 25px;
 
@@ -22,7 +22,6 @@ const CategoryDropDownButtonStyled = styled.div<{ isActive: boolean }>`
     border-bottom: 1px solid
         ${(props) => (props.isActive ? "black" : "transparent")};
     padding-bottom: 2px;
-    transition: all 0.3s ease-in-out;
     margin: 0;
 
     @media (max-width: 1400px) {
@@ -38,11 +37,12 @@ const CategoryDropDownButtonStyled = styled.div<{ isActive: boolean }>`
     }
 `;
 
-const CategoryDropDownContentStyled = styled.div`
-    display: none;
+const CategoryDropDownContentStyled = styled.div<{show: boolean}>`
+    display: ${props => props.show ? 'block' : 'none'};
+    cursor: ${props => props.show ? 'pointer' : 'normal'};
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    max-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 `;
@@ -69,11 +69,6 @@ const CategoryDropDownItemStyled = styled.div`
 const CategoryItemDropDownWrapperStyled = styled.div`
     float: left;
     overflow: hidden;
-
-    :hover ${CategoryDropDownContentStyled} {
-        display: block;
-        cursor: pointer;
-    }
 `;
 
 
