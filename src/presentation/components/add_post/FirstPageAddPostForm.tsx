@@ -1,4 +1,5 @@
-import { useAppSelector } from "../../../store/storeHooks";
+import { toggleValidationErrorModalOpen } from "../../../core/action_creators/common/validation_error_modal_action_creators";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
   AddPostActionButtonStyled,
@@ -17,6 +18,8 @@ const FirstPageAddPostForm = ({
   onFormValueChanged: Function;
   formState: AddPostPageInputState;
 }) => {
+
+  const dispatch = useAppDispatch();
 
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
@@ -67,6 +70,22 @@ const FirstPageAddPostForm = ({
   const handleNextPressed = () => {
     if (formState.mainCategory && formState.subCategory && formState.title && formState.description && formState.price) {
       onFormSubmitted(formState);
+    }
+    else {
+      let content = "";
+      if(!formState.mainCategory || !formState.subCategory){
+        content = "Please Enter Categories";
+      }
+      else if(!formState.title){
+        content = "Please Enter Title";
+      }
+      else if(!formState.description){
+        content = "Please Enter Description";
+      }
+      else if(!formState.price){
+        content = "Please Enter Price";
+      }
+      dispatch(toggleValidationErrorModalOpen(content));
     }
   }
 

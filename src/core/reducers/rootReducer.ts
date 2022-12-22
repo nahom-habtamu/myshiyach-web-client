@@ -28,6 +28,7 @@ import getMyPostsReducer from "./getMyPostsReducer";
 import deleteProductReducer from "./deleteProductReducer";
 import savedPostsReducer from "./savedPostsReducer";
 import changePasswordReducer from "./changePasswordReducer";
+import validationErrorModalReducer from "./validationErrorModalReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -59,6 +60,7 @@ const rootReducer = combineReducers({
   getMyPosts: getMyPostsReducer,
   savedPosts: savedPostsReducer,
   changePassword: changePasswordReducer,
+  validationErrorModal: validationErrorModalReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

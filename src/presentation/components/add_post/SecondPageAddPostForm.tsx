@@ -1,4 +1,5 @@
-import { useAppSelector } from "../../../store/storeHooks";
+import { toggleValidationErrorModalOpen } from "../../../core/action_creators/common/validation_error_modal_action_creators";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
   AddPostActionButtonStyled,
@@ -26,6 +27,8 @@ const SecondPageAddPostForm = ({
 }) => {
 
   const loginState = useAppSelector(state => state.login);
+
+  const dispatch = useAppDispatch();
 
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
@@ -147,9 +150,26 @@ const SecondPageAddPostForm = ({
           validInputsCount++;
         }
       }
+
       if (validInputsCount === categorySelected!.requiredFields.length) {
         onFormSubmitted(formState);
+      } else {
+
+        dispatch(toggleValidationErrorModalOpen('Something is Missing from Other Required Feilds'));
       }
+    }
+    else {
+      let content = "";
+      if (formState.productImages.length === 0 && pickedImages.length === 0) {
+        content = "Please Pick Product Images";
+      }
+      else if (!formState.city) {
+        content = "Please Enter City";
+      }
+      else if (!formState.description) {
+        content = "Please Enter Contact Phone";
+      }
+      dispatch(toggleValidationErrorModalOpen(content));
     }
   }
 

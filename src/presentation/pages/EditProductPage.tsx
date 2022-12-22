@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 import ProductDropDownInput, { DropDownItemData } from "../components/common/ProductDropDownInput";
 import ProductInput from "../components/common/ProductInput";
 import { editProduct } from "../../core/action_creators/product/edit_product_action_creators";
+import { toggleValidationErrorModalOpen } from "../../core/action_creators/common/validation_error_modal_action_creators";
 
 export type EditPostPageInputState = {
   mainCategory: string;
@@ -103,6 +104,34 @@ const EditProductPage = () => {
           })
         );
       }
+      else {
+        dispatch(toggleValidationErrorModalOpen('Something is Missing from Other Required Feilds'));
+      }
+    }
+    else {
+      let content = "";
+      if (!formState.mainCategory || !formState.subCategory) {
+        content = "Please Enter Categories";
+      }
+      else if (!formState.title) {
+        content = "Please Enter Title";
+      }
+      else if (!formState.description) {
+        content = "Please Enter Description";
+      }
+      else if (!formState.price) {
+        content = "Please Enter Price";
+      }
+      if (formState.productImages.length === 0 && pickedImages.length === 0) {
+        content = "Please Pick Product Images";
+      }
+      else if (!formState.city) {
+        content = "Please Enter City";
+      }
+      else if (!formState.description) {
+        content = "Please Enter Contact Phone";
+      }
+      dispatch(toggleValidationErrorModalOpen(content));
     }
   };
 

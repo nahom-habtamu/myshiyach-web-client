@@ -53,8 +53,8 @@ const AddPostPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getDataNeededToAddPost());
     dispatch(clearCreateProduct());
+    dispatch(getDataNeededToAddPost());
   }, [dispatch]);
 
   useEffect(() => {
