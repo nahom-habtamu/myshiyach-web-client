@@ -8,36 +8,62 @@ import {
 
 type DropDownCategoryItemProps = {
     mainCategory: MainCategory,
-    subCategory: string | null,
+    activeSubCategory: string | null,
+    activeMainCategory: string | null,
     isActive?: boolean,
     onClicked: Function
 };
 
-const DropDownCategoryItem = ({ mainCategory, subCategory, isActive, onClicked }: DropDownCategoryItemProps) => {
+const DropDownCategoryItem = (
+    { mainCategory, activeSubCategory, isActive, onClicked, activeMainCategory }
+        : DropDownCategoryItemProps) => {
 
-    const handleCategoryClicked = (subCategory: SubCategory) => {
-        onClicked(mainCategory, subCategory);
+    const handleCategoryClicked = (subCat: SubCategory) => {
+
+        if (subCat.title === 'All;ሁሉም' && activeMainCategory === mainCategory._id) {
+            if(activeSubCategory !== null){
+                onClicked(mainCategory, null)
+            }
+            else {
+                onClicked(null, null);
+            }
+        }
+        else if (subCat._id === activeSubCategory) {
+            onClicked(mainCategory, null);
+        }
+        else {
+            onClicked(mainCategory, subCat);
+        }
+
     }
 
     const [isHoevered, setIsHoevered] = useState(false);
 
+    const subCategories: SubCategory[] = [
+        { _id: `1 ${mainCategory._id}`, title: `All;ሁሉም` },
+        ...mainCategory.subCategories
+    ];
+
     return (
-        <CategoryItemDropDownWrapperStyled 
+        <CategoryItemDropDownWrapperStyled
             onMouseOut={() => setIsHoevered(false)}
             onMouseOver={(e) => {
                 e.stopPropagation();
                 setIsHoevered(true);
             }
-        }>
+            }>
             <CategoryDropDownButtonStyled isActive={isActive ?? false}>
                 {mainCategory.title.split(';')[0]}
             </CategoryDropDownButtonStyled>
             <CategoryDropDownContentStyled show={isHoevered}>
                 {
-                    mainCategory.subCategories.map(
+                    subCategories.map(
                         e => <CategoryDropDownItemStyled onClick={() => handleCategoryClicked(e)}>
                             {
-                                e._id === subCategory ? `${e.title.split(';')[0]} *` : e.title.split(';')[0]
+
+                                (e.title === "All;ሁሉም" && mainCategory._id === activeMainCategory && activeSubCategory === null) ? `${e.title.split(';')[0]} *` :
+
+                                    e._id === activeSubCategory ? `${e.title.split(';')[0]} *` : e.title.split(';')[0]
                             }
                         </CategoryDropDownItemStyled>
                     )

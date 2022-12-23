@@ -16,9 +16,11 @@ const FilterCategories = (props: FilterCategoriesProps) => {
       {
         props.categories.map(e =>
           <DropDownCategoryItem
-            onClicked={(mainCat: MainCategory, subCat: SubCategory) => props.onCategorySelected(mainCat, subCat)}
+            onClicked={(mainCat: MainCategory | null, subCat: SubCategory | null) => 
+              props.onCategorySelected(mainCat, subCat)}
             mainCategory={e}
-            subCategory={props.selectedSubCategory}
+            activeSubCategory={props.selectedSubCategory}
+            activeMainCategory={props.selectedMainCategory}
             isActive={e._id === props.selectedMainCategory}
           />
         )

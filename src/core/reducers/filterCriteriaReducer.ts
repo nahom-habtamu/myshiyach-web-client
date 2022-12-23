@@ -23,8 +23,8 @@ export default function filterCriteriaReducer(
         maxPrice: action.payload.maxPrice ?? state?.maxPrice ?? null,
         minPrice: action.payload.minPrice ?? state?.minPrice ?? null,
         mainCategory:
-          action.payload.mainCategory ?? state?.mainCategory ?? null,
-        subCategory: action.payload.subCategory ?? state?.subCategory ?? null,
+          action.payload.mainCategory ?? null,
+        subCategory: action.payload.subCategory ?? null,
         brand: action.payload.brand ?? state?.brand ?? null,
         city: action.payload.city ?? state?.city ?? null,
         sortByPriceAscending:

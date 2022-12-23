@@ -12,7 +12,6 @@ import { modifyFilterCriteria } from "../../core/action_creators/product/filter_
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
-import DropDownCategoryItem from "../components/common/DropDownCategoryItem";
 import SubCategory from "../../core/models/category/sub_category";
 
 const HomePage = () => {
@@ -24,7 +23,7 @@ const HomePage = () => {
   useEffect(() => {
     const initialPageAndLimit = {
       filterCriteria: filterCriteria,
-      limit: 5,
+      limit: 6,
       page: 1,
     };
 
@@ -43,18 +42,18 @@ const HomePage = () => {
   const renderCategories = () => {
     return (
       <FilterCategories
-        onCategorySelected={(mainCat: MainCategory, subCat: SubCategory) =>
+        onCategorySelected={(mainCat: MainCategory | null, subCat: SubCategory | null) => {
           dispatch(
             modifyFilterCriteria({
               ...filterCriteria,
-              mainCategory: mainCat._id,
-              subCategory: subCat._id
+              mainCategory: mainCat?._id ?? null,
+              subCategory: subCat?.title === "All;ሁሉም" ? null : subCat?._id ?? null
             } as FilterCriteria)
           )
-        }
+        }}
         categories={state.paginated?.categories ?? []}
-        selectedSubCategory={filterCriteria?.subCategory ?? ""}
-        selectedMainCategory={filterCriteria?.mainCategory ?? ""}
+        selectedSubCategory={filterCriteria?.subCategory ?? null}
+        selectedMainCategory={filterCriteria?.mainCategory ?? null}
       />
     );
   };
@@ -68,7 +67,7 @@ const HomePage = () => {
         onPressed={() =>
           dispatch(
             loadMoreProducts({
-              filterCriteria: null,
+              filterCriteria: filterCriteria,
               limit: state.paginated?.productsWithPageAndLimit.next?.limit ?? 5,
               page: state.paginated?.productsWithPageAndLimit.next?.page ?? 1,
             })
