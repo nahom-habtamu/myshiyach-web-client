@@ -60,7 +60,7 @@ const HomePage = () => {
 
   const renderLoadMoreButton = () => {
     var objectToRender = state.isLoadingMore ? (
-      <LoadingSpinner />
+      <LoadingSpinner fullHeightAndWidth={false} />
     ) : state.paginated?.productsWithPageAndLimit.next && (
       <LoadMoreButton
         text="Load More"

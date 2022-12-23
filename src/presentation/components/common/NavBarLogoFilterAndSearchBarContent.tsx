@@ -73,7 +73,7 @@ const NavBarLogoFilterAndSearchBarContent = (props: Props) => {
             )}
           </NavBarActiveTogglerButtonStyled>
           <NavLogoWrapperStyled onClick={() => history.push(HomePageRoute)}>
-            <NavLogoImageStyled src="/icon.jpg"/>
+            <NavLogoImageStyled src="/icon.png"/>
             <NavLogoStyled>MyShiyach</NavLogoStyled>
           </NavLogoWrapperStyled>
         </NavLogoAndActiveTogglerWrapper>

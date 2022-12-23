@@ -38,6 +38,9 @@ const NavLogoImageStyled = styled.img`
   width: 70px;
   height: 70px;
   object-fit: center center;
+  padding: 5px;
+  border: 2px solid ${LIGHT_GRAY_COLOR};
+  border-radius: 25px;
 
   @media (max-width: 900px) {
     display: none;

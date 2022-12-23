@@ -8,9 +8,9 @@ const override: CSSProperties = {
   borderColor: "grey",
 };
 
-const LoadingSpinner = ({ size }: { size?: number }) => {
+const LoadingSpinner = ({ size, fullHeightAndWidth }: { size?: number, fullHeightAndWidth?: boolean }) => {
   return (
-    <LoadingSpinnerWrapperStyled>
+    <LoadingSpinnerWrapperStyled fullHeightAndWidth={fullHeightAndWidth}>
       <BounceLoader
         color={PRIMARY_COLOR}
         loading={true}

@@ -13,7 +13,7 @@ const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
   justify-content: center;
 
   @media (max-width: 500px) {
-    margin: 15px 0px;
+    margin: 15px auto;
   }
 `;
 
