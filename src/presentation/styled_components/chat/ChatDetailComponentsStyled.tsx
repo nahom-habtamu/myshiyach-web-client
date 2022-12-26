@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   DEEP_ORANGE_COLOR,
   LIGHT_GRAY_COLOR,
@@ -7,10 +7,10 @@ import {
 
 const ChatDetailWrapperStyled = styled.div`
   width: 100%;
-  height: 900px;
   margin: 0px auto;
   background: white;
   position: relative;
+  padding-bottom: 25px;
 `;
 
 const ChatDetailHeaderWrapperStyled = styled.div`
@@ -68,8 +68,8 @@ const ChatDetailStrangerUserNameStyled = styled.div`
 `;
 
 const ChatDetailBubblesWrapperStyled = styled.div`
-  width: 90%;
-  height: 650px;
+  width: 95%;
+  height: 340px;
   overflow: auto;
   margin: 25px auto;
   position: relative;
@@ -78,14 +78,17 @@ const ChatDetailBubblesWrapperStyled = styled.div`
 const ChatDetailBubbleItemWrapperStyled = styled.div<{
   leftBubble: boolean;
 }>`
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: ${(props) => (props.leftBubble ? "flex-start" : "flex-end")};
-  margin: 15px;
+  margin: 15px auto;
 `;
 
 const ChatDetailBubbleItemStyled = styled.div<{ leftBubble: boolean }>`
-  padding: 25px 50px;
+  width: fit-content;
+  max-width: 45%;
+  padding: 25px 25px;
+  text-align: center;
   background: ${(props) =>
     props.leftBubble ? PRIMARY_COLOR : LIGHT_GRAY_COLOR};
   color: ${(props) => (props.leftBubble ? "white" : "black")};
@@ -93,11 +96,32 @@ const ChatDetailBubbleItemStyled = styled.div<{ leftBubble: boolean }>`
     props.leftBubble ? "25px 25px 0px 25px" : "25px 25px 25px 0px"};
   font-size: 18px;
   position: relative;
+
+  @media (max-width: 900px) {
+    font-size: 16px;
+    max-width: 65%;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 15px;
+    max-width: 75%;
+  }
 `;
 
 const ChatDetailBubbleImageWrapperStyled = styled.div`
-  width: 250px;
-  height: 200px;
+  width: 400px;
+  height: 350px;
+  position: relative;
+
+  @media (max-width: 900px) {
+    width: 350px;
+    height: 300px;
+  }
+
+  @media (max-width: 500px) {
+    width: 250px;
+    height: 200px;
+  }
 `;
 
 const ChatDetailBubbleImageStyled = styled.img`
@@ -133,13 +157,13 @@ const ChatDetailAddMessageWrapperStyled = styled.div`
   gap: 25px;
   color: black;
   align-items: center;
+  
+  @media (max-width: 900px) {
+    width: 80%;
+  }
 
   @media (max-width: 500px) {
     width: 90%;
-  }
-
-  @media (max-width: 800px) {
-    width: 80%;
   }
 
 `;
@@ -174,6 +198,14 @@ const ChatDetailAddMessageActionButtonWrapper = styled.div`
   }
 `;
 
+const hideAnimation = keyframes`
+  to {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  };
+`;
+
 const ChatDetailGoToBottomButton = styled.div`
   width: 50px;
   height: 50px;
@@ -181,12 +213,28 @@ const ChatDetailGoToBottomButton = styled.div`
   background: black;
   color: white;
   position: absolute;
-  bottom: 200px;
-  right: 100px;
+  bottom: 150px;
+  right: 80px;
   transition: all 0.5s ease;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: ${hideAnimation} 0s ease-in 2s;
+  animation-fill-mode: forwards;
+
+  @media (max-width: 900px) {
+    width: 45px;
+    height: 45px;
+    bottom: 180px;
+    right: 70px;
+  }
+
+  @media (max-width: 500px) {
+    width: 40px;
+    height: 40px;
+    bottom: 90px;
+    right: 30px;
+  }
 `;
 
 export {

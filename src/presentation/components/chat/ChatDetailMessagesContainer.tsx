@@ -20,28 +20,35 @@ import groupMessagesByDate from "../../utils/groupMessagesByDate";
 
 const ChatDetailMessagesContainer = ({
   conversation,
+  chatContainerRef,
 }: {
   conversation: Conversation;
+  chatContainerRef: any;
 }) => {
   const loginState = useAppSelector((state) => state.login);
 
   const [isDownButtonVisible, setIsDownButtonVisible] = useState(false);
   const [prev, setPrev] = useState(window.scrollY);
-  const bottomRef = useRef<any>(null);
 
   const dispatch = useAppDispatch();
 
+  function scrollToBottom() {
+    const lastItem = chatContainerRef.current.lastElementChild;
+    if (lastItem) {
+      lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    setIsDownButtonVisible(false);
+  }
+
   const handleGoToBottomClicked = () => {
-    bottomRef.current.scroll({
-      top: bottomRef.current.clientHeight * 2,
-      behavior: "smooth",
-    });
+    scrollToBottom();
     dispatch(
       markMessagesInConversationAsRead({
         recieverId: loginState.result.currentUser!._id,
         conversationId: conversation.id,
       })
     );
+
   };
 
   const onScroll = (e: any) => {
@@ -71,7 +78,7 @@ const ChatDetailMessagesContainer = ({
       let messageTime = parsedDate.getHours() + ":" + parsedDate.getMinutes();
 
       return (
-        <ChatDetailBubbleItemWrapperStyled leftBubble={leftBubble}>
+        <ChatDetailBubbleItemWrapperStyled leftBubble={leftBubble} key={message.createdDateTime}>
           {message.type === "IMAGE" ? (
             <ChatDetailBubbleImageWrapperStyled>
               <ChatDetailBubbleImageStyled src={message.content} />
@@ -80,7 +87,7 @@ const ChatDetailMessagesContainer = ({
               </ChatDetailBubbleTimeIndicatorStyled>
             </ChatDetailBubbleImageWrapperStyled>
           ) : (
-            <ChatDetailBubbleItemStyled leftBubble={leftBubble}>
+            <ChatDetailBubbleItemStyled leftBubble={leftBubble} key={message.createdDateTime}>
               {message.content}
               <ChatDetailBubbleTimeIndicatorStyled>
                 {messageTime}
@@ -94,7 +101,7 @@ const ChatDetailMessagesContainer = ({
 
   return (
     <>
-      <ChatDetailBubblesWrapperStyled onScroll={onScroll} ref={bottomRef}>
+      <ChatDetailBubblesWrapperStyled onScroll={onScroll} ref={chatContainerRef}>
         {groupedMessages.length === 0 ? (
           <h1>NO MESSAGES YET!!</h1>
         ) : (

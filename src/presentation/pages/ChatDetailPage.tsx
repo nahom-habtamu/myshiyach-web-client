@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiImages, BiSend } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { addImageMessage } from "../../core/action_creators/chat/add_image_message_action_creators";
@@ -34,6 +34,8 @@ const ChatDetailPage = () => {
   const loginState = useAppSelector((state) => state.login);
   const strangerUserState = useAppSelector((state) => state.getStrangerUser);
   const chatDetailState = useAppSelector((state) => state.getChatDetail);
+  const chatContainerRef = useRef<any>(null);
+
   const dispatch = useAppDispatch();
 
   const onSnapshot = (conversationOnRealTime: Conversation) => {
@@ -68,6 +70,13 @@ const ChatDetailPage = () => {
     }
   }, []);
 
+  function scrollToBottom() {
+    const lastItem = chatContainerRef.current.lastElementChild;
+    if (lastItem) {
+      lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }
+
   const handleSendingTextMessage = () => {
     if (messageContent.length > 0) {
       const message: Message = {
@@ -81,6 +90,7 @@ const ChatDetailPage = () => {
       setMessageContent("");
       dispatch(addTextMessage({ conversationId: id, message }));
     }
+    scrollToBottom();
   };
 
   const handleSendingImageMessage = () => {
@@ -96,12 +106,13 @@ const ChatDetailPage = () => {
       };
       dispatch(addImageMessage({ conversationId: id, message, image }));
     }
+    scrollToBottom();
   };
 
   const renderMainContent = () => (
     <>
       <ChatDetailStrangerUser />
-      <ChatDetailMessagesContainer conversation={conversation!} />
+      <ChatDetailMessagesContainer conversation={conversation!} chatContainerRef={chatContainerRef} />
       <ChatDetailAddMessageWrapperStyled>
         <ChatDetailAddMessageInputStyled
           type="text"
@@ -110,7 +121,7 @@ const ChatDetailPage = () => {
           value={messageContent}
         />
         <ChatDetailAddMessageActionButtonWrapper onClick={() => setIsSendMessageModalOpen(true)}>
-          <BiImages size={ICON_SIZE_MEDIUM}/>
+          <BiImages size={ICON_SIZE_MEDIUM} />
         </ChatDetailAddMessageActionButtonWrapper>
 
         <ChatDetailAddMessageActionButtonWrapper onClick={handleSendingTextMessage} >

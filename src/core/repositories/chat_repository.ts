@@ -30,7 +30,10 @@ export const getAllConversationsSnapshotData = async (
         (e) =>
           checkIfCurrentUserIsMember(e, id) && checkIfMessagesAreNotEmpty(e)
       )
-      .map((e) => parseQuerySnapshotToConversation(e));
+      .map((e) => parseQuerySnapshotToConversation(e))
+      .sort(function (a, b) {
+        return ((new Date(b.messages[b.messages.length - 1].createdDateTime) as any) - (new Date(a.messages[a.messages.length - 1].createdDateTime) as any));
+      });;
 
     let conversationsWithUserInformation: ConversationWithUserInformation[] = [];
 
