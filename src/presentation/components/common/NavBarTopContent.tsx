@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { loginClear } from "../../../core/action_creators/auth/login_action_creators";
 import { logOut } from "../../../core/action_creators/common/log_out_action_creators";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
+import { ContactUsPageRoute } from "../../pages/ContactUsPage";
 import { LoginPageRoute } from "../../pages/LoginPage";
 import { SignUpPageRoute } from "../../pages/SignUpPage";
 import {
@@ -30,8 +31,8 @@ const NavBarTopContent = () => {
       <NavBarTopContentBlockItemWrapperStyled position="start">
         <NavBarTopContentButtonStyled>Download</NavBarTopContentButtonStyled>
         <NavBarToContentButtonSeparatorStyled />
-        <NavBarTopContentButtonStyled>
-          Follow Us
+        <NavBarTopContentButtonStyled onClick={() => history.push(ContactUsPageRoute)}>
+          Contact Us
         </NavBarTopContentButtonStyled>
       </NavBarTopContentBlockItemWrapperStyled>
       <NavBarTopContentBlockItemWrapperStyled position="end">
@@ -47,9 +48,9 @@ const NavBarTopContent = () => {
               Login
             </NavBarTopContentButtonStyled>
           </> :
-            <NavBarTopContentButtonStyled 
+            <NavBarTopContentButtonStyled
               onClick={handleLogOut}>
-                Log Out
+              Log Out
             </NavBarTopContentButtonStyled>
         }
       </NavBarTopContentBlockItemWrapperStyled>

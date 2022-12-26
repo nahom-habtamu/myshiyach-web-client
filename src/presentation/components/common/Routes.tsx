@@ -31,6 +31,7 @@ import ChangePasswordPage, {
   ChangePasswordPageRoute,
 } from "../../pages/ChangePasswordPage";
 import PostConfirmationPage, { PostConfirmationPageRoute } from "../../pages/PostConfirmationPage";
+import ContactUsPage, { ContactUsPageRoute } from "../../pages/ContactUsPage";
 
 const Routes = () => {
   return (
@@ -80,6 +81,9 @@ const Routes = () => {
         </Route>
         <Route exact path={ProductsByUserPageRoute}>
           <ProductsByUserPage />
+        </Route>
+        <Route exact path={ContactUsPageRoute}>
+          <ContactUsPage />
         </Route>
         <Route exact path={MyPostsPageRoute}>
           <MyPostsPage />
