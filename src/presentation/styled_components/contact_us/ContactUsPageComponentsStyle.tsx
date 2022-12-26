@@ -11,7 +11,7 @@ const ContactUsWrapperStyled = styled.div`
     width: 90%;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 600px) {
     width: 100%;
   }
 `;
@@ -25,6 +25,14 @@ const ContactUsLabelStyled = styled.div`
   font-style: italic;
   margin-top: 50px;
   margin-bottom: 10px;
+
+  @media (max-width: 1200px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 
@@ -33,6 +41,11 @@ const ContactUsEmailAndCallWrapperStyled = styled.div`
   margin: 25px auto;
   justify-content: space-between;
   width: 90%;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 5px;
+  }
 `;
 
 const ContactUsEmailAndCallItemStyled = styled.div`
@@ -43,18 +56,38 @@ const ContactUsEmailAndCallItemStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 
 const ContactUsEmailAndCallItemTitleStyled = styled.div`
   font-size: 20px;
   color: black;
+
+  @media (max-width: 1200px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 
 const ContactUsEmailAndCallItemValueStyled = styled.div`
   font-size: 18px;
   color: gray;
+
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 
@@ -73,11 +106,27 @@ const ContactUsAboutTitleStyled = styled.div`
   font-size: 25px;
   color: black;
   font-weight: 700;
+
+  @media (max-width: 1200px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const ContactUsAboutValueStyled = styled.div`
   font-size: 18px;
   color: gray;
+
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 const ContactUsAddressWrapperStyled = styled.div`
@@ -99,6 +148,14 @@ const ContactUsAddressLabelStyled = styled.div`
   font-style: italic;
   margin-top: 50px;
   margin-bottom: 10px;
+
+  @media (max-width: 1200px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const ContactUsAddressKeyValueWrapperStyled = styled.div`
@@ -112,11 +169,27 @@ const ContactUsAddressKeyValueWrapperStyled = styled.div`
 const ContactUsAddressKeyStyled = styled.div`
   font-size: 20px;
   color: gray;
+
+  @media (max-width: 1200px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 const ContactUsAddressValueStyled = styled.div`
   font-size: 16px;
   color: gray;
+
+  @media (max-width: 1200px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 
