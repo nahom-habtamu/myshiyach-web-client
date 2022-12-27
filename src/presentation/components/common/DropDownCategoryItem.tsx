@@ -15,31 +15,22 @@ type DropDownCategoryItemProps = {
 };
 
 const DropDownCategoryItem = (
-    { mainCategory, activeSubCategory, isActive, onClicked, activeMainCategory }
-        : DropDownCategoryItemProps) => {
+    { mainCategory, activeSubCategory, isActive, onClicked, activeMainCategory }: DropDownCategoryItemProps) => {
 
     const handleCategoryClicked = (subCat: SubCategory) => {
+        onClicked(mainCategory, subCat);
+    }
 
-        if (subCat.title === 'All;ሁሉም' && activeMainCategory === mainCategory._id) {
-            if(activeSubCategory !== null){
-                onClicked(mainCategory, null)
-            }
-            else {
-                onClicked(null, null);
-            }
+    const handleAllClicked = () => {
+        if (mainCategory._id === 'all') {
+            onClicked(null, null);
         }
-        else if (subCat._id === activeSubCategory) {
-            onClicked(mainCategory, null);
-        }
-        else {
-            onClicked(mainCategory, subCat);
-        }
-
     }
 
     const [isHoevered, setIsHoevered] = useState(false);
 
-    const subCategories: SubCategory[] = [
+    const subCategories: SubCategory[] = mainCategory._id === 'all' ? [] : [
+
         { _id: `1 ${mainCategory._id}`, title: `All;ሁሉም` },
         ...mainCategory.subCategories
     ];
@@ -52,7 +43,7 @@ const DropDownCategoryItem = (
                 setIsHoevered(true);
             }
             }>
-            <CategoryDropDownButtonStyled isActive={isActive ?? false}>
+            <CategoryDropDownButtonStyled isActive={isActive ?? false} onClick={handleAllClicked}>
                 {mainCategory.title.split(';')[0]}
             </CategoryDropDownButtonStyled>
             <CategoryDropDownContentStyled show={isHoevered}>

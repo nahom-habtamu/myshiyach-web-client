@@ -24,6 +24,10 @@ const CategoryDropDownButtonStyled = styled.div<{ isActive: boolean }>`
     padding-bottom: 2px;
     margin: 0;
 
+    :hover {
+        cursor: pointer;
+    }
+
     @media (max-width: 1400px) {
         font-size: 17px;  
     }

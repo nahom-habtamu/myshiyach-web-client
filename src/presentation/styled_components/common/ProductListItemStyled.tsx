@@ -208,6 +208,7 @@ const ProductListItemRefreshedTimeStyled = styled.div`
   bottom: 10px;
   font-size: 15px;
   color: gray;
+  width: fit-content;
 
   @media (max-width: 900px) {
     font-size: 13px;
