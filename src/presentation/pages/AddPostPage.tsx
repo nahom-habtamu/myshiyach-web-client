@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getDataNeededToAddPost } from "../../core/action_creators/common/get_data_needed_to_add_post_action_creators";
 import {
-  clearCreateProduct,
   createProduct,
 } from "../../core/action_creators/product/create_product_action_creators";
 import CreateProductRequest from "../../core/models/product/create_product_request";
@@ -26,34 +25,34 @@ export type AddPostPageInputState = {
   productDetail: Object;
 };
 
-const initalState: AddPostPageInputState = {
-  mainCategory: "",
-  subCategory: "",
-  price: 0,
-  description: "",
-  title: "",
-  contactPhone: "",
-  productImages: [],
-  city: "",
-  productDetail: {},
-};
+const buildInitialState = (phoneNumber: string): AddPostPageInputState => {
+  return {
+    mainCategory: "",
+    subCategory: "",
+    price: 0,
+    description: "",
+    title: "",
+    contactPhone: phoneNumber,
+    productImages: [],
+    city: "",
+    productDetail: {},
+  };
+}
 
 const AddPostPage = () => {
   const [currentInputPage, setCurrentInputPage] = useState(0);
   const [pickedImages, setPickedImages] = useState<File[]>([]);
-  const [inputValue, setInputValue] =
-    useState<AddPostPageInputState>(initalState);
-
   const getDataNeededToAddPostState = useAppSelector(
     (state) => state.getDataNeededToAddPost
   );
   const authState = useAppSelector((state) => state.login);
+  const [inputValue, setInputValue] =
+    useState<AddPostPageInputState>(() => buildInitialState(authState.result.currentUser?.phoneNumber ?? ""));
   const createProductState = useAppSelector((state) => state.createProduct);
   const dispatch = useAppDispatch();
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(clearCreateProduct());
     dispatch(getDataNeededToAddPost());
   }, [dispatch]);
 

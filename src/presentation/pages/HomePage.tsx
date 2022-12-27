@@ -13,12 +13,17 @@ import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
 import SubCategory from "../../core/models/category/sub_category";
+import { clearCreateProduct } from "../../core/action_creators/product/create_product_action_creators";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
   const filterCriteria = useAppSelector((state) => state.filterCriteria);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(clearCreateProduct());
+  }, [])
 
   useEffect(() => {
     const initialPageAndLimit = {
