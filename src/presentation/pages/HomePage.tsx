@@ -1,19 +1,19 @@
 import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../../store/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 
+import { clearCreateProduct } from "../../core/action_creators/product/create_product_action_creators";
 import { displayPaginatedProducts } from "../../core/action_creators/product/display_paginated_products_action_creators";
-import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapperStyled";
-import PaginatedProducts from "../components/common/PaginatedProducts";
-import FilterCategories from "../components/home_page/FilterCategories";
-import LoadMoreButton from "../components/home_page/LoadMoreButton";
+import { modifyFilterCriteria } from "../../core/action_creators/product/filter_criteria_action_creators";
 import { loadMoreProducts } from "../../core/action_creators/product/load_more_products_action_creators";
 import MainCategory from "../../core/models/category/main_category";
-import { modifyFilterCriteria } from "../../core/action_creators/product/filter_criteria_action_creators";
+import SubCategory from "../../core/models/category/sub_category";
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
-import SubCategory from "../../core/models/category/sub_category";
-import { clearCreateProduct } from "../../core/action_creators/product/create_product_action_creators";
+import PaginatedProducts from "../components/common/PaginatedProducts";
+import FilterCategories from "../components/home_page/FilterCategories";
+import LoadMoreButton from "../components/home_page/LoadMoreButton";
+import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapperStyled";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
