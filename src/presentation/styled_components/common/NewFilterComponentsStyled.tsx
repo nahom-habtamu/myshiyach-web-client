@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { PINK_COLOR } from "../../constants/colors";
 
-export const FilterCategoryWrapperStyled = styled.div`
+export const FilterCategoryWrapperStyled = styled.div<{ isSubCat: boolean }>`
     width: 100%;
     background: white;
     overflow: scroll;
-    display: flex;
+    display: ${props => props.isSubCat ? 'none' : 'flex'};
     font-weight: 500;
+    margin-bottom: 10px;
+    
     ::-webkit-scrollbar {
         display: none;
     }
 
     @media (min-width: 800px) {
+        display: flex;
         justify-content: space-evenly;
     }
 `;

@@ -10,19 +10,18 @@ import MasterComponent from "../components/common/MasterComponent";
 import PaginatedProducts from "../components/common/PaginatedProducts";
 import LoadMoreButton from "../components/home_page/LoadMoreButton";
 import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapperStyled";
-import FilterCategories from "../components/home_page/FilterCategories";
+import FilterCategories, { CatItem } from "../components/home_page/FilterCategories";
 import { FilterCategoryResponsiveModalIconStyled, FilterCategoryResponsiveModalStyled, FilterCategoryResponsiveModalTitleStyled, FilterCategoryResponsiveModalTitleWrapperStyled, FilterCategorySubCategoryItemStyled, FilterCategorySubCategoryWrapperStyled } from "../styled_components/common/NewFilterComponentsStyled";
 import MainCategory from "../../core/models/category/main_category";
 import { IoMdClose } from "react-icons/io";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
-import SubCategory from "../../core/models/category/sub_category";
 import FilterCriteria from "../../core/models/filter/filter_criteria";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
   const filterCriteria = useAppSelector((state) => state.filterCriteria);
 
-  const [selectedCategory, setSelectedCategory] = useState<MainCategory | null>(null);
+  const [selectedMainCategory, setSelectedCategory] = useState<MainCategory | null>(null);
 
   const dispatch = useAppDispatch();
 
@@ -49,30 +48,52 @@ const HomePage = () => {
     );
   };
 
-  const renderCategories = () => {
+  const renderSubCategories = () => {
+
+    return selectedMainCategory && <FilterCategories
+      isSubCat={true}
+      onCategorySelected={(subCat: CatItem) => {
+        dispatch(
+          modifyFilterCriteria({
+            ...filterCriteria,
+            subCategory: subCat.value
+          } as FilterCriteria)
+        )
+      }}
+      categories={(selectedMainCategory?.subCategories ?? []).map(e => {
+        return { title: e.title, value: e._id }
+      })}
+      selectedCategory={filterCriteria?.subCategory ?? null}
+    />
+  }
+
+  const renderMainCategories = () => {
+
     return (
       <>
         <FilterCategories
-          onTitleClicked={(e: MainCategory) => setSelectedCategory(e)}
-          onCategorySelected={(mainCat: MainCategory | null, subCat: SubCategory | null) => {
+          isSubCat={false}
+          onCategorySelected={(mainCat: CatItem) => {
+            setSelectedCategory(state.paginated!.categories.filter(e => e._id === mainCat.value)[0])
             dispatch(
               modifyFilterCriteria({
                 ...filterCriteria,
-                mainCategory: mainCat?._id ?? selectedCategory?._id ?? null,
-                subCategory: subCat?._id ?? null
+                mainCategory: mainCat?.value ?? selectedMainCategory?._id ?? null,
+                subCategory: null
               } as FilterCriteria)
             )
           }}
-          categories={state.paginated?.categories ?? []}
-          selectedSubCategory={filterCriteria?.subCategory ?? null}
-          selectedMainCategory={filterCriteria?.mainCategory ?? null}
+          categories={(state.paginated?.categories ?? []).map(e => {
+            return { title: e.title, value: e._id }
+          })}
+          selectedCategory={filterCriteria?.mainCategory ?? null}
         />
         {
-          selectedCategory !== null && <FilterCategoryResponsiveModalStyled>
+          selectedMainCategory !== null && <FilterCategoryResponsiveModalStyled>
             <FilterCategoryResponsiveModalTitleWrapperStyled>
               <FilterCategoryResponsiveModalTitleStyled>
                 {
-                  selectedCategory!.title.split(";")[0]
+                  selectedMainCategory!.title.split(";")[0]
                 }
               </FilterCategoryResponsiveModalTitleStyled>
               <FilterCategoryResponsiveModalIconStyled>
@@ -81,7 +102,7 @@ const HomePage = () => {
             </FilterCategoryResponsiveModalTitleWrapperStyled>
             <FilterCategorySubCategoryWrapperStyled>
               {
-                selectedCategory!.subCategories.map(e =>
+                selectedMainCategory!.subCategories.map(e =>
                   <FilterCategorySubCategoryItemStyled
                     active={e._id === filterCriteria?.subCategory}
                     onClick={() => {
@@ -89,7 +110,7 @@ const HomePage = () => {
                       dispatch(
                         modifyFilterCriteria({
                           ...filterCriteria,
-                          mainCategory: selectedCategory?._id ?? null,
+                          mainCategory: selectedMainCategory?._id ?? null,
                           subCategory: e?._id ?? null
                         } as FilterCriteria)
                       )
@@ -130,7 +151,8 @@ const HomePage = () => {
   return (
     <MasterComponent activePage={HomePageRoute}>
       <HomePageWrapperStyled>
-        {renderCategories()}
+        {renderMainCategories()}
+        {renderSubCategories()}
         {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()}
         {!state.isDisplayLoading && renderLoadMoreButton()}
       </HomePageWrapperStyled>
