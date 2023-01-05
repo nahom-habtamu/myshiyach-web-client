@@ -131,8 +131,8 @@ const HomePage = () => {
     <MasterComponent activePage={HomePageRoute}>
       <HomePageWrapperStyled>
         {renderCategories()}
-        {/* {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()} */}
-        {/* {!state.isDisplayLoading && renderLoadMoreButton()} */}
+        {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()}
+        {!state.isDisplayLoading && renderLoadMoreButton()}
       </HomePageWrapperStyled>
     </MasterComponent>
   );

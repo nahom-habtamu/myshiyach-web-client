@@ -37,11 +37,11 @@ export const FilterCategoryItemTitleStyled = styled.div<{ active: boolean }>`
 
 export const FilterCategoryItemContentWrapper = styled.div<{ active: boolean }>`
     display: none;
-    transition: all 0.5s ease;
 
     @media (min-width: 800px) {
-        height: ${props => props.active ? 'fit-content' : '0px'};
-        display: ${props => props.active ? 'flex' : 'none'};
+        display: flex;
+        height: fit-content;
+        opacity: ${props => props.active ? '100' : '0'};
         flex-direction: column;
         gap: 5px;
         background: white;
