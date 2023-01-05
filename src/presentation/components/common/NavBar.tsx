@@ -8,7 +8,7 @@ import {
     NavBarWrapperStyled, NavTopContentWrapperStyled, NavBarLogoWrapperStyled,
     NavBarLogoStyled, NavBarOtherContentStyled, NavIconsStyled, NavSearchBarWrapperStyled,
     NavSearchInputStyled, NavSearchButtonStyled, ResponsiveIconStyled, NavBarLogoNameStyled
-} from "../../styled_components/common/MasterComponentNewComponentsStyled";
+} from "../../styled_components/common/MasterComponentComponentsStyled";
 import { BiFilter } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { HomePageRoute } from "../../pages/HomePage";

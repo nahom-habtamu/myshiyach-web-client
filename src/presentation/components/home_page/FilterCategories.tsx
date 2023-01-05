@@ -1,44 +1,54 @@
-import DropDownCategoryItem from "../common/DropDownCategoryItem";
+import { useState } from "react";
 import MainCategory from "../../../core/models/category/main_category";
-import { CategoryItemsWrapperStyled } from "../../styled_components/common/DropDownCategoryItemStyled";
-import SubCategory from "../../../core/models/category/sub_category";
-import RequiredFeild from "../../../core/models/category/required_feild";
+import {
+    FilterCategoryContentItemTextStyled,
+    FilterCategoryItemContentWrapper,
+    FilterCategoryItemTitleAndContentWrapperStyled,
+    FilterCategoryItemTitleStyled,
+    FilterCategoryWrapperStyled
+} from "../../styled_components/common/NewFilterComponentsStyled";
 
-type FilterCategoriesProps = {
-  categories: MainCategory[];
-  selectedMainCategory: string | null;
-  selectedSubCategory: string | null;
-  onCategorySelected: Function;
-};
+const FilterCategories = (
+    { onCategorySelected, categories, selectedMainCategory, selectedSubCategory, onTitleClicked }:
+        {
+            onTitleClicked: Function,
+            onCategorySelected: Function, categories: MainCategory[],
+            selectedMainCategory: string | null;
+            selectedSubCategory: string | null;
+        }
+) => {
 
-const FilterCategories = (props: FilterCategoriesProps) => {
+    const [hoveredMainCategory, setHoveredMainCategory] = useState<string | null>(null);
 
-  let categories = [
-    {
-      _id: 'all',
-      title: 'All;ሁሉም',
-      subCategories: [] as SubCategory[],
-      requiredFields: [] as RequiredFeild[],
-    },
-    ...props.categories
-  ];
+    return (
+        <FilterCategoryWrapperStyled>
+            {
+                categories.map(e =>
+                    <FilterCategoryItemTitleAndContentWrapperStyled
+                        onClick={() => onTitleClicked(e)}
+                        onMouseOver={() => setHoveredMainCategory(e._id)}
+                        onMouseOut={() => setHoveredMainCategory(null)}
 
-  return (
-    <CategoryItemsWrapperStyled>
-      {
-        categories.map(e =>
-          <DropDownCategoryItem
-            onClicked={(mainCat: MainCategory | null, subCat: SubCategory | null) => 
-              props.onCategorySelected(mainCat, subCat)}
-            mainCategory={e}
-            activeSubCategory={props.selectedSubCategory}
-            activeMainCategory={props.selectedMainCategory}
-            isActive={e._id === props.selectedMainCategory}
-          />
-        )
-      }
-    </CategoryItemsWrapperStyled>
-  );
-};
+                    >
+                        <FilterCategoryItemTitleStyled active={e._id === selectedMainCategory}>
+                            {e.title.split(';')[0]}
+                        </FilterCategoryItemTitleStyled>
+                        <FilterCategoryItemContentWrapper active={hoveredMainCategory === e._id}>
+                            {
+                                e.subCategories.map(se =>
+                                    <FilterCategoryContentItemTextStyled
+                                        active={selectedSubCategory === se._id}
+                                        onClick={() => onCategorySelected(e, se)}>
+                                        {se.title.split(';')[0]}
+                                    </FilterCategoryContentItemTextStyled>
+                                )
+                            }
+                        </FilterCategoryItemContentWrapper>
+                    </FilterCategoryItemTitleAndContentWrapperStyled>
+                )
+            }
+        </FilterCategoryWrapperStyled>
+    );
+}
 
 export default FilterCategories;
