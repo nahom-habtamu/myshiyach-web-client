@@ -4,7 +4,6 @@ import {
   ProductListItemFavoritesButtonWrapperStyled,
   ProductListItemOtherContentWrapper,
   ProductListItemCityStyled,
-  ProductListItemDescriptionStyled,
   ProductListItemImageStyled,
   ProductListItemImageWrapperStyled,
   ProductListItemPriceStyled,
@@ -24,8 +23,9 @@ import {
   deleteSavedPostsItem,
 } from "../../../core/action_creators/product/saved_products_action_creators";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { CiLocationOn, CiTimer } from "react-icons/ci";
 
-const PaginatedProducts = ({ products, hasMargin }: { products: Product[], hasMargin: boolean }) => {
+const PaginatedProducts = ({ products }: { products: Product[]}) => {
   const loginState = useAppSelector((state) => state.login);
   const favoriteProductsState = useAppSelector((state) => state.savedPosts);
   const dispatch = useAppDispatch();
@@ -60,7 +60,7 @@ const PaginatedProducts = ({ products, hasMargin }: { products: Product[], hasMa
   };
 
   return (
-    <ProductListItemsWrapperStyled hasMargin={hasMargin}>
+    <ProductListItemsWrapperStyled>
       {
         products.length === 0 ?
           <ProductListItemNoMoreProductsStyled>
@@ -77,13 +77,16 @@ const PaginatedProducts = ({ products, hasMargin }: { products: Product[], hasMa
               </ProductListItemImageWrapperStyled>
               <ProductListItemOtherContentWrapper>
                 <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
-                <ProductListItemCityStyled>{p.city.split(';')[0]}</ProductListItemCityStyled>
-                <ProductListItemDescriptionStyled>
-                  {p.description.slice(0, 150)}
-                </ProductListItemDescriptionStyled>
                 <ProductListItemPriceStyled>
-                  {formatToPrice(p.price)} Birr
+                  $ {formatToPrice(p.price)} Birr
                 </ProductListItemPriceStyled>
+                <ProductListItemCityStyled>
+                  <CiLocationOn
+                    style={{ marginBottom: '-4px', marginRight: '5px' }}
+                    size={18}
+                  />
+                  {p.city.split(';')[0]}
+                </ProductListItemCityStyled>
 
                 {p.createdBy !== loginState.result.currentUser?._id && (
                   <ProductListItemFavoritesButtonWrapperStyled>
@@ -103,6 +106,10 @@ const PaginatedProducts = ({ products, hasMargin }: { products: Product[], hasMa
                 )}
 
                 <ProductListItemRefreshedTimeStyled>
+                  <CiTimer
+                    style={{ marginBottom: '-4px', marginRight: '5px' }}
+                    size={18}
+                  />
                   {p.refreshedAt}
                 </ProductListItemRefreshedTimeStyled>
               </ProductListItemOtherContentWrapper>
