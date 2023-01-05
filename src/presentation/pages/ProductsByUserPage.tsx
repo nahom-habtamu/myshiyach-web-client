@@ -49,10 +49,7 @@ const ProductsByUserPage = () => {
             <ProductsByUserLabelStyled>
               Products By User
             </ProductsByUserLabelStyled>
-            <PaginatedProducts
-              hasMargin={false}
-              products={userAndProductsState.result?.products ?? []}
-            />
+            <PaginatedProducts products={userAndProductsState.result?.products ?? []}/>
           </>
         )}
       </ProductsByUserWrapperStyled>

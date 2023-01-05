@@ -1,232 +1,123 @@
 import styled from "styled-components";
-import { LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
+import { PINK_COLOR } from "../../constants/colors";
 
-const ProductListItemsWrapperStyled = styled.div<{hasMargin: boolean}>`
-  margin: ${props => props.hasMargin ? '25px 50px' : '0px 0px'};
-  background: white;
-  padding: 15px;
-  width: ${props => props.hasMargin ? '95%' : '100%'};
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const ProductListItemsWrapperStyled = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+  margin-block: 25px;
 
-  @media (max-width: 500px) {
-    margin: 15px auto;
+  @media (min-width: 1400px) {
+    float: left;
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 1200px) {
+    float: left;
+    grid-template-columns:  1fr 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 1000px) {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
 const ProductListItemWrapperStyled = styled.div`
   display: flex;
-  height: 160px;
-  width: 80%;
-  gap: 25px;
-  margin: 15px 25px;
-  border-top: 1px solid black;
-  padding-top: 15px;
+  flex-direction: column;
+  background: white;
+  height: 350px;
+  width: 160px;
+  max-width: 100%;
   position: relative;
-  transition: all 0.5s ease;
+  border-radius: 10px;
+  box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
 
-  :hover {
-    border-color: ${PINK_COLOR};
-    border-width: 3px;
-    cursor: pointer;
+  @media (min-width: 1200px) {
+    width: 320px;
   }
 
-  @media (max-width: 1200px) {
-    height: 135px;
-    width: 90%;
+  @media (min-width: 800px) {
+    width: 380px;
   }
 
-  @media (max-width: 500px) {
-    height: 140px;
-    width: 95%;
-    margin: 10px 15px;
-    gap: 5px;
+  @media (min-width: 600px) {
+    width: 290px;
   }
-
 `;
 
 const ProductListItemImageWrapperStyled = styled.div`
-  width: 17%;
-  height: 100%;
+  width: 100%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: start;
-
-  @media (max-width: 900px) {
-    width: 40%;
-    height: 100%;
-  }
-
-  @media (max-width: 500px) {
-    width: 50%;
-    height: 100%;
-  }
-
 `;
 
 const ProductListItemImageStyled = styled.img`
   width: 100%;
-  height: 70%;
+  height: 100%;
+  border-radius: 10px 10px 0px 0px;
   object-fit: fit;
-  
-  @media (max-width: 500px) {
-    width: 100%;
-    height: 80%;
-    line-height: 80%;
-  }
 `;
 
 const ProductListItemOtherContentWrapper = styled.div`
-  width: 83%;
+  width: 93%;
+  margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
+  text-align: left;
 `;
 
 const ProductListItemTitleStyled = styled.div`
-  font-size: 23px;
-  font-weight: 700;
-  margin-block: 5px;
+  font-size: 20px;
   letter-spacing: 1px;
-  
-  @media (max-width: 1200px) {
-    font-size: 20px;
-    font-weight: 600;
-  }
+  margin-bottom: 20px;
+  margin-top: 25px;
 
-  @media (max-width: 900px) {
-    font-size: 18px;
+  @media (min-width: 800px) {
+    margin-bottom: 40px;
   }
-
-  @media (max-width: 500px) {
-    font-size: 16px;
-    font-weight: 400;
-  }
-
 `;
 
 const ProductListItemCityStyled = styled.div`
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 15px;
   color: #483549;
   line-height: 20.83px;
-  font-weight: 700;
-
-  @media (max-width: 1200px) {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 13px;
-    margin-bottom: 0px;
-  }
-
-`;
-
-const ProductListItemDescriptionStyled = styled.div`
-  font-size: 13px;
-  margin-bottom: 15px;
-  color: gray;
-  line-height: 22px;
-
-  @media (max-width: 1200px) {
-    margin-bottom: 10px;
-    line-height: 20px;
-  }
-
-  @media (max-width: 900px) {
-    margin-bottom: 5px;
-    line-height: 18px;
-  }
-
-  @media (max-width: 500px) {
-    margin-bottom: 0px;
-    line-height: 12px;
-    font-size: 11px;
-  }
-
+  font-weight: 500;
 `;
 
 const ProductListItemPriceStyled = styled.div`
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 20px;
-  color: #483549;
+  color: #52a744;
   line-height: 20.83px;
   font-weight: 700;
-
-  @media (max-width: 1200px) {
-    font-size: 17px;
-    margin-bottom: 15px;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 15px;
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 13px;
-    margin-bottom: 3px;
-  }
 `;
 
 const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   position: absolute;
-  right: 5px;
-  height: fit-content;
-  width: fit-content;
-  top: 20px;
+  right: 25px;
+  top: 32%;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0 0 12px rgb(0 0 0 / 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 100%;
   color: ${PINK_COLOR};
-  
-  @media (max-width: 900px) {
-    height: 90%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: end;
-  }
-  
-  @media (max-width: 500px) {
-    height: 92%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: end;
-  }
+
 `;
 
 const ProductListItemRefreshedTimeStyled = styled.div`
-  position: absolute;
-  right: 5px;
-  bottom: 10px;
-  font-size: 15px;
+  font-size: 13px;
   color: gray;
   width: fit-content;
-
-  @media (max-width: 900px) {
-    font-size: 13px;
-  }
-
-  @media (max-width: 900px) {
-    left: 5px;
-    bottom: -5px;
-    font-size: 12px;
-    padding-top: 10px;
-  }
-
-  @media (max-width: 500px) {
-    left: 5px;
-    bottom: -5px;
-    font-size: 11px;
-    padding-top: 10px;
-  }
 `;
 
 const ProductListItemNoMoreProductsStyled = styled.div`
@@ -244,7 +135,6 @@ export {
   ProductListItemOtherContentWrapper,
   ProductListItemTitleStyled,
   ProductListItemCityStyled,
-  ProductListItemDescriptionStyled,
   ProductListItemPriceStyled,
   ProductListItemFavoritesButtonWrapperStyled,
   ProductListItemRefreshedTimeStyled,

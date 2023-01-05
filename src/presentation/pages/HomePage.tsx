@@ -41,10 +41,7 @@ const HomePage = () => {
 
   const renderProducts = () => {
     return (
-      <PaginatedProducts
-        hasMargin
-        products={state.paginated?.productsWithPageAndLimit.results ?? []}
-      />
+      <PaginatedProducts products={state.paginated?.productsWithPageAndLimit.results ?? []}/>
     );
   };
 
