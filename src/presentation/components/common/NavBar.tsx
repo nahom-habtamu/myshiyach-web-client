@@ -16,12 +16,31 @@ import { SettingPageRoute } from "../../pages/SettingPage";
 import { SavedPostsPageRoute } from "../../pages/SavedPosts.Page";
 import { AddPostPageRoute } from "../../pages/AddPostPage";
 import { ChatListPageRoute } from "../../pages/ChatListPage";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
+import { modifyFilterCriteria } from "../../../core/action_creators/product/filter_criteria_action_creators";
+import FilterCriteria from "../../../core/models/filter/filter_criteria";
 
-const NavBar = ({ onMenuClicked, activePage }: { onMenuClicked: Function, activePage: string }) => {
+const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuClicked: Function, activePage: string, onFilterButtonClicked: Function }) => {
 
+    const filterCriteria = useAppSelector((state) => state.filterCriteria);
+
+    const [keyword, setKeyword] = useState(filterCriteria.keyword ?? "");
     const [searchActive, setSearchActive] = useState(true);
 
     const history = useHistory();
+    const dispatch = useAppDispatch();
+
+    const handleSearchClicked = () => {
+        dispatch(
+            modifyFilterCriteria({
+                ...filterCriteria,
+                keyword,
+            } as FilterCriteria)
+        );
+        if (activePage != HomePageRoute) {
+            history.push(HomePageRoute);
+        }
+    };
 
     return (
         <NavBarWrapperStyled>
@@ -31,50 +50,50 @@ const NavBar = ({ onMenuClicked, activePage }: { onMenuClicked: Function, active
                     <NavBarLogoNameStyled>My Shiyach</NavBarLogoNameStyled>
                 </NavBarLogoWrapperStyled>
                 <NavBarOtherContentStyled>
-                    <NavIconsStyled 
+                    <NavIconsStyled
                         active={false}
                         onClick={() => setSearchActive(!searchActive)}>
                         <CiSearch size={ICON_SIZE_LARGE} />
                         Search
                     </NavIconsStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={false}
-                        onClick={() => onMenuClicked()} 
+                        onClick={() => onMenuClicked()}
                         isActiveOnSmallScreen={true}>
                         <GiHamburgerMenu size={ICON_SIZE_LARGE} />
                         Menu
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={activePage === HomePageRoute}
-                        onClick={() => { history.push(HomePageRoute)}}>
+                        onClick={() => { history.push(HomePageRoute) }}>
                         <CiHome size={ICON_SIZE_LARGE} />
                         Home
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={activePage === ChatListPageRoute}
-                        onClick={() => { history.push(ChatListPageRoute)}}>
+                        onClick={() => { history.push(ChatListPageRoute) }}>
                         <CiChat1 size={ICON_SIZE_LARGE} />
                         Chat
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={activePage === AddPostPageRoute}
-                        onClick={() => { history.push(AddPostPageRoute)}}>
+                        onClick={() => { history.push(AddPostPageRoute) }}>
                         <IoAddSharp size={ICON_SIZE_LARGE} />
                         AddPost
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={activePage === SavedPostsPageRoute}
-                        onClick={() => { history.push(SavedPostsPageRoute)}}>
+                        onClick={() => { history.push(SavedPostsPageRoute) }}>
                         <CiSaveDown1 size={ICON_SIZE_LARGE} />
                         Saved
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={activePage === SettingPageRoute}
-                        onClick={() => {history.push(SettingPageRoute) }}>
+                        onClick={() => { history.push(SettingPageRoute) }}>
                         <CiSettings size={ICON_SIZE_LARGE} />
                         Settings
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled 
+                    <ResponsiveIconStyled
                         active={false}
                         onClick={() => { }}>
                         <AiOutlineUserAdd size={ICON_SIZE_LARGE} />
@@ -83,11 +102,15 @@ const NavBar = ({ onMenuClicked, activePage }: { onMenuClicked: Function, active
                 </NavBarOtherContentStyled>
             </NavTopContentWrapperStyled>
             <NavSearchBarWrapperStyled active={searchActive}>
-                <NavSearchInputStyled type='text' placeholder="Enter Search Keyword." />
-                <NavSearchButtonStyled>
+                <NavSearchInputStyled
+                    type='text'
+                    placeholder="Enter Search Keyword."
+                    onChange={(e: any) => setKeyword(e.target.value)}
+                />
+                <NavSearchButtonStyled onClick={handleSearchClicked}>
                     <CiSearch size={ICON_SIZE_MEDIUM} />
                 </NavSearchButtonStyled>
-                <NavSearchButtonStyled>
+                <NavSearchButtonStyled onClick={() => onFilterButtonClicked()}>
                     <BiFilter size={ICON_SIZE_MEDIUM} />
                 </NavSearchButtonStyled>
             </NavSearchBarWrapperStyled>
