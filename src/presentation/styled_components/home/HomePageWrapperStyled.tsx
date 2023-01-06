@@ -7,6 +7,7 @@ const HomePageWrapperStyled = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  background: #F0F0F0;
 `;
 
 export { HomePageWrapperStyled };

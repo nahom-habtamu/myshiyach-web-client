@@ -4,9 +4,9 @@ import { PINK_COLOR } from "../../constants/colors";
 const ProductListItemsWrapperStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
-  row-gap: 20px;
-  margin-block: 25px;
+  column-gap: 10px;
+  row-gap: 15px;
+  margin-block: 20px;
 
   @media (min-width: 1400px) {
     float: left;
@@ -28,7 +28,7 @@ const ProductListItemWrapperStyled = styled.div`
   flex-direction: column;
   background: white;
   height: 350px;
-  width: 160px;
+  width: 170px;
   max-width: 100%;
   position: relative;
   border-radius: 10px;
@@ -45,6 +45,10 @@ const ProductListItemWrapperStyled = styled.div`
   @media (min-width: 600px) {
     width: 290px;
   }
+
+  @media (min-width: 500px) {
+    width: 240px;
+  }
 `;
 
 const ProductListItemImageWrapperStyled = styled.div`
@@ -59,7 +63,6 @@ const ProductListItemImageStyled = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 10px 10px 0px 0px;
-  object-fit: fit;
 `;
 
 const ProductListItemOtherContentWrapper = styled.div`
@@ -91,8 +94,8 @@ const ProductListItemCityStyled = styled.div`
 `;
 
 const ProductListItemPriceStyled = styled.div`
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 15px;
   color: #52a744;
   line-height: 20.83px;
   font-weight: 700;

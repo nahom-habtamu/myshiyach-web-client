@@ -110,7 +110,7 @@ const PaginatedProducts = ({ products }: { products: Product[]}) => {
                     style={{ marginBottom: '-4px', marginRight: '5px' }}
                     size={18}
                   />
-                  {p.refreshedAt}
+                  {p.refreshedAt.split(',')[0]}
                 </ProductListItemRefreshedTimeStyled>
               </ProductListItemOtherContentWrapper>
             </ProductListItemWrapperStyled>
