@@ -23,6 +23,7 @@ import FilterCriteria from "../../../core/models/filter/filter_criteria";
 const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuClicked: Function, activePage: string, onFilterButtonClicked: Function }) => {
 
     const filterCriteria = useAppSelector((state) => state.filterCriteria);
+    const login = useAppSelector((state) => state.login);
 
     const [keyword, setKeyword] = useState(filterCriteria.keyword ?? "");
     const [searchActive, setSearchActive] = useState(true);
@@ -69,36 +70,52 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
                         <CiHome size={ICON_SIZE_LARGE} />
                         Home
                     </ResponsiveIconStyled>
-                    <ResponsiveIconStyled
-                        active={activePage === ChatListPageRoute}
-                        onClick={() => { history.push(ChatListPageRoute) }}>
-                        <CiChat1 size={ICON_SIZE_LARGE} />
-                        Chat
-                    </ResponsiveIconStyled>
-                    <ResponsiveIconStyled
-                        active={activePage === AddPostPageRoute}
-                        onClick={() => { history.push(AddPostPageRoute) }}>
-                        <IoAddSharp size={ICON_SIZE_LARGE} />
-                        AddPost
-                    </ResponsiveIconStyled>
-                    <ResponsiveIconStyled
-                        active={activePage === SavedPostsPageRoute}
-                        onClick={() => { history.push(SavedPostsPageRoute) }}>
-                        <CiSaveDown1 size={ICON_SIZE_LARGE} />
-                        Saved
-                    </ResponsiveIconStyled>
-                    <ResponsiveIconStyled
-                        active={activePage === SettingPageRoute}
-                        onClick={() => { history.push(SettingPageRoute) }}>
-                        <CiSettings size={ICON_SIZE_LARGE} />
-                        Settings
-                    </ResponsiveIconStyled>
-                    <ResponsiveIconStyled
-                        active={false}
-                        onClick={() => { }}>
-                        <AiOutlineUserAdd size={ICON_SIZE_LARGE} />
-                        Login/Register
-                    </ResponsiveIconStyled>
+                    {
+                        login.result.token.length !== 0 &&
+                        <ResponsiveIconStyled
+                            active={activePage === ChatListPageRoute}
+                            onClick={() => { history.push(ChatListPageRoute) }}>
+                            <CiChat1 size={ICON_SIZE_LARGE} />
+                            Chat
+                        </ResponsiveIconStyled>
+                    }
+                    {
+                        login.result.token.length !== 0 &&
+                        <ResponsiveIconStyled
+                            active={activePage === AddPostPageRoute}
+                            onClick={() => { history.push(AddPostPageRoute) }}>
+                            <IoAddSharp size={ICON_SIZE_LARGE} />
+                            AddPost
+                        </ResponsiveIconStyled>
+                    }
+                    {
+                        login.result.token.length !== 0 &&
+                        <ResponsiveIconStyled
+                            active={activePage === SavedPostsPageRoute}
+                            onClick={() => { history.push(SavedPostsPageRoute) }}>
+                            <CiSaveDown1 size={ICON_SIZE_LARGE} />
+                            Saved
+                        </ResponsiveIconStyled>
+                    }
+                    {
+                        login.result.token.length !== 0 &&
+
+                        <ResponsiveIconStyled
+                            active={activePage === SettingPageRoute}
+                            onClick={() => { history.push(SettingPageRoute) }}>
+                            <CiSettings size={ICON_SIZE_LARGE} />
+                            Settings
+                        </ResponsiveIconStyled>
+                    }
+                    {
+                        login.result.token.length === 0 &&
+                        <ResponsiveIconStyled
+                            active={false}
+                            onClick={() => { }}>
+                            <AiOutlineUserAdd size={ICON_SIZE_LARGE} />
+                            Login/Register
+                        </ResponsiveIconStyled>
+                    }
                 </NavBarOtherContentStyled>
             </NavTopContentWrapperStyled>
             <NavSearchBarWrapperStyled active={searchActive}>

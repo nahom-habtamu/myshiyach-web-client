@@ -49,11 +49,11 @@ const HomePage = () => {
 
     return selectedMainCategory && <FilterCategories
       isSubCat={true}
-      onCategorySelected={(subCat: CatItem) => {
+      onCategorySelected={(subCat: CatItem | null) => {
         dispatch(
           modifyFilterCriteria({
             ...filterCriteria,
-            subCategory: subCat.value
+            subCategory: subCat?.value
           } as FilterCriteria)
         )
       }}
@@ -70,12 +70,17 @@ const HomePage = () => {
       <>
         <FilterCategories
           isSubCat={false}
-          onCategorySelected={(mainCat: CatItem) => {
-            setSelectedCategory(state.paginated!.categories.filter(e => e._id === mainCat.value)[0])
+          onCategorySelected={(mainCat: CatItem | null) => {
+            if (mainCat == null) {
+              setSelectedCategory(null);
+            }
+            else {
+              setSelectedCategory(state.paginated!.categories.filter(e => e._id === mainCat?.value)[0])
+            }
             dispatch(
               modifyFilterCriteria({
                 ...filterCriteria,
-                mainCategory: mainCat?.value ?? selectedMainCategory?._id ?? null,
+                mainCategory: mainCat?.value ?? null,
                 subCategory: null
               } as FilterCriteria)
             )
@@ -150,7 +155,7 @@ const HomePage = () => {
       <HomePageWrapperStyled>
         {renderMainCategories()}
         {renderSubCategories()}
-        {state.isDisplayLoading ? 
+        {state.isDisplayLoading ?
           <LoadingSpinnerWrapper>
             <LoadingSpinner />
           </LoadingSpinnerWrapper> : renderProducts()}
