@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MasterPageContentWrapperStyled from "../../styled_components/master/MasterPageContentWrapperStyled";
+import Footer from "./Footer";
 import NavBar from "./NavBar";
 import NavExpandedModal from "./NavExpandedModal";
 
@@ -19,6 +20,7 @@ const MasterComponent = (props: MasterComponentProps) => {
             {
                 props.children
             }
+            <Footer/>
             {!isNavCollapsed && <NavExpandedModal onClose={() => setIsNavCollapsed(true)} />}
         </MasterPageContentWrapperStyled>
     )

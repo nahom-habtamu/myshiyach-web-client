@@ -8,18 +8,18 @@ const ProductListItemsWrapperStyled = styled.div`
   row-gap: 15px;
   margin-block: 20px;
 
-  @media (min-width: 1400px) {
-    float: left;
-    grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1000px) {
     float: left;
     grid-template-columns:  1fr 1fr 1fr 1fr;
   }
 
-  @media (min-width: 1000px) {
-    grid-template-columns: 1fr 1fr 1fr;
+  @media (min-width: 1400px) {
+    float: left;
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
   }
 `;
 
@@ -34,20 +34,32 @@ const ProductListItemWrapperStyled = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
 
-  @media (min-width: 1200px) {
-    width: 320px;
-  }
-
-  @media (min-width: 800px) {
-    width: 380px;
+  @media (min-width: 500px) {
+    width: 240px;
   }
 
   @media (min-width: 600px) {
-    width: 290px;
+    width: 250px;
   }
 
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
+    width: 230px;
+  }
+
+  @media (min-width: 1000px) {
     width: 240px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 280px;
+  }
+
+  @media (min-width: 1400px) {
+    width: 250px;
+  }
+
+  @media (min-width: 1600px) {
+    width: 270px;
   }
 `;
 
