@@ -126,7 +126,6 @@ const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   background: white;
   border-radius: 100%;
   color: ${PINK_COLOR};
-
 `;
 
 const ProductListItemRefreshedTimeStyled = styled.div`

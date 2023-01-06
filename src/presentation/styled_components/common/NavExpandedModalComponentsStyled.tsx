@@ -26,12 +26,12 @@ export const DownloadAppButtonStyled = styled.button`
     font-size: 15px;
 `;
 
-export const NavBarItemWrapperStyled = styled.div`
+export const NavBarItemWrapperStyled = styled.div<{active: boolean}>`
     width: 85%;
     display: flex;
     justify-content: space-between;
-    color: white;
-    font-size: 18px;
+    color: ${props => props.active ? 'lightgray' : 'white'};
+    font-size: ${props => props.active ? '20px' : '18px'};
     padding-block: 5px;
 
     :hover {

@@ -10,4 +10,9 @@ const HomePageWrapperStyled = styled.div`
   background: #F0F0F0;
 `;
 
-export { HomePageWrapperStyled };
+const LoadingSpinnerWrapper = styled.div`
+  height: 400px;
+  width: 100%;
+`;
+
+export { HomePageWrapperStyled , LoadingSpinnerWrapper};

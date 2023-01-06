@@ -45,7 +45,7 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
     return (
         <NavBarWrapperStyled>
             <NavTopContentWrapperStyled>
-                <NavBarLogoWrapperStyled>
+                <NavBarLogoWrapperStyled onClick={() => history.push(HomePageRoute)}>
                     <NavBarLogoStyled src="/icon.png" />
                     <NavBarLogoNameStyled>My Shiyach</NavBarLogoNameStyled>
                 </NavBarLogoWrapperStyled>

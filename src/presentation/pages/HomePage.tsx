@@ -9,7 +9,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
 import PaginatedProducts from "../components/common/PaginatedProducts";
 import LoadMoreButton from "../components/home_page/LoadMoreButton";
-import { HomePageWrapperStyled } from "../styled_components/home/HomePageWrapperStyled";
+import { HomePageWrapperStyled, LoadingSpinnerWrapper } from "../styled_components/home/HomePageWrapperStyled";
 import FilterCategories, { CatItem } from "../components/home_page/FilterCategories";
 import { FilterCategoryResponsiveModalIconStyled, FilterCategoryResponsiveModalStyled, FilterCategoryResponsiveModalTitleStyled, FilterCategoryResponsiveModalTitleWrapperStyled, FilterCategorySubCategoryItemStyled, FilterCategorySubCategoryWrapperStyled } from "../styled_components/common/NewFilterComponentsStyled";
 import MainCategory from "../../core/models/category/main_category";
@@ -41,7 +41,7 @@ const HomePage = () => {
 
   const renderProducts = () => {
     return (
-      <PaginatedProducts products={state.paginated?.productsWithPageAndLimit.results ?? []}/>
+      <PaginatedProducts products={state.paginated?.productsWithPageAndLimit.results ?? []} />
     );
   };
 
@@ -150,7 +150,10 @@ const HomePage = () => {
       <HomePageWrapperStyled>
         {renderMainCategories()}
         {renderSubCategories()}
-        {state.isDisplayLoading ? <LoadingSpinner /> : renderProducts()}
+        {state.isDisplayLoading ? 
+          <LoadingSpinnerWrapper>
+            <LoadingSpinner />
+          </LoadingSpinnerWrapper> : renderProducts()}
         {!state.isDisplayLoading && renderLoadMoreButton()}
       </HomePageWrapperStyled>
     </MasterComponent>

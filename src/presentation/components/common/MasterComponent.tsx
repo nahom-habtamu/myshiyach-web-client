@@ -24,7 +24,9 @@ const MasterComponent = (props: MasterComponentProps) => {
                 props.children
             }
             <Footer />
-            {!isNavCollapsed && <NavExpandedModal onClose={() => setIsNavCollapsed(true)} />}
+            {!isNavCollapsed && 
+                <NavExpandedModal onClose={() => setIsNavCollapsed(true)} activePage={props.activePage}/>
+            }
             {isFilterModalOpen && <FilterProductsModal onClose={() => setIsFilterModalOpen(false)} />}
         </MasterPageContentWrapperStyled>
     )
