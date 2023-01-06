@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DARK_PINK_COLOR, LIGHT_GRAY_COLOR, PINK_COLOR } from "../../constants/colors";
+import { DARK_PINK_COLOR, PINK_COLOR } from "../../constants/colors";
 
 const DeletablePostListWrapperStyled = styled.div`
   width: 80%;
@@ -7,7 +7,7 @@ const DeletablePostListWrapperStyled = styled.div`
   flex-direction: column;
   gap: 25px;
   margin: 15px auto;
-  
+
   @media (max-width: 800px) {
     width: 85%;
     gap: 18px; 

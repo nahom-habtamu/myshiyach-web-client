@@ -3,7 +3,6 @@ import { PINK_COLOR, PRIMARY_COLOR } from "../../constants/colors";
 
 const ProductDetailWrapperStyled = styled.div`
   width: 60%;
-  height: 100%;
   margin: 25px auto;  
   
   @media (max-width: 1200px) {

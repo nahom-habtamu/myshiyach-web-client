@@ -4,7 +4,7 @@ import DeletablePostList from "../components/common/DeletablePostList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
 import {
-  SavedPostsLabelStyled,
+  SavedPostsNoItemsLabelStyled,
   SavedPostsPageWrapperStyled,
 } from "../styled_components/saved_posts/SavedPostsPageComponentsStyled";
 
@@ -20,7 +20,11 @@ const SavedPostsPage = () => {
   return (
     <MasterComponent activePage={SavedPostsPageRoute}>
       <SavedPostsPageWrapperStyled>
-        <SavedPostsLabelStyled>Saved Posts</SavedPostsLabelStyled>
+        {
+          savedPostsState.products.length === 0 && <SavedPostsNoItemsLabelStyled>
+            No Saved Products
+          </SavedPostsNoItemsLabelStyled>
+        }
         {savedPostsState.isLoading ? (
           <LoadingSpinner />
         ) : (

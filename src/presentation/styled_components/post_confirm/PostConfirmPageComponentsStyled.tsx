@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from "../../constants/colors";
+import { PRIMARY_COLOR } from "../../constants/colors";
 
 const PostConfirmPageWrapperStyled = styled.div`
   display: flex;

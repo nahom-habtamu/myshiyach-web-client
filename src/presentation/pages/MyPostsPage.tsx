@@ -10,6 +10,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
 import {
   MyPostsLabelStyled,
+  MyPostsNoItemsLabelStyled,
   MyPostsPageWrapperStyled,
 } from "../styled_components/my_posts/MyPostsPageComponentsStyled";
 import { SettingPageRoute } from "./SettingPage";
@@ -37,6 +38,9 @@ const MyPostsPage = () => {
     <MasterComponent activePage={SettingPageRoute}>
       <MyPostsPageWrapperStyled>
         <MyPostsLabelStyled>My Posts</MyPostsLabelStyled>
+        {
+          myPostsState.products?.length === 0 && <MyPostsNoItemsLabelStyled>You Haven't Added Products</MyPostsNoItemsLabelStyled>
+        }
         {myPostsState.isLoading ? (
           <LoadingSpinner />
         ) : (

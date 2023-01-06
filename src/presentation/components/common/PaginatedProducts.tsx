@@ -25,7 +25,7 @@ import {
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { CiLocationOn, CiTimer } from "react-icons/ci";
 
-const PaginatedProducts = ({ products }: { products: Product[]}) => {
+const PaginatedProducts = ({ products }: { products: Product[] }) => {
   const loginState = useAppSelector((state) => state.login);
   const favoriteProductsState = useAppSelector((state) => state.savedPosts);
   const dispatch = useAppDispatch();
@@ -60,62 +60,67 @@ const PaginatedProducts = ({ products }: { products: Product[]}) => {
   };
 
   return (
-    <ProductListItemsWrapperStyled>
+    <>
       {
         products.length === 0 ?
           <ProductListItemNoMoreProductsStyled>
             No Products
           </ProductListItemNoMoreProductsStyled>
           :
-          products.map((p) => (
-            <ProductListItemWrapperStyled
-              key={p._id}
-              onClick={() => handleGoingToProductDetail(p)}
-            >
-              <ProductListItemImageWrapperStyled>
-                <ProductListItemImageStyled src={p.productImages[0]} />
-              </ProductListItemImageWrapperStyled>
-              <ProductListItemOtherContentWrapper>
-                <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
-                <ProductListItemPriceStyled>
-                  $ {formatToPrice(p.price)} Birr
-                </ProductListItemPriceStyled>
-                <ProductListItemCityStyled>
-                  <CiLocationOn
-                    style={{ marginBottom: '-4px', marginRight: '5px' }}
-                    size={18}
-                  />
-                  {p.city.split(';')[0]}
-                </ProductListItemCityStyled>
 
-                {p.createdBy !== loginState.result.currentUser?._id && (
-                  <ProductListItemFavoritesButtonWrapperStyled>
-                    {favoriteProductsState.products.filter((sp) => sp._id === p._id)
-                      .length === 0 ? (
-                      <MdFavoriteBorder
-                        size={ICON_SIZE_MEDIUM}
-                        onClick={(e) => handleSavingProduct(e, p)}
+          <ProductListItemsWrapperStyled>
+            {
+              products.map((p) => (
+                <ProductListItemWrapperStyled
+                  key={p._id}
+                  onClick={() => handleGoingToProductDetail(p)}
+                >
+                  <ProductListItemImageWrapperStyled>
+                    <ProductListItemImageStyled src={p.productImages[0]} />
+                  </ProductListItemImageWrapperStyled>
+                  <ProductListItemOtherContentWrapper>
+                    <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
+                    <ProductListItemPriceStyled>
+                      $ {formatToPrice(p.price)} Birr
+                    </ProductListItemPriceStyled>
+                    <ProductListItemCityStyled>
+                      <CiLocationOn
+                        style={{ marginBottom: '-4px', marginRight: '5px' }}
+                        size={18}
                       />
-                    ) : (
-                      <MdFavorite
-                        size={ICON_SIZE_MEDIUM}
-                        onClick={(e) => handleDeletingSavedProduct(e, p)}
-                      />
+                      {p.city.split(';')[0]}
+                    </ProductListItemCityStyled>
+
+                    {p.createdBy !== loginState.result.currentUser?._id && (
+                      <ProductListItemFavoritesButtonWrapperStyled>
+                        {favoriteProductsState.products.filter((sp) => sp._id === p._id)
+                          .length === 0 ? (
+                          <MdFavoriteBorder
+                            size={ICON_SIZE_MEDIUM}
+                            onClick={(e) => handleSavingProduct(e, p)}
+                          />
+                        ) : (
+                          <MdFavorite
+                            size={ICON_SIZE_MEDIUM}
+                            onClick={(e) => handleDeletingSavedProduct(e, p)}
+                          />
+                        )}
+                      </ProductListItemFavoritesButtonWrapperStyled>
                     )}
-                  </ProductListItemFavoritesButtonWrapperStyled>
-                )}
 
-                <ProductListItemRefreshedTimeStyled>
-                  <CiTimer
-                    style={{ marginBottom: '-4px', marginRight: '5px' }}
-                    size={18}
-                  />
-                  {p.refreshedAt.split(',')[0]}
-                </ProductListItemRefreshedTimeStyled>
-              </ProductListItemOtherContentWrapper>
-            </ProductListItemWrapperStyled>
-          ))}
-    </ProductListItemsWrapperStyled>
+                    <ProductListItemRefreshedTimeStyled>
+                      <CiTimer
+                        style={{ marginBottom: '-4px', marginRight: '5px' }}
+                        size={18}
+                      />
+                      {p.refreshedAt.split(',')[0]}
+                    </ProductListItemRefreshedTimeStyled>
+                  </ProductListItemOtherContentWrapper>
+                </ProductListItemWrapperStyled>
+              ))}
+          </ProductListItemsWrapperStyled>
+      }
+    </>
   );
 };
 

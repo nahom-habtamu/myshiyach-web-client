@@ -5,7 +5,8 @@ const SavedPostsPageWrapperStyled = styled.div`
   width: 65%;
   flex-direction: column;
   background: white;
-  margin: 0 auto;
+  margin: 15px auto;
+  min-height: 400px;
   
   @media (max-width: 1200px) {
     width: 90%;
@@ -16,15 +17,13 @@ const SavedPostsPageWrapperStyled = styled.div`
   }
 `;
 
-const SavedPostsLabelStyled = styled.div`
-  font-size: 25px;
+const SavedPostsNoItemsLabelStyled = styled.div`
+  font-size: 22px;
   text-align: center;
   text-transform: capitalize;
-  color: black;
-  font-weight: bold;
-  font-style: italic;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  color: grey;
+  line-height: 300px;
+  text-align: center;
 `;
 
-export { SavedPostsPageWrapperStyled, SavedPostsLabelStyled };
+export { SavedPostsPageWrapperStyled , SavedPostsNoItemsLabelStyled};

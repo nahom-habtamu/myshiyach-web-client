@@ -4,8 +4,9 @@ const MyPostsPageWrapperStyled = styled.div`
   display: flex;
   width: 65%;
   flex-direction: column;
-  background: white;
+  background: #F0F0F0;
   margin: 0 auto;
+  min-height: 400px;
 
   @media (max-width: 1200px) {
     width: 85%;
@@ -17,14 +18,23 @@ const MyPostsPageWrapperStyled = styled.div`
 `;
 
 const MyPostsLabelStyled = styled.div`
-  font-size: 25px;
+  font-size: 28px;
   text-align: center;
   text-transform: capitalize;
   color: black;
-  font-weight: bold;
-  font-style: italic;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+  margin: 15px;
 `;
 
-export { MyPostsPageWrapperStyled, MyPostsLabelStyled };
+const MyPostsNoItemsLabelStyled = styled.div`
+  font-size: 22px;
+  text-align: center;
+  text-transform: capitalize;
+  color: grey;
+  line-height: 300px;
+  text-align: center;
+`;
+
+
+export { MyPostsPageWrapperStyled, MyPostsNoItemsLabelStyled, MyPostsLabelStyled };

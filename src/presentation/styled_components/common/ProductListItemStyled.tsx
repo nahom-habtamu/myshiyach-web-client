@@ -140,6 +140,12 @@ const ProductListItemNoMoreProductsStyled = styled.div`
   font-size: 20px;
   font-style: italic;
   margin-bottom: 25px;
+  height: 300px;
+  width: 90%;
+  line-height: 300px;
+  text-align: center;
+  background: white;
+  margin: 25px auto;
 `;
 
 export {

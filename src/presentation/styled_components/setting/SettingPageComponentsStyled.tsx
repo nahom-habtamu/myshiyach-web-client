@@ -3,9 +3,9 @@ import { LIGHT_GRAY_COLOR } from "../../constants/colors";
 
 const SettingWrapperStyled = styled.div`
   width: 85%;
-  height: 100%;
   padding: 25px;
-  background: white;
+  min-height: 400px;
+  margin: 0 auto;
 
   @media (max-width: 1200px) {
     width: 100%;
@@ -14,7 +14,8 @@ const SettingWrapperStyled = styled.div`
 
 const SettingTabsWrapperStyled = styled.div`
   width: 75%;
-  margin: 50px auto;
+  margin: 0 auto;
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
 
