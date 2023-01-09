@@ -71,11 +71,11 @@ const Footer = () => {
                 </FooterCommunityContentWrapperStyled>
             </FooterCommunityWrapperStyled>
             <FooterPrivacyPolicyWrapperStyled>
-                <FooterPrivacyPolicyItemStyled>© Copyright 2000-2023 Gumtree.com Limited. All rights reserved.</FooterPrivacyPolicyItemStyled>
-                <FooterPrivacyPolicyItemStyled>Gumtree.com Limited is an Appointed Representative of Compare The Market Limited who is authorised and regulated by the Financial Conduct Authority.</FooterPrivacyPolicyItemStyled>
-                <FooterPrivacyPolicyItemStyled>Gumtree.com Limited is an Introducer Appointed Representative of CarMoney Limited who are authorised and regulated by the Financial Conduct Authority, FRN 674094. Gumtree.com Limited is a credit broker, not a lender. Introductions are limited to motor finance, CarMoney Limited will pay us a fixed commission per paid out deal.</FooterPrivacyPolicyItemStyled>
-                <FooterPrivacyPolicyItemStyled>Gumtree.com Limited is an Introducer Appointed Representative of Zuto Limited who are authorised and regulated by the Financial Conduct Authority, FRN 452589. Zuto Limited is a credit broker, not a lender. Introductions are limited to motor finance.</FooterPrivacyPolicyItemStyled>
-                <FooterPrivacyPolicyItemStyled>Gumtree.com Limited, registered in England and Wales with number 03934849, 27 Old Gloucester Street, London, WC1N 3AX, United Kingdom. VAT No. 345 7692 64.</FooterPrivacyPolicyItemStyled>
+                <FooterPrivacyPolicyItemStyled>© Copyright 2000-2023 MyShiyach.com Limited. All rights reserved.</FooterPrivacyPolicyItemStyled>
+                <FooterPrivacyPolicyItemStyled>MyShiyach.com Limited is an Appointed Representative of Compare The Market Limited who is authorised and regulated by the Financial Conduct Authority.</FooterPrivacyPolicyItemStyled>
+                <FooterPrivacyPolicyItemStyled>MyShiyach.com Limited is an Introducer Appointed Representative of CarMoney Limited who are authorised and regulated by the Financial Conduct Authority, FRN 674094. MyShiyach.com Limited is a credit broker, not a lender. Introductions are limited to motor finance, CarMoney Limited will pay us a fixed commission per paid out deal.</FooterPrivacyPolicyItemStyled>
+                <FooterPrivacyPolicyItemStyled>MyShiyach.com Limited is an Introducer Appointed Representative of Zuto Limited who are authorised and regulated by the Financial Conduct Authority, FRN 452589. Zuto Limited is a credit broker, not a lender. Introductions are limited to motor finance.</FooterPrivacyPolicyItemStyled>
+                <FooterPrivacyPolicyItemStyled>MyShiyach.com Limited, registered in England and Wales with number 03934849, 27 Old Gloucester Street, London, WC1N 3AX, United Kingdom. VAT No. 345 7692 64.</FooterPrivacyPolicyItemStyled>
             </FooterPrivacyPolicyWrapperStyled>
         </FooterComponentWrapperStyled>
     );
