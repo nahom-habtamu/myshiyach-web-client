@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiChat1, CiHome, CiSaveDown1, CiSearch, CiSettings } from "react-icons/ci";
-import { IoAddSharp } from "react-icons/io5";
+import { IoAddSharp, IoClose } from "react-icons/io5";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ICON_SIZE_LARGE, ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
     NavBarWrapperStyled, NavTopContentWrapperStyled, NavBarLogoWrapperStyled,
     NavBarLogoStyled, NavBarOtherContentStyled, NavIconsStyled, NavSearchBarWrapperStyled,
-    NavSearchInputStyled, NavSearchButtonStyled, ResponsiveIconStyled, NavBarLogoNameStyled
+    NavSearchInputStyled, NavSearchButtonStyled, ResponsiveIconStyled, NavBarLogoNameStyled, NavClearSearchButtonStyled
 } from "../../styled_components/common/MasterComponentsStyled";
 import { BiFilter } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
@@ -25,24 +25,47 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
     const filterCriteria = useAppSelector((state) => state.filterCriteria);
     const login = useAppSelector((state) => state.login);
 
-    const [keyword, setKeyword] = useState(filterCriteria.keyword ?? "");
+    const [keyword, setKeyword] = useState("");
     const [searchActive, setSearchActive] = useState(true);
 
     const history = useHistory();
     const dispatch = useAppDispatch();
 
+
+    useEffect(() => {
+        setKeyword(filterCriteria?.keyword ?? "");
+    }, [])
+
+
     const handleSearchClicked = () => {
+        if (keyword.length > 0) {
+            dispatch(
+                modifyFilterCriteria({
+                    ...filterCriteria,
+                    keyword,
+                } as FilterCriteria)
+            );
+            if (activePage !== HomePageRoute) {
+                history.push(HomePageRoute);
+            }
+        }
+    };
+
+    const handleRemoveSearchClicked = () => {
+        setKeyword("");
         dispatch(
             modifyFilterCriteria({
                 ...filterCriteria,
-                keyword,
+                keyword: null,
             } as FilterCriteria)
         );
-        if (activePage != HomePageRoute) {
+        if (activePage !== HomePageRoute) {
             history.push(HomePageRoute);
         }
     };
 
+    console.log(filterCriteria);
+    
     return (
         <NavBarWrapperStyled>
             <NavTopContentWrapperStyled>
@@ -119,12 +142,18 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
                 </NavBarOtherContentStyled>
             </NavTopContentWrapperStyled>
             <NavSearchBarWrapperStyled active={searchActive}>
+                <NavClearSearchButtonStyled onClick={handleRemoveSearchClicked}>
+                    <IoClose size={ICON_SIZE_MEDIUM} />
+                </NavClearSearchButtonStyled>
                 <NavSearchInputStyled
                     type='text'
                     placeholder="Enter Search Keyword."
+                    value={keyword}
                     onChange={(e: any) => setKeyword(e.target.value)}
                 />
-                <NavSearchButtonStyled onClick={handleSearchClicked}>
+                <NavSearchButtonStyled
+                    disabled={keyword.length === 0}
+                    onClick={handleSearchClicked}>
                     <CiSearch size={ICON_SIZE_MEDIUM} />
                 </NavSearchButtonStyled>
                 <NavSearchButtonStyled onClick={() => onFilterButtonClicked()}>

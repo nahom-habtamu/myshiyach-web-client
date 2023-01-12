@@ -35,7 +35,7 @@ export default function filterCriteriaReducer(
           action.payload.sortByCreatedByAscending ??
           state?.sortByCreatedByAscending ??
           null,
-        keyword: action.payload.keyword ?? state?.keyword ?? null,
+        keyword: action.payload.keyword ?? null,
       };
     case filterCriteriaActions.FILTER_CRITERIA_CLEAR:
       return initialFilterCriteria;

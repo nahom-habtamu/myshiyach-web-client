@@ -123,6 +123,7 @@ export const NavSearchBarWrapperStyled = styled.div<{ active: boolean }>`
     gap: 10px;
     margin-top: 20px;
     transition: all 0.5s ease;
+    position: relative;
     
     @media (min-width: 1100px) {
         width: 60%;
@@ -135,14 +136,36 @@ export const NavSearchBarWrapperStyled = styled.div<{ active: boolean }>`
     }
 `;
 
-export const NavSearchButtonStyled = styled.div`
+export const NavClearSearchButtonStyled = styled.div<{ disabled?: boolean }>`
+    color: gray;
+    position: absolute;
+    top: 7px;
+    left: 15px;
+    padding: 3px;
+    background: white;
+
+    @media (min-width: 1100px) {
+        padding: 5px;
+    }
+
+    @media (min-width: 800px) {
+        padding: 4px;
+    }
+
+    :active {
+        border-radius: 10px;
+        background: lightgray;
+    }
+`;
+
+export const NavSearchButtonStyled = styled.div<{ disabled?: boolean }>`
     width: 45px;
     height: 100%;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${PINK_COLOR};
+    background: ${props => props.disabled === true ? 'pink' : PINK_COLOR};
     color: white;
 
     @media (min-width: 1100px) {
