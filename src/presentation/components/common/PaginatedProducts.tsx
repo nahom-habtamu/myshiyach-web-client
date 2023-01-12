@@ -59,6 +59,13 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
     }
   };
 
+  const normalizeTitle = (title: string) => {
+    if (title.length > 30) {
+      return title.substring(0, 30) + '...';
+    }
+    return title;
+  }
+
   return (
     <>
       {
@@ -67,7 +74,6 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
             No Products
           </ProductListItemNoMoreProductsStyled>
           :
-
           <ProductListItemsWrapperStyled>
             {
               products.map((p) => (
@@ -79,7 +85,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
                     <ProductListItemImageStyled src={p.productImages[0]} />
                   </ProductListItemImageWrapperStyled>
                   <ProductListItemOtherContentWrapper>
-                    <ProductListItemTitleStyled>{p.title}</ProductListItemTitleStyled>
+                    <ProductListItemTitleStyled>{normalizeTitle(p.title)}</ProductListItemTitleStyled>
                     <ProductListItemPriceStyled>
                       $ {formatToPrice(p.price)} Birr
                     </ProductListItemPriceStyled>
@@ -106,7 +112,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
                           />
                         )}
                       </ProductListItemFavoritesButtonWrapperStyled>
-                    )}
+                    )} 
 
                     <ProductListItemRefreshedTimeStyled>
                       <CiTimer

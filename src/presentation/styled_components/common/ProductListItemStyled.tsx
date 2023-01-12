@@ -32,6 +32,7 @@ const ProductListItemWrapperStyled = styled.div`
   max-width: 100%;
   position: relative;
   border-radius: 10px;
+  justify-content: space-between;
   box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
 
   @media (min-width: 500px) {
@@ -75,12 +76,13 @@ const ProductListItemImageStyled = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 10px 10px 0px 0px;
+  object-fit: center center;
 `;
 
 const ProductListItemOtherContentWrapper = styled.div`
   width: 93%;
   margin: 0 auto;
-  height: 100%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -117,8 +119,8 @@ const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   position: absolute;
   right: 25px;
   top: 32%;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   box-shadow: 0 0 12px rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
@@ -126,6 +128,11 @@ const ProductListItemFavoritesButtonWrapperStyled = styled.div`
   background: white;
   border-radius: 100%;
   color: ${PINK_COLOR};
+
+  @media (min-width: 500px) {
+    height: 50px;
+    width: 50px;
+  }
 `;
 
 const ProductListItemRefreshedTimeStyled = styled.div`
