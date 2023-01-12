@@ -18,6 +18,7 @@
     "react-icons": "^4.6.0",
     "react-material-ui-carousel": "^3.4.2",
     "react-otp-input": "^2.4.0",
+    "react-phone-number-input": "^3.2.16",
     "react-redux": "^8.0.4",
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.1",
@@ -29,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "prod" : "cd server && node index.js",
+    "prod": "cd server && node index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

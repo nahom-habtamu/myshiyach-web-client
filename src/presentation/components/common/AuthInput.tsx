@@ -29,6 +29,7 @@ const AuthInput = (props: AuthInputProps) => {
         hasError && <AuthInputError>{error}</AuthInputError>
       }
       <AuthInputStyled
+        autoComplete="off"
         hasError={hasError}
         type={props.type}
         placeholder={props.placeHolder}

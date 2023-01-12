@@ -12,6 +12,7 @@ import {
 import ActionButton from "../common/ActionButton";
 import AuthInput from "../common/AuthInput";
 import AuthToggleAction from "../common/AuthToggleAction";
+import PhoneNumberInput from "../common/PhoneNumberInput";
 
 type SignUpPageContentProps = {
   authPhoneNumberState: AuthPhoneNumberState;
@@ -41,9 +42,7 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
 
   const userNameValidator = (value: string) => {
     if (value.length === 0)
-      return "Enter Username";
-    else if (value.length < 10)
-      return "Enter Proper Username";
+      return "Enter Phone Number";
     return null;
   }
 
@@ -90,13 +89,11 @@ const SignUpPageContent = (props: SignUpPageContentProps) => {
           validator={nameValidator}
         />
         <SpaceStyled />
-        <AuthInput
-          type="text"
+        <PhoneNumberInput
           onChanged={(e: React.ChangeEvent<HTMLInputElement>) =>
             props.onUsernameChanged(e)
           }
-          obsecureText={false}
-          placeHolder="Username"
+          placeHolder="Phone Number"
           validator={userNameValidator}
         />
         <SpaceStyled />

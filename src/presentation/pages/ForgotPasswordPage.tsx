@@ -17,6 +17,7 @@ import { useHistory } from "react-router-dom";
 import { OtpVerificationPageRoute } from "./OtpVerificationPage";
 import { ChangePasswordPageRoute } from "./ChangePasswordPage";
 import { changePasswordClear } from "../../core/action_creators/user/change_password_action_creators";
+import PhoneNumberInput from "../components/common/PhoneNumberInput";
 
 const ForgotPasswordPage = () => {
   const history = useHistory();
@@ -84,9 +85,7 @@ const ForgotPasswordPage = () => {
 
   const userNameValidator = (value: string) => {
     if (value.length === 0)
-      return "Enter Username";
-    else if (value.length < 10)
-      return "Enter Proper Username";
+      return "Enter Phone Number";
     return null;
   }
 
@@ -95,13 +94,11 @@ const ForgotPasswordPage = () => {
       <LoginPageHeaderOneStyled>Lost Your Password</LoginPageHeaderOneStyled>
       <LoginPageHeaderTwoStyled>Let's recreate it now</LoginPageHeaderTwoStyled>
       <AuthInputWrapperStyled>
-        <AuthInput
-          type="text"
+        <PhoneNumberInput
           onChanged={(e: React.ChangeEvent<HTMLInputElement>) =>
             setUserName(e.target.value)
           }
-          obsecureText={false}
-          placeHolder="Username"
+          placeHolder="Phone Number"
           validator={userNameValidator}
         />
         <SpaceStyled />

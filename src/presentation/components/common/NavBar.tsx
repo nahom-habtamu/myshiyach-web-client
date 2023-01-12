@@ -19,6 +19,7 @@ import { ChatListPageRoute } from "../../pages/ChatListPage";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { modifyFilterCriteria } from "../../../core/action_creators/product/filter_criteria_action_creators";
 import FilterCriteria from "../../../core/models/filter/filter_criteria";
+import { LoginPageRoute } from "../../pages/LoginPage";
 
 const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuClicked: Function, activePage: string, onFilterButtonClicked: Function }) => {
 
@@ -132,7 +133,9 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
                         login.result.token.length === 0 &&
                         <ResponsiveIconStyled
                             active={false}
-                            onClick={() => { }}>
+                            onClick={() => { 
+                                history.push(LoginPageRoute);
+                            }}>
                             <AiOutlineUserAdd size={ICON_SIZE_LARGE} />
                             Login/Register
                         </ResponsiveIconStyled>

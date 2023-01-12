@@ -19,6 +19,7 @@ import { useAppDispatch } from "../../../store/storeHooks";
 import { toggleLoginPromptModalClose } from "../../../core/action_creators/common/login_prompt_action_creators";
 import { HomePageRoute } from "../../pages/HomePage";
 import { ForgotPasswordPageRoute } from "../../pages/ForgotPasswordPage";
+import PhoneNumberInput from "../common/PhoneNumberInput";
 
 type LoginPageContentProps = {
   loginState: LoginState;
@@ -43,8 +44,6 @@ const LoginPageContent = (props: LoginPageContentProps) => {
   const userNameValidator = (value: string) => {
     if (value.length === 0)
       return "Enter PhoneNumber";
-    else if (value.length < 10)
-      return "Enter Proper PhoneNumber";
     return null;
   }
 
@@ -64,22 +63,22 @@ const LoginPageContent = (props: LoginPageContentProps) => {
       </LoginPageHeaderTwoStyled>
 
       <AuthInputWrapperStyled>
-        <AuthInput
-          type="text"
+
+        <PhoneNumberInput
           onChanged={(e: React.ChangeEvent<HTMLInputElement>) =>
             props.onUsernameChanged(e)
           }
-          obsecureText={false}
           placeHolder="Phone Number"
           validator={userNameValidator}
         />
+
         <SpaceStyled />
         <AuthInput
-          type="text"
+          type="password"
           onChanged={(e: React.ChangeEvent<HTMLInputElement>) =>
             props.onPasswordChanged(e)
           }
-          obsecureText={false}
+          obsecureText={true}
           placeHolder="Password"
           validator={passwordValidator}
         />
