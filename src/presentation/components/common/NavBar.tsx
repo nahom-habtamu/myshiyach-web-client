@@ -63,8 +63,6 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
             history.push(HomePageRoute);
         }
     };
-
-    console.log(filterCriteria);
     
     return (
         <NavBarWrapperStyled>

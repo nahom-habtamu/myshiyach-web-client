@@ -24,6 +24,8 @@ import {
 } from "../../../core/action_creators/product/saved_products_action_creators";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { CiLocationOn, CiTimer } from "react-icons/ci";
+import normalizeTitle from "../../utils/normalizeTitle";
+import formatRefreshedAtDate from "../../utils/formatRefreshedAtDate";
 
 const PaginatedProducts = ({ products }: { products: Product[] }) => {
   const loginState = useAppSelector((state) => state.login);
@@ -59,12 +61,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
     }
   };
 
-  const normalizeTitle = (title: string) => {
-    if (title.length > 30) {
-      return title.substring(0, 30) + '...';
-    }
-    return title;
-  }
+
 
   return (
     <>
@@ -119,7 +116,9 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
                         style={{ marginBottom: '-4px', marginRight: '5px' }}
                         size={18}
                       />
-                      {p.refreshedAt.split(',')[0]}
+                      {
+                        formatRefreshedAtDate(p.refreshedAt)
+                      }
                     </ProductListItemRefreshedTimeStyled>
                   </ProductListItemOtherContentWrapper>
                 </ProductListItemWrapperStyled>
