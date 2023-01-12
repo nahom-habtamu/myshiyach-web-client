@@ -19,7 +19,7 @@ import FilterCriteria from "../../core/models/filter/filter_criteria";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
-  const filterCriteria = useAppSelector((state) => state.filterCriteria);
+  const filterCriteria = useAppSelector((state) => state.filterCriteria);  
 
   const [selectedMainCategory, setSelectedCategory] = useState<MainCategory | null>(null);
 

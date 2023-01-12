@@ -9,7 +9,7 @@ const initialFilterCriteria: FilterCriteria = {
   brand: null,
   city: null,
   sortByPriceAscending: null,
-  sortByCreatedByAscending: null,
+  sortByCreatedByAscending: true,
   keyword: null,
 };
 

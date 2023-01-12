@@ -61,19 +61,20 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
     }
   };
 
-
+  let sortedProducts = products.sort((a, b) => 
+    (new Date(b.refreshedAt) as any) - (new Date(a.refreshedAt) as any));
 
   return (
     <>
       {
-        products.length === 0 ?
+        sortedProducts.length === 0 ?
           <ProductListItemNoMoreProductsStyled>
             No Products
           </ProductListItemNoMoreProductsStyled>
           :
           <ProductListItemsWrapperStyled>
             {
-              products.map((p) => (
+              sortedProducts.map((p) => (
                 <ProductListItemWrapperStyled
                   key={p._id}
                   onClick={() => handleGoingToProductDetail(p)}
