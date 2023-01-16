@@ -19,7 +19,7 @@ type OtpPageArguments = {
 };
 
 const OtpVerificationPage = () => {
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const location = useLocation();
   const history = useHistory();
   const args = location.state as OtpPageArguments;

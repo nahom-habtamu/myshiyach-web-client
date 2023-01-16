@@ -17,7 +17,7 @@ import {
 import { SettingPageRoute } from "./SettingPage";
 
 const MyPostsPage = () => {
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const loginState = useAppSelector((state) => state.login);
   const myPostsState = useAppSelector((state) => state.getMyPosts);
   const dispatch = useAppDispatch();

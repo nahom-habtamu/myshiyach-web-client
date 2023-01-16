@@ -22,7 +22,7 @@ import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const ForgotPasswordPage = () => {
   const history = useHistory();
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const dispatch = useAppDispatch();
   const [userName, setUserName] = useState<string | null>("");
 

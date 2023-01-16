@@ -5,7 +5,7 @@ import { PostConfirmPageAdPlacedTextStyled, PostConfirmPageImageStyled, PostConf
 import { HomePageRoute } from './HomePage';
 
 const PostConfirmationPage = () => {
-    const [_] = useScrollToTop();
+    useScrollToTop();
     const history = useHistory();
     return (
         <MasterComponent activePage={PostConfirmationPageRoute}>

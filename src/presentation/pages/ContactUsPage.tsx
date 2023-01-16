@@ -3,7 +3,7 @@ import useScrollToTop from "../custom_hooks/useScrollToTop";
 import { ContactUsAboutTitleStyled, ContactUsAboutValueStyled, ContactUsAboutWrapperStyled, ContactUsAddressKeyStyled, ContactUsAddressKeyValueWrapperStyled, ContactUsAddressLabelStyled, ContactUsAddressValueStyled, ContactUsAddressWrapperStyled, ContactUsEmailAndCallItemStyled, ContactUsEmailAndCallItemTitleStyled, ContactUsEmailAndCallItemValueStyled, ContactUsEmailAndCallWrapperStyled, ContactUsLabelStyled, ContactUsWrapperStyled } from "../styled_components/contact_us/ContactUsPageComponentsStyle";
 
 const ContactUsPage = () => {
-    const [_] = useScrollToTop();
+    useScrollToTop();
 
     const renderContactUsKeyValue = (title: string, value: string) => {
         return <ContactUsEmailAndCallItemStyled>

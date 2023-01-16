@@ -46,7 +46,7 @@ const initalState: EditPostPageInputState = {
 const EditProductPage = () => {
   let { id } = useParams<any>();
 
-  const [_] = useScrollToTop();
+  useScrollToTop();
 
   const loginState = useAppSelector((state) => state.login);
   const editProductState = useAppSelector((state) => state.editProduct);

@@ -41,7 +41,7 @@ const buildInitialState = (phoneNumber: string): AddPostPageInputState => {
 }
 
 const AddPostPage = () => {
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const [currentInputPage, setCurrentInputPage] = useState(0);
   const [pickedImages, setPickedImages] = useState<File[]>([]);
   const getDataNeededToAddPostState = useAppSelector(

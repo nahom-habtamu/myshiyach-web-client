@@ -22,7 +22,7 @@ const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
   const filterCriteria = useAppSelector((state) => state.filterCriteria);  
 
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const [selectedMainCategory, setSelectedCategory] = useState<MainCategory | null>(null);
 
   const dispatch = useAppDispatch();

@@ -24,7 +24,7 @@ import { HomePageRoute } from "./HomePage";
 import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const SettingPage = () => {
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const loginState = useAppSelector((state) => state.login);
   const history = useHistory();
   const dispatch = useAppDispatch();

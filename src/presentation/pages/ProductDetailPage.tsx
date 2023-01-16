@@ -31,7 +31,7 @@ import useScrollToTop from "../custom_hooks/useScrollToTop";
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
   const history = useHistory();
-  const [_] = useScrollToTop();
+  useScrollToTop();
 
   const productDetailState = useAppSelector((state) => state.getProductDetail);
   const loginState = useAppSelector((state) => state.login);

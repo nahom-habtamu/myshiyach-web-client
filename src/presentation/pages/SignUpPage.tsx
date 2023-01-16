@@ -10,7 +10,7 @@ import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const SignUpPage = () => {
   const history = useHistory();
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const dispatch = useAppDispatch();
   const authPhoneNumberState = useAppSelector((state) => state.authPhoneNumber);
 

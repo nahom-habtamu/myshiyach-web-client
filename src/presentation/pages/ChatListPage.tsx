@@ -11,7 +11,7 @@ import { ChatListWrapperStyled } from "../styled_components/chat/ChatListCompone
 
 const ChatListPage = () => {
 
-  const [_] = useScrollToTop();
+  useScrollToTop();
   
   const dispatch = useAppDispatch();
   const history = useHistory();

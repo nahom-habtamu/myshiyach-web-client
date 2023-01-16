@@ -20,7 +20,7 @@ type ChangePasswordPageArguments = {
 };
 
 const ChangePasswordPage = () => {
-  const [_] = useScrollToTop();
+  useScrollToTop();
   const history = useHistory();
   const location = useLocation();
 

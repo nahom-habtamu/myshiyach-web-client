@@ -26,7 +26,7 @@ import { ChatListPageRoute } from "./ChatListPage";
 const ChatDetailPage = () => {
   let { id } = useParams<any>();
 
-  const [_] = useScrollToTop();
+  useScrollToTop();
 
   const [conversation, setConversation] = useState<Conversation | null>(null);
 

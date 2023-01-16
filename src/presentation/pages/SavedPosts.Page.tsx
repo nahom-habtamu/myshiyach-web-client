@@ -13,7 +13,7 @@ const SavedPostsPage = () => {
   const savedPostsState = useAppSelector((state) => state.savedPosts);
 
   const dispatch = useAppDispatch();
-  const [_] = useScrollToTop();
+  useScrollToTop();
 
   const handleProductDelete = (id: string) => {
     dispatch(deleteSavedPostsItem(id));
