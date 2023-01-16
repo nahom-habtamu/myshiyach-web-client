@@ -46,7 +46,7 @@ export default function getSavedPostsReducer(
       };
     case actions.ADD_SAVED_POSTS_ITEM:
       return {
-        products: [...state.products, action.payload],
+        products: [action.payload, ...state.products],
         error: "",
         isLoading: false,
       };
