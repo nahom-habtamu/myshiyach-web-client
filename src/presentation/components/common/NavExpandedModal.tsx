@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom";
 import { BiChevronRight } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-import { useAppSelector } from "../../../store/storeHooks";
+import { loginClear } from "../../../core/action_creators/auth/login_action_creators";
+import { logOut } from "../../../core/action_creators/common/log_out_action_creators";
+import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import { AddPostPageRoute } from "../../pages/AddPostPage";
 import { ChatListPageRoute } from "../../pages/ChatListPage";
@@ -21,54 +23,49 @@ type NavExpandedProps = {
 const NavExpandedModal = (props: NavExpandedProps) => {
     const loginState = useAppSelector(state => state.login);
     const history = useHistory();
+
+    const dispatch = useAppDispatch();
+
+    const handleLogOut = () => {
+        dispatch(loginClear());
+        logOut();
+        history.push(HomePageRoute);
+    }
+
+    function renderNavItem(tabName: string, routeName: string) {
+        return <NavBarItemWrapperStyled
+            active={props.activePage === routeName}
+            onClick={() => history.push(routeName)}>
+            {tabName}<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
+        </NavBarItemWrapperStyled>;
+    }
     return ReactDOM.createPortal(
         <>
-            <ModalWrapperShadowStyled onClick={() => props.onClose()} />
+            <ModalWrapperShadowStyled onClick={() => props.onClose()} onScroll={(e) => e.stopPropagation()} />
             <NavExpandedModelWrapperStyled onClick={(e) => e.stopPropagation()}>
                 <DownloadAppButtonStyled>
                     Download App
                 </DownloadAppButtonStyled>
-                <NavBarItemWrapperStyled
-                    active={props.activePage === HomePageRoute}
-                    onClick={() => history.push(HomePageRoute)}>
-                    Home<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                </NavBarItemWrapperStyled>
-                <NavBarItemWrapperStyled
-                    active={props.activePage === ChatListPageRoute}
-                    onClick={() => history.push(ChatListPageRoute)}>
-                    Chat<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                </NavBarItemWrapperStyled>
-                <NavBarItemWrapperStyled
-                    active={props.activePage === AddPostPageRoute}
-                    onClick={() => history.push(AddPostPageRoute)}>
-                    Add Post<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                </NavBarItemWrapperStyled>
-                <NavBarItemWrapperStyled
-                    active={props.activePage === SavedPostsPageRoute}
-                    onClick={() => history.push(SavedPostsPageRoute)}>
-                    Saved Posts<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                </NavBarItemWrapperStyled>
-                <NavBarItemWrapperStyled
-                    active={props.activePage === SettingPageRoute}
-                    onClick={() => history.push(SettingPageRoute)}>
-                    Settings<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                </NavBarItemWrapperStyled>
+                {renderNavItem("Home", HomePageRoute)}
+                {renderNavItem("Chat List", ChatListPageRoute)}
+                {renderNavItem("Add Post", AddPostPageRoute)}
+                {renderNavItem("Saved Posts", SavedPostsPageRoute)}
+                {renderNavItem("Setting", SettingPageRoute)}
+                {renderNavItem("Contact Us", ContactUsPageRoute)}
+
                 {
-                    loginState.result.token.length === 0 && <NavBarItemWrapperStyled
-                        active={props.activePage === LoginPageRoute}
-                        onClick={() => history.push(LoginPageRoute)}>
-                        Login<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                    </NavBarItemWrapperStyled>
+                    loginState.result.token.length === 0 ? renderNavItem("Login", LoginPageRoute) :
+                        <NavBarItemWrapperStyled
+                            active={false}
+                            onClick={() => handleLogOut()}>
+                            Logout<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
+                        </NavBarItemWrapperStyled>
                 }
-                <NavBarItemWrapperStyled
-                    active={props.activePage === ContactUsPageRoute}
-                    onClick={() => history.push(ContactUsPageRoute)}>
-                    Contact Us<BiChevronRight size={ICON_SIZE_MEDIUM} style={{ marginTop: '-3px' }} />
-                </NavBarItemWrapperStyled>
             </NavExpandedModelWrapperStyled>
         </>,
         document.getElementById("modal-root") as HTMLElement
     );
+
 }
 
 export default NavExpandedModal
