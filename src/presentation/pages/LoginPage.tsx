@@ -3,11 +3,13 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import { login } from "../../core/action_creators/auth/login_action_creators";
 import LoginPageContent from "../components/login_page/LoginPageContent";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const LoginPage = () => {
   const [userName, setUserName] = useState<string | null>("");
   const [password, setPassword] = useState<string | null>("");
 
+  const [_] = useScrollToTop();
   const dispatch = useAppDispatch();
   const loginState = useAppSelector((state) => state.login);
 

@@ -21,13 +21,14 @@ import { MyPostsPageRoute } from "./MyPostsPage";
 import { logOut } from "../../core/action_creators/common/log_out_action_creators";
 import { loginClear } from "../../core/action_creators/auth/login_action_creators";
 import { HomePageRoute } from "./HomePage";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const SettingPage = () => {
+  const [_] = useScrollToTop();
   const loginState = useAppSelector((state) => state.login);
   const history = useHistory();
-
   const dispatch = useAppDispatch();
-
+  
   const handleLogOut = () => {
     dispatch(loginClear());
     logOut();

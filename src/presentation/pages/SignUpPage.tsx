@@ -6,10 +6,11 @@ import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import firebaseConfig from "../../core/config/firebase_config";
 import SignUpPageContent from "../components/sign_up/SignUpPageContent";
 import { OtpVerificationPageRoute } from "./OtpVerificationPage";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const SignUpPage = () => {
   const history = useHistory();
-
+  const [_] = useScrollToTop();
   const dispatch = useAppDispatch();
   const authPhoneNumberState = useAppSelector((state) => state.authPhoneNumber);
 

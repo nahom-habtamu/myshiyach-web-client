@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import DeletablePostList from "../components/common/DeletablePostList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 import {
   SavedPostsNoItemsLabelStyled,
   SavedPostsPageWrapperStyled,
@@ -12,6 +13,7 @@ const SavedPostsPage = () => {
   const savedPostsState = useAppSelector((state) => state.savedPosts);
 
   const dispatch = useAppDispatch();
+  const [_] = useScrollToTop();
 
   const handleProductDelete = (id: string) => {
     dispatch(deleteSavedPostsItem(id));

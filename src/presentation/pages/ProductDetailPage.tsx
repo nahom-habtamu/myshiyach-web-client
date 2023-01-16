@@ -26,10 +26,12 @@ import ProductDetailSendMessageButton from "../components/product_detail/Product
 import ProductDetailEditButton from "../components/product_detail/ProductDetailEditButton";
 import ProductDetailFavoritesButton from "../components/product_detail/ProductDetailFavoritesButton";
 import ProductDetailOtherInfo from "../components/product_detail/ProductDetailOtherInfo";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
   const history = useHistory();
+  const [_] = useScrollToTop();
 
   const productDetailState = useAppSelector((state) => state.getProductDetail);
   const loginState = useAppSelector((state) => state.login);

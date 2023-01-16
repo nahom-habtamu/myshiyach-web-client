@@ -10,6 +10,7 @@ import {
   OtpPagePhoneNumberStyled,
 } from "../styled_components/OtpPageHeaderStyled";
 import { LoginPageRoute } from "./LoginPage";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 type OtpPageArguments = {
   phoneNumber: string;
@@ -18,6 +19,7 @@ type OtpPageArguments = {
 };
 
 const OtpVerificationPage = () => {
+  const [_] = useScrollToTop();
   const location = useLocation();
   const history = useHistory();
   const args = location.state as OtpPageArguments;

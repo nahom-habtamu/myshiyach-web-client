@@ -6,9 +6,13 @@ import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ChatListItem from "../components/chat/ChatListItem";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 import { ChatListWrapperStyled } from "../styled_components/chat/ChatListComponentsStyled";
 
 const ChatListPage = () => {
+
+  const [_] = useScrollToTop();
+  
   const dispatch = useAppDispatch();
   const history = useHistory();
 

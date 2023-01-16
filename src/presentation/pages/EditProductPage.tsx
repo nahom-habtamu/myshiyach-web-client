@@ -17,6 +17,7 @@ import ProductDropDownInput, { DropDownItemData } from "../components/common/Pro
 import ProductInput from "../components/common/ProductInput";
 import { editProduct } from "../../core/action_creators/product/edit_product_action_creators";
 import { toggleValidationErrorModalOpen } from "../../core/action_creators/common/validation_error_modal_action_creators";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 export type EditPostPageInputState = {
   mainCategory: string;
@@ -44,6 +45,8 @@ const initalState: EditPostPageInputState = {
 
 const EditProductPage = () => {
   let { id } = useParams<any>();
+
+  const [_] = useScrollToTop();
 
   const loginState = useAppSelector((state) => state.login);
   const editProductState = useAppSelector((state) => state.editProduct);

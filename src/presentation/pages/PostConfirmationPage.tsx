@@ -1,9 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import MasterComponent from '../components/common/MasterComponent';
+import useScrollToTop from '../custom_hooks/useScrollToTop';
 import { PostConfirmPageAdPlacedTextStyled, PostConfirmPageImageStyled, PostConfirmPageSuccessBackToHomeButtonStyled, PostConfirmPageSuccessPhoneNumberTextStyled, PostConfirmPageSuccessTextStyled, PostConfirmPageWrapperStyled } from '../styled_components/post_confirm/PostConfirmPageComponentsStyled';
 import { HomePageRoute } from './HomePage';
 
 const PostConfirmationPage = () => {
+    const [_] = useScrollToTop();
     const history = useHistory();
     return (
         <MasterComponent activePage={PostConfirmationPageRoute}>

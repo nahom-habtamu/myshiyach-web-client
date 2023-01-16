@@ -14,6 +14,7 @@ import ChatDetailStrangerUser from "../components/chat/ChatDetailStrangerUser";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 import {
   ChatDetailAddMessageActionButtonWrapper,
   ChatDetailAddMessageInputStyled,
@@ -24,6 +25,8 @@ import { ChatListPageRoute } from "./ChatListPage";
 
 const ChatDetailPage = () => {
   let { id } = useParams<any>();
+
+  const [_] = useScrollToTop();
 
   const [conversation, setConversation] = useState<Conversation | null>(null);
 

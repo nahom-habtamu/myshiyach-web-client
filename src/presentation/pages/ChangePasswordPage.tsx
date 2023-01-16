@@ -4,6 +4,7 @@ import { changePassword } from "../../core/action_creators/user/change_password_
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import ActionButton from "../components/common/ActionButton";
 import AuthInput from "../components/common/AuthInput";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 import {
   AuthInputWrapperStyled,
   SpaceStyled,
@@ -19,6 +20,7 @@ type ChangePasswordPageArguments = {
 };
 
 const ChangePasswordPage = () => {
+  const [_] = useScrollToTop();
   const history = useHistory();
   const location = useLocation();
 

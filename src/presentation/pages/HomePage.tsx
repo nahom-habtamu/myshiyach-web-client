@@ -16,11 +16,13 @@ import MainCategory from "../../core/models/category/main_category";
 import { IoMdClose } from "react-icons/io";
 import { ICON_SIZE_MEDIUM } from "../constants/sizes";
 import FilterCriteria from "../../core/models/filter/filter_criteria";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
   const filterCriteria = useAppSelector((state) => state.filterCriteria);  
 
+  const [_] = useScrollToTop();
   const [selectedMainCategory, setSelectedCategory] = useState<MainCategory | null>(null);
 
   const dispatch = useAppDispatch();

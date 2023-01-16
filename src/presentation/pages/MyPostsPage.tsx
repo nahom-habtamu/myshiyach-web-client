@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import DeletablePostList from "../components/common/DeletablePostList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import MasterComponent from "../components/common/MasterComponent";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 import {
   MyPostsLabelStyled,
   MyPostsNoItemsLabelStyled,
@@ -16,10 +17,11 @@ import {
 import { SettingPageRoute } from "./SettingPage";
 
 const MyPostsPage = () => {
+  const [_] = useScrollToTop();
   const loginState = useAppSelector((state) => state.login);
   const myPostsState = useAppSelector((state) => state.getMyPosts);
-
   const dispatch = useAppDispatch();
+
 
   useEffect(() => {
     if (loginState.result.currentUser != null) {

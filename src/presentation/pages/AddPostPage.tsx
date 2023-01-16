@@ -12,6 +12,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 import { AddPostWrapperStyled } from "../styled_components/add_post/AddPostPageComponentsStyled";
 import MasterComponent from "../components/common/MasterComponent";
 import { PostConfirmationPageRoute } from "./PostConfirmationPage";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 export type AddPostPageInputState = {
   mainCategory: string;
@@ -40,6 +41,7 @@ const buildInitialState = (phoneNumber: string): AddPostPageInputState => {
 }
 
 const AddPostPage = () => {
+  const [_] = useScrollToTop();
   const [currentInputPage, setCurrentInputPage] = useState(0);
   const [pickedImages, setPickedImages] = useState<File[]>([]);
   const getDataNeededToAddPostState = useAppSelector(

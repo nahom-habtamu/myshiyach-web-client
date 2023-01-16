@@ -11,10 +11,11 @@ import { getUserAndProducts } from "../../core/action_creators/common/get_user_a
 import PaginatedProducts from "../components/common/PaginatedProducts";
 import { goToChat } from "../../core/action_creators/chat/go_to_chat_action_creators";
 import UserInformation from "../components/common/UserInformation";
+import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const ProductsByUserPage = () => {
   let { id } = useParams<any>();
-
+  const [_] = useScrollToTop();
   const loginState = useAppSelector((state) => state.login);
   const userAndProductsState = useAppSelector(
     (state) => state.getUserAndProducts
