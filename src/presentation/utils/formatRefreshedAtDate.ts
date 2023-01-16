@@ -4,13 +4,13 @@ const formatRefreshedAtDate = (refreshedAt: string) => {
         (new Date() as any) -
         (new Date(refreshedAt) as any)) / (1000 * 60 * 60 * 24));
 
-    if (differenceInDays == 0) {
+    if (differenceInDays === 0) {
 
         let differenceInHours = Math.floor((
             (new Date() as any) -
             (new Date(refreshedAt) as any)) / (1000 * 60 * 60));
 
-        if (differenceInHours == 0) {
+        if (differenceInHours === 0) {
             let differenceInMins = Math.floor((
                 (new Date() as any) -
                 (new Date(refreshedAt) as any)) / (1000 * 60));
