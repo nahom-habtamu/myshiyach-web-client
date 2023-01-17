@@ -27,6 +27,8 @@ import ProductDetailEditButton from "../components/product_detail/ProductDetailE
 import ProductDetailFavoritesButton from "../components/product_detail/ProductDetailFavoritesButton";
 import ProductDetailOtherInfo from "../components/product_detail/ProductDetailOtherInfo";
 import useScrollToTop from "../custom_hooks/useScrollToTop";
+import formatRefreshedAtDate from "../utils/formatRefreshedAtDate";
+import { PRIMARY_COLOR } from "../constants/colors";
 
 const ProductDetailPage = () => {
   let { id } = useParams<any>();
@@ -96,8 +98,8 @@ const ProductDetailPage = () => {
 
   const renderProductTimeInfo = () => (
     <ProductTimeInfo
-      createdAt={productDetailState.result?.product.createdAt ?? ""}
-      refreshedAt={productDetailState.result?.product.refreshedAt ?? ""}
+      createdAt={formatRefreshedAtDate(productDetailState.result?.product.createdAt ?? "")}
+      refreshedAt={formatRefreshedAtDate(productDetailState.result?.product.refreshedAt ?? "")}
     />
   );
 
@@ -109,7 +111,7 @@ const ProductDetailPage = () => {
           formatToPrice(
             productDetailState.result?.product.price ?? 0
           ).toString() + " ETB",
-        color: "lightgreen",
+        color: PRIMARY_COLOR,
         fontSize: 38,
         fontWeight: 500,
       }}
