@@ -1,18 +1,9 @@
 import styled from "styled-components";
 
 const ProductsByUserWrapperStyled = styled.div`
-  width: 60%;
-  height: 100%;
+  width: 90%;
+  min-height: 100%;
   margin: 25px auto;
-  background: white;
-
-  @media (max-width: 1200px) {
-    width: 90%;
-  }
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 `;
 
 const ProductsByUserLabelStyled = styled.div`
