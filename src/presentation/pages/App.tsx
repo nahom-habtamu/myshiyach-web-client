@@ -14,15 +14,34 @@ const App = () => {
   const isLoginPrompted = useAppSelector((state) => state.loginPromtModal);
   const validationModalPrompted = useAppSelector((state) => state.validationErrorModal);
   const loginState = useAppSelector((state) => state.login);
+  const savedPostsState = useAppSelector((state) => state.savedPosts);
 
   useEffect(() => {
-    dispatch(getSavedPosts());
+    dispatch(
+      getSavedPosts(
+        loginState.result.currentUser?.favoriteProducts ?? [],
+        loginState.result.token
+      )
+    );
     dispatch(loginUpdateFromPersistence());
   }, [dispatch]);
 
+
+  useEffect(() => {
+    if (loginState.result.currentUser !== null) {      
+      dispatch(
+        getSavedPosts(
+          loginState.result.currentUser!.favoriteProducts ?? [],
+          loginState.result.token
+        )
+      );
+    }
+  }, [loginState.result])
+
+
   return (
     <>
-      {loginState.isLoading ? (
+      {loginState.isLoading || savedPostsState.isLoading ? (
         <LoadingSpinner />
       ) : (
         <>

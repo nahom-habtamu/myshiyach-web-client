@@ -1,4 +1,4 @@
-import { deleteSavedPostsItem } from "../../core/action_creators/product/saved_products_action_creators";
+import { updateSavedPostsItem } from "../../core/action_creators/product/saved_products_action_creators";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import DeletablePostList from "../components/common/DeletablePostList";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -11,12 +11,19 @@ import {
 
 const SavedPostsPage = () => {
   const savedPostsState = useAppSelector((state) => state.savedPosts);
+  const loginState = useAppSelector((state) => state.login);
 
   const dispatch = useAppDispatch();
   useScrollToTop();
 
   const handleProductDelete = (id: string) => {
-    dispatch(deleteSavedPostsItem(id));
+    let updatedProducts = savedPostsState.products.filter(p => p._id !== id);
+    dispatch(
+      updateSavedPostsItem(
+        updatedProducts,
+        loginState.result.currentUser!._id,
+        loginState.result.token)
+    );
   };
 
   return (

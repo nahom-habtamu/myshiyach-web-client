@@ -6,8 +6,6 @@ import GetPaginatedProductsRequest from "../models/product/get_paginated_product
 import Product from "../models/product/product";
 import axiosInstance from "../utils/api";
 
-const FAVORITE_PRODUCTS_KEY = "favoriteProducts";
-
 export async function getPaginatedProducts(
   request: GetPaginatedProductsRequest
 ): Promise<GetPaginatedProductsResult> {
@@ -117,37 +115,4 @@ export async function editProduct({
   };
   let result = await axiosInstance.patch(`/products/${id}`, product, config);
   return result.data as Product;
-}
-
-export function getFavoriteProducts(): Product[] {
-  let products = localStorage.getItem(FAVORITE_PRODUCTS_KEY);
-
-  if (products) {
-    return JSON.parse(products) as Product[];
-  }
-  return [];
-}
-
-export function addFavoriteProduct(product: Product) {
-  let products = localStorage.getItem(FAVORITE_PRODUCTS_KEY);
-  if (products) {
-    let parsed = JSON.parse(products) as Product[];
-    localStorage.setItem(
-      FAVORITE_PRODUCTS_KEY,
-      JSON.stringify([...parsed, product])
-    );
-  } else {
-    localStorage.setItem(FAVORITE_PRODUCTS_KEY, JSON.stringify([product]));
-  }
-}
-
-export function removeFavoriteProduct(productId: string) {
-  let products = localStorage.getItem(FAVORITE_PRODUCTS_KEY);
-  if (products) {
-    let parsed = JSON.parse(products) as Product[];
-    localStorage.setItem(
-      FAVORITE_PRODUCTS_KEY,
-      JSON.stringify(parsed.filter((p) => p._id !== productId))
-    );
-  }
 }

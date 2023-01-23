@@ -4,7 +4,6 @@ import Product from "./product";
 
 type DisplayPaginatedProductsResult = {
   categories: MainCategory[];
-  favoriteProducts: Product[];
   cities: string[];
   productsWithPageAndLimit: GetPaginatedProductsResult;
 };

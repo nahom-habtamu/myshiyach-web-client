@@ -2,14 +2,25 @@ import * as Effects from "redux-saga/effects";
 import * as actionCreators from "../action_creators/product/saved_products_action_creators";
 import * as actionTypes from "../action_types/product/saved_products_action_types";
 import Product from "../models/product/product";
-import { getFavoriteProducts } from "../repositories/product_repository";
+import { getProductById } from "../repositories/product_repository";
 
 const call: any = Effects.call;
 
-function* onGetSavedPosts() {
+function* onGetSavedPosts(getSavedPosts: actionTypes.GetSavedPostsAction) {
   try {
     yield Effects.put(actionCreators.getSavedPostsLoading());
-    const products: Product[] = yield call(getFavoriteProducts);
+
+    let products: Product[] = [];
+
+    for (let i = 0; i < getSavedPosts.payload.favoriteProducts.length; i++) {
+      const element = getSavedPosts.payload.favoriteProducts[i];
+      const product: Product = yield call(getProductById, {
+        id: element,
+        token: getSavedPosts.payload.token
+      });
+      products = [...products, product];
+    }
+
     yield Effects.put(actionCreators.getSavedPostsSuccess(products));
   } catch (error: any) {
     yield Effects.put(

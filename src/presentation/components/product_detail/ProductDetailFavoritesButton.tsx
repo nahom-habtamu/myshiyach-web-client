@@ -1,7 +1,6 @@
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import {
-  deleteSavedPostsItem,
-  addSavedPostsItem,
+  updateSavedPostsItem
 } from "../../../core/action_creators/product/saved_products_action_creators";
 import Product from "../../../core/models/product/product";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
@@ -18,6 +17,27 @@ const ProductDetailFavoritesButton = ({
 }) => {
   const dispatch = useAppDispatch();
   const favoriteProductsState = useAppSelector((state) => state.savedPosts);
+  const loginState = useAppSelector((state) => state.login);
+
+
+  const addToFavorite = (product: Product) => {
+    let favoriteProductsUpdated = [...favoriteProductsState.products, product];
+    dispatch(updateSavedPostsItem(
+      favoriteProductsUpdated,
+      loginState.result.currentUser!._id,
+      loginState.result.token)
+    );
+  }
+
+  const removeFromFavorite = (product: Product) => {
+    let favoriteProductsUpdated = favoriteProductsState.products.filter(p => p._id === product._id);
+    dispatch(updateSavedPostsItem(
+      favoriteProductsUpdated,
+      loginState.result.currentUser!._id,
+      loginState.result.token)
+    );
+  }
+
 
   let isNotFavorite =
     favoriteProductsState.products.filter((sp) => sp._id === product?._id)
@@ -27,8 +47,8 @@ const ProductDetailFavoritesButton = ({
       <OutlineActionButtonStyled
         onClick={() => {
           !isNotFavorite
-            ? dispatch(deleteSavedPostsItem(product!._id))
-            : dispatch(addSavedPostsItem(product!));
+            ? removeFromFavorite(product!)
+            : addToFavorite(product!);
         }}
       >
         {isNotFavorite ? (

@@ -24,15 +24,19 @@ export async function saveUserToSession(
   loginResult: LoginResult,
   currentUser: User
 ) {
-  if (!localStorage.getItem("loggedInUser")) {
-    localStorage.setItem(
-      "loggedInUser",
-      JSON.stringify({
-        loginResult,
-        currentUser,
-      })
+  if (localStorage.getItem("loggedInUser")) {
+    localStorage.removeItem(
+      "loggedInUser"
     );
   }
+  localStorage.setItem(
+    "loggedInUser",
+    JSON.stringify({
+      loginResult,
+      currentUser,
+    })
+  );
+
 }
 
 export function removeUserFromSession() {

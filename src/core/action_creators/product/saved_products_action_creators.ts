@@ -1,9 +1,13 @@
 import * as actions from "../../action_types/product/saved_products_action_types";
 import Product from "../../models/product/product";
 
-export const getSavedPosts = (): actions.GetSavedPostsAction => {
+export const getSavedPosts = (favoriteProducts: string[], token: string): actions.GetSavedPostsAction => {
   return {
     type: actions.GET_SAVED_POSTS,
+    payload: {
+      favoriteProducts,
+      token
+    }
   };
 };
 
@@ -29,20 +33,17 @@ export const getSavedPostsFailure = (
   };
 };
 
-export const deleteSavedPostsItem = (
-  id: string
-): actions.DeleteSavedPostsItemAction => {
+export const updateSavedPostsItem = (
+  favoriteProducts: Product[],
+  userId: string,
+  token: string
+): actions.UpdateSavedPostsItemAction => {
   return {
-    type: actions.DELETE_SAVED_POSTS_ITEM,
-    payload: id,
-  };
-};
-
-export const addSavedPostsItem = (
-  product: Product
-): actions.AddSavedPostsItemAction => {
-  return {
-    type: actions.ADD_SAVED_POSTS_ITEM,
-    payload: product,
+    type: actions.UPDATE_SAVED_POSTS_ITEM,
+    payload: {
+      favoriteProducts,
+      userId,
+      token
+    }
   };
 };

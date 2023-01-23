@@ -3,6 +3,10 @@ import Product from "../../models/product/product";
 export const GET_SAVED_POSTS = "productActionTypes/GET_SAVED_POSTS";
 export interface GetSavedPostsAction {
   type: typeof GET_SAVED_POSTS;
+  payload: {
+    token: string,
+    favoriteProducts: string[]
+  };
 }
 
 export const GET_SAVED_POSTS_LOADING =
@@ -25,17 +29,15 @@ export interface GetSavedPostsFailureAction {
   message: String;
 }
 
-export const DELETE_SAVED_POSTS_ITEM =
-  "productActionTypes/DELETE_SAVED_POSTS_ITEM";
-export interface DeleteSavedPostsItemAction {
-  type: typeof DELETE_SAVED_POSTS_ITEM;
-  payload: string;
-}
 
-export const ADD_SAVED_POSTS_ITEM = "productActionTypes/ADD_SAVED_POSTS_ITEM";
-export interface AddSavedPostsItemAction {
-  type: typeof ADD_SAVED_POSTS_ITEM;
-  payload: Product;
+export const UPDATE_SAVED_POSTS_ITEM = "productActionTypes/UPDATE_SAVED_POSTS_ITEM";
+export interface UpdateSavedPostsItemAction {
+  type: typeof UPDATE_SAVED_POSTS_ITEM;
+  payload: {
+    favoriteProducts: Product[],
+    token: string,
+    userId: string
+  };
 }
 
 export type GetSavedPostsActionType =
@@ -43,5 +45,4 @@ export type GetSavedPostsActionType =
   | GetSavedPostsLoadingAction
   | GetSavedPostsFailureAction
   | GetSavedPostsSuccessAction
-  | DeleteSavedPostsItemAction
-  | AddSavedPostsItemAction;
+  | UpdateSavedPostsItemAction;

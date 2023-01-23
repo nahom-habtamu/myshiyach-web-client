@@ -18,10 +18,7 @@ import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
 import Product from "../../../core/models/product/product";
 import { toggleLoginPromptModalOpen } from "../../../core/action_creators/common/login_prompt_action_creators";
 import { useHistory } from "react-router-dom";
-import {
-  addSavedPostsItem,
-  deleteSavedPostsItem,
-} from "../../../core/action_creators/product/saved_products_action_creators";
+import { updateSavedPostsItem } from "../../../core/action_creators/product/saved_products_action_creators";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { CiLocationOn, CiTimer } from "react-icons/ci";
 import normalizeTitle from "../../utils/normalizeTitle";
@@ -48,7 +45,12 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
     if (loginState.result.token.length === 0) {
       dispatch(toggleLoginPromptModalOpen());
     } else {
-      dispatch(addSavedPostsItem(product));
+      let favoriteProductsUpdated = [...favoriteProductsState.products, product];      
+      dispatch(updateSavedPostsItem(
+        favoriteProductsUpdated,
+        loginState.result.currentUser!._id,
+        loginState.result.token)
+      );
     }
   };
 
@@ -57,7 +59,12 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
     if (loginState.result.token.length === 0) {
       dispatch(toggleLoginPromptModalOpen());
     } else {
-      dispatch(deleteSavedPostsItem(product._id));
+      let favoriteProductsUpdated = favoriteProductsState.products.filter(p => p._id !== product._id);
+      dispatch(updateSavedPostsItem(
+        favoriteProductsUpdated,
+        loginState.result.currentUser!._id,
+        loginState.result.token)
+      );
     }
   };
 

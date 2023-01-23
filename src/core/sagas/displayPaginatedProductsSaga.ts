@@ -1,6 +1,5 @@
 import * as Effects from "redux-saga/effects";
 import {
-  getFavoriteProducts,
   getPaginatedProducts,
 } from "../repositories/product_repository";
 import { getAllCategories } from "../repositories/category_repository";
@@ -24,14 +23,12 @@ function* onDisplayPaginatedProducts(
       getPaginatedProducts,
       displayPaginatedProducts.payload
     );
-    const favoriteProducts: Product[] = yield call(getFavoriteProducts);
     const categories: MainCategory[] = yield call(getAllCategories);
     const cities: string[] = yield call(getAllCities);
 
     yield Effects.put(
       displayPaginatedProductCreators.displayPaginatedProductsSuccess({
         categories,
-        favoriteProducts,
         productsWithPageAndLimit: result,
         cities,
       })

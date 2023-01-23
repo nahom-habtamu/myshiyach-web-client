@@ -3,6 +3,7 @@ type User = {
   email: string | null;
   phoneNumber: string;
   _id: string;
+  favoriteProducts: string[]
 };
 
 export default User;

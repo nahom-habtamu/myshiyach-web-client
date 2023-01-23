@@ -36,3 +36,17 @@ export async function changePassword(
   });
   return true;
 }
+
+export async function updateFavoriteProducts(id: string, favoriteProducts: string[], token: string): Promise<User> {
+  const config = {
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-auth-token": token,
+    },
+  };
+  let result = await axiosInstance.post(`/users/updateFavoriteProducts/${id}`,
+    { favoriteProducts },
+    config
+  );
+  return result.data as User;
+}

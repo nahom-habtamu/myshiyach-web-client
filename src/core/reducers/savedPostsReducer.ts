@@ -36,17 +36,9 @@ export default function getSavedPostsReducer(
         error: "",
         isLoading: false,
       };
-    case actions.DELETE_SAVED_POSTS_ITEM:
+    case actions.UPDATE_SAVED_POSTS_ITEM:
       return {
-        products: [...(state.products ?? [])].filter(
-          (p) => p._id !== action.payload
-        ),
-        error: "",
-        isLoading: false,
-      };
-    case actions.ADD_SAVED_POSTS_ITEM:
-      return {
-        products: [action.payload, ...state.products],
+        products: [...action.payload.favoriteProducts],
         error: "",
         isLoading: false,
       };
