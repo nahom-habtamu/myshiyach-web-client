@@ -9,6 +9,7 @@ import {
   RecommendedItemTitleStyled,
   RecommendedItemWrapperStyled,
 } from "../../styled_components/product_detail/ProductDetailRecommendedStyled";
+import formatRefreshedAtDate from "../../utils/formatRefreshedAtDate";
 
 const ProductDetailRecommendedItems = ({
   products,
@@ -24,7 +25,7 @@ const ProductDetailRecommendedItems = ({
             {product.title}
           </RecommendedItemTitleStyled>
           <RecommendedItemTimeLabelStyled>
-            {product.refreshedAt}
+            {formatRefreshedAtDate(product.refreshedAt)}
           </RecommendedItemTimeLabelStyled>
         </RecommendedItemColumnStyled>
       </RecommendedItemWrapperStyled>
