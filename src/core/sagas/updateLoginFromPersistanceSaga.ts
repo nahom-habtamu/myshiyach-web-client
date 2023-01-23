@@ -1,11 +1,12 @@
 import * as Effects from "redux-saga/effects";
 
-import { getUserFromSession } from "../repositories/auth_repository";
+import { getUserFromSession, saveUserToSession } from "../repositories/auth_repository";
 
 import * as actionCreators from "../action_creators/auth/login_action_creators";
 import * as actionTypes from "../action_types/auth/login_action_types";
 import LoginResult from "../models/auth/login_result";
 import User from "../models/user/user";
+import { getUserById } from "../repositories/user_repository";
 
 const call: any = Effects.call;
 
@@ -22,8 +23,14 @@ function* onUpdateLoginFromPersistence() {
         actionCreators.loginFailure("No saved user login data")
       );
     } else {
+
+      const currentUser: User = yield call(getUserById, {
+        id: result.currentUser._id,
+        token: result.loginResult.token,
+      });
+      yield call(saveUserToSession, result!.loginResult, currentUser);
       yield Effects.put(
-        actionCreators.loginSuccess(result!.loginResult, result!.currentUser)
+        actionCreators.loginSuccess(result!.loginResult, currentUser)
       );
     }
   } catch (error: any) {
