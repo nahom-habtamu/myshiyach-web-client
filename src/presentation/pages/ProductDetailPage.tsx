@@ -92,7 +92,10 @@ const ProductDetailPage = () => {
 
   const renderPersonalInfo = () => {
     return (
-      <ProductDetailPersonInfo user={productDetailState.result?.createdBy} />
+      <ProductDetailPersonInfo 
+        contactPhone={productDetailState.result?.product.contactPhone ?? ""}
+        user={productDetailState.result?.createdBy} 
+      />
     );
   };
 

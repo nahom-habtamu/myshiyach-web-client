@@ -4,7 +4,7 @@ import { PRIMARY_COLOR } from "../../constants/colors";
 import { ProductDetailKeyValueRowStyled } from "../../styled_components/product_detail/ProductDetailOtherComponentsStyled";
 import ProductDetailKeyValue from "./ProductDetailKeyValue";
 
-const ProductDetailPersonInfo = ({ user }: { user: User | undefined }) => {
+const ProductDetailPersonInfo = ({ user, contactPhone }: { user: User | undefined, contactPhone: string }) => {
   let keyValueProps = {
     color: PRIMARY_COLOR,
     fontSize: 18,
@@ -28,7 +28,7 @@ const ProductDetailPersonInfo = ({ user }: { user: User | undefined }) => {
         <ProductDetailKeyValue
           args={{
             key: "Phone No",
-            value: user?.phoneNumber ?? "",
+            value: contactPhone,
             ...keyValueProps,
           }}
         />
