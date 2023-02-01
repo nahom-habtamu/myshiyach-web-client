@@ -48,6 +48,9 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
             );
             if (activePage !== HomePageRoute) {
                 history.push(HomePageRoute);
+                window.FB.AppEvents.logEvent("search_applied", {
+                    KeyWord: keyword
+                });
             }
         }
     };
@@ -64,7 +67,7 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
             history.push(HomePageRoute);
         }
     };
-    
+
     return (
         <NavBarWrapperStyled>
             <NavTopContentWrapperStyled>
@@ -133,7 +136,7 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
                         login.result.token.length === 0 &&
                         <ResponsiveIconStyled
                             active={false}
-                            onClick={() => { 
+                            onClick={() => {
                                 history.push(LoginPageRoute);
                             }}>
                             <AiOutlineUserAdd size={ICON_SIZE_LARGE} />
