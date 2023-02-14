@@ -34,7 +34,7 @@ const HomePage = () => {
   useEffect(() => {
     const initialPageAndLimit = {
       filterCriteria: filterCriteria,
-      limit: 6,
+      limit: 10,
       page: 1,
     };
 
