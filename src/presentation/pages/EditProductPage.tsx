@@ -26,6 +26,7 @@ export type EditPostPageInputState = {
   description: string;
   title: string;
   contactPhone: string;
+  contactName: string;
   productImages: string[];
   city: string;
   productDetail: Object;
@@ -38,6 +39,7 @@ const initalState: EditPostPageInputState = {
   description: "",
   title: "",
   contactPhone: "",
+  contactName: "",
   productImages: [],
   city: "",
   productDetail: {},
@@ -71,6 +73,7 @@ const EditProductPage = () => {
         city: editProductState.product.city,
         title: editProductState.product.title,
         contactPhone: editProductState.product.contactPhone,
+        contactName: editProductState.product.contactName ?? "",
         price: editProductState.product.price,
         subCategory: editProductState.product.subCategory,
         mainCategory: editProductState.product.mainCategory,
@@ -144,6 +147,7 @@ const EditProductPage = () => {
         city: result!.product.city,
         title: result!.product.title,
         contactPhone: result!.product.contactPhone,
+        contactName: result!.product.contactName ?? "",
         price: result!.product.price,
         subCategory: result!.product.subCategory,
         mainCategory: result!.product.mainCategory,

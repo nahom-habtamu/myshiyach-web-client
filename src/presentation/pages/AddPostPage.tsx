@@ -21,12 +21,13 @@ export type AddPostPageInputState = {
   description: string;
   title: string;
   contactPhone: string;
+  contactName: string;
   productImages: string[];
   city: string;
   productDetail: Object;
 };
 
-const buildInitialState = (phoneNumber: string): AddPostPageInputState => {
+const buildInitialState = (phoneNumber: string, name: string): AddPostPageInputState => {
   return {
     mainCategory: "",
     subCategory: "",
@@ -34,6 +35,7 @@ const buildInitialState = (phoneNumber: string): AddPostPageInputState => {
     description: "",
     title: "",
     contactPhone: phoneNumber,
+    contactName: name,
     productImages: [],
     city: "",
     productDetail: {},
@@ -49,7 +51,11 @@ const AddPostPage = () => {
   );
   const authState = useAppSelector((state) => state.login);
   const [inputValue, setInputValue] =
-    useState<AddPostPageInputState>(() => buildInitialState(authState.result.currentUser?.phoneNumber ?? ""));
+    useState<AddPostPageInputState>(() =>
+      buildInitialState(
+        authState.result.currentUser?.phoneNumber ?? "",
+        authState.result.currentUser?.fullName ?? ""
+      ));
   const createProductState = useAppSelector((state) => state.createProduct);
   const dispatch = useAppDispatch();
   const history = useHistory();

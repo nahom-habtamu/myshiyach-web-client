@@ -76,7 +76,7 @@ const ProductDetailPage = () => {
       dispatch(
         getRecommendedProducts({
           page: 1,
-          limit: 1000000,
+          limit: 100,
           filterCriteria: {
             mainCategory: productDetailState.result!.product.mainCategory,
             subCategory: productDetailState.result!.product.subCategory,
@@ -92,9 +92,10 @@ const ProductDetailPage = () => {
 
   const renderPersonalInfo = () => {
     return (
-      <ProductDetailPersonInfo 
+      <ProductDetailPersonInfo
         contactPhone={productDetailState.result?.product.contactPhone ?? ""}
-        user={productDetailState.result?.createdBy} 
+        contactName={productDetailState.result?.product.contactName}
+        user={productDetailState.result?.createdBy}
       />
     );
   };

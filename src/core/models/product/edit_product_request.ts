@@ -6,6 +6,7 @@ type EditProductRequest = {
   subCategory: string;
   city: string;
   contactPhone: string;
+  contactName: string;
   productImages: string[];
   productDetail: Object;
 };

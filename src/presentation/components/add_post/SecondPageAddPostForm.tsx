@@ -194,6 +194,17 @@ const SecondPageAddPostForm = ({
         }
       />
 
+      <ProductInput
+        value={formState.contactName != null && formState.contactName.length === 0 ? loginState.result.currentUser?.phoneNumber : formState.contactName}
+        placeHolder="Contact Name"
+        onChanged={(e: any) =>
+          onFormValueChanged({
+            ...formState,
+            contactName: e.target.value,
+          })
+        }
+      />
+
       {buildOtherRequiredFeildInputs()}
 
       <AddPostActionButtonsWrapperStyled>

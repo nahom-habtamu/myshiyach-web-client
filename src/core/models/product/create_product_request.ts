@@ -6,6 +6,7 @@ type CreateProductRequest = {
   subCategory: string;
   city: string;
   contactPhone: string;
+  contactName: string;
   createdBy: string;
   productImages: string[];
   productDetail: Object;
