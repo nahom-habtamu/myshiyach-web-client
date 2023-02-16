@@ -1,7 +1,7 @@
 import * as Effects from "redux-saga/effects";
 
 import { editProduct } from "../repositories/product_repository";
-import { uploadImages } from "../repositories/upload_repository";
+import { uploadImagesToApiServer } from "../repositories/upload_repository";
 
 import * as editProductCreators from "../action_creators/product/edit_product_action_creators";
 import * as editProductTypes from "../action_types/product/edit-product_action_types";
@@ -14,7 +14,7 @@ function* onEditProduct(editProductAction: editProductTypes.EditProductAction) {
     yield Effects.put(editProductCreators.editProductLoading());
 
     const uploadedFiles: string[] = yield call(
-      uploadImages,
+      uploadImagesToApiServer,
       editProductAction.payload.imagesToUpload
     );
 

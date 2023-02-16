@@ -1,7 +1,7 @@
 import * as Effects from "redux-saga/effects";
 
 import { createProduct } from "../repositories/product_repository";
-import { uploadImages } from "../repositories/upload_repository";
+import { uploadImagesToApiServer } from "../repositories/upload_repository";
 
 import * as createProductCreators from "../action_creators/product/create_product_action_creators";
 import * as createProductTypes from "../action_types/product/create_product_action_types";
@@ -16,7 +16,7 @@ function* onCreateProduct(
     yield Effects.put(createProductCreators.createProductLoading());
 
     const uploadedFiles: string[] = yield call(
-      uploadImages,
+      uploadImagesToApiServer,
       createProductAction.payload.imagesToUpload,
       "product_images"
     );
@@ -33,6 +33,8 @@ function* onCreateProduct(
       createProductCreators.createProductSuccess(createdProduct)
     );
   } catch (error: any) {
+    console.log(error.response.data.error);
+
     yield Effects.put(
       createProductCreators.createProductFailure(error.response.data.error)
     );

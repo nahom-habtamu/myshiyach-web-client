@@ -1,7 +1,7 @@
 import * as Effects from "redux-saga/effects";
 
 import { addMessageToConversation } from "../repositories/chat_repository";
-import { uploadImages } from "../repositories/upload_repository";
+import { uploadImagesToApiServer } from "../repositories/upload_repository";
 
 import * as actionCreators from "../action_creators/chat/add_image_message_action_creators";
 import * as actionTypes from "../action_types/chat/add_image_message_action_types";
@@ -15,7 +15,7 @@ function* onAddImageMessage(
     yield Effects.put(actionCreators.addImageMessageLoading());
 
     const uploadResponse: string[] = yield call(
-      uploadImages,
+      uploadImagesToApiServer,
       [addImageMessageAction.payload.image],
       "conversation_images"
     );
