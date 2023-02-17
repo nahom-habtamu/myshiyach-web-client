@@ -48,9 +48,9 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
             );
             if (activePage !== HomePageRoute) {
                 history.push(HomePageRoute);
-                window.FB.AppEvents.logEvent("search_applied", {
-                    KeyWord: keyword
-                });
+                // window.FB.AppEvents.logEvent("search_applied", {
+                //     KeyWord: keyword
+                // });
             }
         }
     };

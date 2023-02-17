@@ -34,7 +34,7 @@ const LoginPageContent = (props: LoginPageContentProps) => {
 
   useEffect(() => {
     if (props.loginState.result.token.length > 0) {
-      window.FB.AppEvents.logEvent("login_active");
+      // window.FB.AppEvents.logEvent("login_active");
       history.push(HomePageRoute);
       dispatch(toggleLoginPromptModalClose());
       return;
