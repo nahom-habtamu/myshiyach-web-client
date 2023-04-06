@@ -20,7 +20,7 @@ import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
-  const filterCriteria = useAppSelector((state) => state.filterCriteria);  
+  const filterCriteria = useAppSelector((state) => state.filterCriteria);
 
   useScrollToTop();
   const [selectedMainCategory, setSelectedCategory] = useState<MainCategory | null>(null);
@@ -31,15 +31,17 @@ const HomePage = () => {
     dispatch(clearCreateProduct());
   }, [])
 
+  const { paginated } = state;
   useEffect(() => {
     const initialPageAndLimit = {
       filterCriteria: filterCriteria,
       limit: 10,
       page: 1,
     };
-
-    dispatch(displayPaginatedProducts(initialPageAndLimit));
-  }, [dispatch, filterCriteria]);
+    if (paginated == null) {
+      dispatch(displayPaginatedProducts(initialPageAndLimit));
+    }
+  }, [dispatch, filterCriteria, paginated]);
 
   const renderProducts = () => {
     return (
