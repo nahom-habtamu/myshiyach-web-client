@@ -4,7 +4,7 @@ import {
 } from "../../../core/action_creators/product/saved_products_action_creators";
 import Product from "../../../core/models/product/product";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
-import { ICON_SIZE_LARGE } from "../../constants/sizes";
+import { ICON_SIZE_LARGE, ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
   ProductDetailButtonWrapperStyled,
   OutlineActionButtonStyled,
@@ -22,6 +22,7 @@ const ProductDetailFavoritesButton = ({
 
   const addToFavorite = (product: Product) => {
     let favoriteProductsUpdated = [...favoriteProductsState.products, product];
+    console.log(favoriteProductsUpdated);
     dispatch(updateSavedPostsItem(
       favoriteProductsUpdated,
       loginState.result.currentUser!._id,
@@ -30,7 +31,8 @@ const ProductDetailFavoritesButton = ({
   }
 
   const removeFromFavorite = (product: Product) => {
-    let favoriteProductsUpdated = favoriteProductsState.products.filter(p => p._id === product._id);
+    let favoriteProductsUpdated = favoriteProductsState.products.filter(p => p._id !== product._id);
+    console.log(favoriteProductsUpdated);
     dispatch(updateSavedPostsItem(
       favoriteProductsUpdated,
       loginState.result.currentUser!._id,
@@ -51,23 +53,13 @@ const ProductDetailFavoritesButton = ({
             : addToFavorite(product!);
         }}
       >
-        {isNotFavorite ? (
-          <>
-            <MdFavoriteBorder
-              size={ICON_SIZE_LARGE}
-              style={{ marginBottom: "-5px" }}
-            />
-            Add to Favorites
-          </>
-        ) : (
-          <>
-            <MdFavorite
-              size={ICON_SIZE_LARGE}
-              style={{ marginBottom: "-5px" }}
-            />
-            Remove From Favorites
-          </>
-        )}
+        {
+          isNotFavorite ? <MdFavoriteBorder size={ICON_SIZE_MEDIUM} style={{ marginBottom: "-7px" }} /> :
+            <MdFavorite size={ICON_SIZE_MEDIUM} style={{ marginBottom: "-7px" }} />
+        }
+        {
+          isNotFavorite ? "Add To Favorites" : "Remove From Favorites"
+        }
       </OutlineActionButtonStyled>
     </ProductDetailButtonWrapperStyled>
   );
