@@ -48,7 +48,7 @@ const ProductDetailPage = () => {
   useEffect(() => {
     dispatch(clearGoToChat());
     dispatch(getProductDetail(id, loginState.result.token));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (goToChatState.conversationId != null) {
