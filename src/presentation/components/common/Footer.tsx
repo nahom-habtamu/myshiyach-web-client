@@ -23,8 +23,11 @@ import {
     FooterPrivacyPolicyItemStyled,
     FooterPrivacyPolicyWrapperStyled
 } from "../../styled_components/common/FooterComponentsStyled";
+import { ContactUsPageRoute } from "../../pages/ContactUsPage";
+import { useHistory } from "react-router-dom";
 
 const Footer = () => {
+    const history = useHistory();
     return (
         <FooterComponentWrapperStyled>
             <FooterDownloadTabWrapperWithBackgroundStyled>
@@ -63,7 +66,9 @@ const Footer = () => {
                     <FooterLinkItemContentWrapperStyled>
                         <FooterLinkItemContentItemStyled>FAQs</FooterLinkItemContentItemStyled>
                         <FooterLinkItemContentItemStyled>Policies</FooterLinkItemContentItemStyled>
-                        <FooterLinkItemContentItemStyled>Contact Us</FooterLinkItemContentItemStyled>
+                        <FooterLinkItemContentItemStyled onClick={() => history.push(ContactUsPageRoute)}>
+                            Contact Us
+                        </FooterLinkItemContentItemStyled>
                     </FooterLinkItemContentWrapperStyled>
                 </FooterLinkItemStyled>
             </FooterLinksWrapperStyled>

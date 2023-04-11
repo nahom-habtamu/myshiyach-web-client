@@ -3,8 +3,8 @@ import { LIGHT_GRAY_COLOR } from "../../constants/colors";
 
 const ContactUsWrapperStyled = styled.div`
   width: 60%;
-  height: 100%;
   margin: 25px auto;
+  padding-block: 20px;
   background: white;
 
   @media (max-width: 1200px) {
