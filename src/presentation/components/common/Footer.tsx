@@ -1,12 +1,33 @@
 import { BsFacebook, BsInstagram, BsTelegram, BsTwitter, BsYoutube } from "react-icons/bs";
 import { GrAppleAppStore, GrGooglePlay } from "react-icons/gr";
 import { ICON_SIZE_LARGE } from "../../constants/sizes";
-import { FooterCommunityContentItemStyled, FooterCommunityContentWrapperStyled, FooterCommunityTitleStyled, FooterCommunityWrapperStyled, FooterComponentWrapperStyled, FooterDownloadTabButtonIconStyled, FooterDownloadTabButtonStyled, FooterDownloadTabButtonsWrapperStyled, FooterDownloadTabButtonTextOneStyled, FooterDownloadTabButtonTextTwoStyled, FooterDownloadTabTitleStyled, FooterDownloadTabWrapperStyled, FooterDownloadTabWrapperWithBackgroundStyled, FooterLinkItemContentItemStyled, FooterLinkItemContentWrapperStyled, FooterLinkItemStyled, FooterLinkItemTitleStyled, FooterLinksWrapperStyled, FooterPrivacyPolicyItemStyled, FooterPrivacyPolicyWrapperStyled } from "../../styled_components/common/FooterComponentsStyled";
+import {
+    FooterCommunityContentItemStyled,
+    FooterCommunityContentWrapperStyled,
+    FooterCommunityTitleStyled,
+    FooterCommunityWrapperStyled,
+    FooterComponentWrapperStyled,
+    FooterDownloadTabButtonIconStyled,
+    FooterDownloadTabButtonStyled,
+    FooterDownloadTabButtonsWrapperStyled,
+    FooterDownloadTabButtonTextOneStyled,
+    FooterDownloadTabButtonTextTwoStyled,
+    FooterDownloadTabTitleStyled,
+    FooterDownloadTabWrapperStyled,
+    FooterDownloadTabWrapperWithBackgroundStyled,
+    FooterLinkItemContentItemStyled,
+    FooterLinkItemContentWrapperStyled,
+    FooterLinkItemStyled,
+    FooterLinkItemTitleStyled,
+    FooterLinksWrapperStyled,
+    FooterPrivacyPolicyItemStyled,
+    FooterPrivacyPolicyWrapperStyled
+} from "../../styled_components/common/FooterComponentsStyled";
 
 const Footer = () => {
     return (
         <FooterComponentWrapperStyled>
-            <FooterDownloadTabWrapperWithBackgroundStyled>    
+            <FooterDownloadTabWrapperWithBackgroundStyled>
                 <FooterDownloadTabWrapperStyled>
                     <FooterDownloadTabTitleStyled>
                         Get the app for the best MyShiyach experience
@@ -16,14 +37,14 @@ const Footer = () => {
                             <FooterDownloadTabButtonTextOneStyled>Download on the</FooterDownloadTabButtonTextOneStyled>
                             <FooterDownloadTabButtonTextTwoStyled>App Store</FooterDownloadTabButtonTextTwoStyled>
                             <FooterDownloadTabButtonIconStyled>
-                                <GrAppleAppStore size={ICON_SIZE_LARGE}/>
+                                <GrAppleAppStore size={ICON_SIZE_LARGE} />
                             </FooterDownloadTabButtonIconStyled>
                         </FooterDownloadTabButtonStyled>
                         <FooterDownloadTabButtonStyled>
                             <FooterDownloadTabButtonTextOneStyled>GET IT ON</FooterDownloadTabButtonTextOneStyled>
                             <FooterDownloadTabButtonTextTwoStyled>Google Play</FooterDownloadTabButtonTextTwoStyled>
                             <FooterDownloadTabButtonIconStyled>
-                                <GrGooglePlay  size={ICON_SIZE_LARGE}/>
+                                <GrGooglePlay size={ICON_SIZE_LARGE} />
                             </FooterDownloadTabButtonIconStyled>
                         </FooterDownloadTabButtonStyled>
                     </FooterDownloadTabButtonsWrapperStyled>
@@ -35,16 +56,12 @@ const Footer = () => {
                     <FooterLinkItemContentWrapperStyled>
                         <FooterLinkItemContentItemStyled>About MyShiyach</FooterLinkItemContentItemStyled>
                         <FooterLinkItemContentItemStyled>Advertise With Us</FooterLinkItemContentItemStyled>
-                        <FooterLinkItemContentItemStyled>Careers</FooterLinkItemContentItemStyled>
-                        <FooterLinkItemContentItemStyled>Media</FooterLinkItemContentItemStyled>
-                        <FooterLinkItemContentItemStyled>Press</FooterLinkItemContentItemStyled>
                     </FooterLinkItemContentWrapperStyled>
                 </FooterLinkItemStyled>
                 <FooterLinkItemStyled>
                     <FooterLinkItemTitleStyled>Help & Contact</FooterLinkItemTitleStyled>
                     <FooterLinkItemContentWrapperStyled>
                         <FooterLinkItemContentItemStyled>FAQs</FooterLinkItemContentItemStyled>
-                        <FooterLinkItemContentItemStyled>Safety</FooterLinkItemContentItemStyled>
                         <FooterLinkItemContentItemStyled>Policies</FooterLinkItemContentItemStyled>
                         <FooterLinkItemContentItemStyled>Contact Us</FooterLinkItemContentItemStyled>
                     </FooterLinkItemContentWrapperStyled>
@@ -54,19 +71,19 @@ const Footer = () => {
                 <FooterCommunityTitleStyled>Join MyShiyach Community</FooterCommunityTitleStyled>
                 <FooterCommunityContentWrapperStyled>
                     <FooterCommunityContentItemStyled>
-                        <BsTwitter/>
+                        <BsTwitter />
                     </FooterCommunityContentItemStyled>
                     <FooterCommunityContentItemStyled>
-                        <BsInstagram/>
+                        <BsInstagram />
                     </FooterCommunityContentItemStyled>
                     <FooterCommunityContentItemStyled>
-                        <BsTelegram/>
+                        <BsTelegram />
                     </FooterCommunityContentItemStyled>
                     <FooterCommunityContentItemStyled>
-                        <BsFacebook/>
+                        <BsFacebook />
                     </FooterCommunityContentItemStyled>
                     <FooterCommunityContentItemStyled>
-                        <BsYoutube/>
+                        <BsYoutube />
                     </FooterCommunityContentItemStyled>
                 </FooterCommunityContentWrapperStyled>
             </FooterCommunityWrapperStyled>
