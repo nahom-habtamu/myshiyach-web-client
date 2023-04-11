@@ -1,5 +1,5 @@
 import { BsFileEarmarkPostFill, BsTelephone } from "react-icons/bs";
-import { MdOutlineCropRotate, MdOutlinePrivacyTip } from "react-icons/md";
+import {  MdOutlinePrivacyTip } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { useAppDispatch, useAppSelector } from "../../store/storeHooks";
 import MasterComponent from "../components/common/MasterComponent";
