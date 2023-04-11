@@ -37,19 +37,25 @@ const Footer = () => {
                     </FooterDownloadTabTitleStyled>
                     <FooterDownloadTabButtonsWrapperStyled>
                         <FooterDownloadTabButtonStyled>
-                            <FooterDownloadTabButtonTextOneStyled>Download on the</FooterDownloadTabButtonTextOneStyled>
+                            <FooterDownloadTabButtonTextOneStyled>COMING SOON</FooterDownloadTabButtonTextOneStyled>
                             <FooterDownloadTabButtonTextTwoStyled>App Store</FooterDownloadTabButtonTextTwoStyled>
                             <FooterDownloadTabButtonIconStyled>
                                 <GrAppleAppStore size={ICON_SIZE_LARGE} />
                             </FooterDownloadTabButtonIconStyled>
                         </FooterDownloadTabButtonStyled>
-                        <FooterDownloadTabButtonStyled>
-                            <FooterDownloadTabButtonTextOneStyled>GET IT ON</FooterDownloadTabButtonTextOneStyled>
-                            <FooterDownloadTabButtonTextTwoStyled>Google Play</FooterDownloadTabButtonTextTwoStyled>
-                            <FooterDownloadTabButtonIconStyled>
-                                <GrGooglePlay size={ICON_SIZE_LARGE} />
-                            </FooterDownloadTabButtonIconStyled>
-                        </FooterDownloadTabButtonStyled>
+                        <a
+                            style={{ textDecoration: "none" }}
+                            href="https://play.google.com/store/apps/details?id=com.nahomhabtamu.mnale_client"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <FooterDownloadTabButtonStyled>
+                                <FooterDownloadTabButtonTextOneStyled>GET IT ON</FooterDownloadTabButtonTextOneStyled>
+                                <FooterDownloadTabButtonTextTwoStyled>Google Play</FooterDownloadTabButtonTextTwoStyled>
+                                <FooterDownloadTabButtonIconStyled>
+                                    <GrGooglePlay size={ICON_SIZE_LARGE} />
+                                </FooterDownloadTabButtonIconStyled>
+                            </FooterDownloadTabButtonStyled>
+                        </a>
                     </FooterDownloadTabButtonsWrapperStyled>
                 </FooterDownloadTabWrapperStyled>
             </FooterDownloadTabWrapperWithBackgroundStyled>
