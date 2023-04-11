@@ -65,7 +65,14 @@ const Footer = () => {
                     <FooterLinkItemTitleStyled>Help & Contact</FooterLinkItemTitleStyled>
                     <FooterLinkItemContentWrapperStyled>
                         <FooterLinkItemContentItemStyled>FAQs</FooterLinkItemContentItemStyled>
-                        <FooterLinkItemContentItemStyled>Policies</FooterLinkItemContentItemStyled>
+                        <a
+                            style={{ textDecoration: "none" }}
+                            href="http://167.172.148.80:9050"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            <FooterLinkItemContentItemStyled>Policies</FooterLinkItemContentItemStyled>
+                        </a>
                         <FooterLinkItemContentItemStyled onClick={() => history.push(ContactUsPageRoute)}>
                             Contact Us
                         </FooterLinkItemContentItemStyled>

@@ -22,13 +22,14 @@ import { logOut } from "../../core/action_creators/common/log_out_action_creator
 import { loginClear } from "../../core/action_creators/auth/login_action_creators";
 import { HomePageRoute } from "./HomePage";
 import useScrollToTop from "../custom_hooks/useScrollToTop";
+import { ContactUsPageRoute } from "./ContactUsPage";
 
 const SettingPage = () => {
   useScrollToTop();
   const loginState = useAppSelector((state) => state.login);
   const history = useHistory();
   const dispatch = useAppDispatch();
-  
+
   const handleLogOut = () => {
     dispatch(loginClear());
     logOut();
@@ -64,7 +65,7 @@ const SettingPage = () => {
           <SettingTabStyled>
             <SettingTabHeaderStyled>More</SettingTabHeaderStyled>
             <>
-              <SettingTabItemWrapperStyled>
+              <SettingTabItemWrapperStyled onClick={() => history.push(ContactUsPageRoute)}>
                 <SettingTabItemIconWrapperStyled>
                   <BsTelephone size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
@@ -76,21 +77,27 @@ const SettingPage = () => {
                 </SettingTabItemKeyValueWrapperStyled>
               </SettingTabItemWrapperStyled>
 
-              <SettingTabItemWrapperStyled>
-                <SettingTabItemIconWrapperStyled>
-                  <MdOutlinePrivacyTip size={ICON_SIZE_MEDIUM} />
-                </SettingTabItemIconWrapperStyled>
-                <SettingTabItemKeyValueWrapperStyled>
-                  <SettingTabItemKeyStyled>
-                    Privacy Policy
-                  </SettingTabItemKeyStyled>
-                  <SettingTabItemValueStyled>
-                    Please Check out Applications Terms and Services
-                  </SettingTabItemValueStyled>
-                </SettingTabItemKeyValueWrapperStyled>
-              </SettingTabItemWrapperStyled>
+              <a
+                style={{ textDecoration : "none"}}  
+                href="http://167.172.148.80:9050" 
+                target="_blank"
+                rel="noopener noreferrer">
+                <SettingTabItemWrapperStyled >
+                  <SettingTabItemIconWrapperStyled>
+                    <MdOutlinePrivacyTip size={ICON_SIZE_MEDIUM} />
+                  </SettingTabItemIconWrapperStyled>
+                  <SettingTabItemKeyValueWrapperStyled>
+                    <SettingTabItemKeyStyled>
+                      Privacy Policy
+                    </SettingTabItemKeyStyled>
+                    <SettingTabItemValueStyled>
+                      Please Check out Applications Terms and Services
+                    </SettingTabItemValueStyled>
+                  </SettingTabItemKeyValueWrapperStyled>
+                </SettingTabItemWrapperStyled>
+              </a>
 
-              <SettingTabItemWrapperStyled>
+              {/* <SettingTabItemWrapperStyled>
                 <SettingTabItemIconWrapperStyled>
                   <MdOutlineCropRotate size={ICON_SIZE_MEDIUM} />
                 </SettingTabItemIconWrapperStyled>
@@ -102,7 +109,7 @@ const SettingPage = () => {
                     Swap between Amharic and English Languages
                   </SettingTabItemValueStyled>
                 </SettingTabItemKeyValueWrapperStyled>
-              </SettingTabItemWrapperStyled>
+              </SettingTabItemWrapperStyled> */}
 
               <SettingTabItemWrapperStyled onClick={handleLogOut}>
                 <SettingTabItemIconWrapperStyled>
