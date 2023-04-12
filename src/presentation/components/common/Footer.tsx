@@ -64,7 +64,7 @@ const Footer = () => {
                 <FooterLinkItemStyled>
                     <FooterLinkItemTitleStyled>About Us</FooterLinkItemTitleStyled>
                     <FooterLinkItemContentWrapperStyled>
-                        <FooterLinkItemContentItemStyled>About MyShiyach</FooterLinkItemContentItemStyled>
+                        {/* <FooterLinkItemContentItemStyled>About MyShiyach</FooterLinkItemContentItemStyled> */}
                         <FooterLinkItemContentItemStyled>Advertise With Us</FooterLinkItemContentItemStyled>
                     </FooterLinkItemContentWrapperStyled>
                 </FooterLinkItemStyled>
