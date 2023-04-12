@@ -32,6 +32,7 @@ import ChangePasswordPage, {
 } from "../../pages/ChangePasswordPage";
 import PostConfirmationPage, { PostConfirmationPageRoute } from "../../pages/PostConfirmationPage";
 import ContactUsPage, { ContactUsPageRoute } from "../../pages/ContactUsPage";
+import FaqPage, { FaqPageRoute } from "../../pages/FaqPage";
 
 const Routes = () => {
   return (
@@ -90,6 +91,9 @@ const Routes = () => {
         </Route>        
         <Route exact path={PostConfirmationPageRoute}>
           <PostConfirmationPage />
+        </Route>
+        <Route exact path={FaqPageRoute}>
+          <FaqPage />
         </Route>
       </Switch>
     </HashRouter>

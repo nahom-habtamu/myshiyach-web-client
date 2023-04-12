@@ -25,6 +25,7 @@ import {
 } from "../../styled_components/common/FooterComponentsStyled";
 import { ContactUsPageRoute } from "../../pages/ContactUsPage";
 import { useHistory } from "react-router-dom";
+import { FaqPageRoute } from "../../pages/FaqPage";
 
 const Footer = () => {
     const history = useHistory();
@@ -70,7 +71,9 @@ const Footer = () => {
                 <FooterLinkItemStyled>
                     <FooterLinkItemTitleStyled>Help & Contact</FooterLinkItemTitleStyled>
                     <FooterLinkItemContentWrapperStyled>
-                        <FooterLinkItemContentItemStyled>FAQs</FooterLinkItemContentItemStyled>
+                        <FooterLinkItemContentItemStyled onClick={() => history.push(FaqPageRoute)}>
+                            FAQs
+                        </FooterLinkItemContentItemStyled>
                         <a
                             style={{ textDecoration: "none" }}
                             href="http://167.172.148.80:9050"
