@@ -37,7 +37,7 @@ const SettingPage = () => {
   }
 
   return (
-    <MasterComponent activePage={SettingPageRoute}>
+    <MasterComponent activePage={SettingPageRoute} hideSearchBar={true}>
       <SettingWrapperStyled>
         <UserInformation
           fullName={loginState.result.currentUser?.fullName}

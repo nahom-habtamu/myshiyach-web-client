@@ -36,7 +36,7 @@ const ContactUsPage = () => {
     }
 
     return (
-        <MasterComponent activePage={ContactUsPageRoute}>
+        <MasterComponent activePage={ContactUsPageRoute} hideSearchBar={true}>
             <ContactUsWrapperStyled>
                 <ContactUsLabelStyled>Contact Us</ContactUsLabelStyled>
                 <ContactUsEmailAndCallWrapperStyled>

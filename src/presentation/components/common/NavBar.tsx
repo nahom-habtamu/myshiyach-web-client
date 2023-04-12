@@ -21,7 +21,14 @@ import { modifyFilterCriteria } from "../../../core/action_creators/product/filt
 import FilterCriteria from "../../../core/models/filter/filter_criteria";
 import { LoginPageRoute } from "../../pages/LoginPage";
 
-const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuClicked: Function, activePage: string, onFilterButtonClicked: Function }) => {
+const NavBar = ({
+    onMenuClicked, activePage, onFilterButtonClicked, hideSearchBar
+}: {
+    onMenuClicked: Function, 
+    activePage: string, 
+    onFilterButtonClicked: Function, 
+    hideSearchBar: boolean
+}) => {
 
     const filterCriteria = useAppSelector((state) => state.filterCriteria);
     const login = useAppSelector((state) => state.login);
@@ -145,7 +152,7 @@ const NavBar = ({ onMenuClicked, activePage, onFilterButtonClicked }: { onMenuCl
                     }
                 </NavBarOtherContentStyled>
             </NavTopContentWrapperStyled>
-            <NavSearchBarWrapperStyled active={searchActive}>
+            <NavSearchBarWrapperStyled active={searchActive && !hideSearchBar}>
                 <NavClearSearchButtonStyled onClick={handleRemoveSearchClicked}>
                     <IoClose size={ICON_SIZE_MEDIUM} />
                 </NavClearSearchButtonStyled>

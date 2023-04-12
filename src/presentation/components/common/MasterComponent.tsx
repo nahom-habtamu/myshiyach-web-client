@@ -8,6 +8,7 @@ import FilterProductsModal from "./FilterProductsModal";
 type MasterComponentProps = {
     activePage: string;
     children: any;
+    hideSearchBar?: boolean;
 };
 
 const MasterComponent = (props: MasterComponentProps) => {
@@ -17,6 +18,7 @@ const MasterComponent = (props: MasterComponentProps) => {
     return (
         <MasterPageContentWrapperStyled>
             <NavBar
+                hideSearchBar={props.hideSearchBar ?? false}
                 onFilterButtonClicked={() => setIsFilterModalOpen(true)}
                 activePage={props.activePage}
                 onMenuClicked={() => setIsNavCollapsed(false)} />
@@ -24,8 +26,8 @@ const MasterComponent = (props: MasterComponentProps) => {
                 props.children
             }
             <Footer />
-            {!isNavCollapsed && 
-                <NavExpandedModal onClose={() => setIsNavCollapsed(true)} activePage={props.activePage}/>
+            {!isNavCollapsed &&
+                <NavExpandedModal onClose={() => setIsNavCollapsed(true)} activePage={props.activePage} />
             }
             {isFilterModalOpen && <FilterProductsModal onClose={() => setIsFilterModalOpen(false)} />}
         </MasterPageContentWrapperStyled>

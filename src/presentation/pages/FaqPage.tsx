@@ -57,7 +57,7 @@ const FaqPage = () => {
         </FaqItemWrapperStyled>;
     }
 
-    return <MasterComponent activePage={FaqPageRoute}>
+    return <MasterComponent activePage={FaqPageRoute} hideSearchBar={true}>
         <FaqPageWrapperStyled>
             <FaqLabelStyled>Frequently Asked Questions</FaqLabelStyled>
             <FaqItemListWrapperStyled>

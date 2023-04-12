@@ -148,7 +148,7 @@ const ChatDetailPage = () => {
   );
 
   return (
-    <MasterComponent activePage={ChatListPageRoute}>
+    <MasterComponent activePage={ChatListPageRoute} hideSearchBar={true}>
       <ChatDetailWrapperStyled>
         {chatDetailState.isLoading ||
           strangerUserState.isLoading ||

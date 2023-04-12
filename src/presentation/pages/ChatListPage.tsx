@@ -47,7 +47,7 @@ const ChatListPage = () => {
   }, []);
 
   return (
-    <MasterComponent activePage={ChatListPageRoute}>
+    <MasterComponent activePage={ChatListPageRoute} hideSearchBar={true}>
       <ChatListWrapperStyled>
         {conversationSnapshotState.isLoading ? (
           <LoadingSpinner />

@@ -8,7 +8,7 @@ const PostConfirmationPage = () => {
     useScrollToTop();
     const history = useHistory();
     return (
-        <MasterComponent activePage={PostConfirmationPageRoute}>
+        <MasterComponent activePage={PostConfirmationPageRoute} hideSearchBar={true}>
             <PostConfirmPageWrapperStyled>
                 <PostConfirmPageImageStyled src='/success.png' />
                 <PostConfirmPageAdPlacedTextStyled>Ad Placed</PostConfirmPageAdPlacedTextStyled>
