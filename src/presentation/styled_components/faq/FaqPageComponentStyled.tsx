@@ -5,8 +5,8 @@ const FaqPageWrapperStyled = styled.div`
   display: flex;
   width: 65%;
   flex-direction: column;
-  background: #F0F0F0;
-  margin: 0 auto;
+  background:white;
+  margin: 25px auto;
   min-height: 400px;
 
   @media (max-width: 1200px) {
