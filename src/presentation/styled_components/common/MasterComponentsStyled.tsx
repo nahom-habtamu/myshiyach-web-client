@@ -186,7 +186,17 @@ export const NavSearchInputStyled = styled.input`
     text-align: center;
     color: gray;
     outline: none;
+    font-size: 14px;
+
     ::placeholder {
         color: light-gray;
+    }
+
+    @media (min-width: 380px) {
+        font-size: 15px;
+    }
+
+    @media (min-width: 800px) {
+        font-size: 20px;
     }
 `;
