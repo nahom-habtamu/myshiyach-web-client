@@ -186,7 +186,7 @@ type FilterButtonProps = {
   isOutline: boolean;
 };
 
-const FilterButton = styled.button<FilterButtonProps>`
+const FilterButtonStyled = styled.button<FilterButtonProps>`
   width: 48%;
   height: 60px;
   border: 1px solid ${(props) => (props.isOutline ? "darkgray" : PRIMARY_COLOR)};
@@ -194,6 +194,7 @@ const FilterButton = styled.button<FilterButtonProps>`
   color: ${(props) => (props.isOutline ? "darkgray" : "white")};
   font-size: 20px;
   border-radius: 15px;
+  cursor: pointer;
 
   @media (max-width: 1200px) {
     height: 50px;
@@ -234,5 +235,5 @@ export {
   FilterRadioSectionStyled,
   FilterRadioButtonStyled,
   FilterButtonWrapper,
-  FilterButton,
+  FilterButtonStyled,
 };

@@ -8,7 +8,7 @@ import FilterCriteria from "../../../core/models/filter/filter_criteria";
 import { useAppSelector, useAppDispatch } from "../../../store/storeHooks";
 import { ModalWrapperShadowStyled } from "../../styled_components/common/CommonModalComponentsStyled";
 import {
-  FilterButton,
+  FilterButtonStyled,
   FilterButtonWrapper,
   FilterDropDownInputStyled,
   FilterDropDownOptionStyled,
@@ -235,12 +235,12 @@ const FilterProductsModal = ({ onClose }: FilterProductsModelProps) => {
         {sortCriteria("Sort By Time", "sortByCreatedByAscending", "time")}
 
         <FilterButtonWrapper>
-          <FilterButton isOutline={true} onClick={handleRemoveFilters}>
+          <FilterButtonStyled isOutline={true} onClick={handleRemoveFilters}>
             Remove Filters
-          </FilterButton>
-          <FilterButton isOutline={false} onClick={handleApplyFilters}>
+          </FilterButtonStyled>
+          <FilterButtonStyled isOutline={false} onClick={handleApplyFilters}>
             Apply Filters
-          </FilterButton>
+          </FilterButtonStyled>
         </FilterButtonWrapper>
       </FilterModalStyled>
     </>,
