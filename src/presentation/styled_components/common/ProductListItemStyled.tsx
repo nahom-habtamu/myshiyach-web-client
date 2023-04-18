@@ -4,8 +4,8 @@ import { PINK_COLOR } from "../../constants/colors";
 const ProductListItemsWrapperStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 15px;
+  column-gap: 20px;
+  row-gap: 20px;
   margin-block: 20px;
 
   @media (min-width: 800px) {
@@ -45,10 +45,6 @@ const ProductListItemWrapperStyled = styled.div`
 
   @media (min-width: 800px) {
     width: 230px;
-  }
-
-  @media (min-width: 1000px) {
-    width: 240px;
   }
 
   @media (min-width: 1200px) {
