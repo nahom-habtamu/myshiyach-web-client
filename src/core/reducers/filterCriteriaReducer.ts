@@ -1,7 +1,7 @@
 import * as filterCriteriaActions from "../action_types/product/filter_criteria_action_types";
 import FilterCriteria from "../models/filter/filter_criteria";
 
-const initialFilterCriteria: FilterCriteria = {
+export const defaultFilterCriteria: FilterCriteria = {
   maxPrice: null,
   minPrice: null,
   mainCategory: null,
@@ -14,7 +14,7 @@ const initialFilterCriteria: FilterCriteria = {
 };
 
 export default function filterCriteriaReducer(
-  state: FilterCriteria = initialFilterCriteria,
+  state: FilterCriteria = defaultFilterCriteria,
   action: filterCriteriaActions.FilterCriteriaActionType
 ): FilterCriteria {
   switch (action.type) {
@@ -38,7 +38,7 @@ export default function filterCriteriaReducer(
         keyword: action.payload.keyword ?? null,
       };
     case filterCriteriaActions.FILTER_CRITERIA_CLEAR:
-      return initialFilterCriteria;
+      return defaultFilterCriteria;
     default:
       return state;
   }

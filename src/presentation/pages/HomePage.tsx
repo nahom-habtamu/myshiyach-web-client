@@ -20,10 +20,11 @@ import useScrollToTop from "../custom_hooks/useScrollToTop";
 
 const HomePage = () => {
   const state = useAppSelector((state) => state.displayPaginatedProducts);
-  const filterCriteria = useAppSelector((state) => state.filterCriteria);
+  const globalFilterCriteria = useAppSelector((state) => state.filterCriteria);
 
   useScrollToTop();
   const [selectedMainCategory, setSelectedCategory] = useState<MainCategory | null>(null);
+  const [latestFilterCriteria, setLatestFilterCriteria] = useState<FilterCriteria>(globalFilterCriteria);
 
   const dispatch = useAppDispatch();
 
@@ -34,14 +35,19 @@ const HomePage = () => {
   const { paginated } = state;
   useEffect(() => {
     const initialPageAndLimit = {
-      filterCriteria: filterCriteria,
-      limit: 10,
+      filterCriteria: globalFilterCriteria,
+      limit: (globalFilterCriteria.keyword === null || globalFilterCriteria.keyword?.length === 0) ? 12 : 300,
       page: 1,
     };
-    if (paginated == null) {
+
+    if (paginated == null || latestFilterCriteria !== globalFilterCriteria) {
+      console.log(initialPageAndLimit);
+
       dispatch(displayPaginatedProducts(initialPageAndLimit));
+      setLatestFilterCriteria(globalFilterCriteria);
     }
-  }, [dispatch, filterCriteria, paginated]);
+
+  }, [dispatch, globalFilterCriteria]);
 
   const renderProducts = () => {
     return (
@@ -56,7 +62,7 @@ const HomePage = () => {
       onCategorySelected={(subCat: CatItem | null) => {
         dispatch(
           modifyFilterCriteria({
-            ...filterCriteria,
+            ...globalFilterCriteria,
             subCategory: subCat?.value
           } as FilterCriteria)
         )
@@ -64,7 +70,7 @@ const HomePage = () => {
       categories={(selectedMainCategory?.subCategories ?? []).map(e => {
         return { title: e.title, value: e._id }
       })}
-      selectedCategory={filterCriteria?.subCategory ?? null}
+      selectedCategory={globalFilterCriteria?.subCategory ?? null}
     />
   }
 
@@ -83,7 +89,7 @@ const HomePage = () => {
             }
             dispatch(
               modifyFilterCriteria({
-                ...filterCriteria,
+                ...globalFilterCriteria,
                 mainCategory: mainCat?.value ?? null,
                 subCategory: null
               } as FilterCriteria)
@@ -92,7 +98,7 @@ const HomePage = () => {
           categories={(state.paginated?.categories ?? []).map(e => {
             return { title: e.title, value: e._id }
           })}
-          selectedCategory={filterCriteria?.mainCategory ?? null}
+          selectedCategory={globalFilterCriteria?.mainCategory ?? null}
         />
         {
           selectedMainCategory !== null && <FilterCategoryResponsiveModalStyled>
@@ -110,12 +116,12 @@ const HomePage = () => {
               {
                 selectedMainCategory!.subCategories.map(e =>
                   <FilterCategorySubCategoryItemStyled
-                    active={e._id === filterCriteria?.subCategory}
+                    active={e._id === globalFilterCriteria?.subCategory}
                     onClick={() => {
                       setSelectedCategory(null);
                       dispatch(
                         modifyFilterCriteria({
-                          ...filterCriteria,
+                          ...globalFilterCriteria,
                           mainCategory: selectedMainCategory?._id ?? null,
                           subCategory: e?._id ?? null
                         } as FilterCriteria)
@@ -143,7 +149,7 @@ const HomePage = () => {
         onPressed={() =>
           dispatch(
             loadMoreProducts({
-              filterCriteria: filterCriteria,
+              filterCriteria: globalFilterCriteria,
               limit: state.paginated?.productsWithPageAndLimit.next?.limit ?? 5,
               page: state.paginated?.productsWithPageAndLimit.next?.page ?? 1,
             })
