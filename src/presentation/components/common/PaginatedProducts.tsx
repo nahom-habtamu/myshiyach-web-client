@@ -89,7 +89,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
                   <ProductListItemOtherContentWrapper>
                     <ProductListItemTitleStyled>{normalizeTitle(p.title)}</ProductListItemTitleStyled>
                     <ProductListItemPriceStyled>
-                      $ {formatToPrice(p.price)} Birr
+                      ETB {formatToPrice(p.price)}
                     </ProductListItemPriceStyled>
                     <ProductListItemCityStyled>
                       <CiLocationOn
