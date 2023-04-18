@@ -19,7 +19,7 @@ const FilterCategories = (
         <FilterCategoryWrapperStyled isSubCat={isSubCat}>
             {
                 categories.map(e =>
-                    <FilterCategoryItemTitleAndContentWrapperStyled
+                    <FilterCategoryItemTitleAndContentWrapperStyled key={e.title}
                         onClick={() => onCategorySelected(e.value === selectedCategory ? null : e)}>
                         <FilterCategoryItemTitleStyled active={e.value === selectedCategory}>
                             {e.title.split(';')[0]}
