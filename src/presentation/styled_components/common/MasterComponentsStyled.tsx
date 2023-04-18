@@ -124,16 +124,38 @@ export const NavSearchBarWrapperStyled = styled.div<{ active: boolean }>`
     margin-top: 20px;
     transition: all 0.5s ease;
     position: relative;
-    
-    @media (min-width: 1100px) {
-        width: 60%;
-        height: 55px;
+
+    @media (min-width: 500px) {
+        width: 73%;
+        height: 50px;
+        margin-left: 40px;
+    }
+
+    @media (min-width: 600px) {
+        margin-left: 50px;
+    }
+
+    @media (min-width: 700px) {
+        margin-left: 60px;
     }
 
     @media (min-width: 800px) {
-        width: 70%;
-        height: 50px;
+        width: 80%;
+        margin-left: 100px;
     }
+
+    @media (min-width: 1100px) {
+        width: 60%;
+        height: 55px;
+        margin-left: 210px;
+    }
+
+    @media (min-width: 1400px) {
+        width: 45%;
+        height: 55px;
+        margin-left: 220px;
+    }
+
 `;
 
 export const NavClearSearchButtonStyled = styled.div<{ disabled?: boolean }>`
@@ -193,10 +215,14 @@ export const NavSearchInputStyled = styled.input`
     }
 
     @media (min-width: 380px) {
-        font-size: 15px;
+        font-size: 14px;
+    }
+
+    @media (min-width: 500px) {
+        font-size: 14px;
     }
 
     @media (min-width: 800px) {
-        font-size: 20px;
+        font-size: 17px;
     }
 `;
