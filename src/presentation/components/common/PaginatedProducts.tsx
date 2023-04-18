@@ -31,13 +31,9 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
   const history = useHistory();
 
   const handleGoingToProductDetail = (product: Product) => {
-    if (loginState.result.token.length === 0) {
-      dispatch(toggleLoginPromptModalOpen());
-    } else {
-      history.push({
-        pathname: `/productDetail/${product._id}`,
-      });
-    }
+    history.push({
+      pathname: `/productDetail/${product._id}`,
+    });
   };
 
   const handleSavingProduct = (e: any, product: Product) => {
@@ -45,7 +41,7 @@ const PaginatedProducts = ({ products }: { products: Product[] }) => {
     if (loginState.result.token.length === 0) {
       dispatch(toggleLoginPromptModalOpen());
     } else {
-      let favoriteProductsUpdated = [...favoriteProductsState.products, product];      
+      let favoriteProductsUpdated = [...favoriteProductsState.products, product];
       dispatch(updateSavedPostsItem(
         favoriteProductsUpdated,
         loginState.result.currentUser!._id,
