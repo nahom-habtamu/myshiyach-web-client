@@ -23,9 +23,9 @@ import { LoginPageRoute } from "../../pages/LoginPage";
 const NavBar = ({
     onMenuClicked, activePage, onFilterButtonClicked, hideSearchBar
 }: {
-    onMenuClicked: Function, 
-    activePage: string, 
-    onFilterButtonClicked: Function, 
+    onMenuClicked: Function,
+    activePage: string,
+    onFilterButtonClicked: Function,
     hideSearchBar: boolean
 }) => {
 
@@ -45,7 +45,7 @@ const NavBar = ({
 
 
     const handleSearchClicked = () => {
-        if (keyword.length > 0) {
+        if (keyword.length >= 2) {
             dispatch(
                 modifyFilterCriteria({
                     ...filterCriteria,
@@ -162,7 +162,7 @@ const NavBar = ({
                     onChange={(e: any) => setKeyword(e.target.value)}
                 />
                 <NavSearchButtonStyled
-                    disabled={keyword.length === 0}
+                    disabled={keyword.length < 2}
                     onClick={handleSearchClicked}>
                     <CiSearch size={ICON_SIZE_MEDIUM} />
                 </NavSearchButtonStyled>

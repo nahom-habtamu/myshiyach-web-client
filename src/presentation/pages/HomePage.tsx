@@ -36,7 +36,7 @@ const HomePage = () => {
   useEffect(() => {
     const initialPageAndLimit = {
       filterCriteria: globalFilterCriteria,
-      limit: (globalFilterCriteria.keyword === null || globalFilterCriteria.keyword?.length === 0) ? 12 : 300,
+      limit: (globalFilterCriteria.keyword === null || globalFilterCriteria.keyword?.length === 0) ? 12 : 2000,
       page: 1,
     };
 
