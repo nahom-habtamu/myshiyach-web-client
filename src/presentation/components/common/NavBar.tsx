@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CiChat1, CiHome, CiSaveDown1, CiSearch, CiSettings } from "react-icons/ci";
 import { IoAddSharp, IoClose } from "react-icons/io5";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { AiFillFilter, AiOutlineUserAdd } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ICON_SIZE_LARGE, ICON_SIZE_MEDIUM } from "../../constants/sizes";
 import {
@@ -9,7 +9,6 @@ import {
     NavBarLogoStyled, NavBarOtherContentStyled, NavIconsStyled, NavSearchBarWrapperStyled,
     NavSearchInputStyled, NavSearchButtonStyled, ResponsiveIconStyled, NavBarLogoNameStyled, NavClearSearchButtonStyled
 } from "../../styled_components/common/MasterComponentsStyled";
-import { BiFilter } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { HomePageRoute } from "../../pages/HomePage";
 import { SettingPageRoute } from "../../pages/SettingPage";
@@ -168,7 +167,7 @@ const NavBar = ({
                     <CiSearch size={ICON_SIZE_MEDIUM} />
                 </NavSearchButtonStyled>
                 <NavSearchButtonStyled onClick={() => onFilterButtonClicked()}>
-                    <BiFilter size={ICON_SIZE_MEDIUM} />
+                    <AiFillFilter size={ICON_SIZE_MEDIUM} />
                 </NavSearchButtonStyled>
             </NavSearchBarWrapperStyled>
         </NavBarWrapperStyled>
