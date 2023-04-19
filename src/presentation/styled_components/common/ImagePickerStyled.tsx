@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DARK_PINK_COLOR, PINK_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from "../../constants/colors";
+import { PINK_COLOR } from "../../constants/colors";
 
 const ImagePickerWrapperStyled = styled.div`
   width: 92%;
