@@ -1,4 +1,6 @@
-import { toggleValidationErrorModalOpen } from "../../../core/action_creators/common/validation_error_modal_action_creators";
+import {
+  toggleValidationErrorModalOpen
+} from "../../../core/action_creators/common/validation_error_modal_action_creators";
 import { useAppDispatch, useAppSelector } from "../../../store/storeHooks";
 import { AddPostPageInputState } from "../../pages/AddPostPage";
 import {
@@ -137,7 +139,7 @@ const SecondPageAddPostForm = ({
   };
 
   const handlePostPressed = () => {
-    if ((formState.productImages.length > 0 || pickedImages.length > 0) &&
+    if (((formState.productImages.length + pickedImages.length) >= 3) &&
       formState.city && formState.contactPhone && formState.productDetail
     ) {
       let categorySelected = getDataNeededToAddPostState.result?.categories.find(
@@ -162,6 +164,9 @@ const SecondPageAddPostForm = ({
       let content = "";
       if (formState.productImages.length === 0 && pickedImages.length === 0) {
         content = "Please Pick Product Images";
+      }
+      else if ((formState.productImages.length + pickedImages.length) < 3) {
+        content = "Please Select a Minimum of 3 Product Images";
       }
       else if (!formState.city) {
         content = "Please Enter City";

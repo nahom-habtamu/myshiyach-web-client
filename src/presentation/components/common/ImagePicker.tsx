@@ -8,6 +8,8 @@ import {
   ImagePickerDisplayItemImageStyled,
   ImagePickerDisplayItemStyled,
   ImagePickerDisplayWrapperStyled,
+  ImagePickerWarningTextStyled,
+  ImagePickerWarningTextWrapperStyled,
   ImagePickerWrapperStyled,
 } from "../../styled_components/common/ImagePickerStyled";
 
@@ -45,6 +47,14 @@ const ImagePicker = (props: ImagePickerProps) => {
       <ImagePickerButtonStyled htmlFor="fileInput">
         <BiImages size={ICON_SIZE_MEDIUM} />
       </ImagePickerButtonStyled>
+      <ImagePickerWarningTextWrapperStyled>
+        <ImagePickerWarningTextStyled>
+          Make sure you pick a minimim of 3 product images
+        </ImagePickerWarningTextStyled>
+        <ImagePickerWarningTextStyled>
+          Make sure the images are clear and taken from different positions
+        </ImagePickerWarningTextStyled>
+      </ImagePickerWarningTextWrapperStyled>
       <input
         type="file"
         id="fileInput"

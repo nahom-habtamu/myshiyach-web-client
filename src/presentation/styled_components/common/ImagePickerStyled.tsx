@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DARK_PINK_COLOR, PINK_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from "../../constants/colors";
 
 const ImagePickerWrapperStyled = styled.div`
   width: 92%;
@@ -48,6 +49,23 @@ const ImagePickerDisplayItemCloseButtonWrapperStyled = styled.div`
   color: black;
 `;
 
+const ImagePickerWarningTextWrapperStyled = styled.div`
+  width: fit-content;
+  padding: 20px;
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: start;
+  align-items: flex-start;
+  border: 1px solid ${PINK_COLOR};
+  border-radius: 15px;
+`;
+
+const ImagePickerWarningTextStyled = styled.div`
+  font-weight: 500;
+`;
+
 export {
   ImagePickerWrapperStyled,
   ImagePickerButtonStyled,
@@ -55,4 +73,6 @@ export {
   ImagePickerDisplayItemStyled,
   ImagePickerDisplayItemImageStyled,
   ImagePickerDisplayItemCloseButtonWrapperStyled,
+  ImagePickerWarningTextWrapperStyled,
+  ImagePickerWarningTextStyled
 };

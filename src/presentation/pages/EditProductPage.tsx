@@ -87,7 +87,7 @@ const EditProductPage = () => {
   const handleUpdatingProduct = () => {
     if ((
       formState.price && formState.description && formState.title && formState.mainCategory &&
-      formState.subCategory && formState.productImages.length > 0 || pickedImages.length > 0) &&
+      formState.subCategory && (formState.productImages.length + pickedImages.length >= 3)) &&
       formState.city && formState.contactPhone && formState.productDetail
     ) {
       let categorySelected = result?.categories.find(
@@ -130,6 +130,9 @@ const EditProductPage = () => {
       }
       if (formState.productImages.length === 0 && pickedImages.length === 0) {
         content = "Please Pick Product Images";
+      }
+      else if ((formState.productImages.length + pickedImages.length) < 3) {
+        content = "Please Select a Minimum of 3 Product Images";
       }
       else if (!formState.city) {
         content = "Please Enter City";
