@@ -270,7 +270,7 @@ const EditProductPage = () => {
           <ProductInput
             type="text"
             placeHolder={requiredField.objectKey}
-            value={productDetailValue}
+            value={productDetailValue["value"].split(";")[0]}
             onChanged={(e: any) =>
               setFormState({
                 ...formState,
